@@ -868,3 +868,37 @@ body.cursor-hover .custom-cursor-dot {
 .tech-html5 { --card-glow-rgb: 249, 115, 22; --card-glow-color: #f97316; }
 .tech-css3 { --card-glow-rgb: 59, 130, 246; --card-glow-color: #3b82f6; }
 
+/* Hero 3D Floating Layers (preserve-3d parallax) */
+.hero-avatar-tilt {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-avatar-tilt .profile-img {
+  transform: translateZ(25px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-avatar-tilt .hologram-tag {
+  transform: translateZ(60px) scale(0.95);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-avatar-tilt .floating-badge-3d-1 {
+  position: absolute;
+  top: 10%;
+  left: -25px;
+  transform: translateZ(80px);
+  z-index: 30;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-avatar-tilt .floating-badge-3d-2 {
+  position: absolute;
+  bottom: 25%;
+  right: -25px;
+  transform: translateZ(90px);
+  z-index: 30;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
