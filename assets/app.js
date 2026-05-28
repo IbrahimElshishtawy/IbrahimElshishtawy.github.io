@@ -15,51 +15,51 @@ const windowHalfY = window.innerHeight / 2;
 
 // Project Data for Cinematic overlays
 const PROJECTS_DATA = {
-  elmasryeen: {
-    title: "ElMasryeen Smart Living",
-    subtitle: "A futuristic real estate ecosystem engineered for high-performance property discovery. Leveraging reactive architectures to deliver seamless property exploration and instant owner connectivity.",
-    tags: ["Flutter", "Firebase", "BLoC", "Google Maps"],
-    image: "assets/assets/doctor1.jpg", // Using one of the high-res screenshots
-    secondaryImage: "assets/assets/food1.jpg",
-    demoLink: "https://elmasryeen.dev",
-    repoLink: "https://github.com/IbrahimElshishtawy/elmasryeen",
+  aqar: {
+    title: "Aqar (عقار)",
+    subtitle: "A futuristic real estate and construction management dashboard. Engineered with local-first offline synchronization to enable active builders and partners to track sales, concrete/supply expenses, and remaining installments seamlessly.",
+    tags: ["Flutter", "Sqflite", "Charts", "Local Sync"],
+    image: "assets/assets/aqar_dashboard.png",
+    secondaryImage: "assets/assets/aqar_activities.png",
+    demoLink: "https://aqar.dev",
+    repoLink: "https://github.com/IbrahimElshishtawy/aqar",
     features: [
       {
-        icon: "fa-map-marked-alt",
-        title: "Interactive Spatial Search",
-        desc: "Precision-engineered map integration for real-time property discovery and neighborhood analysis."
+        icon: "fa-chart-pie",
+        title: "Dynamic Sales Analytics",
+        desc: "Comprehensive projects dashboard aggregating total contract sales, expenses, and pending installment logs."
       },
       {
-        icon: "fa-filter",
-        title: "Smart Filtering",
-        desc: "Multi-layered attribute selection with near-zero latency using optimized local caching."
+        icon: "fa-users",
+        title: "Partner Workspace",
+        desc: "Integrated secure credentials manager designed to invite and sync ledger permissions across construction partners."
       },
       {
-        icon: "fa-comments",
-        title: "Unified Messaging",
-        desc: "Encrypted WebSockets-based communication between buyers and property owners."
+        icon: "fa-receipt",
+        title: "Active Cost Ledger",
+        desc: "Chronological transaction logging mapping concrete pouring, bricks, and labor costs."
       },
       {
-        icon: "fa-tachometer-alt",
-        title: "60 FPS Fluidity",
-        desc: "Optimized BLoC state management ensuring a buttery-smooth experience even on lower-tier hardware."
+        icon: "fa-cloud-upload-alt",
+        title: "Offline-First Sync",
+        desc: "High-performance Sqflite architecture preserving ledger modifications when offline, auto-indexing on internet recovery."
       }
     ],
     journey: [
       {
-        phase: "PHASE 01: CONCEPT",
-        title: "The Search-First Paradigm",
-        desc: "The initial challenge was creating a 'search-first' experience that felt instantaneous. We spent weeks prototyping the property cards to ensure they felt tactile and modern while maintaining optimal image loading strategies."
+        phase: "PHASE 01: BLUEPRINT",
+        title: "The Financial Grid Concept",
+        desc: "Construction managers need high-density details on the go. We designed a clear grid dashboard tracking crucial sales-to-expense metrics at a single glance, avoiding nested sub-menus."
       },
       {
-        phase: "PHASE 02: SCALE",
-        title: "Cloud Infrastructure Integration",
-        desc: "Implementing Firebase Cloud Functions for dynamic resizing and Firestore indexing was critical. We developed a custom pagination system that pre-fetches data based on scroll velocity, eliminating visual stutter."
+        phase: "PHASE 02: SYNC",
+        title: "Local Database Performance",
+        desc: "Designed an efficient Sqflite relational model mapping projects, expenses, and partners. The ledger synchronizes securely with Cloud databases, reducing transaction collision rates to near-zero."
       },
       {
-        phase: "PHASE 03: POLISHING",
-        title: "Micro-Interactions",
-        desc: "The final layer was adding atmospheric micro-interactions. Haptic feedback on property saves, subtle shadow shifts on card focus, and custom page transitions built with the Flutter Animate package."
+        phase: "PHASE 03: REFINING",
+        title: "Atmospheric Micro-Interactions",
+        desc: "Added subtle UI visual feedback for new transactions, custom date-range chart loaders, and smooth page flows using Flutter animate tools."
       }
     ]
   },
