@@ -111,51 +111,51 @@ const PROJECTS_DATA = {
       }
     ]
   },
-  animalzone: {
-    title: "AnimalZone Marketplace",
-    subtitle: "A premium, secure ecosystem for pet adoption, pet-care services, and premium food marketplaces. Featuring direct instant chatting, secure payment, and customized animal wellness trackers.",
+  animalconnect: {
+    title: "Animal Connect",
+    subtitle: "A premium, high-performance pet companion and wellness ecosystem. Featuring dynamic geo-location nearby indexing, custom micro-segmented product categories (Adoption, Food, Accessories), secure partner chatting, and offline relational caching.",
     tags: ["Flutter", "Node.js", "MongoDB", "Socket.io"],
-    image: "assets/assets/doctor2.jpg",
-    secondaryImage: "assets/assets/food2.jpg",
-    demoLink: "https://animalzone.net",
-    repoLink: "https://github.com/IbrahimElshishtawy/animalzone",
+    image: "assets/assets/animal_connect_home.png",
+    secondaryImage: "assets/assets/animal_connect_list.png",
+    demoLink: "https://animalconnect.app",
+    repoLink: "https://github.com/IbrahimElshishtawy/animalconnect",
     features: [
       {
-        icon: "fa-shopping-cart",
-        title: "Pet Adoption Portal",
-        desc: "A fully verified adoption pipeline ensuring safe transactions, certified health records, and legal compliance."
+        icon: "fa-map-marker-alt",
+        title: "Geo-Location Proximity Search",
+        desc: "High-precision map-first indexing measuring buyer-to-seller coordinates (e.g., Mansoura, Cairo, Mahalla) with sub-second distances calculations."
       },
       {
-        icon: "fa-stethoscope",
-        title: "Virtual Vet Diagnostic",
-        desc: "AI-assisted symptoms log recommending nearby clinics and initial step checklists."
+        icon: "fa-th-large",
+        title: "Micro-Segmented Marketplace",
+        desc: "Curated categorical routing splitting transactions between live pet discovery, verified adoption paths, and premium nutrition logs."
       },
       {
-        icon: "fa-bolt",
-        title: "Instant In-App Chat",
-        desc: "Socket.io active communication with typing indicators, real-time message states, and push integrations."
+        icon: "fa-paper-plane",
+        title: "Socket.io Bi-Directional Messaging",
+        desc: "Instant live chatting featuring active typing states, read-receipt receipts, and cross-platform push notifications channels."
       },
       {
-        icon: "fa-credit-card",
-        title: "Premium Checkout",
-        desc: "Integrated Stripe payment processing supporting recurring pet-food plans and multi-vendor systems."
+        icon: "fa-check-double",
+        title: "Verified Health Checklists",
+        desc: "Cryptographically signed animal wellness cards detailing certified vet vaccinations logs and legal adoption contracts."
       }
     ],
     journey: [
       {
-        phase: "PHASE 01: EXPLORE",
-        title: "Bridging Communities",
-        desc: "We wanted a platform that combined adoption security with commercial ease. Prototyping focused on designing vet verify cycles where vets could upload cryptographically secure vaccination certs."
+        phase: "PHASE 01: ARCHITECTURE",
+        title: "Map-First Listing Paradigms",
+        desc: "Pet trading demands immediate distance calculations. We built custom geohash grid queries in MongoDB, converting geographic longitude/latitude coordinates into highly indexable strings."
       },
       {
-        phase: "PHASE 02: SERVER",
-        title: "Robust REST & Socket Backend",
-        desc: "Developed a secure Node.js, Express, and MongoDB backend. Implemented JWT authentications and socket connections capable of handling 5,000 concurrent message streams with horizontal scaling."
+        phase: "PHASE 02: STREAMING",
+        title: "Reactive State & Audio",
+        desc: "Integrated Node.js backend streams using Socket.io cluster servers to distribute message events. Implemented Flutter local database caching to show past logs instantly on app startup."
       },
       {
-        phase: "PHASE 03: SHIP",
-        title: "Frictionless Onboarding",
-        desc: "Simplified booking workflows by over 40% using an interactive timeline calendar component where users can select slots, pay, and receive appointment receipts in under three taps."
+        phase: "PHASE 03: POLISHING",
+        title: "Atmospheric Visual Feedback",
+        desc: "Shipped dynamic scrolling list components with lazy image loaders and custom shimmer overlays to ensure a smooth 60fps experience even on low-spec hardware."
       }
     ]
   },
