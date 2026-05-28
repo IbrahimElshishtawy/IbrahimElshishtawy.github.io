@@ -1,0 +1,851 @@
+/* 
+   Futuristic 3D Cinematic Portfolio Design System
+   Designed by Antigravity for Ibrahim Elshishtawy
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-color: #030209;
+  --bg-darker: #010103;
+  --primary: #8b5cf6;
+  --primary-glow: rgba(139, 92, 246, 0.3);
+  --secondary: #06b6d4;
+  --secondary-glow: rgba(6, 182, 212, 0.3);
+  --accent: #ec4899;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --glass-bg: rgba(13, 11, 28, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-hover: rgba(139, 92, 246, 0.25);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none !important; /* Hide native cursor for cinematic cursor */
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 4px;
+  border: 2px solid var(--bg-darker);
+  transition: all 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Background Auroras & Gradients */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: radial-gradient(circle at 10% 20%, rgba(13, 10, 36, 1) 0%, rgba(3, 2, 9, 1) 100%);
+  overflow: hidden;
+}
+
+.aurora-glow-1 {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: floatGlow 15s infinite alternate ease-in-out;
+}
+
+.aurora-glow-2 {
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: floatGlow 20s infinite alternate-reverse ease-in-out;
+}
+
+.aurora-glow-3 {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+  filter: blur(100px);
+  animation: floatGlow 25s infinite alternate ease-in-out;
+}
+
+@keyframes floatGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(8%, 10%) scale(1.15);
+  }
+}
+
+/* 3D Particle Canvas */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Custom Cinematic Cursor */
+.custom-cursor {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+}
+
+/* Cursor Hover States */
+body.cursor-hover .custom-cursor {
+  width: 55px;
+  height: 55px;
+  border-color: var(--primary);
+  background-color: rgba(139, 92, 246, 0.05);
+}
+
+body.cursor-hover .custom-cursor-dot {
+  background-color: var(--secondary);
+  box-shadow: 0 0 12px var(--secondary);
+}
+
+/* Typography styles */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-hologram {
+  background: linear-gradient(90deg, #a5b4fc 0%, #ec4899 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 20px;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 15px 45px 0 rgba(139, 92, 246, 0.12), var(--card-shadow);
+}
+
+/* Interactive 3D Perspective Card Tilt Container */
+.tilt-container {
+  perspective: 1000px;
+}
+
+/* Bento Grid Layout Utilities */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3D Profile Portrait Frame */
+.profile-frame-container {
+  position: relative;
+  border-radius: 24px;
+  padding: 8px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.profile-frame-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0%, var(--primary) 25%, transparent 50%, var(--secondary) 75%, transparent 100%);
+  animation: rotateSweep 8s linear infinite;
+  z-index: 1;
+}
+
+.profile-frame-inner {
+  position: relative;
+  z-index: 2;
+  border-radius: 18px;
+  background: #090815;
+  overflow: hidden;
+}
+
+@keyframes rotateSweep {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  filter: saturate(1.1) brightness(0.95);
+}
+
+.profile-frame-container:hover .profile-img {
+  transform: scale(1.05);
+  filter: saturate(1.25) brightness(1.05);
+}
+
+/* Magnetic Buttons */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.btn-glowing {
+  background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-glowing:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  border-radius: 9999px;
+  padding: 12px 28px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Cyber Badges */
+.cyber-badge {
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: #a78bfa;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.05);
+}
+
+.cyber-badge-cyan {
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  color: #22d3ee;
+}
+
+.cyber-badge-glow {
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.45);
+  }
+}
+
+/* Glass Tech Icon Grid */
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  border-radius: 20px;
+  background: rgba(15, 13, 35, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.06), transparent 40%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tech-icon-container {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.tech-card:hover .tech-icon-container {
+  transform: translateY(-4px) scale(1.08);
+  border-color: var(--card-glow-color, var(--primary));
+  box-shadow: 0 0 20px rgba(var(--card-glow-rgb, 139, 92, 246), 0.3);
+  background: rgba(var(--card-glow-rgb, 139, 92, 246), 0.05);
+}
+
+.tech-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.tech-card:hover .tech-title {
+  color: var(--text-primary);
+}
+
+/* 3D Glassy iPhone Frame Mockup */
+.iphone-mockup {
+  position: relative;
+  width: 270px;
+  height: 550px;
+  border-radius: 44px;
+  border: 6px solid rgba(255, 255, 255, 0.15);
+  background: #020108;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8),
+              inset 0 0 12px rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.iphone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iphone-notch::after {
+  content: '';
+  width: 45px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.iphone-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .iphone-mockup {
+  border-color: var(--primary);
+}
+
+.project-card:hover .iphone-img {
+  transform: scale(1.06);
+}
+
+/* Portfolio Bento Showcase Cards */
+.project-card {
+  background: rgba(13, 11, 28, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: none !important;
+}
+
+.project-card:hover {
+  border-color: rgba(139, 92, 246, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.05);
+}
+
+/* Cinematic Cyber Timeline */
+.timeline-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.2) 20%, rgba(6, 182, 212, 0.2) 80%, rgba(6, 182, 212, 0.05) 100%);
+}
+
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 2px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+  box-shadow: 0 0 10px var(--primary);
+  transition: height 0.1s ease-out;
+  transform-origin: top;
+}
+
+.timeline-node {
+  position: relative;
+  padding-left: 55px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #020108;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-node:hover .timeline-dot {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  transform: scale(1.15);
+}
+
+.timeline-node:hover .timeline-dot::after {
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+/* Glass Contact Input Fields */
+.glass-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+}
+
+.glass-label {
+  position: absolute;
+  left: 18px;
+  top: 15px;
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  font-size: 0.95rem;
+}
+
+.input-container {
+  position: relative;
+}
+
+.glass-input:focus ~ .glass-label,
+.glass-input:not(:placeholder-shown) ~ .glass-label {
+  transform: translateY(-26px) scale(0.85);
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Holographic dynamic sweep effect for CTA */
+.btn-sweep {
+  overflow: hidden;
+}
+
+.btn-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: 0.75s;
+}
+
+.btn-sweep:hover::after {
+  left: 120%;
+}
+
+/* Immersive Multidimensional Case Study Overlay */
+.case-study-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: var(--bg-color);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95) translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-study-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: scale(1) translateY(0);
+}
+
+.close-overlay-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1100;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.close-overlay-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+/* Image Hover Card for Grid Bento Components */
+.image-reveal-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.image-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(2, 1, 8, 0.85) 100%);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.image-reveal-container:hover .image-reveal-overlay {
+  opacity: 0.95;
+}
+
+/* Interactive Bento Dashboard Metrics styling */
+.metric-tile {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.metric-tile::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.4s ease;
+}
+
+.metric-tile:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(139, 92, 246, 0.15);
+  transform: translateY(-3px);
+}
+
+.metric-tile:hover::after {
+  width: 100%;
+}
+
+.metric-number {
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+/* Glass overlay details style */
+.glass-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.glass-tag {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.glass-tag:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Pulsing neon dots */
+.glow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.glow-dot-green {
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981, 0 0 20px rgba(16, 185, 129, 0.4);
+  animation: glowPulseGreen 1.5s infinite alternate;
+}
+
+@keyframes glowPulseGreen {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px #10b981, 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #10b981, 0 0 25px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* Web Page Loader screen */
+#cyber-preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #020108;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease;
+}
+
+.preloader-glow {
+  width: 80px;
+  height: 80px;
+  border: 2px solid transparent;
+  border-top-color: var(--primary);
+  border-bottom-color: var(--secondary);
+  border-radius: 50%;
+  animation: spinGlow 1.5s linear infinite;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-glow::after {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: 2px solid transparent;
+  border-left-color: var(--accent);
+  border-right-color: #f59e0b;
+  border-radius: 50%;
+  animation: spinGlow 1s linear infinite reverse;
+}
+
+@keyframes spinGlow {
+  100% {
+    transform: rotate(360deg);
+  }
+}
