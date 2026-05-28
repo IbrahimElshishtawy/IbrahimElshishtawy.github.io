@@ -63,14 +63,14 @@ const PROJECTS_DATA = {
       }
     ]
   },
-  quranglow: {
-    title: "QuranGlow",
-    subtitle: "A serene, beautifully-themed Quranic reading companion. Designed to elevate daily spiritual habits through interactive progress metrics, customizable reading environments, and a smooth audio synchronization engine.",
+  bostan: {
+    title: "Bostan (بُستان)",
+    subtitle: "A serene Quranic reading, reflection, and habit tracking companion. Designed to elevate daily spiritual habits through interactive progress metrics (مسار الحفظ), customizable reading environments, and a smooth audio synchronization engine.",
     tags: ["Flutter", "Sqflite", "Audio Player", "GetX"],
-    image: "assets/assets/qurn1.jpg",
-    secondaryImage: "assets/assets/qurn2.jpg",
-    demoLink: "https://quranglow.app",
-    repoLink: "https://github.com/IbrahimElshishtawy/quranglow",
+    image: "assets/assets/bostan_stats.png",
+    secondaryImage: "assets/assets/bostan_settings.png",
+    demoLink: "https://bostan.app",
+    repoLink: "https://github.com/IbrahimElshishtawy/bostan",
     features: [
       {
         icon: "fa-book-open",
@@ -85,12 +85,12 @@ const PROJECTS_DATA = {
       {
         icon: "fa-heart",
         title: "Interactive Habit Tracker",
-        desc: "Visually striking weekly reading heatmaps and streaks to encourage routine engagements."
+        desc: "Visually striking weekly reading heatmaps and memorization path loops (مسار الحفظ)."
       },
       {
         icon: "fa-palette",
         title: "Ambient Dark Themes",
-        desc: "OLED-friendly dark designs with carefully measured contrast guidelines for night reading."
+        desc: "OLED-friendly dark designs with carefully measured contrast guidelines and custom fonts."
       }
     ],
     journey: [
