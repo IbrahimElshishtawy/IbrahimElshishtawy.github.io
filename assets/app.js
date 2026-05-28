@@ -163,8 +163,8 @@ const PROJECTS_DATA = {
     title: "Tola'b Student Assistant",
     subtitle: "A student-centric, productivity hub built to centralize lecture notes, attendance tracking, exam countdowns, and automated task reminders using localized offline-first architectures.",
     tags: ["Flutter", "Hive DB", "Local Notifications", "PDF Reader"],
-    image: "assets/assets/Fly2.jpg",
-    secondaryImage: "assets/assets/bmi2.jpg",
+    image: "assets/assets/tolab_schedule.png",
+    secondaryImage: "assets/assets/tolab_courses.png",
     demoLink: "https://tolab.dev",
     repoLink: "https://github.com/IbrahimElshishtawy/tolab",
     features: [
