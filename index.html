@@ -5,24 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Ibrahim Elshishtawy | Futuristic Flutter Architect</title>
+  <title>Ibrahim Elshishtawy | Flutter Architect &amp; Mobile Engineer</title>
 
-  <meta name="description" content="Explore the immersive portfolio of Ibrahim Elshishtawy, a Senior Flutter Architect & Mobile Engineer crafting pixel-perfect, premium cross-platform application experiences.">
-  <meta name="keywords" content="Ibrahim Elshishtawy, Flutter Developer, Mobile Engineer, 3D Portfolio, iOS Developer, Android Developer, Flutter Architect">
+  <meta name="description" content="Portfolio of Ibrahim Elshishtawy — Senior Flutter Architect &amp; Mobile Systems Engineer crafting pixel-perfect, high-performance cross-platform applications. Available for hire.">
+  <meta name="keywords" content="Ibrahim Elshishtawy, Flutter Developer, Mobile Engineer, 3D Portfolio, iOS, Android, Flutter Architect, Dart, Firebase">
+  <meta name="author" content="Ibrahim Elshishtawy">
 
-  <!-- Open Graph / Social Medias -->
-  <meta property="og:title" content="Ibrahim Elshishtawy | Futuristic Flutter Architect">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Ibrahim Elshishtawy | Flutter Architect">
   <meta property="og:description" content="Discover premium, high-performance mobile experiences crafted with architectural precision.">
   <meta property="og:image" content="assets/assets/me.png">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ibrahimelshishtawy.github.io">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Stylesheets & Fonts -->
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Core Stylesheet -->
   <link rel="stylesheet" href="assets/style.css">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS (utility helpers) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -31,125 +41,180 @@
           colors: {
             cyberPurple: '#8b5cf6',
             cyberCyan: '#06b6d4',
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
           }
         }
       }
     }
   </script>
-
-  <!-- FontAwesome Icons CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-[#030209] text-slate-100 overflow-x-hidden selection:bg-purple-500/30 selection:text-white">
 
-  <!-- 1. Web Cinematic Preloader -->
-  <div id="cyber-preloader">
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 1. CINEMATIC PRELOADER                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="cyber-preloader" role="status" aria-label="Loading portfolio">
     <div class="preloader-glow"></div>
-    <div class="mt-6 font-heading text-xs font-bold uppercase tracking-[0.25em] text-purple-400/80 animate-pulse">
+    <p class="mt-6 font-heading text-xs font-bold uppercase tracking-[0.25em] text-purple-400/80 animate-pulse">
       Calibrating Matrix...
-    </div>
+    </p>
   </div>
 
-  <!-- 2. Interactive Background Elements -->
-  <div class="aurora-bg">
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 2. BACKGROUND ELEMENTS                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="aurora-bg" aria-hidden="true">
     <div class="aurora-glow-1"></div>
     <div class="aurora-glow-2"></div>
     <div class="aurora-glow-3"></div>
   </div>
 
-  <!-- WebGL 3D Particle Canvas -->
-  <canvas id="particles-canvas"></canvas>
+  <!-- WebGL Particle Canvas -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-  <!-- 3. Cinematic Custom Cursor -->
-  <div class="custom-cursor hidden md:block"></div>
-  <div class="custom-cursor-dot hidden md:block"></div>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 3. CUSTOM CURSOR                          -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="custom-cursor hidden md:block" aria-hidden="true"></div>
+  <div class="custom-cursor-dot hidden md:block" aria-hidden="true"></div>
 
-  <!-- 4. Floating Header Navigation -->
-  <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 md:px-12 flex justify-between items-center transition-all duration-300">
-    <div class="glass-panel px-6 py-3 flex items-center justify-between w-full max-w-7xl mx-auto border-white/5 backdrop-blur-xl">
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 4. FLOATING NAVIGATION HEADER             -->
+  <!-- ══════════════════════════════════════════ -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-10">
+    <div class="glass-nav max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
       <!-- Logo -->
-      <a href="#" class="font-heading text-lg font-black tracking-wider text-white hover:text-purple-400 transition-colors duration-300 flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></span>
+      <a href="#hero" id="nav-logo" class="font-heading text-base font-black tracking-wider text-white hover:text-purple-400 transition-colors duration-300 flex items-center gap-2.5" aria-label="Ibrahim Elshishtawy - Back to top">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" aria-hidden="true"></span>
         IBRAHIM.DEV
       </a>
 
-      <!-- Nav Links -->
-      <nav class="hidden md:flex items-center gap-8">
-        <a href="#works" class="text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-300">Work</a>
-        <a href="#arsenal" class="text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-300">Tech Stack</a>
-        <a href="#about" class="text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-300">About</a>
-        <a href="#contact" class="text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-300">Contact</a>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <a href="#works" id="nav-works" class="nav-link">Work</a>
+        <a href="#arsenal" id="nav-arsenal" class="nav-link">Tech Stack</a>
+        <a href="#about" id="nav-about" class="nav-link">About</a>
+        <a href="#journey" id="nav-journey" class="nav-link">Journey</a>
+        <a href="#contact" id="nav-contact" class="nav-link">Contact</a>
       </nav>
 
-      <!-- CTA -->
-      <a href="#contact" class="magnetic-btn btn-glowing text-xs py-2 px-5 font-semibold">
-        Hire Me
+      <!-- Mobile Hamburger -->
+      <button type="button" id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line short"></span>
+      </button>
+
+      <!-- CTA Button -->
+      <a href="#contact" id="nav-hire-btn" class="hidden md:inline-flex magnetic-btn btn-glowing text-xs py-2.5 px-6 font-semibold items-center gap-2" aria-label="Hire Ibrahim Elshishtawy">
+        <i class="fas fa-bolt text-yellow-300 text-[10px]" aria-hidden="true"></i> Hire Me
       </a>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+      <nav class="flex flex-col gap-4 p-6" aria-label="Mobile navigation">
+        <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()">Work</a>
+        <a href="#arsenal" class="mobile-nav-link" onclick="closeMobileMenu()">Tech Stack</a>
+        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
+        <a href="#journey" class="mobile-nav-link" onclick="closeMobileMenu()">Journey</a>
+        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        <a href="#contact" class="btn-glowing text-center text-xs py-3 px-6 font-semibold mt-2" onclick="closeMobileMenu()">Hire Me</a>
+      </nav>
     </div>
   </header>
 
-  <!-- 5. Main Content Wrapper -->
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 5. MAIN CONTENT                           -->
+  <!-- ══════════════════════════════════════════ -->
   <main class="w-full relative z-10 pt-28">
 
-    <!-- HERO SECTION -->
-    <section class="min-h-[90vh] flex items-center justify-center py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <!-- ─────────────────────────────────── -->
+    <!-- HERO SECTION                        -->
+    <!-- ─────────────────────────────────── -->
+    <section id="hero" class="min-h-[92vh] flex items-center justify-center py-20 px-4 md:px-10 max-w-7xl mx-auto">
       <div class="w-full flex flex-col-reverse lg:flex-row gap-16 items-center justify-between">
 
-        <!-- Left details -->
+        <!-- LEFT: Text Content -->
         <div class="w-full lg:w-1/2 flex flex-col items-start text-left">
-          <div class="hero-reveal-floating mb-4">
-            <span class="cyber-badge cyber-badge-glow">
-              <span class="glow-dot glow-dot-green mr-1.5"></span> Available for Hire
+          <div class="hero-reveal-floating mb-5">
+            <span class="cyber-badge cyber-badge-glow" role="status">
+              <span class="glow-dot glow-dot-green mr-1.5" aria-hidden="true"></span>
+              Available for Hire
             </span>
           </div>
 
-          <h1 class="hero-reveal-text font-heading text-5xl md:text-7xl font-extrabold text-white leading-[1.08] mb-6 tracking-tight text-glow">
+          <h1 class="hero-reveal-text font-heading text-5xl md:text-7xl font-extrabold text-white leading-[1.06] mb-6 tracking-tight text-glow">
             Ibrahim <br>
             <span class="gradient-text-primary">Elshishtawy</span>
           </h1>
 
           <p class="hero-reveal-text text-sm md:text-base text-purple-200/80 font-medium mb-4 tracking-wider">
-            Flutter Architect • Mobile Systems Engineer • Full-Stack Learner
+            Flutter Architect &bull; Mobile Systems Engineer &bull; Full-Stack Developer
           </p>
 
-          <p class="hero-reveal-text text-xs md:text-sm text-slate-400 leading-relaxed max-w-lg mb-8">
-            Specializing in engineering pixel-immersive, highly optimized, and architecturally resilient cross-platform mobile ecosystems that captivate audiences.
+          <p class="hero-reveal-text text-xs md:text-sm text-slate-400 leading-relaxed max-w-lg mb-10">
+            Engineering pixel-immersive, high-performance cross-platform mobile ecosystems.
+            From Clean Architecture to Socket.io real-time streams &mdash; every detail is intentional.
           </p>
 
-          <div class="hero-reveal-floating flex flex-wrap gap-4">
-            <a href="#works" class="magnetic-btn btn-glowing flex items-center gap-2 text-xs">
-              Explore Works <i class="fas fa-arrow-right text-[10px]"></i>
+          <div class="hero-reveal-floating flex flex-wrap gap-4 mb-8">
+            <a href="#works" id="hero-explore-btn" class="magnetic-btn btn-glowing flex items-center gap-2 text-xs" aria-label="Explore my works">
+              Explore Works <i class="fas fa-arrow-right text-[10px]" aria-hidden="true"></i>
             </a>
-            <a href="#about" class="magnetic-btn btn-outline flex items-center gap-2 text-xs">
-              Behind the Code
+            <a href="https://drive.google.com/file/d/17SjglPPGT5GPdRBB2AdLcbbjuderT9zU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" id="hero-cv-btn" class="magnetic-btn btn-outline flex items-center gap-2 text-xs" aria-label="Download Ibrahim's CV">
+              <i class="fas fa-file-arrow-down text-xs" aria-hidden="true"></i> Download CV
+            </a>
+          </div>
+
+          <!-- Quick Social Row -->
+          <div class="hero-reveal-floating flex items-center gap-5">
+            <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="hero-github-link" class="social-pill" aria-label="GitHub Profile">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="hero-linkedin-link" class="social-pill" aria-label="LinkedIn Profile">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.facebook.com/p/Ibrahim-El-ShiShtawy-100025661886698/" target="_blank" rel="noopener noreferrer" id="hero-facebook-link" class="social-pill" aria-label="Facebook Profile">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a href="https://kafiil.com/u/himashishtawy" target="_blank" rel="noopener noreferrer" id="hero-kafiil-link" class="social-pill" aria-label="Kafiil Freelance Profile">
+              <i class="fas fa-briefcase" aria-hidden="true"></i>
+            </a>
+            <span class="text-slate-600 text-xs select-none">|</span>
+            <a href="tel:+201223070571" id="hero-phone-link" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors" aria-label="Call Ibrahim: 01223070571">
+              <i class="fas fa-phone-alt text-purple-400 text-[10px]" aria-hidden="true"></i>
+              +20&nbsp;122&nbsp;307&nbsp;0571
             </a>
           </div>
         </div>
 
-        <!-- Right 3D Glass Avatar -->
+        <!-- RIGHT: 3D Avatar Frame -->
         <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
           <div class="tilt-container hero-reveal-avatar">
-            <div class="hero-avatar-tilt profile-frame-container w-[280px] sm:w-[350px] aspect-[4/5] cursor-none relative">
+            <div class="hero-avatar-tilt profile-frame-container w-[280px] sm:w-[340px] aspect-[4/5] cursor-none relative">
 
-              <!-- Floating 3D badges outside card -->
-              <span class="floating-badge-3d-1 cyber-badge cyber-badge-glow flex items-center gap-1 text-[10px]">
+              <!-- Floating 3D Badges -->
+              <span class="floating-badge-3d-1 cyber-badge cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
                 <i class="fab fa-flutter text-cyan-400"></i> Flutter
               </span>
-              <span class="floating-badge-3d-2 cyber-badge cyber-badge-cyan cyber-badge-glow flex items-center gap-1 text-[10px]">
+              <span class="floating-badge-3d-2 cyber-badge cyber-badge-cyan cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
                 <i class="fas fa-terminal text-sky-400"></i> Dart
               </span>
 
               <div class="profile-frame-inner w-full h-full">
-                <!-- Avatar image assets/assets/me.png -->
-                <img class="profile-img w-full h-full" src="assets/assets/me.png" alt="Ibrahim Elshishtawy Real Profile">
+                <img class="profile-img w-full h-full" src="assets/assets/me.png" alt="Ibrahim Elshishtawy — Flutter Architect">
 
-                <!-- absolute micro holographic labels inside frame -->
+                <!-- Holographic ID Tag -->
                 <div class="absolute bottom-6 left-6 right-6 z-10 glass-panel hologram-tag p-4 border-white/5 backdrop-blur-md flex justify-between items-center">
                   <div>
                     <h3 class="font-heading text-xs font-bold text-white tracking-wider">IBRAHIM, 24</h3>
-                    <p class="text-[9px] text-slate-400 font-semibold tracking-widest mt-1">FLUTTER ARCHITECT</p>
+                    <p class="text-[9px] text-slate-400 font-semibold tracking-widest mt-0.5">FLUTTER ARCHITECT</p>
                   </div>
-                  <span class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs">
+                  <span class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs" aria-hidden="true">
                     <i class="fab fa-flutter"></i>
                   </span>
                 </div>
@@ -161,41 +226,43 @@
       </div>
     </section>
 
-    <!-- SECTION 2: BEHIND THE CODE (Bento Grid) -->
-    <section id="about" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 2: BEHIND THE CODE (Bento) -->
+    <!-- ─────────────────────────────────── -->
+    <section id="about" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
       <div class="mb-16 text-left">
-        <span class="text-xs font-bold tracking-[0.25em] text-purple-500 uppercase">SYSTEM ARCHITECTURE</span>
-        <h2 class="font-heading text-4xl font-extrabold text-white mt-2">Behind the Code</h2>
+        <span class="section-label">SYSTEM ARCHITECTURE</span>
+        <h2 class="section-title">Behind the Code</h2>
       </div>
 
-      <!-- Bento Grid -->
       <div class="bento-grid">
 
-        <!-- Bento 1: Visionary Developer (colspan-3) -->
+        <!-- Bento 1: Visionary Developer -->
         <div class="glass-panel p-8 md:col-span-3 flex flex-col justify-between min-h-[300px] bento-reveal">
           <div class="flex justify-between items-start mb-6">
-            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl">
-              <i class="fas fa-brain"></i>
+            <div class="icon-box icon-box-purple">
+              <i class="fas fa-brain" aria-hidden="true"></i>
             </div>
             <span class="cyber-badge text-[9px]">ENGINEERING</span>
           </div>
           <div>
             <h3 class="font-heading text-2xl font-bold text-white mb-3">Visionary Developer</h3>
             <p class="text-xs text-slate-400 leading-relaxed max-w-2xl mb-6">
-              I specialize in building high-performance, cross-platform mobile applications that don't just meet user expectations—they redefine them. Grounded in <span class="text-purple-400 font-semibold">Clean Architecture</span> guidelines, I ensure that every line of code is scalable, maintainable, and built to last in the fast-paced SaaS ecosystem.
+              I specialize in building high-performance, cross-platform mobile applications that don't just meet user expectations—they redefine them. Grounded in <span class="text-purple-400 font-semibold">Clean Architecture</span> principles, every line of code I write is scalable, maintainable, and built to last in the fast-paced SaaS ecosystem.
             </p>
             <div class="flex flex-wrap gap-2">
               <span class="glass-tag">CLEAN ARCHITECTURE</span>
               <span class="glass-tag">BLOC &amp; GETX</span>
               <span class="glass-tag">CI/CD PIPELINES</span>
+              <span class="glass-tag">OFFLINE-FIRST DESIGN</span>
             </div>
           </div>
         </div>
 
-        <!-- Bento 2: Metrics Dashboard (colspan-1) -->
+        <!-- Bento 2: Metrics -->
         <div class="glass-panel p-8 md:col-span-1 flex flex-col justify-between min-h-[300px] bento-reveal">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-6">
-            <i class="fas fa-chart-line"></i>
+          <div class="icon-box icon-box-cyan mb-6">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>
           </div>
           <div class="flex flex-col gap-6 w-full">
             <div class="metric-tile w-full text-center">
@@ -204,41 +271,42 @@
             </div>
             <div class="metric-tile w-full text-center">
               <div id="project-num" class="metric-number text-cyan-400 count-number" data-target="15">0+</div>
-              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Complete Projects</div>
+              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Projects Shipped</div>
             </div>
           </div>
         </div>
 
-        <!-- Bento 3: Philosophy (colspan-1) -->
+        <!-- Bento 3: Philosophy -->
         <div class="glass-panel p-8 md:col-span-1 flex flex-col justify-between min-h-[300px] bento-reveal">
-          <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 text-xl mb-6">
-            <i class="fas fa-quote-right"></i>
+          <div class="icon-box icon-box-pink mb-6">
+            <i class="fas fa-quote-right" aria-hidden="true"></i>
           </div>
           <div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2">Philosophy</h3>
+            <h3 class="font-heading text-lg font-bold text-white mb-3">Philosophy</h3>
             <p class="text-xs text-slate-400 leading-relaxed italic">
-              "Complexity is the enemy of execution. Dynamic UX, architectural consistency, and near-zero latency are not optional—they are the foundation of modern digital products."
+              "Complexity is the enemy of execution. Dynamic UX, architectural consistency, and near-zero latency are not optional — they are the foundation of modern digital products."
             </p>
           </div>
         </div>
 
-        <!-- Bento 4: Node.js & Backend (colspan-3) -->
+        <!-- Bento 4: Backend -->
         <div class="glass-panel p-8 md:col-span-3 flex flex-col justify-between min-h-[300px] bento-reveal">
           <div class="flex justify-between items-start mb-6">
-            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl">
-              <i class="fas fa-server"></i>
+            <div class="icon-box icon-box-purple">
+              <i class="fas fa-server" aria-hidden="true"></i>
             </div>
-            <span class="cyber-badge cyber-badge-cyan text-[9px]">BACKEND SYSTEM</span>
+            <span class="cyber-badge cyber-badge-cyan text-[9px]">BACKEND SYSTEMS</span>
           </div>
           <div>
             <h3 class="font-heading text-2xl font-bold text-white mb-3">Node.js &amp; Backend Architecture</h3>
             <p class="text-xs text-slate-400 leading-relaxed max-w-2xl mb-6">
-              To build truly outstanding mobile applications, understanding the backend database pipelines is non-negotiable. I design secure, robust Node.js microservices with MongoDB, custom RESTful APIs, and live bi-directional Socket.io communication channels, allowing real-time client sync under absolute security metrics.
+              Understanding backend database pipelines is non-negotiable for outstanding mobile apps. I design secure, robust Node.js microservices with MongoDB, custom RESTful APIs, and live bi-directional Socket.io communication — delivering real-time client sync under absolute security protocols.
             </p>
             <div class="flex flex-wrap gap-2">
               <span class="glass-tag">NODE.JS &amp; EXPRESS</span>
-              <span class="glass-tag">MONGODB &amp; MONGODB</span>
+              <span class="glass-tag">MONGODB ATLAS</span>
               <span class="glass-tag">SOCKET.IO BI-DIRECTIONAL</span>
+              <span class="glass-tag">REST APIS</span>
             </div>
           </div>
         </div>
@@ -246,279 +314,255 @@
       </div>
     </section>
 
-    <!-- SECTION 3: TECH ARSENAL (Interactive grid) -->
-    <section id="arsenal" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 3: TECH ARSENAL            -->
+    <!-- ─────────────────────────────────── -->
+    <section id="arsenal" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
       <div class="mb-16 text-center">
-        <span class="text-xs font-bold tracking-[0.25em] text-purple-500 uppercase">WEAPONS OF CHOICE</span>
-        <h2 class="font-heading text-4xl font-extrabold text-white mt-2">Tech Arsenal</h2>
+        <span class="section-label">WEAPONS OF CHOICE</span>
+        <h2 class="section-title text-center">Tech Arsenal</h2>
         <p class="text-xs text-slate-400 max-w-md mx-auto mt-4 leading-relaxed">
-          Powered with modern developer tools, framework patterns, and advanced deployment engines to sculpt state-of-the-art software systems.
+          Modern developer tools, framework patterns, and deployment engines sculpting state-of-the-art software systems.
         </p>
       </div>
 
-      <!-- Tech Cards Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
-        <!-- Flutter -->
-        <div class="tech-card tech-flutter bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-flutter text-3xl text-cyan-400"></i>
-          </div>
+        <article class="tech-card tech-flutter bento-reveal" aria-label="Flutter technology">
+          <div class="tech-icon-container"><i class="fab fa-flutter text-3xl text-cyan-400" aria-hidden="true"></i></div>
           <span class="tech-title">FLUTTER</span>
-        </div>
-
-        <!-- Dart -->
-        <div class="tech-card tech-dart bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-terminal text-3xl text-sky-400"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-dart bento-reveal" aria-label="Dart language">
+          <div class="tech-icon-container"><i class="fas fa-terminal text-3xl text-sky-400" aria-hidden="true"></i></div>
           <span class="tech-title">DART</span>
-        </div>
-
-        <!-- Firebase -->
-        <div class="tech-card tech-firebase bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-fire text-3xl text-amber-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-firebase bento-reveal" aria-label="Firebase">
+          <div class="tech-icon-container"><i class="fas fa-fire text-3xl text-amber-500" aria-hidden="true"></i></div>
           <span class="tech-title">FIREBASE</span>
-        </div>
-
-        <!-- SQLite -->
-        <div class="tech-card tech-sqlite bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-database text-3xl text-purple-400"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-sqlite bento-reveal" aria-label="SqFlite database">
+          <div class="tech-icon-container"><i class="fas fa-database text-3xl text-purple-400" aria-hidden="true"></i></div>
           <span class="tech-title">SQFLITE</span>
-        </div>
-
-        <!-- AdMob -->
-        <div class="tech-card tech-admob bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-ad text-3xl text-emerald-400"></i>
-          </div>
-          <span class="tech-title">ADMOB</span>
-        </div>
-
-        <!-- GetX -->
-        <div class="tech-card tech-getx bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-sync-alt text-3xl text-pink-400"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-getx bento-reveal" aria-label="GetX state management">
+          <div class="tech-icon-container"><i class="fas fa-sync-alt text-3xl text-pink-400" aria-hidden="true"></i></div>
           <span class="tech-title">GETX</span>
-        </div>
-
-        <!-- Node.js -->
-        <div class="tech-card tech-nodejs bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-node-js text-3xl text-green-500"></i>
-          </div>
-          <span class="tech-title">NODEJS</span>
-        </div>
-
-        <!-- MongoDB -->
-        <div class="tech-card tech-mongodb bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fas fa-leaf text-3xl text-emerald-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-admob bento-reveal" aria-label="AdMob monetization">
+          <div class="tech-icon-container"><i class="fas fa-rectangle-ad text-3xl text-emerald-400" aria-hidden="true"></i></div>
+          <span class="tech-title">ADMOB</span>
+        </article>
+        <article class="tech-card tech-nodejs bento-reveal" aria-label="Node.js backend">
+          <div class="tech-icon-container"><i class="fab fa-node-js text-3xl text-green-500" aria-hidden="true"></i></div>
+          <span class="tech-title">NODE.JS</span>
+        </article>
+        <article class="tech-card tech-mongodb bento-reveal" aria-label="MongoDB database">
+          <div class="tech-icon-container"><i class="fas fa-leaf text-3xl text-emerald-500" aria-hidden="true"></i></div>
           <span class="tech-title">MONGODB</span>
-        </div>
-
-        <!-- Git -->
-        <div class="tech-card tech-git bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-git-alt text-3xl text-red-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-git bento-reveal" aria-label="Git version control">
+          <div class="tech-icon-container"><i class="fab fa-git-alt text-3xl text-red-500" aria-hidden="true"></i></div>
           <span class="tech-title">GIT</span>
-        </div>
-
-        <!-- JavaScript -->
-        <div class="tech-card tech-javascript bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-js text-3xl text-yellow-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-javascript bento-reveal" aria-label="JavaScript">
+          <div class="tech-icon-container"><i class="fab fa-js text-3xl text-yellow-500" aria-hidden="true"></i></div>
           <span class="tech-title">JAVASCRIPT</span>
-        </div>
-
-        <!-- HTML5 -->
-        <div class="tech-card tech-html5 bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-html5 text-3xl text-orange-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-html5 bento-reveal" aria-label="HTML5">
+          <div class="tech-icon-container"><i class="fab fa-html5 text-3xl text-orange-500" aria-hidden="true"></i></div>
           <span class="tech-title">HTML5</span>
-        </div>
-
-        <!-- CSS3 -->
-        <div class="tech-card tech-css3 bento-reveal">
-          <div class="tech-icon-container">
-            <i class="fab fa-css3-alt text-3xl text-blue-500"></i>
-          </div>
+        </article>
+        <article class="tech-card tech-css3 bento-reveal" aria-label="CSS3">
+          <div class="tech-icon-container"><i class="fab fa-css3-alt text-3xl text-blue-500" aria-hidden="true"></i></div>
           <span class="tech-title">CSS3</span>
-        </div>
+        </article>
 
       </div>
     </section>
 
-    <!-- SECTION 4: SELECTED WORKS -->
-    <section id="works" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 4: SELECTED WORKS          -->
+    <!-- ─────────────────────────────────── -->
+    <section id="works" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
       <div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end">
         <div class="text-left">
-          <span class="text-xs font-bold tracking-[0.25em] text-purple-500 uppercase">CASE STUDIES</span>
-          <h2 class="font-heading text-4xl font-extrabold text-white mt-2">Selected Works</h2>
+          <span class="section-label">CASE STUDIES</span>
+          <h2 class="section-title">Selected Works</h2>
         </div>
         <p class="text-xs text-slate-400 max-w-xs mt-4 md:mt-0 leading-relaxed">
-          Unique mobile products crafted to solve critical bottlenecks with aesthetic excellence.
+          Mobile products engineered to solve critical bottlenecks with aesthetic excellence.
         </p>
       </div>
 
-      <!-- Works grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
         <!-- Work 1: Aqar -->
-        <div class="project-card flex flex-col justify-between p-8 md:p-12 min-h-[550px] group bento-reveal" data-project="aqar">
-          <!-- Screenshot Container inside device mockup on hover or displayed elegantly -->
+        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[580px] group bento-reveal" data-project="aqar" tabindex="0" aria-label="View Aqar project case study" id="project-aqar">
           <div class="flex-1 flex items-center justify-center mb-8 relative">
             <div class="tilt-container">
-              <div class="iphone-mockup group-hover:scale-[1.03]">
-                <div class="iphone-notch"></div>
+              <div class="iphone-mockup">
+                <div class="iphone-notch" aria-hidden="true"></div>
                 <div class="iphone-screen">
-                  <img class="iphone-img" src="assets/assets/aqar_dashboard.png" alt="Aqar App Screenshot">
+                  <img class="iphone-img" src="assets/assets/aqar_dashboard.png" alt="Aqar App — Real Estate Dashboard">
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="z-10 mt-6">
+          <div class="z-10 mt-4">
             <div class="glass-tag-row mb-3">
               <span class="cyber-badge text-[9px]">REAL ESTATE</span>
+              <span class="cyber-badge cyber-badge-cyan text-[9px]">OFFLINE-FIRST</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-3">Aqar (عقار)</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-6">
-              A futuristic real estate and construction management dashboard featuring dynamic expense tracking, sales indexes, and partner credentials.
+              A futuristic real estate and construction management dashboard featuring dynamic expense tracking, sales indexes, partner credentials, and offline synchronization engines.
             </p>
-            <div class="flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Deconstruct Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Work 2: Bostan -->
-        <div class="project-card flex flex-col justify-between p-8 md:p-12 min-h-[550px] group bento-reveal" data-project="bostan">
+        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[580px] group bento-reveal" data-project="bostan" tabindex="0" aria-label="View Bostan project case study" id="project-bostan">
           <div class="flex-1 flex items-center justify-center mb-8 relative">
             <div class="tilt-container">
-              <div class="iphone-mockup group-hover:scale-[1.03]">
-                <div class="iphone-notch"></div>
+              <div class="iphone-mockup">
+                <div class="iphone-notch" aria-hidden="true"></div>
                 <div class="iphone-screen">
-                  <img class="iphone-img" src="assets/assets/bostan_stats.png" alt="Bostan App Screenshot">
+                  <img class="iphone-img" src="assets/assets/bostan_stats.png" alt="Bostan App — Quranic Reading Companion">
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="z-10 mt-6">
+          <div class="z-10 mt-4">
             <div class="glass-tag-row mb-3">
-              <span class="cyber-badge text-[9px]">LIFESTYLE</span>
+              <span class="cyber-badge text-[9px]">SPIRITUAL TECH</span>
+              <span class="cyber-badge cyber-badge-cyan text-[9px]">AUDIO SYNC</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-3">Bostan (بُستان)</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-6">
-              A serene Quranic reading, reflection, and habit tracking companion built with beautiful dark themes, loop synchronization, and memorization paths.
+              A serene Quranic reading, reflection, and habit tracking companion with beautiful dark themes, verse-by-verse audio synchronization, and memorization (حفظ) progress paths.
             </p>
-            <div class="flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Deconstruct Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
             </div>
           </div>
-        </div>
+        </article>
 
         <!-- Work 3: Animal Connect -->
-        <div class="project-card flex flex-col justify-between p-8 md:p-12 min-h-[550px] group bento-reveal" data-project="animalconnect">
+        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[580px] group bento-reveal" data-project="animalconnect" tabindex="0" aria-label="View Animal Connect project case study" id="project-animal">
           <div class="flex-1 flex items-center justify-center mb-8 relative">
             <div class="tilt-container">
-              <div class="iphone-mockup group-hover:scale-[1.03]">
-                <div class="iphone-notch"></div>
+              <div class="iphone-mockup">
+                <div class="iphone-notch" aria-hidden="true"></div>
                 <div class="iphone-screen">
-                  <img class="iphone-img" src="assets/assets/animal_connect_home.png" alt="Animal Connect Screenshot">
+                  <img class="iphone-img" src="assets/assets/animal_connect_home.png" alt="Animal Connect — Pet Marketplace App">
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="z-10 mt-6">
+          <div class="z-10 mt-4">
             <div class="glass-tag-row mb-3">
               <span class="cyber-badge text-[9px]">MARKETPLACE</span>
+              <span class="cyber-badge cyber-badge-cyan text-[9px]">SOCKET.IO</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-3">Animal Connect</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-6">
-              A beautiful pet adoption and wellness marketplace featuring direct companion matching, dynamic supply filters, and map discovery.
+              A premium pet adoption and wellness marketplace featuring geo-location discovery, micro-segmented categories, real-time Socket.io messaging, and verified health checklists.
             </p>
-            <div class="flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Deconstruct Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Work 4: Tola'b App -->
-        <div class="project-card flex flex-col justify-between p-8 md:p-12 min-h-[550px] group bento-reveal" data-project="tolabapp">
+        <!-- Work 4: Tola'b -->
+        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[580px] group bento-reveal" data-project="tolabapp" tabindex="0" aria-label="View Tola'b project case study" id="project-tolab">
           <div class="flex-1 flex items-center justify-center mb-8 relative">
             <div class="tilt-container">
-              <div class="iphone-mockup group-hover:scale-[1.03]">
-                <div class="iphone-notch"></div>
+              <div class="iphone-mockup">
+                <div class="iphone-notch" aria-hidden="true"></div>
                 <div class="iphone-screen">
-                  <img class="iphone-img" src="assets/assets/tolab_schedule.png" alt="Tola'b App Screenshot">
+                  <img class="iphone-img" src="assets/assets/tolab_schedule.png" alt="Tola'b Student Assistant — Schedule App">
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="z-10 mt-6">
+          <div class="z-10 mt-4">
             <div class="glass-tag-row mb-3">
               <span class="cyber-badge text-[9px]">PRODUCTIVITY</span>
+              <span class="cyber-badge cyber-badge-cyan text-[9px]">HIVE DB</span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-white mb-3">Tola'b App</h3>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-3">Tola'b App (طُلاَّب)</h3>
             <p class="text-xs text-slate-400 leading-relaxed mb-6">
-              Student schedules productivity deck featuring embedded PDF lecture summaries and alarms using localized Hive engines.
+              A student productivity hub centralizing lecture notes, attendance tracking, exam countdowns, PDF readers, and smart alarm reminders using offline-first Hive architecture.
             </p>
-            <div class="flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Deconstruct Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 5: JOURNEY TIMELINE        -->
+    <!-- ─────────────────────────────────── -->
+    <section id="journey" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
+      <div class="mb-16 text-left">
+        <span class="section-label">CHRONICLES</span>
+        <h2 class="section-title">The Journey</h2>
+      </div>
+
+      <div class="relative pl-6 md:pl-14 max-w-3xl">
+        <div class="timeline-track" aria-hidden="true"></div>
+        <div class="timeline-progress" aria-hidden="true"></div>
+
+        <!-- Entry 1 -->
+        <div class="timeline-node mb-14">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="glass-panel p-6 border-white/5">
+            <span class="cyber-badge text-[9px] mb-3 inline-block">2023 — Present</span>
+            <h3 class="font-heading text-lg font-bold text-white mb-1">Freelance Flutter Developer</h3>
+            <p class="text-[10px] text-purple-400 font-semibold mb-3 tracking-widest uppercase">Remote Contracts · Kafiil Platform</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Consulted and authored high-tier applications for startups, scaling core database architectures and deploying pixel-immersive UI frameworks across real estate, education, and e-commerce domains.
+            </p>
+          </div>
+        </div>
+
+        <!-- Entry 2: NTI -->
+        <div class="timeline-node mb-14">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="glass-panel p-6 border-white/5">
+            <span class="cyber-badge cyber-badge-cyan text-[9px] mb-3 inline-block">2022 — 2023</span>
+            <h3 class="font-heading text-lg font-bold text-white mb-1">Mobile App Development Trainee</h3>
+            <p class="text-[10px] text-cyan-400 font-semibold mb-3 tracking-widest uppercase">National Telecommunications Institute (NTI)</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Rigorous professional fellowship studying scalable software engineering principles, advanced Dart compilers, BLoC structural flows, and backend database integrations. Completed with professional certificate.
+            </p>
+            <div class="flex gap-3 mt-4">
+              <a href="https://drive.google.com/file/d/1186QAVp4OTLEmVR-3VdBwfeh41L2FTd2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" id="nti-cert-link" class="flex items-center gap-1.5 text-[10px] text-cyan-400 hover:text-cyan-300 transition-colors font-semibold" aria-label="View NTI Certificate">
+                <i class="fas fa-certificate text-[9px]" aria-hidden="true"></i> View Certificate
+              </a>
+              <a href="https://www.linkedin.com/posts/ibrahim-el-shishtawy-0a67b334a_flutter-mobiledevelopment-crossplatform-activity-7377660821755019265--Kfs" target="_blank" rel="noopener noreferrer" id="linkedin-post-link" class="flex items-center gap-1.5 text-[10px] text-purple-400 hover:text-purple-300 transition-colors font-semibold" aria-label="View LinkedIn announcement post">
+                <i class="fab fa-linkedin text-[9px]" aria-hidden="true"></i> LinkedIn Post
+              </a>
             </div>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- SECTION 5: INTERACTIVE JOURNEY -->
-    <section id="journey" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
-      <div class="mb-16 text-left">
-        <span class="text-xs font-bold tracking-[0.25em] text-purple-500 uppercase">CHRONICLES</span>
-        <h2 class="font-heading text-4xl font-extrabold text-white mt-2">Journey</h2>
-      </div>
-
-      <!-- Timeline Track container -->
-      <div class="relative pl-6 md:pl-12 max-w-3xl">
-        <div class="timeline-track"></div>
-        <div class="timeline-progress"></div>
-
-        <!-- Item 1 -->
-        <div class="timeline-node mb-16">
-          <div class="timeline-dot"></div>
-          <div class="glass-panel p-6 border-white/5">
-            <span class="cyber-badge text-[9px] mb-2">2023 - Present</span>
-            <h3 class="font-heading text-lg font-bold text-white mb-1">Freelance Flutter Developer</h3>
-            <p class="text-[10px] text-purple-400 font-semibold mb-3 tracking-widest">REMOTE CONTRACTS</p>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Consulted and authored high-tier applications for startups globally, scaling core database architectures, and deploying pixel-immersive UI frameworks.
-            </p>
-          </div>
-        </div>
-
-        <!-- Item 2 -->
+        <!-- Entry 3: Learning Foundation -->
         <div class="timeline-node">
-          <div class="timeline-dot"></div>
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="glass-panel p-6 border-white/5">
-            <span class="cyber-badge cyber-badge-cyan text-[9px] mb-2">2022 - 2023</span>
-            <h3 class="font-heading text-lg font-bold text-white mb-1">NTI Mobile App Developer Trainee</h3>
-            <p class="text-[10px] text-cyan-400 font-semibold mb-3 tracking-widest">NATIONAL TELECOM INSTITUTE</p>
+            <span class="cyber-badge text-[9px] mb-3 inline-block">2021 — 2022</span>
+            <h3 class="font-heading text-lg font-bold text-white mb-1">Self-Taught Flutter Developer</h3>
+            <p class="text-[10px] text-purple-400 font-semibold mb-3 tracking-widest uppercase">Personal Projects &amp; Open Source</p>
             <p class="text-xs text-slate-400 leading-relaxed">
-              Rigorous professional fellowship studying scalable software engineering principles, Dart advanced compilers, BLoC structural flows, and backend database integrations.
+              Mastered Flutter and Dart from the ground up — building personal projects, studying Clean Architecture patterns, and establishing a strong foundation in state management (Provider, GetX, BLoC).
             </p>
           </div>
         </div>
@@ -526,65 +570,97 @@
       </div>
     </section>
 
-    <!-- SECTION 6: CONTACT FORM -->
-    <section id="contact" class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 6: CONTACT                 -->
+    <!-- ─────────────────────────────────── -->
+    <section id="contact" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
       <div class="mb-16 text-left">
-        <span class="text-xs font-bold tracking-[0.25em] text-purple-500 uppercase">TRANSMISSION CHANNEL</span>
-        <h2 class="font-heading text-4xl font-extrabold text-white mt-2">Start a Project</h2>
+        <span class="section-label">TRANSMISSION CHANNEL</span>
+        <h2 class="section-title">Start a Project</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-        <!-- Left details box -->
-        <div class="lg:col-span-4 flex flex-col gap-6">
-          <div class="glass-panel p-8 flex items-start gap-4 border-white/5 bento-reveal">
-            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg">
-              <i class="fas fa-envelope"></i>
+        <!-- Left: Contact Info -->
+        <div class="lg:col-span-4 flex flex-col gap-5">
+          <a href="mailto:ibrahim.elshishtawy@gmail.com" id="contact-email-link" class="glass-panel p-6 flex items-start gap-4 border-white/5 bento-reveal hover:border-purple-500/20 transition-colors group" aria-label="Send email to Ibrahim">
+            <div class="icon-box icon-box-purple">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
             </div>
             <div>
-              <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-1">Satellite Mail</h4>
-              <a href="mailto:hello@ibrahim-dev.net" class="text-xs font-semibold text-slate-400 hover:text-purple-400 transition-colors">hello@ibrahim.dev</a>
+              <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-1">Email</h4>
+              <span class="text-xs font-semibold text-slate-400 group-hover:text-purple-400 transition-colors">ibrahim.elshishtawy@gmail.com</span>
+            </div>
+          </a>
+
+          <a href="tel:+201223070571" id="contact-phone-link" class="glass-panel p-6 flex items-start gap-4 border-white/5 bento-reveal hover:border-cyan-500/20 transition-colors group" aria-label="Call Ibrahim at 01223070571">
+            <div class="icon-box icon-box-cyan">
+              <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-1">Phone</h4>
+              <span class="text-xs font-semibold text-slate-400 group-hover:text-cyan-400 transition-colors">+20&nbsp;122&nbsp;307&nbsp;0571</span>
+            </div>
+          </a>
+
+          <div class="glass-panel p-6 flex items-start gap-4 border-white/5 bento-reveal">
+            <div class="icon-box icon-box-cyan">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-1">Location</h4>
+              <p class="text-xs text-slate-400">Mansoura / Cairo, Egypt</p>
             </div>
           </div>
 
-          <div class="glass-panel p-8 flex items-start gap-4 border-white/5 bento-reveal">
-            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-lg">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div>
-              <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-1">Local Orbit</h4>
-              <p class="text-xs text-slate-400">Mansoura / Cairo, Egypt</p>
+          <!-- Social Links -->
+          <div class="glass-panel p-6 border-white/5 bento-reveal">
+            <h4 class="font-heading text-xs font-bold text-white uppercase tracking-wider mb-4">Connect</h4>
+            <div class="flex gap-4 flex-wrap">
+              <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="footer-github" class="social-pill-lg" aria-label="GitHub Profile">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="footer-linkedin" class="social-pill-lg" aria-label="LinkedIn Profile">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.facebook.com/p/Ibrahim-El-ShiShtawy-100025661886698/" target="_blank" rel="noopener noreferrer" id="footer-facebook" class="social-pill-lg" aria-label="Facebook Profile">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+              <a href="https://kafiil.com/u/himashishtawy" target="_blank" rel="noopener noreferrer" id="footer-kafiil" class="social-pill-lg" aria-label="Kafiil Freelance Profile">
+                <i class="fas fa-briefcase" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Right Inputs form -->
+        <!-- Right: Contact Form -->
         <div class="lg:col-span-8">
           <div class="glass-panel p-8 md:p-12 border-white/5 bento-reveal">
-            <form id="contact-form" class="flex flex-col gap-6">
+            <form id="contact-form" class="flex flex-col gap-6" novalidate>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Name -->
                 <div class="input-container">
-                  <input type="text" id="form-name" placeholder=" " class="glass-input" required autocomplete="off">
-                  <label for="form-name" class="glass-label">Ident (Name)</label>
+                  <input type="text" id="form-name" name="name" placeholder=" " class="glass-input" required autocomplete="name">
+                  <label for="form-name" class="glass-label">Your Name</label>
                 </div>
-                <!-- Email -->
                 <div class="input-container">
-                  <input type="email" id="form-email" placeholder=" " class="glass-input" required autocomplete="off">
-                  <label for="form-email" class="glass-label">Satellite Mail (Email)</label>
+                  <input type="email" id="form-email" name="email" placeholder=" " class="glass-input" required autocomplete="email">
+                  <label for="form-email" class="glass-label">Email Address</label>
                 </div>
               </div>
 
-              <!-- Message -->
               <div class="input-container">
-                <textarea id="form-message" rows="5" placeholder=" " class="glass-input" required autocomplete="off"></textarea>
-                <label for="form-message" class="glass-label">Transmission Code (Your Project Details...)</label>
+                <input type="text" id="form-subject" name="subject" placeholder=" " class="glass-input" autocomplete="off">
+                <label for="form-subject" class="glass-label">Project Type / Subject</label>
               </div>
 
-              <!-- Submit button -->
-              <button type="submit" class="btn-glowing btn-sweep w-full text-xs font-bold py-4 uppercase tracking-[0.2em] relative">
-                Transmit Message
+              <div class="input-container">
+                <textarea id="form-message" name="message" rows="5" placeholder=" " class="glass-input" required autocomplete="off"></textarea>
+                <label for="form-message" class="glass-label">Your Message / Project Details</label>
+              </div>
+
+              <button type="submit" id="contact-submit-btn" class="btn-glowing btn-sweep w-full text-xs font-bold py-4 uppercase tracking-[0.2em] relative" aria-label="Send contact message">
+                <i class="fas fa-paper-plane mr-2 text-xs" aria-hidden="true"></i> Send Message
               </button>
 
             </form>
@@ -596,53 +672,94 @@
 
   </main>
 
-  <!-- 6. Footer -->
-  <footer class="py-12 border-t border-white/5 bg-[#020108] text-center px-6 md:px-12 relative z-10">
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 6. FOOTER                                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <footer class="py-12 border-t border-white/5 bg-[#020108] text-center px-4 md:px-10 relative z-10">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
 
-      <!-- Brand Logo -->
-      <a href="#" class="font-heading text-lg font-black tracking-wider text-white hover:text-purple-400 transition-colors duration-300 flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+      <a href="#hero" id="footer-logo" class="font-heading text-base font-black tracking-wider text-white hover:text-purple-400 transition-colors duration-300 flex items-center gap-2.5" aria-label="Back to top">
+        <span class="w-2.5 h-2.5 rounded-full bg-purple-500" aria-hidden="true"></span>
         IBRAHIM.DEV
       </a>
 
-      <!-- copyright -->
       <p class="text-[10px] text-slate-500 tracking-wider">
-        © 2026 Ibrahim Elshishtawy • Flutter Architect. Built under Ultra Premium Space Metrics.
+        &copy; 2026 Ibrahim Elshishtawy &bull; Flutter Architect &bull; Egypt
       </p>
 
-      <!-- Social connections -->
-      <div class="flex items-center gap-6 text-slate-400">
-        <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener" aria-label="GitHub Profile" title="GitHub Profile" class="hover:text-white transition-colors text-sm"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn Profile" title="LinkedIn Profile" class="hover:text-white transition-colors text-sm"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter Profile" title="Twitter/X Profile" class="hover:text-white transition-colors text-sm"><i class="fab fa-twitter"></i></a>
-        <a href="https://firebase.com" target="_blank" rel="noopener" aria-label="Firebase Project" title="Firebase Console" class="hover:text-white transition-colors text-sm"><i class="fas fa-fire"></i></a>
+      <div class="flex items-center gap-5 text-slate-500">
+        <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="footer-github-2" class="hover:text-white transition-colors text-sm" aria-label="GitHub Profile">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="footer-linkedin-2" class="hover:text-white transition-colors text-sm" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/p/Ibrahim-El-ShiShtawy-100025661886698/" target="_blank" rel="noopener noreferrer" id="footer-facebook-2" class="hover:text-white transition-colors text-sm" aria-label="Facebook Profile">
+          <i class="fab fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://kafiil.com/u/himashishtawy" target="_blank" rel="noopener noreferrer" id="footer-kafiil-2" class="hover:text-white transition-colors text-sm" aria-label="Kafiil Freelance Profile">
+          <i class="fas fa-briefcase" aria-hidden="true"></i>
+        </a>
       </div>
 
     </div>
   </footer>
 
-  <!-- 7. Comprehensive Fullscreen Case Study Overlay Container -->
-  <div id="case-study-overlay" class="case-study-overlay">
-    <!-- Close button -->
-    <button type="button" class="close-overlay-btn" aria-label="Close details">
-      <i class="fas fa-times text-lg"></i>
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 7. CASE STUDY OVERLAY                     -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="case-study-overlay" class="case-study-overlay" role="dialog" aria-modal="true" aria-label="Project case study details">
+    <button type="button" id="close-overlay-btn" class="close-overlay-btn" aria-label="Close case study">
+      <i class="fas fa-times text-lg" aria-hidden="true"></i>
     </button>
-
-    <!-- Overlay dynamic content container -->
     <div id="case-study-content" class="w-full">
-      <!-- Generated Dynamically by App.js -->
+      <!-- Populated by app.js -->
     </div>
   </div>
 
-  <!-- CDN scripts -->
-  <!-- Three.js (Core 3D Engine) -->
+  <!-- ══════════════════════════════════════════ -->
+  <!-- 8. CDN SCRIPTS                            -->
+  <!-- ══════════════════════════════════════════ -->
+  <!-- Three.js 3D Engine -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- GSAP & ScrollTrigger (Cinematic Motion Engine) -->
+  <!-- GSAP Motion Engine + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <!-- Core App Logic -->
+  <!-- Mobile Menu Toggle -->
+  <script>
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('mobile-menu-btn');
+      menu.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.toggle('active');
+      this.setAttribute('aria-expanded', isOpen.toString());
+    });
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+        const overlay = document.getElementById('case-study-overlay');
+        if (overlay.classList.contains('active')) {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+    // Project cards keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.closest('.project-card')) {
+        e.target.closest('.project-card').click();
+      }
+    });
+  </script>
+
+  <!-- Core App Engine -->
   <script src="assets/app.js"></script>
+
 </body>
 </html>
