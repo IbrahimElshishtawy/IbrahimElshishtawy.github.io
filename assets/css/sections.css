@@ -234,6 +234,9 @@
 .tech-css3       { --card-glow-rgb: 59, 130, 246;  --card-glow-color: #3b82f6; }
 .tech-bloc       { --card-glow-rgb: 56, 189, 248;  --card-glow-color: #38bdf8; }
 .tech-provider   { --card-glow-rgb: 236, 72, 153;  --card-glow-color: #ec4899; }
+.tech-riverpod   { --card-glow-rgb: 56, 189, 248;  --card-glow-color: #38bdf8; }
+.tech-mobx       { --card-glow-rgb: 234, 179, 8;   --card-glow-color: #eab308; }
+.tech-cubit      { --card-glow-rgb: 14, 165, 233;  --card-glow-color: #0ea5e9; }
 .tech-hive       { --card-glow-rgb: 245, 158, 11;  --card-glow-color: #f59e0b; }
 .tech-postman    { --card-glow-rgb: 249, 115, 22;  --card-glow-color: #f97316; }
 .tech-android    { --card-glow-rgb: 34, 197, 94;   --card-glow-color: #22c55e; }
