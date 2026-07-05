@@ -120,7 +120,6 @@
   transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
-  cursor: none;
 }
 
 /* Shimmer sweep on hover */
