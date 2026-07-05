@@ -181,6 +181,24 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05) !important;
 }
 
+[data-theme-mode="light"] .subsection-header {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme-mode="light"] .github-view-btn {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme-mode="light"] .github-view-btn span,
+[data-theme-mode="light"] .github-view-btn i {
+  color: #0f172a !important;
+}
+
+
 
 
 
