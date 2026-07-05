@@ -79,7 +79,11 @@ const PROJECTS_DATA = {
     subtitle: "A student-centric productivity hub designed to centralize academic lectures, attendance tracking, assignment deadlines, exam countdown counters, and lecture PDF files. Features an ultra-fast offline-first Hive database architecture and smart native home screen widgets.",
     tags:  ["Flutter", "Hive DB", "Local Notifications", "PDF Engine", "GetX"],
     image:        "assets/assets/tolab_schedule.png",
-    secondaryImage: "assets/assets/tolab_courses.png",
+    secondaryImages: [
+      "assets/assets/Tolab_1.png",
+      "assets/assets/Tolab_2.png",
+      "assets/assets/Tolab_3.png"
+    ],
     demoLink: "#",
     repoLink: "https://github.com/IbrahimElshishtawy",
     accentColor: "#f59e0b",

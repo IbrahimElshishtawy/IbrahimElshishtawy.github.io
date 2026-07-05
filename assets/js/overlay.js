@@ -96,7 +96,35 @@ function renderCaseStudy(data) {
       </div>
     `;
     
-    if (data.secondaryImage) {
+    if (data.secondaryImages && Array.isArray(data.secondaryImages)) {
+      const mockupsHTML = data.secondaryImages.map(img => `
+        <div class="tilt-container">
+          <div class="iphone-mockup">
+            <div class="iphone-notch" aria-hidden="true"></div>
+            <div class="iphone-screen">
+              <img src="${img}" alt="${data.title} Screenshot" class="iphone-img">
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      additionalScreenHTML = `
+        <div class="py-16 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
+          <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <div class="text-center mb-12 case-study-reveal">
+              <span class="section-label">ADDITIONAL SCREENS</span>
+              <h3 class="section-title mb-4">More from the App</h3>
+              <p class="text-xs text-slate-400 leading-relaxed max-w-md mx-auto">
+                Each screen is designed with pixel precision — balancing high information density with beautiful, atmospheric visual clarity.
+              </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-12 case-study-reveal">
+              ${mockupsHTML}
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (data.secondaryImage) {
       additionalScreenHTML = `
         <div class="py-16 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
           <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
