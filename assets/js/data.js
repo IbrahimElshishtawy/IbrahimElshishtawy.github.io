@@ -95,6 +95,101 @@ const PROJECTS_DATA = {
       { phase: "PHASE 03 — INTERACTION", title: "Android Widget Modules",     desc: "Wrote Android native Java/Kotlin bindings to share Hive database status with custom Home Screen launcher widgets." }
     ]
   },
+  eduassess: {
+    title:    "Edu Assess",
+    category: "EDUCATION · EVALUATION",
+    subtitle: "A professional academic evaluation and student assessment application designed for tracking progress and course performance.",
+    tags:  ["Flutter", "Dart", "GetX", "SQLite", "Clean Architecture"],
+    image:        "assets/فري لنسر/Edu Assess.jpg",
+    demoLink: "#",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    accentColor: "#8b5cf6",
+    features: [
+      { icon: "fa-graduation-cap", title: "Assessment Core", desc: "Automated student scoring and test evaluations mapped directly to subject curriculums." },
+      { icon: "fa-chart-bar", title: "Analytics & Insights", desc: "Interactive bars and charts presenting student progress indices and subject weaknesses." },
+      { icon: "fa-database", title: "Offline Storage", desc: "Local SQLite database ensuring assessments are saved immediately and synchronized safely." }
+    ],
+    journey: [
+      { phase: "PHASE 01 — FLOWS", title: "Designing Evaluation Metrics", desc: "Mapped educational assessment structures to support multiple quiz types, grading weights, and dynamic feedback forms." },
+      { phase: "PHASE 02 — LOCALIZATION", title: "High-Speed DB Queries", desc: "Built indexing rules within SQL tables to retrieve large test answer lists and compute GPAs in real-time." }
+    ]
+  },
+  quickbit: {
+    title:    "Quick Bit",
+    category: "FINTECH · CRYPTO & TRANSACTION",
+    subtitle: "A high-performance secure payment interface and digital currency dashboard tracking active transaction ledgers.",
+    tags:  ["Flutter", "Dart", "GetX", "API Integration", "Biometrics"],
+    image:        "assets/فري لنسر/Quick Bit.jpg",
+    demoLink: "#",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    accentColor: "#06b6d4",
+    features: [
+      { icon: "fa-wallet", title: "Digital Wallet Engine", desc: "Seamless monitoring of multiple token types, wallet addresses, and secure transaction receipts." },
+      { icon: "fa-shield-alt", title: "Secured Credentials", desc: "Encrypted device storage protecting user wallets and API keys with biometrics verification." },
+      { icon: "fa-exchange-alt", title: "Live Rates Tracker", desc: "High-frequency polling services mapping conversion values with micro-updates." }
+    ],
+    journey: [
+      { phase: "PHASE 01 — PAYMENTS", title: "Transaction Layer Security", desc: "Implemented point-to-point payload encryption and cryptographic hash verification to ensure zero transactional leakage." },
+      { phase: "PHASE 02 — PERFORMANCE", title: "Fluid Ledger Syncing", desc: "Designed localized transaction cache pools, reducing remote read requests and optimizing network bandwidth." }
+    ]
+  },
+  rm: {
+    title:    "RM (Resource Management)",
+    category: "LOGISTICS · RESOURCE PLANNING",
+    subtitle: "An enterprise-grade supply chain, resource planner, and operational workforce dispatcher dashboard.",
+    tags:  ["Flutter", "Dart", "GetX", "Logistics Engine", "Task Manager"],
+    image:        "assets/فري لنسر/RM.png",
+    demoLink: "#",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    accentColor: "#10b981",
+    features: [
+      { icon: "fa-tasks", title: "Workforce Dispatcher", desc: "Real-time task allocations and resource tracking for active operational logistics teams." },
+      { icon: "fa-boxes", title: "Inventory Pipeline", desc: "Interactive asset tracker mapping supply levels, dispatch logs, and storage capacities." },
+      { icon: "fa-clock", title: "Timesheet Management", desc: "Detailed logs and automated timestamps tracking contractor shifts and active task durations." }
+    ],
+    journey: [
+      { phase: "PHASE 01 — PLANNING", title: "Pipeline Optimization", desc: "Structured hierarchical data nodes mapping facilities, resources, and dispatches to minimize delay indices." },
+      { phase: "PHASE 02 — RENDERING", title: "Unified Dispatch Boards", desc: "Developed highly responsive drag-and-drop workflow visualizers that scale smoothly on both tablet and mobile displays." }
+    ]
+  },
+  umum: {
+    title:    "Umum",
+    category: "SOCIAL · COMMUNICATIONS",
+    subtitle: "A localized community networking and event sharing application connecting local creators, forums, and groups.",
+    tags:  ["Flutter", "Dart", "Firebase", "Push Notification", "GetX"],
+    image:        "assets/فري لنسر/umum.jpg",
+    demoLink: "#",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    accentColor: "#ec4899",
+    features: [
+      { icon: "fa-users", title: "Community Circles", desc: "Create private and public interest groups, share posts, and coordinate local gatherings." },
+      { icon: "fa-bell", title: "Instant Notification Channels", desc: "Push notification triggers alerting community members of new events and group interactions." },
+      { icon: "fa-comments", title: "Interactive Discussions", desc: "Threaded comments and rich text discussions supporting image attachments and likes." }
+    ],
+    journey: [
+      { phase: "PHASE 01 — SOCIAL GRAPH", title: "Interactions Model", desc: "Engineered scalable Firestore collections resolving real-time followers, likes, and comment threads." },
+      { phase: "PHASE 02 — ASYNC SYNC", title: "Image CDN Processing", desc: "Integrated image post-processing scripts to compress user uploads locally before hosting, ensuring quick page loads." }
+    ]
+  },
+  writle: {
+    title:    "Writle",
+    category: "CREATIVE · CONTENT EDITOR",
+    subtitle: "A minimalist markdown writer, journal, and document organizer built for distraction-free content publishing.",
+    tags:  ["Flutter", "Dart", "Markdown", "Hive DB", "GetX"],
+    image:        "assets/فري لنسر/writle.jpg",
+    demoLink: "#",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    accentColor: "#f59e0b",
+    features: [
+      { icon: "fa-feather", title: "Distraction-Free Workspace", desc: "Ultra-clean interface focusing on the content itself with smooth auto-saving logic." },
+      { icon: "fa-file-code", title: "Markdown Render Engine", desc: "Rich live rendering converting tags, links, and code blocks instantly into stylized views." },
+      { icon: "fa-archive", title: "Document Organizer", desc: "Local folder structuring and full-text search index across all saved drafts." }
+    ],
+    journey: [
+      { phase: "PHASE 01 — EDITOR", title: "Custom Rich Text Parser", desc: "Crafted a regex-based parser that handles markdown formatting symbols in real-time without typing lag." },
+      { phase: "PHASE 02 — ARCHIVE", title: "Fast Hive Preferences", desc: "Utilized binary Hive document storage to support instant document retrieval and seamless multi-file workspace switching." }
+    ]
+  }
 }
 /* Export for core main engine access */
 if (typeof module !== 'undefined' && module.exports) {
