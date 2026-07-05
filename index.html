@@ -111,29 +111,39 @@
         <span class="hamburger-line short"></span>
       </button>
 
-      <!-- Theme Switcher -->
-      <div class="hidden md:flex items-center relative" id="theme-switcher-wrapper">
-        <button type="button" id="theme-toggle-btn"
+      <!-- Theme Switcher & Light Mode -->
+      <div class="hidden md:flex items-center relative gap-3" id="theme-controls">
+        <!-- Light/Dark Mode Toggle -->
+        <button type="button" id="mode-toggle-btn"
           class="theme-toggle-btn"
-          aria-label="Switch theme"
-          aria-expanded="false"
-          aria-haspopup="true">
-          <span id="theme-icon" aria-hidden="true">🎨</span>
+          aria-label="Toggle Light/Dark Mode">
+          <i class="fas fa-moon" id="mode-icon" aria-hidden="true"></i>
         </button>
-        <!-- Theme Palette Dropdown -->
-        <div id="theme-palette" class="theme-palette" role="menu" aria-label="Choose a theme">
-          <button type="button" class="theme-swatch theme-swatch-purple active" data-theme="" aria-label="Cyber Purple theme" role="menuitem" title="Cyber Purple">
-            <span class="swatch-dot"></span>
+
+        <!-- Color Palette Switcher -->
+        <div class="relative" id="theme-switcher-wrapper">
+          <button type="button" id="theme-toggle-btn"
+            class="theme-toggle-btn"
+            aria-label="Switch theme"
+            aria-expanded="false"
+            aria-haspopup="true">
+            <i class="fas fa-palette" id="theme-icon" aria-hidden="true"></i>
           </button>
-          <button type="button" class="theme-swatch theme-swatch-blue" data-theme="cyber-blue" aria-label="Cyber Blue theme" role="menuitem" title="Cyber Blue">
-            <span class="swatch-dot"></span>
-          </button>
-          <button type="button" class="theme-swatch theme-swatch-green" data-theme="neon-green" aria-label="Neon Green theme" role="menuitem" title="Neon Green">
-            <span class="swatch-dot"></span>
-          </button>
-          <button type="button" class="theme-swatch theme-swatch-red" data-theme="solar-red" aria-label="Solar Red theme" role="menuitem" title="Solar Red">
-            <span class="swatch-dot"></span>
-          </button>
+          <!-- Theme Palette Dropdown -->
+          <div id="theme-palette" class="theme-palette" role="menu" aria-label="Choose a theme">
+            <button type="button" class="theme-swatch theme-swatch-purple active" data-theme="" aria-label="Cyber Purple theme" role="menuitem" title="Cyber Purple">
+              <span class="swatch-dot"></span>
+            </button>
+            <button type="button" class="theme-swatch theme-swatch-blue" data-theme="cyber-blue" aria-label="Cyber Blue theme" role="menuitem" title="Cyber Blue">
+              <span class="swatch-dot"></span>
+            </button>
+            <button type="button" class="theme-swatch theme-swatch-green" data-theme="neon-green" aria-label="Neon Green theme" role="menuitem" title="Neon Green">
+              <span class="swatch-dot"></span>
+            </button>
+            <button type="button" class="theme-swatch theme-swatch-red" data-theme="solar-red" aria-label="Solar Red theme" role="menuitem" title="Solar Red">
+              <span class="swatch-dot"></span>
+            </button>
+          </div>
         </div>
       </div>
 

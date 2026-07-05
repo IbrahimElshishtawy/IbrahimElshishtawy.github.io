@@ -463,8 +463,8 @@
   border: 1px solid rgba(var(--primary-rgb, 139, 92, 246), 0.3);
   border-radius: 999px;
   padding: 4px 12px;
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   white-space: nowrap;
 }
 

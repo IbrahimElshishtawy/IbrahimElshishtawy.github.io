@@ -102,6 +102,38 @@
   --aurora-3:     rgba(236, 72, 153, 0.07);
 }
 
+/* ── LIGHT MODE OVERRIDES ────────────────────────────────── */
+[data-theme-mode="light"] {
+  --bg:           #f8fafc;
+  --bg-dark:      #f1f5f9;
+  --bg-card:      rgba(255, 255, 255, 0.75);
+  --text-1:       #0f172a;
+  --text-2:       #475569;
+  --glass-bg:     rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-hover:  rgba(var(--primary-rgb), 0.12);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* ── LIGHT MODE TAILWIND UTILITY OVERRIDES ───────────────── */
+[data-theme-mode="light"] .text-white,
+[data-theme-mode="light"] .text-slate-50,
+[data-theme-mode="light"] .text-slate-100,
+[data-theme-mode="light"] .text-slate-200 { color: #000000 !important; }
+
+[data-theme-mode="light"] .text-slate-300,
+[data-theme-mode="light"] .text-slate-400 { color: #334155 !important; }
+
+[data-theme-mode="light"] .text-slate-500 { color: #475569 !important; }
+
+[data-theme-mode="light"] .bg-black\/20 { background-color: rgba(0, 0, 0, 0.03) !important; }
+[data-theme-mode="light"] .bg-white\/5 { background-color: rgba(0, 0, 0, 0.03) !important; }
+[data-theme-mode="light"] .bg-white\/\[0\.02\] { background-color: rgba(0, 0, 0, 0.02) !important; }
+[data-theme-mode="light"] .border-white\/\[0\.06\] { border-color: rgba(0, 0, 0, 0.08) !important; }
+[data-theme-mode="light"] .border-white\/10 { border-color: rgba(0, 0, 0, 0.1) !important; }
+
+
+
 
 /* ── TRANSITION FOR THEME SWITCH ────────────────────────── */
 *, *::before, *::after {
