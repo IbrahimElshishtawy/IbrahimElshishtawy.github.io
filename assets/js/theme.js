@@ -16,16 +16,20 @@
   ];
 
   const STORAGE_KEY = 'ibrahim-portfolio-theme';
+  const MODE_KEY = 'ibrahim-portfolio-mode';
 
   /* ── STATE ─────────────────────────────────────────────── */
   let isOpen = false;
   let currentTheme = '';
+  let isLightMode = false;
 
   /* ── DOM REFS ──────────────────────────────────────────── */
   const html       = document.documentElement;
   const toggleBtn  = document.getElementById('theme-toggle-btn');
   const palette    = document.getElementById('theme-palette');
   const swatches   = document.querySelectorAll('.theme-swatch');
+  const modeBtn    = document.getElementById('mode-toggle-btn');
+  const modeIcon   = document.getElementById('mode-icon');
 
   /* ── INIT ──────────────────────────────────────────────── */
   function init() {
@@ -37,15 +41,28 @@
     flash.id = 'theme-flash';
     document.body.appendChild(flash);
 
-    // Load saved theme
+    // Load saved theme and mode
     const saved = localStorage.getItem(STORAGE_KEY) || '';
+    const savedMode = localStorage.getItem(MODE_KEY);
+    isLightMode = savedMode === 'light';
+    
     applyTheme(saved, false);
+    applyMode(isLightMode, false);
 
-    // Bind toggle button
+    // Bind theme toggle button
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       togglePalette();
     });
+
+    // Bind mode toggle button
+    if (modeBtn) {
+      modeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isLightMode = !isLightMode;
+        applyMode(isLightMode, true);
+      });
+    }
 
     // Bind swatch buttons
     swatches.forEach(btn => {
@@ -102,6 +119,37 @@
     if (animate) flashTransition();
 
     // Update body background explicitly for full flush
+    document.body.style.backgroundColor = getComputedStyle(html)
+      .getPropertyValue('--bg').trim();
+  }
+
+  /* ── APPLY MODE (LIGHT/DARK) ───────────────────────────── */
+  function applyMode(isLight, animate) {
+    if (isLight) {
+      html.setAttribute('data-theme-mode', 'light');
+      localStorage.setItem(MODE_KEY, 'light');
+      if (modeIcon) {
+        modeIcon.classList.remove('fa-moon');
+        modeIcon.classList.add('fa-sun');
+        modeIcon.style.color = '#f59e0b'; // Sun color
+      }
+    } else {
+      html.removeAttribute('data-theme-mode');
+      localStorage.setItem(MODE_KEY, 'dark');
+      if (modeIcon) {
+        modeIcon.classList.remove('fa-sun');
+        modeIcon.classList.add('fa-moon');
+        modeIcon.style.color = ''; // Reset color
+      }
+    }
+
+    // Update Three.js particles color to adapt to mode
+    updateParticleColor(currentTheme);
+
+    // Flash animation
+    if (animate) flashTransition();
+
+    // Update body background explicitly
     document.body.style.backgroundColor = getComputedStyle(html)
       .getPropertyValue('--bg').trim();
   }

@@ -185,6 +185,16 @@ function setParticleTheme(themeId) {
     colors.setXYZ(i, c.r, c.g, c.b);
   }
   colors.needsUpdate = true;
+
+  // Handle light/dark mode adaptations for particles
+  const isLight = document.documentElement.getAttribute('data-theme-mode') === 'light';
+  if (isLight && particlesMaterial) {
+    particlesMaterial.blending = THREE.NormalBlending;
+    particlesMaterial.opacity = 0.45;
+  } else if (particlesMaterial) {
+    particlesMaterial.blending = THREE.AdditiveBlending;
+    particlesMaterial.opacity = 0.72;
+  }
 }
 
 /* Expose to window for ThemeEngine */
