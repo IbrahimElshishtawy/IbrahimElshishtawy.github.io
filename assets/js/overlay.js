@@ -97,29 +97,34 @@ function renderCaseStudy(data) {
     `;
     
     if (data.secondaryImages && Array.isArray(data.secondaryImages)) {
-      const mockupsHTML = data.secondaryImages.map(img => `
-        <div class="tilt-container">
-          <div class="iphone-mockup">
-            <div class="iphone-notch" aria-hidden="true"></div>
-            <div class="iphone-screen">
-              <img src="${img}" alt="${data.title} Screenshot" class="iphone-img">
+      const galleryLabels = data.screenshotLabels || [];
+
+      const galleryCards = data.secondaryImages.map((img, idx) => {
+        const label = galleryLabels[idx] || `Screen ${idx + 1}`;
+        return `
+          <div class="gallery-screen-card case-study-reveal group">
+            <div class="gallery-screen-img-wrap">
+              <img src="${img}" alt="${data.title} — ${label}" loading="lazy" class="gallery-screen-img">
+              <div class="gallery-screen-overlay">
+                <span class="gallery-screen-label">${label}</span>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       additionalScreenHTML = `
-        <div class="py-16 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
-          <div class="max-w-7xl mx-auto flex flex-col items-center">
-            <div class="text-center mb-12 case-study-reveal">
-              <span class="section-label">ADDITIONAL SCREENS</span>
+        <div class="py-20 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-14 case-study-reveal">
+              <span class="section-label">APP GALLERY</span>
               <h3 class="section-title mb-4">More from the App</h3>
-              <p class="text-xs text-slate-400 leading-relaxed max-w-md mx-auto">
-                Each screen is designed with pixel precision — balancing high information density with beautiful, atmospheric visual clarity.
+              <p class="text-xs text-slate-400 leading-relaxed max-w-lg mx-auto">
+                A closer look at the real screens built into ${data.title} — designed with pixel precision, atmospheric depth, and full RTL Arabic support.
               </p>
             </div>
-            <div class="flex flex-wrap justify-center gap-12 case-study-reveal">
-              ${mockupsHTML}
+            <div class="gallery-screen-grid">
+              ${galleryCards}
             </div>
           </div>
         </div>

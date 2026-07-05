@@ -43,13 +43,14 @@
 
 @keyframes spinGlow { to { transform: rotate(360deg); } }
 
-/* ── AURORA BACKGROUND ANIMATION ────────────────────────── */
+/* ── AURORA BACKGROUND ANIMATION ─────────────────────────── */
 .aurora-bg {
   position: fixed;
   inset: 0;
   z-index: -2;
   background: radial-gradient(ellipse at 10% 20%, rgba(13, 10, 36, 1) 0%, rgba(3, 2, 9, 1) 100%);
   overflow: hidden;
+  transition: background 0.8s ease;
 }
 
 .aurora-glow-1 {
@@ -59,9 +60,10 @@
   width: 65vw;
   height: 65vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--aurora-1) 0%, transparent 70%);
   filter: blur(80px);
   animation: floatGlow 18s infinite alternate ease-in-out;
+  transition: background 0.8s ease;
 }
 
 .aurora-glow-2 {
@@ -71,9 +73,10 @@
   width: 55vw;
   height: 55vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.09) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--aurora-2) 0%, transparent 70%);
   filter: blur(90px);
   animation: floatGlow 22s infinite alternate-reverse ease-in-out;
+  transition: background 0.8s ease;
 }
 
 .aurora-glow-3 {
@@ -83,9 +86,10 @@
   width: 40vw;
   height: 40vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle, var(--aurora-3) 0%, transparent 60%);
   filter: blur(100px);
   animation: floatGlow 28s infinite alternate ease-in-out;
+  transition: background 0.8s ease;
 }
 
 @keyframes floatGlow {

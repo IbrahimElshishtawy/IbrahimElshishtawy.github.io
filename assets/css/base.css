@@ -5,12 +5,15 @@
 
 /* ── VARIABLES ──────────────────────────────────────────── */
 :root {
+  /* ── THEME: CYBER PURPLE (default) ── */
   --bg:           #030209;
   --bg-dark:      #010103;
   --bg-card:      rgba(13, 11, 28, 0.5);
   --primary:      #8b5cf6;
+  --primary-rgb:  139, 92, 246;
   --primary-glow: rgba(139, 92, 246, 0.35);
   --secondary:    #06b6d4;
+  --secondary-rgb:6, 182, 212;
   --secondary-glow: rgba(6, 182, 212, 0.3);
   --accent:       #ec4899;
   --text-1:       #f8fafc;
@@ -19,6 +22,9 @@
   --glass-border: rgba(255, 255, 255, 0.06);
   --glass-hover:  rgba(139, 92, 246, 0.25);
   --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.55);
+  --aurora-1:     rgba(139, 92, 246, 0.14);
+  --aurora-2:     rgba(6, 182, 212, 0.09);
+  --aurora-3:     rgba(236, 72, 153, 0.06);
   --font-heading: 'Outfit', sans-serif;
   --font-body:    'Plus Jakarta Sans', sans-serif;
   --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
@@ -27,7 +33,77 @@
   --radius-pill:  9999px;
 }
 
-/* ── RESET & BASE ───────────────────────────────────────── */
+/* ── THEME: CYBER BLUE ───────────────────────────────────── */
+[data-theme="cyber-blue"] {
+  --bg:           #020a12;
+  --bg-dark:      #010509;
+  --bg-card:      rgba(5, 20, 40, 0.55);
+  --primary:      #0ea5e9;
+  --primary-rgb:  14, 165, 233;
+  --primary-glow: rgba(14, 165, 233, 0.35);
+  --secondary:    #06d6a0;
+  --secondary-rgb:6, 214, 160;
+  --secondary-glow: rgba(6, 214, 160, 0.3);
+  --accent:       #f59e0b;
+  --text-1:       #f0f9ff;
+  --text-2:       #7dd3fc;
+  --glass-bg:     rgba(5, 20, 42, 0.55);
+  --glass-border: rgba(14, 165, 233, 0.08);
+  --glass-hover:  rgba(14, 165, 233, 0.25);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.6);
+  --aurora-1:     rgba(14, 165, 233, 0.16);
+  --aurora-2:     rgba(6, 214, 160, 0.10);
+  --aurora-3:     rgba(245, 158, 11, 0.07);
+}
+
+/* ── THEME: NEON GREEN ───────────────────────────────────── */
+[data-theme="neon-green"] {
+  --bg:           #020c06;
+  --bg-dark:      #010802;
+  --bg-card:      rgba(5, 22, 10, 0.55);
+  --primary:      #22c55e;
+  --primary-rgb:  34, 197, 94;
+  --primary-glow: rgba(34, 197, 94, 0.35);
+  --secondary:    #84cc16;
+  --secondary-rgb:132, 204, 22;
+  --secondary-glow: rgba(132, 204, 22, 0.3);
+  --accent:       #06b6d4;
+  --text-1:       #f0fdf4;
+  --text-2:       #86efac;
+  --glass-bg:     rgba(5, 22, 12, 0.55);
+  --glass-border: rgba(34, 197, 94, 0.08);
+  --glass-hover:  rgba(34, 197, 94, 0.25);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.6);
+  --aurora-1:     rgba(34, 197, 94, 0.16);
+  --aurora-2:     rgba(132, 204, 22, 0.10);
+  --aurora-3:     rgba(6, 182, 212, 0.07);
+}
+
+/* ── THEME: SOLAR RED ────────────────────────────────────── */
+[data-theme="solar-red"] {
+  --bg:           #0d0402;
+  --bg-dark:      #080201;
+  --bg-card:      rgba(28, 10, 5, 0.55);
+  --primary:      #f97316;
+  --primary-rgb:  249, 115, 22;
+  --primary-glow: rgba(249, 115, 22, 0.35);
+  --secondary:    #eab308;
+  --secondary-rgb:234, 179, 8;
+  --secondary-glow: rgba(234, 179, 8, 0.3);
+  --accent:       #ec4899;
+  --text-1:       #fff7ed;
+  --text-2:       #fed7aa;
+  --glass-bg:     rgba(28, 10, 5, 0.55);
+  --glass-border: rgba(249, 115, 22, 0.08);
+  --glass-hover:  rgba(249, 115, 22, 0.25);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.6);
+  --aurora-1:     rgba(249, 115, 22, 0.15);
+  --aurora-2:     rgba(234, 179, 8, 0.10);
+  --aurora-3:     rgba(236, 72, 153, 0.07);
+}
+
+
+/* ── TRANSITION FOR THEME SWITCH ────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -43,6 +119,7 @@ html {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 body {

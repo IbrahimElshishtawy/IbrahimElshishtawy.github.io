@@ -139,3 +139,53 @@ function initPageVisibility() {
     isPageVisible = !document.hidden;
   });
 }
+
+/* ── THEME-AWARE PARTICLE RECOLOR ─────────────────────────── */
+function setParticleTheme(themeId) {
+  if (!particlesMesh || typeof THREE === 'undefined') return;
+
+  const THEME_PALETTES = {
+    '': [
+      new THREE.Color('#8b5cf6'),
+      new THREE.Color('#06b6d4'),
+      new THREE.Color('#ffffff'),
+      new THREE.Color('#4f46e5'),
+      new THREE.Color('#ec4899'),
+    ],
+    'cyber-blue': [
+      new THREE.Color('#0ea5e9'),
+      new THREE.Color('#06d6a0'),
+      new THREE.Color('#e0f2fe'),
+      new THREE.Color('#38bdf8'),
+      new THREE.Color('#f59e0b'),
+    ],
+    'neon-green': [
+      new THREE.Color('#22c55e'),
+      new THREE.Color('#84cc16'),
+      new THREE.Color('#d1fae5'),
+      new THREE.Color('#4ade80'),
+      new THREE.Color('#06b6d4'),
+    ],
+    'solar-red': [
+      new THREE.Color('#f97316'),
+      new THREE.Color('#eab308'),
+      new THREE.Color('#fff7ed'),
+      new THREE.Color('#fb923c'),
+      new THREE.Color('#ec4899'),
+    ],
+  };
+
+  const palette  = THEME_PALETTES[themeId] || THEME_PALETTES[''];
+  const geometry = particlesMesh.geometry;
+  const colors   = geometry.attributes.color;
+  const count    = colors.count;
+
+  for (let i = 0; i < count; i++) {
+    const c = palette[Math.floor(Math.random() * palette.length)];
+    colors.setXYZ(i, c.r, c.g, c.b);
+  }
+  colors.needsUpdate = true;
+}
+
+/* Expose to window for ThemeEngine */
+window.setParticleTheme = setParticleTheme;
