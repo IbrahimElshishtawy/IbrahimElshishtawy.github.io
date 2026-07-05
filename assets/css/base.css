@@ -132,6 +132,56 @@
 [data-theme-mode="light"] .border-white\/\[0\.06\] { border-color: rgba(0, 0, 0, 0.08) !important; }
 [data-theme-mode="light"] .border-white\/10 { border-color: rgba(0, 0, 0, 0.1) !important; }
 
+/* ── LIGHT MODE COMPONENT OVERRIDES ─────────────────────── */
+[data-theme-mode="light"] .section-title {
+  color: #0f172a !important;
+}
+
+[data-theme-mode="light"] .tech-title {
+  color: #334155 !important;
+}
+
+[data-theme-mode="light"] .tech-card:hover .tech-title {
+  color: #0f172a !important;
+}
+
+[data-theme-mode="light"] .glass-nav {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme-mode="light"] .project-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme-mode="light"] .mini-project-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme-mode="light"] .tech-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme-mode="light"] .cert-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme-mode="light"] .whatsapp-panel {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05) !important;
+}
+
+
 
 
 
