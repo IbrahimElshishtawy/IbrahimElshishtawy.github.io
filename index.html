@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="assets/css/sections.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/hero-3d.css">
+  <link rel="stylesheet" href="assets/css/intro.css">
 
   <!-- Tailwind CSS (utility helpers) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -58,13 +59,42 @@
 <body class="bg-[#030209] text-slate-100 overflow-x-hidden selection:bg-purple-500/30 selection:text-white">
 
   <!-- ══════════════════════════════════════════ -->
-  <!-- 1. CINEMATIC PRELOADER                    -->
+  <!-- 1. CINEMATIC PORTFOLIO OPENING EXPERIENCE -->
   <!-- ══════════════════════════════════════════ -->
-  <div id="cyber-preloader" role="status" aria-label="Loading portfolio">
-    <div class="preloader-glow"></div>
-    <p class="mt-6 font-heading text-xs font-bold uppercase tracking-[0.25em] text-purple-400/80 animate-pulse">
-      Calibrating Matrix...
-    </p>
+  <div id="portfolio-intro" role="dialog" aria-label="IBRAHIM.Dev Opening Experience">
+    <!-- Ambient Backdrop Glow -->
+    <div class="intro-ambient-glow" aria-hidden="true"></div>
+
+    <!-- Center Light Dot -->
+    <div class="intro-center-dot" aria-hidden="true"></div>
+
+    <!-- Main Centered Content -->
+    <div class="intro-content">
+      <!-- 3D Mini Geometric Prism -->
+      <div class="intro-3d-box">
+        <canvas id="intro-3d-canvas" class="intro-3d-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <!-- Brand Logo & Title -->
+      <div class="intro-logo-row">
+        <span class="intro-code-bracket">&lt;/&gt;</span>
+        <h1 class="intro-brand-title">
+          IBRAHIM<span class="intro-brand-dev">.Dev</span>
+        </h1>
+      </div>
+
+      <!-- Developer Identity Subtitle -->
+      <div class="intro-developer-tag">
+        <span class="tag-dot" aria-hidden="true"></span>
+        <span>Flutter Architect &bull; Full-Stack Engineer</span>
+      </div>
+    </div>
+
+    <!-- Skip Button -->
+    <button type="button" id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip opening animation">
+      <span>تخطي / Skip</span>
+      <i class="fas fa-forward text-[10px]" aria-hidden="true"></i>
+    </button>
   </div>
 
   <!-- ══════════════════════════════════════════ -->
@@ -98,11 +128,12 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
-        <a href="#works" id="nav-works" class="nav-link">Work</a>
-        <a href="#arsenal" id="nav-arsenal" class="nav-link">Tech Stack</a>
-        <a href="#about" id="nav-about" class="nav-link">About</a>
-        <a href="#journey" id="nav-journey" class="nav-link">Journey</a>
-        <a href="#contact" id="nav-contact" class="nav-link">Contact</a>
+        <a href="#hero" class="nav-link">الرئيسية</a>
+        <a href="#about" id="nav-about" class="nav-link">عني</a>
+        <a href="tools.html" id="nav-tools" class="nav-link text-purple-400 font-bold hover:text-white transition-colors">التولز / Tools</a>
+        <a href="#works" id="nav-works" class="nav-link">المشاريع</a>
+        <a href="#arsenal" id="nav-arsenal" class="nav-link">المهارات</a>
+        <a href="#contact" id="nav-contact" class="nav-link">تواصل معي</a>
       </nav>
 
       <!-- Mobile Hamburger -->
@@ -150,19 +181,19 @@
 
       <!-- CTA Button -->
       <a href="#contact" id="nav-hire-btn" class="hidden md:inline-flex magnetic-btn btn-glowing text-xs py-2.5 px-6 font-semibold items-center gap-2" aria-label="Hire Ibrahim Elshishtawy">
-        <i class="fas fa-bolt text-yellow-300 text-[10px]" aria-hidden="true"></i> Hire Me
+        <i class="fas fa-bolt text-yellow-300 text-[10px]" aria-hidden="true"></i> دعنا نتحدث
       </a>
     </div>
 
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
       <nav class="flex flex-col gap-4 p-6" aria-label="Mobile navigation">
-        <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()">Work</a>
-        <a href="#arsenal" class="mobile-nav-link" onclick="closeMobileMenu()">Tech Stack</a>
-        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">About</a>
-        <a href="#journey" class="mobile-nav-link" onclick="closeMobileMenu()">Journey</a>
-        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
-        <a href="#contact" class="btn-glowing text-center text-xs py-3 px-6 font-semibold mt-2" onclick="closeMobileMenu()">Hire Me</a>
+        <a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()">الرئيسية</a>
+        <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()">عني</a>
+        <a href="tools.html" class="mobile-nav-link text-purple-400 font-bold" onclick="closeMobileMenu()">التولز / Tools</a>
+        <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()">المشاريع</a>
+        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">تواصل معي</a>
+        <a href="#contact" class="btn-glowing text-center text-xs py-3 px-6 font-semibold mt-2" onclick="closeMobileMenu()">دعنا نتحدث 💬</a>
       </nav>
     </div>
   </header>
@@ -302,7 +333,6 @@
 
       <!-- Integrated Hero Metrics Bar -->
       <div class="hero-stats-glass-bar w-full mt-14 py-6 px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-between hero-reveal-floating">
-        
         <!-- Metric 1: Completed Projects -->
         <div class="hero-stat-card justify-center">
           <div class="icon-box-stat icon-box-purple">
@@ -1134,6 +1164,7 @@
   <script src="assets/js/animations.js"></script>
   <script src="assets/js/interactions.js"></script>
   <script src="assets/js/overlay.js"></script>
+  <script src="assets/js/intro.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>

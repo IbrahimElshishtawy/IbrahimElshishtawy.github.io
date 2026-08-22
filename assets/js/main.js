@@ -30,13 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initMiniProjectList();
   initCaseStudyOverlay();
 
-  // Initialize structural scroll triggers
+  // Initialize Structural Scroll Triggers & Visibility
   initScrollTimeline();
   initScrollHeader();
   initPageVisibility();
 
-  // Trigger Preloader fade out
-  setTimeout(fadeOutPreloader, 900);
+  // Initialize Premium Portfolio Opening Experience
+  if (window.PortfolioIntroEngine && typeof window.PortfolioIntroEngine.init === 'function') {
+    window.PortfolioIntroEngine.init();
+  } else {
+    setTimeout(fadeOutPreloader, 900);
+  }
 });
 
 /* ── MOBILE MENU TOGGLES ────────────────────────────────────── */
