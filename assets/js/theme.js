@@ -162,11 +162,15 @@
     setTimeout(() => flash.classList.remove('active'), 250);
   }
 
-  /* ── UPDATE THREE.JS PARTICLE COLOR ────────────────────── */
+  /* ── UPDATE THREE.JS PARTICLE & 3D HERO COLOR ────────── */
   function updateParticleColor(themeId) {
     // Try to update Three.js particle system color if it exposes a setter
     if (typeof window.setParticleTheme === 'function') {
       window.setParticleTheme(themeId);
+    }
+    // Update 3D Hero Scene lighting & materials
+    if (typeof window.setHero3DTheme === 'function') {
+      window.setHero3DTheme(themeId, isLightMode);
     }
   }
 

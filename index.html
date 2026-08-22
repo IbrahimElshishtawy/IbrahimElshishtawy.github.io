@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/sections.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/hero-3d.css">
 
   <!-- Tailwind CSS (utility helpers) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -243,33 +244,58 @@
           </div>
         </div>
 
-        <!-- RIGHT: 3D Avatar Frame -->
+        <!-- RIGHT: 3D Developer Experience & Workstation -->
         <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
-          <div class="tilt-container hero-reveal-avatar">
-            <div class="hero-avatar-tilt profile-frame-container w-[280px] sm:w-[340px] aspect-[4/5] relative">
+          <div class="hero-3d-wrapper hero-reveal-avatar">
+            
+            <!-- Ambient Cyber Backdrop Glow -->
+            <div class="hero-3d-glow-backdrop" aria-hidden="true"></div>
 
-              <!-- Floating 3D Badges -->
-              <span class="floating-badge-3d-1 cyber-badge cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
-                <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 256 317" fill="currentColor"><path d="M158 0 0 158l49 48L255 0zM157 145l-85 85 49 50 49-49 85-86z"/><path d="m121 280 37 37h97l-85-86z" fill-opacity="0.8"/><path d="m72 230 48-48 50 49-49 49z" fill-opacity="0.9"/></svg> Flutter
-              </span>
-              <span class="floating-badge-3d-2 cyber-badge cyber-badge-cyan cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
-                <i class="fas fa-terminal text-sky-400"></i> Dart
-              </span>
+            <div id="hero-3d-container" class="hero-3d-container">
 
-              <div class="profile-frame-inner w-full h-full">
-                <img class="profile-img w-full h-full" src="assets/assets/profile.jpg" alt="Ibrahim Elshishtawy — Flutter Architect">
+              <!-- Interactive Three.js WebGL Canvas -->
+              <canvas id="hero-3d-canvas" class="hero-3d-canvas" aria-label="Interactive 3D Developer Avatar and Cyber Workstation"></canvas>
 
-                <!-- Holographic ID Tag -->
-                <div class="absolute bottom-6 left-6 right-6 z-10 glass-panel hologram-tag p-4 border-white/5 backdrop-blur-md flex justify-between items-center">
-                  <div>
-                    <h3 class="font-heading text-xs font-bold text-white tracking-wider">IBRAHIM, 24</h3>
-                    <p class="text-[9px] text-slate-400 font-semibold tracking-widest mt-0.5">FLUTTER ARCHITECT</p>
-                  </div>
-                  <span class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs" aria-hidden="true">
-                    <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 256 317" fill="currentColor"><path d="M158 0 0 158l49 48L255 0zM157 145l-85 85 49 50 49-49 85-86z"/><path d="m121 280 37 37h97l-85-86z" fill-opacity="0.8"/><path d="m72 230 48-48 50 49-49 49z" fill-opacity="0.9"/></svg>
-                  </span>
+              <!-- Loading State -->
+              <div id="hero-3d-loading" class="hero-3d-loading" role="status" aria-label="Initializing 3D Developer Environment">
+                <div class="hero-3d-loading-spinner" aria-hidden="true">
+                  <div class="hero-3d-spinner-ring"></div>
+                  <div class="hero-3d-spinner-core"></div>
+                </div>
+                <p class="hero-3d-loading-text">Initializing Developer Environment...</p>
+                <div class="hero-3d-progress-bar" aria-hidden="true">
+                  <div class="hero-3d-progress-fill"></div>
                 </div>
               </div>
+
+              <!-- Fallback Profile Frame (if WebGL is unavailable or reduced motion) -->
+              <div id="hero-3d-fallback" class="hero-3d-fallback tilt-container">
+                <div class="hero-avatar-tilt profile-frame-container w-[280px] sm:w-[340px] aspect-[4/5] relative mx-auto">
+                  <!-- Floating 3D Badges -->
+                  <span class="floating-badge-3d-1 cyber-badge cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
+                    <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 256 317" fill="currentColor"><path d="M158 0 0 158l49 48L255 0zM157 145l-85 85 49 50 49-49 85-86z"/><path d="m121 280 37 37h97l-85-86z" fill-opacity="0.8"/><path d="m72 230 48-48 50 49-49 49z" fill-opacity="0.9"/></svg> Flutter
+                  </span>
+                  <span class="floating-badge-3d-2 cyber-badge cyber-badge-cyan cyber-badge-glow flex items-center gap-1.5 text-[10px]" aria-hidden="true">
+                    <i class="fas fa-terminal text-sky-400"></i> Dart
+                  </span>
+
+                  <div class="profile-frame-inner w-full h-full">
+                    <img class="profile-img w-full h-full" src="assets/assets/profile.jpg" alt="Ibrahim Elshishtawy — Flutter Architect">
+
+                    <!-- Holographic ID Tag -->
+                    <div class="absolute bottom-6 left-6 right-6 z-10 glass-panel hologram-tag p-4 border-white/5 backdrop-blur-md flex justify-between items-center">
+                      <div>
+                        <h3 class="font-heading text-xs font-bold text-white tracking-wider">IBRAHIM, 24</h3>
+                        <p class="text-[9px] text-slate-400 font-semibold tracking-widest mt-0.5">FLUTTER ARCHITECT</p>
+                      </div>
+                      <span class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs" aria-hidden="true">
+                        <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 256 317" fill="currentColor"><path d="M158 0 0 158l49 48L255 0zM157 145l-85 85 49 50 49-49 85-86z"/><path d="m121 280 37 37h97l-85-86z" fill-opacity="0.8"/><path d="m72 230 48-48 50 49-49 49z" fill-opacity="0.9"/></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

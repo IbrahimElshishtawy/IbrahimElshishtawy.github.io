@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Three.js WebGL background
   initThreeJS();
 
+  // Initialize 3D Interactive Hero Experience
+  if (window.Hero3DController && typeof window.Hero3DController.init === 'function') {
+    window.Hero3DController.init();
+  }
+
   // Initialize mouse interactions & tracking
   initCustomCursor();
   initCardTilting();

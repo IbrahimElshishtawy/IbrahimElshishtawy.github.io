@@ -1,0 +1,213 @@
+/* ============================================================
+   IBRAHIM ELSHISHTAWY — 3D INTERACTIVE HERO STYLING
+   (hero-3d.css)
+   ============================================================ */
+
+/* ── HERO CONTAINER & 3D CANVAS WRAPPER ────────────────────── */
+.hero-3d-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 520px;
+  height: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .hero-3d-wrapper {
+    height: 500px;
+    min-height: 460px;
+    max-width: 580px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-3d-wrapper {
+    height: 420px;
+    min-height: 380px;
+    max-width: 100%;
+  }
+}
+
+.hero-3d-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: visible;
+}
+
+/* Three.js Canvas */
+.hero-3d-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+  pointer-events: auto;
+  z-index: 10;
+  display: block;
+}
+
+/* ── 3D HERO AMBIENT BACKGROUND GLOW ────────────────────────── */
+.hero-3d-glow-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--primary-rgb, 139, 92, 246), 0.22) 0%,
+    rgba(6, 182, 212, 0.12) 45%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+  animation: heroGlowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlowPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+/* ── 3D LOADING STATE OVERLAY ──────────────────────────────── */
+.hero-3d-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 5, 14, 0.75);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 25;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-3d-loading-spinner {
+  position: relative;
+  width: 54px;
+  height: 54px;
+}
+
+.hero-3d-spinner-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--primary, #8b5cf6);
+  border-right-color: #06b6d4;
+  animation: spin3D 1.2s linear infinite;
+}
+
+.hero-3d-spinner-core {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 80%);
+  animation: pulseCore 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes spin3D {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseCore {
+  0% { transform: scale(0.7); opacity: 0.4; }
+  100% { transform: scale(1.1); opacity: 0.9; }
+}
+
+.hero-3d-loading-text {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+  margin-top: 18px;
+}
+
+.hero-3d-progress-bar {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-3d-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  border-radius: 3px;
+  animation: progressIndeterminate 1.6s ease-in-out infinite;
+}
+
+@keyframes progressIndeterminate {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(20%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── FALLBACK CONTAINER ────────────────────────────────────── */
+.hero-3d-fallback {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: none;
+}
+
+/* ── RTL SUPPORT (Arabic layout) ───────────────────────────── */
+[dir="rtl"] .hero-3d-wrapper,
+html[dir="rtl"] .hero-3d-wrapper {
+  direction: ltr; /* keep 3D coordinate system internal clean */
+}
+
+/* ── LIGHT THEME ADAPTATIONS ───────────────────────────────── */
+[data-theme-mode="light"] .hero-3d-glow-backdrop {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--primary-rgb, 139, 92, 246), 0.18) 0%,
+    rgba(6, 182, 212, 0.1) 45%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+[data-theme-mode="light"] .hero-3d-loading {
+  background: rgba(248, 249, 252, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme-mode="light"] .hero-3d-loading-text {
+  color: #4f46e5;
+}
+
+/* ── ACCESSIBILITY (prefers-reduced-motion) ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d-glow-backdrop {
+    animation: none;
+  }
+}
