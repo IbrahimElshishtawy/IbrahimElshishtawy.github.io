@@ -7,9 +7,9 @@
 .hero-3d-wrapper {
   position: relative;
   width: 100%;
-  max-width: 760px;
-  min-height: 560px;
-  height: 640px;
+  max-width: 540px;
+  min-height: 480px;
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,23 +17,24 @@
 
 @media (max-width: 1280px) {
   .hero-3d-wrapper {
-    height: 580px;
-    max-width: 680px;
+    height: 480px;
+    min-height: 440px;
+    max-width: 480px;
   }
 }
 
 @media (max-width: 1024px) {
   .hero-3d-wrapper {
-    height: 520px;
-    min-height: 460px;
-    max-width: 580px;
+    height: 440px;
+    min-height: 400px;
+    max-width: 440px;
   }
 }
 
 @media (max-width: 640px) {
   .hero-3d-wrapper {
-    height: 440px;
-    min-height: 380px;
+    height: 380px;
+    min-height: 340px;
     max-width: 100%;
   }
 }
