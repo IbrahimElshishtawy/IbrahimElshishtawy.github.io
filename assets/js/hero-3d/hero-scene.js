@@ -12,7 +12,7 @@ window.Hero3DScene = (function () {
   let container = null;
   let canvas = null;
 
-  // Lighting references for dynamic theme updates
+  // Lighting references
   let ambientLight = null;
   let keyLight = null;
   let fillLight = null;
@@ -21,11 +21,11 @@ window.Hero3DScene = (function () {
   let workstationLight = null;
   let pedestalLight = null;
 
-  // Camera & Mouse interpolation state
-  let targetCamX = 0;
-  let targetCamY = 1.4;
-  let currentCamX = 0;
-  let currentCamY = 1.4;
+  // Camera & Mouse interpolation
+  let targetCamX = 0.15;
+  let targetCamY = 1.35;
+  let currentCamX = 0.15;
+  let currentCamY = 1.35;
   let mouseX = 0;
   let mouseY = 0;
   let scrollProgress = 0;
@@ -39,8 +39,8 @@ window.Hero3DScene = (function () {
       return false;
     }
 
-    const width = container.clientWidth || window.innerWidth / 2;
-    const height = container.clientHeight || 560;
+    const width = container.clientWidth || 700;
+    const height = container.clientHeight || 620;
 
     // 1. Scene
     scene = new THREE.Scene();
@@ -57,7 +57,7 @@ window.Hero3DScene = (function () {
       alpha: true,
       antialias: true,
       powerPreference: 'high-performance',
-      precision: 'mediump'
+      precision: 'highp'
     });
 
     const pixelRatio = Math.min(window.devicePixelRatio || 1, window.Hero3DConfig.performance.maxPixelRatio);
@@ -67,9 +67,9 @@ window.Hero3DScene = (function () {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 1.25;
 
-    // 4. Setup Lighting System
+    // 4. Setup Cinematic 3D Studio Lighting
     setupCinematicLighting();
 
     return true;
@@ -80,46 +80,44 @@ window.Hero3DScene = (function () {
     const isLight = document.documentElement.getAttribute('data-theme-mode') === 'light';
     const theme = window.Hero3DConfig.themes[activeThemeId] || window.Hero3DConfig.themes[''];
 
-    // Ambient Light (subtle base radiance)
-    ambientLight = new THREE.AmbientLight(isLight ? 0x666688 : theme.ambientDark, isLight ? 1.4 : 0.85);
+    // Base Ambient Light
+    ambientLight = new THREE.AmbientLight(isLight ? 0x8888aa : theme.ambientDark, isLight ? 1.6 : 1.1);
     scene.add(ambientLight);
 
-    // 1. Key Light (Soft Warm/Neutral front-top-right)
-    keyLight = new THREE.DirectionalLight(0xfff5ea, 1.8);
-    keyLight.position.set(2.5, 4.5, 3.5);
+    // 1. Front Key Light (Studio portrait light)
+    keyLight = new THREE.DirectionalLight(0xfff8f0, 2.2);
+    keyLight.position.set(2.0, 4.0, 4.0);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.width = 1024;
     keyLight.shadow.mapSize.height = 1024;
-    keyLight.shadow.camera.near = 0.5;
-    keyLight.shadow.camera.far = 12;
-    keyLight.shadow.bias = -0.001;
+    keyLight.shadow.bias = -0.0005;
     scene.add(keyLight);
 
-    // 2. Fill Light (Soft cool light from opposite angle)
-    fillLight = new THREE.DirectionalLight(0x38bdf8, 0.75);
-    fillLight.position.set(-3, 2, 2.5);
+    // 2. Soft Fill Light (Subtle blue illumination from left)
+    fillLight = new THREE.DirectionalLight(0x60a5fa, 0.9);
+    fillLight.position.set(-3.5, 2.5, 3.0);
     scene.add(fillLight);
 
-    // 3. Purple Rim Light (Sharp cinematic backlight behind-left)
-    rimLightPurple = new THREE.SpotLight(theme.rimPurple, 3.8, 14, Math.PI / 4, 0.5, 1.2);
-    rimLightPurple.position.set(-3.2, 3.2, -2.5);
-    rimLightPurple.lookAt(0, 1.2, 0);
+    // 3. Purple Rim Spotlight (From back-left, creates intense cyber glow on character and box edge)
+    rimLightPurple = new THREE.SpotLight(theme.rimPurple, 4.8, 16, Math.PI / 3.5, 0.4, 1.1);
+    rimLightPurple.position.set(-3.0, 3.2, -2.2);
+    rimLightPurple.lookAt(0, 1.0, 0);
     scene.add(rimLightPurple);
 
-    // 4. Cyan Rim Light (Sharp cinematic backlight behind-right)
-    rimLightCyan = new THREE.SpotLight(theme.rimCyan, 3.2, 14, Math.PI / 4, 0.5, 1.2);
-    rimLightCyan.position.set(3.2, 3.0, -2.2);
-    rimLightCyan.lookAt(0, 1.2, 0);
+    // 4. Cyan Rim Spotlight (From back-right, creates sharp cyan accent on monitor & right side)
+    rimLightCyan = new THREE.SpotLight(theme.rimCyan, 4.2, 16, Math.PI / 3.5, 0.4, 1.1);
+    rimLightCyan.position.set(3.5, 2.8, -1.8);
+    rimLightCyan.lookAt(0.5, 1.0, 0.2);
     scene.add(rimLightCyan);
 
-    // 5. Workstation Screen Glow (Point light right at the monitor looking at the face)
-    workstationLight = new THREE.PointLight(theme.screenGlow, 1.6, 3.5);
-    workstationLight.position.set(0, 1.15, 0.65);
+    // 5. Workstation Screen Light (Glow from the code monitor)
+    workstationLight = new THREE.PointLight(theme.screenGlow, 2.2, 3.8);
+    workstationLight.position.set(1.4, 1.35, 0.2);
     scene.add(workstationLight);
 
-    // 6. Pedestal Neon Glow (Point light under the cyber platform)
-    pedestalLight = new THREE.PointLight(theme.pedestalGlow, 2.5, 4.0);
-    pedestalLight.position.set(0, -0.4, 0.2);
+    // 6. Pedestal & Cyber Pod Glowing Base Light
+    pedestalLight = new THREE.PointLight(theme.pedestalGlow, 3.5, 4.5);
+    pedestalLight.position.set(0, 0.05, 0.2);
     scene.add(pedestalLight);
   }
 
@@ -128,41 +126,35 @@ window.Hero3DScene = (function () {
     const theme = window.Hero3DConfig.themes[themeId] || window.Hero3DConfig.themes[''];
 
     if (ambientLight) {
-      ambientLight.color.setHex(isLight ? 0x666688 : theme.ambientDark);
-      ambientLight.intensity = isLight ? 1.4 : 0.85;
+      ambientLight.color.setHex(isLight ? 0x8888aa : theme.ambientDark);
+      ambientLight.intensity = isLight ? 1.6 : 1.1;
     }
-    if (rimLightPurple) {
-      rimLightPurple.color.setHex(theme.rimPurple);
-    }
-    if (rimLightCyan) {
-      rimLightCyan.color.setHex(theme.rimCyan);
-    }
-    if (workstationLight) {
-      workstationLight.color.setHex(theme.screenGlow);
-    }
-    if (pedestalLight) {
-      pedestalLight.color.setHex(theme.pedestalGlow);
-    }
+    if (rimLightPurple) rimLightPurple.color.setHex(theme.rimPurple);
+    if (rimLightCyan) rimLightCyan.color.setHex(theme.rimCyan);
+    if (workstationLight) workstationLight.color.setHex(theme.screenGlow);
+    if (pedestalLight) pedestalLight.color.setHex(theme.pedestalGlow);
   }
 
   function handleResize() {
     if (!container || !camera || !renderer) return;
     const width = container.clientWidth;
-    const height = container.clientHeight || 560;
+    const height = container.clientHeight || 620;
     if (width === 0 || height === 0) return;
 
     camera.aspect = width / height;
 
-    // Adjust FOV slightly on smaller mobile screens to keep the full workstation visible
     if (width < 640) {
-      camera.fov = 48;
-      camera.position.z = 5.8;
-    } else if (width < 1024) {
       camera.fov = 44;
-      camera.position.z = 5.4;
+      camera.position.z = 5.6;
+      camera.position.x = 0;
+    } else if (width < 1024) {
+      camera.fov = 40;
+      camera.position.z = 5.1;
+      camera.position.x = 0.08;
     } else {
       camera.fov = window.Hero3DConfig.camera.fov;
       camera.position.z = window.Hero3DConfig.camera.defaultPos.z;
+      camera.position.x = window.Hero3DConfig.camera.defaultPos.x;
     }
 
     camera.updateProjectionMatrix();
@@ -182,20 +174,16 @@ window.Hero3DScene = (function () {
     if (!camera) return;
     const cfg = window.Hero3DConfig.camera;
 
-    // Target camera position with mouse parallax and scroll movement
     targetCamX = cfg.defaultPos.x + mouseX * cfg.mouseMoveRange.x;
-    targetCamY = cfg.defaultPos.y - mouseY * cfg.mouseMoveRange.y + (scrollProgress * cfg.scrollParallaxFactor * 0.4);
+    targetCamY = cfg.defaultPos.y - mouseY * cfg.mouseMoveRange.y + (scrollProgress * cfg.scrollParallaxFactor * 0.3);
 
-    // Smooth Lerp Damping
     currentCamX += (targetCamX - currentCamX) * cfg.damping;
     currentCamY += (targetCamY - currentCamY) * cfg.damping;
 
     camera.position.x = currentCamX;
     camera.position.y = currentCamY;
 
-    // Subtle scroll-induced camera tilt
-    const targetLookAtY = cfg.lookAt.y + scrollProgress * 0.2;
-    camera.lookAt(cfg.lookAt.x, targetLookAtY, cfg.lookAt.z);
+    camera.lookAt(cfg.lookAt.x + mouseX * 0.08, cfg.lookAt.y + scrollProgress * 0.15, cfg.lookAt.z);
   }
 
   function render() {

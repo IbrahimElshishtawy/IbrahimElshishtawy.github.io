@@ -83,7 +83,7 @@ function setupScrollTriggers() {
       duration: 2.2,
       ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 90%' },
-      onUpdate() { el.textContent = Math.floor(obj.val) + '+'; }
+      onUpdate() { el.textContent = '+' + Math.floor(obj.val); }
     });
   });
 

@@ -1,5 +1,5 @@
 /* ============================================================
-   IBRAHIM ELSHISHTAWY — 3D FLOATING TECH CARDS & CODE GLYPHS
+   IBRAHIM ELSHISHTAWY — 3D FLOATING TECH CARDS
    (hero-floating-cards.js)
    ============================================================ */
 
@@ -7,9 +7,7 @@
 
 window.Hero3DFloatingCards = (function () {
   let cardsGroup = null;
-  let glyphsGroup = null;
   let cardMeshes = [];
-  let glyphMeshes = [];
   let clock = new THREE.Clock();
 
   function init(scene) {
@@ -17,16 +15,11 @@ window.Hero3DFloatingCards = (function () {
     cardsGroup.name = 'FloatingTechCards';
     scene.add(cardsGroup);
 
-    glyphsGroup = new THREE.Group();
-    glyphsGroup.name = 'FloatingCodeGlyphs';
-    scene.add(glyphsGroup);
-
     buildTechCards();
-    buildCodeGlyphs();
   }
 
   /* ─────────────────────────────────────────────────────────────
-     1. 3D FLOATING TECH CARDS
+     1. 3D FLOATING TECH CARDS (Flutter, Dart, Firebase, Node.js)
      ───────────────────────────────────────────────────────────── */
   function buildTechCards() {
     const cardDefs = window.Hero3DConfig.techCards;
@@ -53,18 +46,17 @@ window.Hero3DFloatingCards = (function () {
   function createTechCardMesh(def) {
     const group = new THREE.Group();
 
-    // Generate high-resolution 2D canvas texture for the card face
+    // High-resolution canvas for crisp rendering on retina displays
     const canvas = document.createElement('canvas');
-    canvas.width = 380;
-    canvas.height = 140;
+    canvas.width = 440;
+    canvas.height = 150;
     const ctx = canvas.getContext('2d');
 
-    // Rounded rectangle background
-    const r = 24;
-    const w = 380;
-    const h = 140;
+    const w = 440;
+    const h = 150;
+    const r = 36; // Rounded pill radius
 
-    // Glass frosted background
+    // 1. Dark Glass Rounded Pill Path
     ctx.beginPath();
     ctx.moveTo(r, 0);
     ctx.lineTo(w - r, 0);
@@ -77,54 +69,42 @@ window.Hero3DFloatingCards = (function () {
     ctx.quadraticCurveTo(0, 0, r, 0);
     ctx.closePath();
 
-    // Dark glass fill
-    const grad = ctx.createLinearGradient(0, 0, w, h);
-    grad.addColorStop(0, 'rgba(18, 16, 32, 0.92)');
-    grad.addColorStop(1, 'rgba(8, 8, 18, 0.95)');
+    // 2. Glossy Glass Gradient Fill
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, 'rgba(24, 20, 42, 0.95)');
+    grad.addColorStop(0.5, 'rgba(12, 10, 24, 0.92)');
+    grad.addColorStop(1, 'rgba(6, 5, 14, 0.97)');
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Glowing Neon Border
-    ctx.lineWidth = 4;
+    // 3. Glowing Neon Outer Border
+    ctx.lineWidth = 5;
     ctx.strokeStyle = def.neon;
     ctx.stroke();
 
-    // Inner subtle glow border
-    ctx.lineWidth = 1.5;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-    ctx.stroke();
-
-    // Icon Circle Badge
-    ctx.beginPath();
-    ctx.arc(68, 70, 38, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-    ctx.fill();
-    ctx.strokeStyle = def.neon;
+    // 4. Subtle Inner Highlight
     ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
     ctx.stroke();
 
-    // Draw Tech Icon Glyph / Symbol
-    drawIconGlyph(ctx, def.icon, 68, 70, def.neon);
+    // 5. Draw Icon Glyph / Logo
+    drawIconGlyph(ctx, def.icon, 78, 75, def.neon);
 
-    // Tech Label Text
-    ctx.font = 'bold 36px "Plus Jakarta Sans", sans-serif';
+    // 6. Tech Name Typography
+    ctx.font = 'bold 44px "Plus Jakarta Sans", -apple-system, sans-serif';
     ctx.fillStyle = '#ffffff';
-    ctx.fillText(def.name, 126, 74);
-
-    // Subtitle badge
-    ctx.font = '600 16px monospace';
-    ctx.fillStyle = def.neon;
-    ctx.fillText('CORE STACK', 128, 102);
+    ctx.textBaseline = 'middle';
+    ctx.fillText(def.name, 145, 75);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.generateMipmaps = true;
 
-    // Card 3D Body Mesh
-    const cardGeo = new THREE.BoxGeometry(2.4, 0.88, 0.08);
+    // Card 3D Mesh
+    const cardGeo = new THREE.BoxGeometry(2.4, 0.82, 0.08);
     const cardBodyMat = new THREE.MeshStandardMaterial({
-      color: 0x080814,
-      metalness: 0.85,
-      roughness: 0.2
+      color: 0x06060f,
+      metalness: 0.9,
+      roughness: 0.15
     });
 
     const cardFaceMat = new THREE.MeshBasicMaterial({
@@ -132,7 +112,6 @@ window.Hero3DFloatingCards = (function () {
       transparent: true
     });
 
-    // Multi-material box: front has the canvas texture
     const materials = [
       cardBodyMat, // right
       cardBodyMat, // left
@@ -146,17 +125,17 @@ window.Hero3DFloatingCards = (function () {
     cardMesh.castShadow = true;
     group.add(cardMesh);
 
-    // Subtle Neon Backlight halo
-    const glowPlaneGeo = new THREE.PlaneGeometry(2.6, 1.05);
-    const glowPlaneMat = new THREE.MeshBasicMaterial({
+    // Neon Halo Glow Plane behind card
+    const haloGeo = new THREE.PlaneGeometry(2.65, 1.05);
+    const haloMat = new THREE.MeshBasicMaterial({
       color: new THREE.Color(def.neon),
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.22,
       blending: THREE.AdditiveBlending
     });
-    const glowPlane = new THREE.Mesh(glowPlaneGeo, glowPlaneMat);
-    glowPlane.position.z = -0.05;
-    group.add(glowPlane);
+    const haloMesh = new THREE.Mesh(haloGeo, haloMat);
+    haloMesh.position.z = -0.05;
+    group.add(haloMesh);
 
     return group;
   }
@@ -165,152 +144,108 @@ window.Hero3DFloatingCards = (function () {
     ctx.save();
     ctx.fillStyle = color;
     ctx.strokeStyle = color;
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 4;
 
     if (iconType === 'flutter') {
-      // Flutter Wing Chevron
+      // Official Flutter Logo Double Chevron
       ctx.beginPath();
-      ctx.moveTo(cx - 16, cy - 20);
-      ctx.lineTo(cx + 12, cy - 20);
-      ctx.lineTo(cx - 4, cy);
-      ctx.lineTo(cx + 16, cy + 20);
-      ctx.lineTo(cx - 2, cy + 20);
-      ctx.lineTo(cx - 16, cy + 6);
+      ctx.moveTo(cx - 24, cy - 28);
+      ctx.lineTo(cx + 18, cy - 28);
+      ctx.lineTo(cx - 6, cy - 4);
+      ctx.lineTo(cx + 24, cy + 26);
+      ctx.lineTo(cx - 2, cy + 26);
+      ctx.lineTo(cx - 24, cy + 4);
       ctx.closePath();
+      ctx.fillStyle = '#02569B';
+      ctx.fill();
+
+      // Lower Wing Cyan
+      ctx.beginPath();
+      ctx.moveTo(cx - 6, cy - 4);
+      ctx.lineTo(cx + 10, cy + 12);
+      ctx.lineTo(cx + 24, cy + 26);
+      ctx.lineTo(cx + 6, cy + 26);
+      ctx.lineTo(cx - 16, cy + 4);
+      ctx.closePath();
+      ctx.fillStyle = '#00E5FF';
       ctx.fill();
     } else if (iconType === 'dart') {
-      // Dart Target / Chevron
+      // Official Dart Blue Diamond & Target
       ctx.beginPath();
-      ctx.moveTo(cx - 18, cy + 18);
-      ctx.lineTo(cx + 18, cy - 18);
-      ctx.lineTo(cx - 6, cy - 6);
+      ctx.moveTo(cx - 22, cy + 22);
+      ctx.lineTo(cx + 22, cy - 22);
+      ctx.lineTo(cx - 4, cy - 8);
       ctx.closePath();
+      ctx.fillStyle = '#0175C2';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(cx - 22, cy + 22);
+      ctx.lineTo(cx + 4, cy + 8);
+      ctx.lineTo(cx + 22, cy - 22);
+      ctx.closePath();
+      ctx.fillStyle = '#29B6F6';
       ctx.fill();
     } else if (iconType === 'firebase') {
-      // Firebase Flame
+      // Firebase Yellow / Orange Flame
       ctx.beginPath();
-      ctx.moveTo(cx, cy - 22);
-      ctx.quadraticCurveTo(cx + 18, cy - 4, cx + 12, cy + 18);
-      ctx.quadraticCurveTo(cx, cy + 24, cx - 12, cy + 18);
-      ctx.quadraticCurveTo(cx - 18, cy - 4, cx, cy - 22);
+      ctx.moveTo(cx - 4, cy - 28);
+      ctx.quadraticCurveTo(cx + 22, cy - 4, cx + 16, cy + 22);
+      ctx.quadraticCurveTo(cx, cy + 30, cx - 16, cy + 22);
+      ctx.quadraticCurveTo(cx - 24, cy - 4, cx - 4, cy - 28);
+      ctx.fillStyle = '#FFA000';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - 18);
+      ctx.quadraticCurveTo(cx + 14, cy, cx + 10, cy + 18);
+      ctx.quadraticCurveTo(cx, cy + 24, cx - 10, cy + 18);
+      ctx.quadraticCurveTo(cx - 16, cy, cx, cy - 18);
+      ctx.fillStyle = '#FFCA28';
       ctx.fill();
     } else if (iconType === 'nodejs') {
-      // Node Hexagon
+      // Node.js Hexagon with 'JS'
       ctx.beginPath();
       for (let i = 0; i < 6; i++) {
         const angle = (i * Math.PI) / 3;
-        const x = cx + 18 * Math.cos(angle);
-        const y = cy + 18 * Math.sin(angle);
+        const x = cx + 24 * Math.cos(angle);
+        const y = cy + 24 * Math.sin(angle);
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
       ctx.closePath();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#4ade80';
       ctx.stroke();
-      ctx.font = 'bold 20px sans-serif';
-      ctx.fillText('N', cx - 7, cy + 7);
-    } else if (iconType === 'typescript') {
+
       ctx.font = 'bold 24px monospace';
-      ctx.fillText('TS', cx - 15, cy + 8);
-    } else if (iconType === 'react') {
-      // React Atom ellipse
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 20, 8, Math.PI / 4, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 20, 8, -Math.PI / 4, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(cx, cy, 4, 0, Math.PI * 2);
-      ctx.fill();
-    } else if (iconType === 'nestjs') {
-      ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('🦅', cx - 14, cy + 10);
-    } else {
-      ctx.font = 'bold 22px monospace';
-      ctx.fillText('SQL', cx - 18, cy + 8);
+      ctx.fillStyle = '#4ade80';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('JS', cx, cy + 2);
     }
 
     ctx.restore();
   }
 
   /* ─────────────────────────────────────────────────────────────
-     2. 3D FLOATING CODE GLYPHS (</>, {}, (), =>, #, 01)
-     ───────────────────────────────────────────────────────────── */
-  function buildCodeGlyphs() {
-    const glyphs = window.Hero3DConfig.codeGlyphs;
-    const glyphCount = 14;
-
-    for (let i = 0; i < glyphCount; i++) {
-      const text = glyphs[i % glyphs.length];
-      const canvas = document.createElement('canvas');
-      canvas.width = 128;
-      canvas.height = 64;
-      const ctx = canvas.getContext('2d');
-
-      const isPurple = i % 2 === 0;
-      ctx.fillStyle = isPurple ? '#8b5cf6' : '#06b6d4';
-      ctx.font = 'bold 28px "Fira Code", monospace';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(text, 64, 32);
-
-      const texture = new THREE.CanvasTexture(canvas);
-      const mat = new THREE.SpriteMaterial({
-        map: texture,
-        transparent: true,
-        opacity: 0.65,
-        blending: THREE.AdditiveBlending
-      });
-
-      const sprite = new THREE.Sprite(mat);
-      const angle = (i / glyphCount) * Math.PI * 2;
-      const radius = 2.2 + (i % 3) * 0.4;
-      const x = Math.cos(angle) * radius;
-      const y = 0.5 + Math.sin(i * 1.5) * 1.6;
-      const z = Math.sin(angle) * 1.2 - 0.2;
-
-      sprite.position.set(x, y, z);
-      sprite.scale.set(0.7, 0.35, 1);
-      glyphsGroup.add(sprite);
-
-      glyphMeshes.push({
-        sprite: sprite,
-        baseX: x,
-        baseY: y,
-        baseZ: z,
-        speed: 0.6 + (i % 4) * 0.2,
-        offset: i * 1.2
-      });
-    }
-  }
-
-  /* ─────────────────────────────────────────────────────────────
-     3. ANIMATION & FLOATING LEVITATION LOOP
+     2. FLOATING LEVITATION & PARALLAX
      ───────────────────────────────────────────────────────────── */
   function update(normalizedMouseX, normalizedMouseY) {
     const t = clock.getElapsedTime();
 
-    // Animate 3D Tech Cards with harmonic floating
     cardMeshes.forEach(c => {
-      const floatY = Math.sin(t * c.speed + c.offset) * 0.07;
-      const floatX = Math.cos(t * c.speed * 0.7 + c.offset) * 0.03;
-      const tiltZ = Math.sin(t * c.speed * 0.5 + c.offset) * 0.04;
-      const tiltX = Math.cos(t * c.speed * 0.6 + c.offset) * 0.05;
+      const floatY = Math.sin(t * c.speed + c.offset) * 0.06;
+      const floatX = Math.cos(t * c.speed * 0.8 + c.offset) * 0.025;
+      const tiltZ = Math.sin(t * c.speed * 0.6 + c.offset) * 0.035;
+      const tiltX = Math.cos(t * c.speed * 0.5 + c.offset) * 0.04;
 
-      // Parallax mouse reaction
       c.mesh.position.y = c.baseY + floatY - normalizedMouseY * 0.08;
       c.mesh.position.x = c.baseX + floatX + normalizedMouseX * 0.08;
 
-      c.mesh.rotation.z = tiltZ + normalizedMouseX * 0.05;
-      c.mesh.rotation.x = tiltX - normalizedMouseY * 0.05;
-      c.mesh.rotation.y = (c.baseX > 0 ? -0.22 : 0.22) + normalizedMouseX * 0.12;
-    });
-
-    // Animate Code Glyphs
-    glyphMeshes.forEach(g => {
-      g.sprite.position.y = g.baseY + Math.sin(t * g.speed + g.offset) * 0.12;
-      g.sprite.position.x = g.baseX + Math.cos(t * g.speed * 0.5 + g.offset) * 0.08;
-      g.sprite.material.opacity = 0.45 + Math.sin(t * 1.2 + g.offset) * 0.25;
+      c.mesh.rotation.z = tiltZ + normalizedMouseX * 0.04;
+      c.mesh.rotation.x = tiltX - normalizedMouseY * 0.04;
+      c.mesh.rotation.y = (c.baseX > 0 ? -0.2 : 0.2) + normalizedMouseX * 0.1;
     });
   }
 

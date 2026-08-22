@@ -1,5 +1,5 @@
 /* ============================================================
-   IBRAHIM ELSHISHTAWY — 3D DEVELOPER AVATAR & WORKSTATION
+   IBRAHIM ELSHISHTAWY — 3D DEVELOPER AVATAR & CYBER POD
    (hero-avatar.js)
    ============================================================ */
 
@@ -7,6 +7,7 @@
 
 window.Hero3DAvatar = (function () {
   let avatarGroup = null;
+  let devCharacterGroup = null;
   let headGroup = null;
   let neckGroup = null;
   let torsoMesh = null;
@@ -15,11 +16,11 @@ window.Hero3DAvatar = (function () {
   let leftEyelid = null;
   let rightEyelid = null;
   let workstationGroup = null;
+  let cyberPodGroup = null;
+  let floatingHoloCube = null;
   let codeTextureCanvas = null;
   let codeTextureCtx = null;
   let codeTexture = null;
-  let monitorScreenMesh = null;
-  let sideMonitorTexture = null;
   let pedestalRings = [];
 
   // Animation & tracking state
@@ -31,24 +32,29 @@ window.Hero3DAvatar = (function () {
   let targetHeadRotX = 0;
   let currentHeadRotY = 0;
   let currentHeadRotX = 0;
-  let scrollFactor = 0;
   let codeScrollY = 0;
   let externalModelLoaded = false;
 
   function init(scene) {
     avatarGroup = new THREE.Group();
-    avatarGroup.position.set(0, -0.65, 0);
+    avatarGroup.position.set(0.15, -0.68, 0);
 
-    // Build the Developer Cyber Workstation
+    // 1. Build Ground Cyber Pedestal Platform
+    buildGroundPedestal();
+
+    // 2. Build Glowing Cyber Pod / Box (Seat)
+    buildCyberPodSeat();
+
+    // 3. Build Workstation Desk & Monitor in Background
     buildWorkstation();
 
-    // Check if external GLB is available and requested, otherwise build high-poly procedural developer
+    // 4. Build Floating Cyber Hologram Cube
+    buildFloatingHoloCube();
+
+    // 5. Build Developer Character (or load external GLB if present)
     if (window.Hero3DConfig.ENABLE_EXTERNAL_GLB && typeof THREE.GLTFLoader !== 'undefined') {
       tryLoadExternalModel(scene, () => {
-        // Fallback or procedural base
-        if (!externalModelLoaded) {
-          buildProceduralDeveloper();
-        }
+        if (!externalModelLoaded) buildProceduralDeveloper();
       });
     } else {
       buildProceduralDeveloper();
@@ -58,51 +64,303 @@ window.Hero3DAvatar = (function () {
   }
 
   /* ─────────────────────────────────────────────────────────────
-     1. PROCEDURAL 3D DEVELOPER AVATAR
+     1. GROUND CYBER PLATFORM
+     ───────────────────────────────────────────────────────────── */
+  function buildGroundPedestal() {
+    const groundGroup = new THREE.Group();
+
+    // Dark Reflective Base Cylinder
+    const baseGeo = new THREE.CylinderGeometry(2.3, 2.45, 0.12, 48);
+    const baseMat = new THREE.MeshStandardMaterial({
+      color: 0x070611,
+      metalness: 0.85,
+      roughness: 0.25
+    });
+    const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+    baseMesh.position.set(0, 0.06, 0.15);
+    baseMesh.receiveShadow = true;
+    groundGroup.add(baseMesh);
+
+    // Glowing Neon Rings on Platform Floor
+    [2.32, 2.1, 1.85].forEach((radius, idx) => {
+      const ringGeo = new THREE.RingGeometry(radius, radius + 0.035, 64);
+      const isPurple = idx % 2 === 0;
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: isPurple ? 0x9333ea : 0x06b6d4,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.88 - idx * 0.2
+      });
+      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+      ringMesh.position.set(0, 0.125 + idx * 0.003, 0.15);
+      ringMesh.rotation.x = -Math.PI / 2;
+      groundGroup.add(ringMesh);
+      pedestalRings.push(ringMesh);
+    });
+
+    avatarGroup.add(groundGroup);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     2. GLOWING CYBER POD / BOX (The Seated Tech Chest)
+     ───────────────────────────────────────────────────────────── */
+  function buildCyberPodSeat() {
+    cyberPodGroup = new THREE.Group();
+    cyberPodGroup.position.set(0.08, 0.6, 0.05);
+
+    const podMat = new THREE.MeshStandardMaterial({
+      color: 0x0a0916,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+
+    const purpleNeonMat = new THREE.MeshBasicMaterial({
+      color: 0xa855f7,
+      transparent: true,
+      opacity: 0.95
+    });
+
+    const cyanNeonMat = new THREE.MeshBasicMaterial({
+      color: 0x00e5ff,
+      transparent: true,
+      opacity: 0.9
+    });
+
+    // Main Box Structure
+    const boxGeo = new THREE.BoxGeometry(0.96, 0.95, 0.92);
+    const boxMesh = new THREE.Mesh(boxGeo, podMat);
+    boxMesh.castShadow = true;
+    boxMesh.receiveShadow = true;
+    cyberPodGroup.add(boxMesh);
+
+    // Glowing Neon Perimeter Bevel Edges (Top and Bottom)
+    // Top front rim
+    const topEdgeGeo = new THREE.BoxGeometry(0.98, 0.02, 0.02);
+    const topFrontEdge = new THREE.Mesh(topEdgeGeo, purpleNeonMat);
+    topFrontEdge.position.set(0, 0.47, 0.46);
+    cyberPodGroup.add(topFrontEdge);
+
+    const topBackEdge = new THREE.Mesh(topEdgeGeo, purpleNeonMat);
+    topBackEdge.position.set(0, 0.47, -0.46);
+    cyberPodGroup.add(topBackEdge);
+
+    const topSideGeo = new THREE.BoxGeometry(0.02, 0.02, 0.94);
+    const topLeftEdge = new THREE.Mesh(topSideGeo, purpleNeonMat);
+    topLeftEdge.position.set(-0.48, 0.47, 0);
+    cyberPodGroup.add(topLeftEdge);
+
+    const topRightEdge = new THREE.Mesh(topSideGeo, purpleNeonMat);
+    topRightEdge.position.set(0.48, 0.47, 0);
+    cyberPodGroup.add(topRightEdge);
+
+    // Bottom Neon Trim
+    const botFrontEdge = new THREE.Mesh(topEdgeGeo, cyanNeonMat);
+    botFrontEdge.position.set(0, -0.46, 0.46);
+    cyberPodGroup.add(botFrontEdge);
+
+    // Front Illuminated "IBRAHIM.DEV" Shield Logo on Pod
+    const logoCanvas = document.createElement('canvas');
+    logoCanvas.width = 256;
+    logoCanvas.height = 256;
+    const lctx = logoCanvas.getContext('2d');
+    
+    // Draw Shield & Emblem
+    lctx.fillStyle = 'rgba(0,0,0,0)';
+    lctx.fillRect(0, 0, 256, 256);
+    
+    // Glowing stylized "I" logo chevron
+    lctx.fillStyle = '#a855f7';
+    lctx.beginPath();
+    lctx.moveTo(80, 50);
+    lctx.lineTo(176, 50);
+    lctx.lineTo(150, 110);
+    lctx.lineTo(190, 110);
+    lctx.lineTo(100, 206);
+    lctx.lineTo(120, 140);
+    lctx.lineTo(80, 140);
+    lctx.closePath();
+    lctx.fill();
+
+    lctx.font = 'bold 22px sans-serif';
+    lctx.fillStyle = '#ffffff';
+    lctx.textAlign = 'center';
+    lctx.fillText('IBRAHIM.DEV', 128, 235);
+
+    const logoTexture = new THREE.CanvasTexture(logoCanvas);
+    const logoPlaneGeo = new THREE.PlaneGeometry(0.48, 0.48);
+    const logoMat = new THREE.MeshBasicMaterial({
+      map: logoTexture,
+      transparent: true,
+      depthWrite: false
+    });
+    const logoMesh = new THREE.Mesh(logoPlaneGeo, logoMat);
+    logoMesh.position.set(0, -0.04, 0.47);
+    cyberPodGroup.add(logoMesh);
+
+    avatarGroup.add(cyberPodGroup);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     3. BACKGROUND WORKSTATION & MONITOR
+     ───────────────────────────────────────────────────────────── */
+  function buildWorkstation() {
+    workstationGroup = new THREE.Group();
+    workstationGroup.position.set(1.4, 0.35, -0.65);
+
+    const deskMat = new THREE.MeshStandardMaterial({
+      color: 0x090912,
+      roughness: 0.3,
+      metalness: 0.8
+    });
+
+    const monitorMat = new THREE.MeshStandardMaterial({
+      color: 0x050508,
+      roughness: 0.15,
+      metalness: 0.95
+    });
+
+    // Desk Surface
+    const deskGeo = new THREE.BoxGeometry(1.6, 0.08, 0.9);
+    const deskMesh = new THREE.Mesh(deskGeo, deskMat);
+    deskMesh.position.set(0, 0.85, 0);
+    deskMesh.castShadow = true;
+    deskMesh.receiveShadow = true;
+    workstationGroup.add(deskMesh);
+
+    // Desk Legs
+    [-0.7, 0.7].forEach(x => {
+      const leg = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.85, 0.8), deskMat);
+      leg.position.set(x, 0.42, 0);
+      workstationGroup.add(leg);
+    });
+
+    // Ultrawide Curved Monitor Stand & Frame
+    const stand = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 0.42, 16), monitorMat);
+    stand.position.set(0, 1.05, -0.15);
+    workstationGroup.add(stand);
+
+    const monitorFrameGeo = new THREE.BoxGeometry(1.45, 0.65, 0.04);
+    const monitorFrame = new THREE.Mesh(monitorFrameGeo, monitorMat);
+    monitorFrame.position.set(0, 1.4, -0.18);
+    monitorFrame.rotation.y = -0.18; // angled slightly towards center
+    workstationGroup.add(monitorFrame);
+
+    // Live Code Editor Screen
+    createCodeCanvasTexture();
+    const screenGeo = new THREE.PlaneGeometry(1.4, 0.6);
+    const screenMat = new THREE.MeshBasicMaterial({
+      map: codeTexture,
+      transparent: true
+    });
+    const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+    screenMesh.position.set(0, 1.4, -0.155);
+    screenMesh.rotation.y = Math.PI - 0.18;
+    workstationGroup.add(screenMesh);
+
+    // Mini Cyber Potted Plant on Desk (Succulent / Bonsai)
+    const potGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.12, 16);
+    const potMat = new THREE.MeshStandardMaterial({ color: 0x1a162b, metalness: 0.7 });
+    const potMesh = new THREE.Mesh(potGeo, potMat);
+    potMesh.position.set(-0.55, 0.95, 0.15);
+    workstationGroup.add(potMesh);
+
+    // Leaves
+    const leafMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.4 });
+    for (let i = 0; i < 5; i++) {
+      const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 8), leafMat);
+      leaf.scale.set(1, 1.6, 0.4);
+      leaf.position.set(-0.55 + Math.cos(i * 1.2) * 0.04, 1.03, 0.15 + Math.sin(i * 1.2) * 0.04);
+      leaf.rotation.set(0.3, i * 1.2, 0.2);
+      workstationGroup.add(leaf);
+    }
+
+    // Keyboard on Desk
+    const kbGeo = new THREE.BoxGeometry(0.48, 0.02, 0.16);
+    const kbMesh = new THREE.Mesh(kbGeo, deskMat);
+    kbMesh.position.set(0, 0.9, 0.15);
+    workstationGroup.add(kbMesh);
+
+    avatarGroup.add(workstationGroup);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     4. FLOATING CYBER HOLOGRAM WIREFRAME CUBE
+     ───────────────────────────────────────────────────────────── */
+  function buildFloatingHoloCube() {
+    floatingHoloCube = new THREE.Group();
+    floatingHoloCube.position.set(-0.05, 2.7, 0.1);
+
+    // Outer Neon Wireframe
+    const cubeGeo = new THREE.BoxGeometry(0.38, 0.38, 0.38);
+    const edges = new THREE.EdgesGeometry(cubeGeo);
+    const lineMat = new THREE.LineBasicMaterial({
+      color: 0x06b6d4,
+      linewidth: 2,
+      transparent: true,
+      opacity: 0.85
+    });
+    const wireframeCube = new THREE.LineSegments(edges, lineMat);
+    floatingHoloCube.add(wireframeCube);
+
+    // Inner Glass Core
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0x8b5cf6,
+      transparent: true,
+      opacity: 0.35,
+      roughness: 0.1,
+      metalness: 0.1,
+      transmission: 0.7
+    });
+    const innerCube = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.28), glassMat);
+    floatingHoloCube.add(innerCube);
+
+    avatarGroup.add(floatingHoloCube);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     5. PROCEDURAL 3D DEVELOPER CHARACTER (Seated Pose)
      ───────────────────────────────────────────────────────────── */
   function buildProceduralDeveloper() {
-    const devGroup = new THREE.Group();
-    devGroup.name = 'DeveloperCharacter';
+    devCharacterGroup = new THREE.Group();
+    devCharacterGroup.position.set(0.08, 0.6, 0.05);
 
-    // Materials Palette
     const skinMat = new THREE.MeshStandardMaterial({
-      color: 0xd49b78,
-      roughness: 0.55,
+      color: 0xce916d,
+      roughness: 0.52,
       metalness: 0.05
     });
 
     const hoodieMat = new THREE.MeshStandardMaterial({
-      color: 0x111119,
-      roughness: 0.7,
-      metalness: 0.15
+      color: 0x13131c,
+      roughness: 0.72,
+      metalness: 0.12
     });
 
     const pantsMat = new THREE.MeshStandardMaterial({
-      color: 0x090910,
+      color: 0x0a0a12,
       roughness: 0.8,
-      metalness: 0.1
+      metalness: 0.08
     });
 
     const shoeMat = new THREE.MeshStandardMaterial({
-      color: 0x1e1b2e,
+      color: 0x181524,
       roughness: 0.4,
-      metalness: 0.3
+      metalness: 0.35
     });
 
     const hairMat = new THREE.MeshStandardMaterial({
-      color: 0x151212,
+      color: 0x141010,
       roughness: 0.9,
-      metalness: 0.1
+      metalness: 0.05
     });
 
     const glassesMat = new THREE.MeshPhysicalMaterial({
       color: 0x06b6d4,
       metalness: 0.85,
       roughness: 0.1,
-      transmission: 0.8,
-      opacity: 0.9,
-      transparent: true,
-      reflectivity: 0.9
+      transmission: 0.85,
+      opacity: 0.92,
+      transparent: true
     });
 
     const glassesFrameMat = new THREE.MeshStandardMaterial({
@@ -111,82 +369,71 @@ window.Hero3DAvatar = (function () {
       roughness: 0.2
     });
 
-    // ── TORSO & HOODIE ──────────────────────────────
-    const torsoGeo = new THREE.CylinderGeometry(0.38, 0.33, 0.85, 16);
+    // ── TORSO & HOODIE (Seated Upright) ────────────
+    const torsoGeo = new THREE.CylinderGeometry(0.38, 0.33, 0.88, 16);
     torsoMesh = new THREE.Mesh(torsoGeo, hoodieMat);
-    torsoMesh.position.set(0, 1.45, -0.05);
+    torsoMesh.position.set(0, 0.92, 0.02);
     torsoMesh.castShadow = true;
     torsoMesh.receiveShadow = true;
-    devGroup.add(torsoMesh);
+    devCharacterGroup.add(torsoMesh);
 
-    // Hoodie Logo ("IBRAHIM.DEV" glowing emblem)
-    const emblemCanvas = document.createElement('canvas');
-    emblemCanvas.width = 256;
-    emblemCanvas.height = 128;
-    const ectx = emblemCanvas.getContext('2d');
-    ectx.fillStyle = 'rgba(0,0,0,0)';
-    ectx.fillRect(0, 0, 256, 128);
-    ectx.fillStyle = '#8b5cf6';
-    ectx.font = 'bold 26px sans-serif';
-    ectx.textAlign = 'center';
-    ectx.fillText('IBRAHIM.DEV', 128, 60);
-    ectx.fillStyle = '#06b6d4';
-    ectx.font = '14px sans-serif';
-    ectx.fillText('FLUTTER ARCHITECT', 128, 86);
-    const emblemTex = new THREE.CanvasTexture(emblemCanvas);
+    // Hoodie Chest Emblem ("IBRAHIM.DEV")
+    const chestCanvas = document.createElement('canvas');
+    chestCanvas.width = 256;
+    chestCanvas.height = 128;
+    const cctx = chestCanvas.getContext('2d');
+    cctx.fillStyle = 'rgba(0,0,0,0)';
+    cctx.fillRect(0, 0, 256, 128);
+    cctx.fillStyle = '#8b5cf6';
+    cctx.font = 'bold 26px sans-serif';
+    cctx.textAlign = 'center';
+    cctx.fillText('IBRAHIM.DEV', 128, 62);
+    cctx.fillStyle = '#06b6d4';
+    cctx.font = '14px sans-serif';
+    cctx.fillText('FLUTTER ARCHITECT', 128, 88);
+    const chestTex = new THREE.CanvasTexture(chestCanvas);
 
-    const emblemGeo = new THREE.PlaneGeometry(0.24, 0.12);
-    const emblemMat = new THREE.MeshBasicMaterial({
-      map: emblemTex,
-      transparent: true,
-      depthWrite: false
-    });
-    const emblemMesh = new THREE.Mesh(emblemGeo, emblemMat);
-    emblemMesh.position.set(0, 1.55, 0.32);
-    devGroup.add(emblemMesh);
-
-    // Hoodie Pocket
-    const pocketGeo = new THREE.BoxGeometry(0.36, 0.2, 0.12);
-    const pocketMesh = new THREE.Mesh(pocketGeo, hoodieMat);
-    pocketMesh.position.set(0, 1.25, 0.26);
-    pocketMesh.rotation.x = -0.15;
-    devGroup.add(pocketMesh);
+    const chestPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.25, 0.12),
+      new THREE.MeshBasicMaterial({ map: chestTex, transparent: true, depthWrite: false })
+    );
+    chestPlane.position.set(0, 1.05, 0.37);
+    devCharacterGroup.add(chestPlane);
 
     // ── NECK & HEAD ─────────────────────────────────
     neckGroup = new THREE.Group();
-    neckGroup.position.set(0, 1.88, -0.02);
-    devGroup.add(neckGroup);
+    neckGroup.position.set(0, 1.38, 0.04);
+    devCharacterGroup.add(neckGroup);
 
-    const neckGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.2, 12);
-    const neckMesh = new THREE.Mesh(neckGeo, skinMat);
-    neckGroup.add(neckMesh);
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.18, 12), skinMat);
+    neckGroup.add(neck);
 
     headGroup = new THREE.Group();
-    headGroup.position.set(0, 0.18, 0.04);
+    headGroup.position.set(0, 0.16, 0.04);
     neckGroup.add(headGroup);
 
     // Head Base
-    const headGeo = new THREE.SphereGeometry(0.25, 20, 20);
+    const headGeo = new THREE.SphereGeometry(0.25, 22, 22);
     headGeo.scale(0.92, 1.12, 0.96);
     const headMesh = new THREE.Mesh(headGeo, skinMat);
     headMesh.castShadow = true;
     headGroup.add(headMesh);
 
-    // Jaw / Chin contour
+    // Jaw / Chin
     const chinGeo = new THREE.BoxGeometry(0.18, 0.18, 0.16);
     const chinMesh = new THREE.Mesh(chinGeo, skinMat);
     chinMesh.position.set(0, -0.16, 0.12);
     chinMesh.rotation.x = 0.35;
     headGroup.add(chinMesh);
 
-    // Stylized Fade Hair
+    // Hair Style
     const hairGeo = new THREE.SphereGeometry(0.27, 18, 18);
     hairGeo.scale(0.96, 1.05, 1.0);
     const hairMesh = new THREE.Mesh(hairGeo, hairMat);
     hairMesh.position.set(0, 0.08, -0.04);
     headGroup.add(hairMesh);
 
-    // Top Textured Hair Strands
+    // Textured Hair Strands
     for (let i = -3; i <= 3; i++) {
       const strandGeo = new THREE.BoxGeometry(0.06, 0.08, 0.26);
       const strandMesh = new THREE.Mesh(strandGeo, hairMat);
@@ -202,9 +449,9 @@ window.Hero3DAvatar = (function () {
     beardMesh.rotation.x = 0.3;
     headGroup.add(beardMesh);
 
-    // ── EYES & GLASSES ──────────────────────────────
+    // Eyes & Glasses
     const eyeWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x1f1610 });
+    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x1e1510 });
 
     [-0.08, 0.08].forEach((eyeX, idx) => {
       const eyeWhite = new THREE.Mesh(new THREE.SphereGeometry(0.038, 12, 12), eyeWhiteMat);
@@ -239,251 +486,78 @@ window.Hero3DAvatar = (function () {
     rightLens.rotation.x = Math.PI / 2;
     headGroup.add(rightLens);
 
-    // Frame Bridge
-    const bridgeGeo = new THREE.BoxGeometry(0.05, 0.01, 0.015);
-    const bridge = new THREE.Mesh(bridgeGeo, glassesFrameMat);
+    const bridge = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.01, 0.015), glassesFrameMat);
     bridge.position.set(0, 0.025, 0.26);
     headGroup.add(bridge);
 
-    // ── ARMS & HANDS (Typing / Coding posture) ──────
+    // ── ARMS & CLASPED HANDS (Seated in Lap) ────────
     leftArmGroup = new THREE.Group();
-    leftArmGroup.position.set(-0.42, 1.75, 0);
-    devGroup.add(leftArmGroup);
+    leftArmGroup.position.set(-0.4, 1.25, 0.05);
+    devCharacterGroup.add(leftArmGroup);
 
-    const leftUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.45, 12), hoodieMat);
-    leftUpperArm.position.set(0, -0.2, 0);
-    leftUpperArm.rotation.z = 0.2;
-    leftUpperArm.rotation.x = 0.45;
+    const leftUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.44, 12), hoodieMat);
+    leftUpperArm.position.set(0.05, -0.2, 0.1);
+    leftUpperArm.rotation.set(0.3, 0, 0.35);
     leftArmGroup.add(leftUpperArm);
 
-    const leftForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.42, 12), hoodieMat);
-    leftForearm.position.set(0.1, -0.42, 0.26);
-    leftForearm.rotation.x = 1.35;
-    leftForearm.rotation.z = -0.3;
+    const leftForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 12), hoodieMat);
+    leftForearm.position.set(0.18, -0.42, 0.3);
+    leftForearm.rotation.set(0.65, 0.2, -0.7);
     leftArmGroup.add(leftForearm);
 
-    const leftHand = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.05, 0.12), skinMat);
-    leftHand.position.set(0.18, -0.48, 0.52);
-    leftHand.rotation.y = 0.2;
-    leftArmGroup.add(leftHand);
-
     rightArmGroup = new THREE.Group();
-    rightArmGroup.position.set(0.42, 1.75, 0);
-    devGroup.add(rightArmGroup);
+    rightArmGroup.position.set(0.4, 1.25, 0.05);
+    devCharacterGroup.add(rightArmGroup);
 
-    const rightUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.45, 12), hoodieMat);
-    rightUpperArm.position.set(0, -0.2, 0);
-    rightUpperArm.rotation.z = -0.2;
-    rightUpperArm.rotation.x = 0.45;
+    const rightUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.1, 0.44, 12), hoodieMat);
+    rightUpperArm.position.set(-0.05, -0.2, 0.1);
+    rightUpperArm.rotation.set(0.3, 0, -0.35);
     rightArmGroup.add(rightUpperArm);
 
-    const rightForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.42, 12), hoodieMat);
-    rightForearm.position.set(-0.1, -0.42, 0.26);
-    rightForearm.rotation.x = 1.35;
-    rightForearm.rotation.z = 0.3;
+    const rightForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 12), hoodieMat);
+    rightForearm.position.set(-0.18, -0.42, 0.3);
+    rightForearm.rotation.set(0.65, -0.2, 0.7);
     rightArmGroup.add(rightForearm);
 
-    const rightHand = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.05, 0.12), skinMat);
-    rightHand.position.set(-0.18, -0.48, 0.52);
-    rightHand.rotation.y = -0.2;
-    rightArmGroup.add(rightHand);
+    // Clasped Hands in Center Lap
+    const claspedHands = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.08, 0.14), skinMat);
+    claspedHands.position.set(0, 0.76, 0.46);
+    devCharacterGroup.add(claspedHands);
 
-    // ── LEGS & SNEAKERS (Seated) ───────────────────
-    const leftThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.13, 0.55, 12), pantsMat);
-    leftThigh.position.set(-0.2, 1.0, 0.26);
+    // ── LEGS & SNEAKERS (Hanging over Pod Edge) ────
+    const leftThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.13, 0.52, 12), pantsMat);
+    leftThigh.position.set(-0.2, 0.52, 0.28);
     leftThigh.rotation.x = 1.45;
-    devGroup.add(leftThigh);
+    devCharacterGroup.add(leftThigh);
 
-    const rightThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.13, 0.55, 12), pantsMat);
-    rightThigh.position.set(0.2, 1.0, 0.26);
+    const rightThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.13, 0.52, 12), pantsMat);
+    rightThigh.position.set(0.2, 0.52, 0.28);
     rightThigh.rotation.x = 1.45;
-    devGroup.add(rightThigh);
+    devCharacterGroup.add(rightThigh);
 
     const leftCalf = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.55, 12), pantsMat);
-    leftCalf.position.set(-0.22, 0.65, 0.55);
-    leftCalf.rotation.x = 0.15;
-    devGroup.add(leftCalf);
+    leftCalf.position.set(-0.2, 0.12, 0.54);
+    leftCalf.rotation.x = 0.12;
+    devCharacterGroup.add(leftCalf);
 
     const rightCalf = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.55, 12), pantsMat);
-    rightCalf.position.set(0.22, 0.65, 0.55);
-    rightCalf.rotation.x = 0.15;
-    devGroup.add(rightCalf);
+    rightCalf.position.set(0.2, 0.12, 0.54);
+    rightCalf.rotation.x = 0.12;
+    devCharacterGroup.add(rightCalf);
 
     const leftShoe = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.12, 0.32), shoeMat);
-    leftShoe.position.set(-0.22, 0.35, 0.62);
-    devGroup.add(leftShoe);
+    leftShoe.position.set(-0.2, -0.18, 0.62);
+    devCharacterGroup.add(leftShoe);
 
     const rightShoe = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.12, 0.32), shoeMat);
-    rightShoe.position.set(0.22, 0.35, 0.62);
-    devGroup.add(rightShoe);
+    rightShoe.position.set(0.2, -0.18, 0.62);
+    devCharacterGroup.add(rightShoe);
 
-    avatarGroup.add(devGroup);
+    avatarGroup.add(devCharacterGroup);
   }
 
   /* ─────────────────────────────────────────────────────────────
-     2. FUTURISTIC WORKSTATION & POD ENVIRONMENT
-     ───────────────────────────────────────────────────────────── */
-  function buildWorkstation() {
-    workstationGroup = new THREE.Group();
-    workstationGroup.name = 'DeveloperWorkstation';
-
-    const deskMat = new THREE.MeshStandardMaterial({
-      color: 0x0c0c16,
-      roughness: 0.25,
-      metalness: 0.85
-    });
-
-    const neonMat = new THREE.MeshBasicMaterial({
-      color: 0x00e5ff,
-      transparent: true,
-      opacity: 0.85
-    });
-
-    const purpleNeonMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
-      transparent: true,
-      opacity: 0.85
-    });
-
-    // ── MAIN DESK SURFACE ───────────────────────────
-    const deskGeo = new THREE.BoxGeometry(2.4, 0.08, 1.1);
-    const deskMesh = new THREE.Mesh(deskGeo, deskMat);
-    deskMesh.position.set(0, 1.1, 0.6);
-    deskMesh.castShadow = true;
-    deskMesh.receiveShadow = true;
-    workstationGroup.add(deskMesh);
-
-    // Glowing Neon Edge on Desk Front
-    const neonEdgeGeo = new THREE.BoxGeometry(2.42, 0.015, 0.02);
-    const neonEdgeMesh = new THREE.Mesh(neonEdgeGeo, neonMat);
-    neonEdgeMesh.position.set(0, 1.1, 1.15);
-    workstationGroup.add(neonEdgeMesh);
-
-    // Desk Futuristic Support Legs
-    [-1.05, 1.05].forEach(x => {
-      const legGeo = new THREE.BoxGeometry(0.08, 1.1, 0.9);
-      const legMesh = new THREE.Mesh(legGeo, deskMat);
-      legMesh.position.set(x, 0.55, 0.6);
-      workstationGroup.add(legMesh);
-
-      const legGlowGeo = new THREE.BoxGeometry(0.02, 1.1, 0.02);
-      const legGlow = new THREE.Mesh(legGlowGeo, purpleNeonMat);
-      legGlow.position.set(x > 0 ? x + 0.04 : x - 0.04, 0.55, 1.0);
-      workstationGroup.add(legGlow);
-    });
-
-    // ── CURVED ULTRAWIDE CODE MONITOR ───────────────
-    createCodeCanvasTexture();
-
-    const monitorFrameMat = new THREE.MeshStandardMaterial({
-      color: 0x05050a,
-      metalness: 0.9,
-      roughness: 0.2
-    });
-
-    const monitorStandGeo = new THREE.CylinderGeometry(0.04, 0.06, 0.45, 16);
-    const monitorStand = new THREE.Mesh(monitorStandGeo, monitorFrameMat);
-    monitorStand.position.set(0, 1.32, 0.95);
-    workstationGroup.add(monitorStand);
-
-    const monitorBaseGeo = new THREE.CylinderGeometry(0.22, 0.22, 0.02, 24);
-    const monitorBase = new THREE.Mesh(monitorBaseGeo, monitorFrameMat);
-    monitorBase.position.set(0, 1.15, 0.95);
-    workstationGroup.add(monitorBase);
-
-    // Curved Ultrawide Display Frame
-    const monitorGeo = new THREE.BoxGeometry(1.6, 0.68, 0.04);
-    const monitorFrame = new THREE.Mesh(monitorGeo, monitorFrameMat);
-    monitorFrame.position.set(0, 1.7, 0.92);
-    workstationGroup.add(monitorFrame);
-
-    // Live Syntax-Highlighted Code Screen
-    const screenGeo = new THREE.PlaneGeometry(1.54, 0.62);
-    const screenMat = new THREE.MeshBasicMaterial({
-      map: codeTexture,
-      transparent: true
-    });
-    monitorScreenMesh = new THREE.Mesh(screenGeo, screenMat);
-    monitorScreenMesh.position.set(0, 1.7, 0.89);
-    monitorScreenMesh.rotation.y = Math.PI;
-    workstationGroup.add(monitorScreenMesh);
-
-    // ── SECONDARY VERTICAL TERMINAL MONITOR (Right) ─
-    createSideTerminalTexture();
-    const sideMonitorGeo = new THREE.BoxGeometry(0.48, 0.72, 0.03);
-    const sideMonitor = new THREE.Mesh(sideMonitorGeo, monitorFrameMat);
-    sideMonitor.position.set(0.98, 1.68, 0.78);
-    sideMonitor.rotation.y = -0.38;
-    workstationGroup.add(sideMonitor);
-
-    const sideScreenGeo = new THREE.PlaneGeometry(0.44, 0.66);
-    const sideScreenMat = new THREE.MeshBasicMaterial({
-      map: sideMonitorTexture,
-      transparent: true
-    });
-    const sideScreenMesh = new THREE.Mesh(sideScreenGeo, sideScreenMat);
-    sideScreenMesh.position.set(0.97, 1.68, 0.76);
-    sideScreenMesh.rotation.y = Math.PI - 0.38;
-    workstationGroup.add(sideScreenMesh);
-
-    // ── MECHANICAL KEYBOARD & MOUSE ─────────────────
-    const keyboardGeo = new THREE.BoxGeometry(0.65, 0.02, 0.22);
-    const keyboard = new THREE.Mesh(keyboardGeo, deskMat);
-    keyboard.position.set(0, 1.15, 0.58);
-    workstationGroup.add(keyboard);
-
-    // Glowing Key Matrix Lines
-    const keyGlowGeo = new THREE.PlaneGeometry(0.62, 0.19);
-    const keyGlowMat = new THREE.MeshBasicMaterial({
-      color: 0x8b5cf6,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.6
-    });
-    const keyGlow = new THREE.Mesh(keyGlowGeo, keyGlowMat);
-    keyGlow.position.set(0, 1.162, 0.58);
-    keyGlow.rotation.x = -Math.PI / 2;
-    workstationGroup.add(keyGlow);
-
-    // Ergonomic Mouse
-    const mouseGeo = new THREE.BoxGeometry(0.08, 0.03, 0.12);
-    const mouseMesh = new THREE.Mesh(mouseGeo, deskMat);
-    mouseMesh.position.set(0.45, 1.155, 0.58);
-    workstationGroup.add(mouseMesh);
-
-    // ── CYBER PEDESTAL PLATFORM & NEON RINGS ────────
-    const baseGeo = new THREE.CylinderGeometry(1.6, 1.7, 0.2, 32);
-    const baseMat = new THREE.MeshStandardMaterial({
-      color: 0x080712,
-      metalness: 0.8,
-      roughness: 0.3
-    });
-    const pedestal = new THREE.Mesh(baseGeo, baseMat);
-    pedestal.position.set(0, 0.1, 0.35);
-    pedestal.receiveShadow = true;
-    workstationGroup.add(pedestal);
-
-    // Rotating Neon Concentric Rings
-    [1.65, 1.85, 2.05].forEach((radius, idx) => {
-      const ringGeo = new THREE.RingGeometry(radius, radius + 0.03, 48);
-      const ringMat = new THREE.MeshBasicMaterial({
-        color: idx % 2 === 0 ? 0x8b5cf6 : 0x06b6d4,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.75 - idx * 0.18
-      });
-      const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      ringMesh.position.set(0, 0.015 + idx * 0.005, 0.35);
-      ringMesh.rotation.x = -Math.PI / 2;
-      workstationGroup.add(ringMesh);
-      pedestalRings.push(ringMesh);
-    });
-
-    avatarGroup.add(workstationGroup);
-  }
-
-  /* ─────────────────────────────────────────────────────────────
-     3. LIVE SYNTAX-HIGHLIGHTED CODE SCREEN TEXTURES
+     6. CODE SCREEN ANIMATION
      ───────────────────────────────────────────────────────────── */
   function createCodeCanvasTexture() {
     codeTextureCanvas = document.createElement('canvas');
@@ -511,34 +585,32 @@ window.Hero3DAvatar = (function () {
     ctx.fillStyle = '#0f0f1c';
     ctx.fillRect(0, 0, w, 44);
     ctx.fillStyle = '#1e1b4b';
-    ctx.fillRect(10, 8, 240, 36);
+    ctx.fillRect(10, 8, 250, 36);
 
     ctx.fillStyle = '#818cf8';
     ctx.font = 'bold 16px monospace';
     ctx.fillText('⚡ flutter_architect.dart', 24, 32);
 
-    // Window controls
+    // Controls
     ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(w - 60, 22, 6, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#eab308'; ctx.beginPath(); ctx.arc(w - 40, 22, 6, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#22c55e'; ctx.beginPath(); ctx.arc(w - 20, 22, 6, 0, Math.PI * 2); ctx.fill();
 
-    // Code lines with syntax highlighting
     const lines = [
-      { text: '// IBRAHIM ELSHISHTAWY — FLUTTER & MOBILE SYSTEMS', color: '#64748b' },
+      { text: '// IBRAHIM ELSHISHTAWY — FLUTTER ARCHITECT', color: '#64748b' },
       { text: 'import "package:flutter/material.dart";', color: '#f43f5e' },
       { text: 'import "package:bloc/bloc.dart";', color: '#f43f5e' },
       { text: '', color: '' },
-      { text: 'class FlutterArchitect extends FullStackEngineer {', color: '#06b6d4' },
-      { text: '  final String name = "Ibrahim Elshishtawy";', color: '#a78bfa' },
-      { text: '  final String tier = "Mid-Level Architect";', color: '#a78bfa' },
-      { text: '  final List<String> stack = ["Flutter", "Dart", "Node.js", "Firebase"];', color: '#38bdf8' },
+      { text: 'class IbrahimPortfolio extends MobileEcosystem {', color: '#06b6d4' },
+      { text: '  final String developer = "Ibrahim Elshishtawy";', color: '#a78bfa' },
+      { text: '  final String role = "Flutter & FullStack Architect";', color: '#a78bfa' },
+      { text: '  final List<Tech> core = [Flutter, Dart, Firebase, Node];', color: '#38bdf8' },
       { text: '', color: '' },
       { text: '  @override', color: '#fbbf24' },
-      { text: '  Widget buildEcosystem(BuildContext context) {', color: '#34d399' },
+      { text: '  Future<Experience> buildFuture() async {', color: '#34d399' },
       { text: '    return CleanArchitecture(', color: '#818cf8' },
-      { text: '      performance: FrameRate.smooth60Fps,', color: '#f472b6' },
-      { text: '      design: PremiumCyberAesthetics.v3,', color: '#f472b6' },
-      { text: '      status: Status.availableForHire,', color: '#4ade80' },
+      { text: '      quality: UltraHighPrecision,', color: '#f472b6' },
+      { text: '      status: AvailableForHire,', color: '#4ade80' },
       { text: '    );', color: '#818cf8' },
       { text: '  }', color: '#34d399' },
       { text: '}', color: '#06b6d4' }
@@ -553,108 +625,60 @@ window.Hero3DAvatar = (function () {
       const line = lines[idx];
       const y = startY + i * lineHeight;
       if (y > 45 && y < h - 10) {
-        // Line number
         ctx.fillStyle = '#334155';
         ctx.fillText(String(idx + 1).padStart(2, '0'), 20, y);
-
-        // Text
         ctx.fillStyle = line.color || '#e2e8f0';
         ctx.fillText(line.text, 65, y);
       }
     }
 
-    // Glowing active line cursor
-    ctx.fillStyle = '#38bdf8';
-    ctx.fillRect(480, 240, 10, 22);
+    // Glowing active cursor
+    ctx.fillStyle = '#06b6d4';
+    ctx.fillRect(490, 240, 10, 22);
 
     if (codeTexture) codeTexture.needsUpdate = true;
   }
 
-  function createSideTerminalTexture() {
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 768;
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = '#05070f';
-    ctx.fillRect(0, 0, 512, 768);
-
-    ctx.fillStyle = '#06b6d4';
-    ctx.font = 'bold 22px monospace';
-    ctx.fillText('> SYSTEM STATUS: OPTIMAL', 25, 45);
-
-    const logs = [
-      '[OK] Flutter Engine Initialized',
-      '[OK] BLoC State Pipeline Ready',
-      '[OK] Socket.io Connected',
-      '[OK] ACES Tone Mapping Active',
-      '[OK] 3D Hero Workstation Live',
-      '[OK] WebGL 60FPS Sync Online',
-      '>> Listening for interactions...'
-    ];
-
-    ctx.font = '18px monospace';
-    logs.forEach((log, i) => {
-      ctx.fillStyle = i === logs.length - 1 ? '#4ade80' : '#94a3b8';
-      ctx.fillText(log, 25, 100 + i * 36);
-    });
-
-    sideMonitorTexture = new THREE.CanvasTexture(canvas);
-  }
-
   /* ─────────────────────────────────────────────────────────────
-     4. EXTERNAL GLB LOADER (Seamless Fallback Mechanism)
+     7. EXTERNAL MODEL LOADER FALLBACK
      ───────────────────────────────────────────────────────────── */
   function tryLoadExternalModel(scene, onFallback) {
     const loader = new THREE.GLTFLoader();
     loader.load(
       window.Hero3DConfig.DEVELOPER_MODEL_URL,
       function (gltf) {
-        console.log('✅ External 3D Developer Model Loaded successfully');
         externalModelLoaded = true;
         const model = gltf.scene;
-        model.scale.set(1.2, 1.2, 1.2);
-        model.position.set(0, 0.4, 0);
-        model.traverse(node => {
-          if (node.isMesh) {
-            node.castShadow = true;
-            node.receiveShadow = true;
-          }
-        });
+        model.scale.set(1.15, 1.15, 1.15);
+        model.position.set(0.08, 0.6, 0.05);
         avatarGroup.add(model);
       },
       undefined,
       function () {
-        console.log('ℹ️ External GLB not found. Using high-fidelity procedural Developer Avatar.');
         if (typeof onFallback === 'function') onFallback();
       }
     );
   }
 
   /* ─────────────────────────────────────────────────────────────
-     5. ANIMATION LOOP & MOUSE TRACKING
+     8. ANIMATION LOOP & MOUSE TRACKING
      ───────────────────────────────────────────────────────────── */
-  function update(normalizedMouseX, normalizedMouseY, scrollPct) {
+  function update(normalizedMouseX, normalizedMouseY) {
     const elapsedTime = clock.getElapsedTime();
-    scrollFactor = scrollPct;
 
-    // 1. Natural Idle Breathing & Micro-sway
-    const breathOffset = Math.sin(elapsedTime * 1.8) * 0.015;
+    // 1. Idle Breathing on Torso & Neck
+    const breathOffset = Math.sin(elapsedTime * 1.8) * 0.012;
     if (torsoMesh) {
-      torsoMesh.position.y = 1.45 + breathOffset;
-      torsoMesh.scale.set(1 + breathOffset * 0.4, 1 + breathOffset * 0.2, 1 + breathOffset * 0.4);
+      torsoMesh.position.y = 0.92 + breathOffset;
+      torsoMesh.scale.set(1 + breathOffset * 0.3, 1 + breathOffset * 0.15, 1 + breathOffset * 0.3);
     }
     if (neckGroup) {
-      neckGroup.position.y = 1.88 + breathOffset * 1.2;
-    }
-    if (leftArmGroup && rightArmGroup) {
-      leftArmGroup.position.y = 1.75 + breathOffset * 0.8;
-      rightArmGroup.position.y = 1.75 + breathOffset * 0.8;
+      neckGroup.position.y = 1.38 + breathOffset * 1.1;
     }
 
-    // 2. Smooth Head & Eye Mouse Tracking
-    targetHeadRotY = normalizedMouseX * 0.42;
-    targetHeadRotX = -normalizedMouseY * 0.25;
+    // 2. Smooth Head and Eyes Mouse Tracking
+    targetHeadRotY = normalizedMouseX * 0.38;
+    targetHeadRotX = -normalizedMouseY * 0.22;
 
     currentHeadRotY += (targetHeadRotY - currentHeadRotY) * 0.08;
     currentHeadRotX += (targetHeadRotX - currentHeadRotX) * 0.08;
@@ -664,10 +688,10 @@ window.Hero3DAvatar = (function () {
       headGroup.rotation.x = currentHeadRotX;
     }
 
-    // 3. Natural Eye Blinking Cycles
+    // 3. Eye Blinking Cycles
     if (elapsedTime > nextBlinkTime) {
       isBlinking = true;
-      blinkProgress += 0.15;
+      blinkProgress += 0.16;
       if (blinkProgress >= 1.0) {
         isBlinking = false;
         blinkProgress = 0;
@@ -681,13 +705,20 @@ window.Hero3DAvatar = (function () {
       rightEyelid.scale.y = Math.max(0.01, eyelidScaleY);
     }
 
-    // 4. Pedestal Neon Rings Rotation
+    // 4. Floating Hologram Wireframe Cube Rotation & Bobbing
+    if (floatingHoloCube) {
+      floatingHoloCube.rotation.x += 0.008;
+      floatingHoloCube.rotation.y += 0.012;
+      floatingHoloCube.position.y = 2.7 + Math.sin(elapsedTime * 1.5) * 0.06;
+    }
+
+    // 5. Pedestal Neon Rings Subtle Rotation
     pedestalRings.forEach((ring, idx) => {
-      const direction = idx % 2 === 0 ? 1 : -1;
-      ring.rotation.z += 0.003 * direction;
+      const dir = idx % 2 === 0 ? 1 : -1;
+      ring.rotation.z += 0.002 * dir;
     });
 
-    // 5. Code Screen Line Scrolling Animation
+    // 6. Code Screen Live Scrolling
     codeScrollY += 0.35;
     if (Math.floor(codeScrollY) % 3 === 0) {
       renderCodeScreen();

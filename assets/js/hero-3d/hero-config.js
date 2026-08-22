@@ -12,30 +12,27 @@ window.Hero3DConfig = {
 
   // Camera settings
   camera: {
-    fov: 42,
+    fov: 38,
     near: 0.1,
     far: 1000,
-    defaultPos: { x: 0, y: 1.4, z: 5.2 },
-    lookAt: { x: 0, y: 0.9, z: 0 },
-    mouseMoveRange: { x: 0.45, y: 0.28 },
+    defaultPos: { x: 0.15, y: 1.35, z: 4.8 },
+    lookAt: { x: 0.1, y: 1.05, z: 0 },
+    mouseMoveRange: { x: 0.35, y: 0.2 },
     damping: 0.05,
-    scrollParallaxFactor: 0.8
+    scrollParallaxFactor: 0.6
   },
 
-  // Tech Cards specifications
+  // Tech Cards specifications matching reference composition
   techCards: [
-    { name: 'Flutter', icon: 'flutter', color: '#02569B', neon: '#00E5FF', x: -1.75, y: 1.65, z: 0.4, scale: 0.32, speed: 1.2, floatOffset: 0 },
-    { name: 'Dart', icon: 'dart', color: '#0175C2', neon: '#29B6F6', x: -1.9, y: 0.85, z: 0.7, scale: 0.29, speed: 1.0, floatOffset: 1.5 },
-    { name: 'Firebase', icon: 'firebase', color: '#FFA000', neon: '#FFCA28', x: -1.5, y: 0.05, z: 0.9, scale: 0.30, speed: 1.4, floatOffset: 3.1 },
-    { name: 'Node.js', icon: 'nodejs', color: '#339933', neon: '#68A063', x: 1.8, y: 1.55, z: 0.3, scale: 0.30, speed: 1.1, floatOffset: 0.8 },
-    { name: 'TypeScript', icon: 'typescript', color: '#3178C6', neon: '#60A5FA', x: 1.9, y: 0.75, z: 0.6, scale: 0.28, speed: 1.3, floatOffset: 2.4 },
-    { name: 'React', icon: 'react', color: '#61DAFB', neon: '#00D8FF', x: 1.6, y: -0.05, z: 0.85, scale: 0.29, speed: 0.9, floatOffset: 4.2 },
-    { name: 'NestJS', icon: 'nestjs', color: '#E0234E', neon: '#FF4081', x: -1.1, y: 2.25, z: -0.2, scale: 0.26, speed: 1.15, floatOffset: 1.9 },
-    { name: 'PostgreSQL', icon: 'postgresql', color: '#4169E1', neon: '#818CF8', x: 1.2, y: 2.15, z: -0.2, scale: 0.26, speed: 1.05, floatOffset: 3.7 }
+    // Top Left: Flutter
+    { name: 'Flutter', icon: 'flutter', color: '#02569B', neon: '#00E5FF', x: -1.45, y: 1.45, z: 0.5, scale: 0.33, speed: 1.1, floatOffset: 0 },
+    // Mid Left: Dart
+    { name: 'Dart', icon: 'dart', color: '#0175C2', neon: '#29B6F6', x: -1.55, y: 0.82, z: 0.75, scale: 0.31, speed: 1.0, floatOffset: 1.8 },
+    // Bottom Left: Firebase
+    { name: 'Firebase', icon: 'firebase', color: '#FFA000', neon: '#FFCA28', x: -1.35, y: 0.15, z: 0.95, scale: 0.32, speed: 1.25, floatOffset: 3.4 },
+    // Right (in front of desk): Node.js
+    { name: 'Node.js', icon: 'nodejs', color: '#339933', neon: '#4ade80', x: 1.55, y: 0.75, z: 0.85, scale: 0.32, speed: 1.05, floatOffset: 0.9 }
   ],
-
-  // Floating Code Glyphs
-  codeGlyphs: ['</>', '{}', '()', '=>', '01', '#', 'async', 'await', 'Bloc'],
 
   // Theme palettes for 3D lights and glowing materials
   themes: {
@@ -46,12 +43,12 @@ window.Hero3DConfig = {
       secondary: '#06b6d4',
       secondaryRgb: [6, 182, 212],
       accent: '#ec4899',
-      rimPurple: 0x9333ea,
+      rimPurple: 0xa855f7,
       rimCyan: 0x06b6d4,
-      ambientDark: 0x0d0b1a,
-      ambientLight: 0x3b3355,
-      pedestalGlow: 0x8b5cf6,
-      screenGlow: 0x00f2fe
+      ambientDark: 0x120f26,
+      ambientLight: 0x483d6e,
+      pedestalGlow: 0x9333ea,
+      screenGlow: 0x38bdf8
     },
     'cyber-blue': {
       name: 'Cyber Blue',
@@ -97,11 +94,9 @@ window.Hero3DConfig = {
     }
   },
 
-  // Performance thresholds
   performance: {
     maxPixelRatio: 2,
     targetFps: 60,
-    enableShadows: true,
-    reduceMotionFallback: true
+    enableShadows: true
   }
 };

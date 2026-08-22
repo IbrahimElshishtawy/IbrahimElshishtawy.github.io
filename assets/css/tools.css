@@ -1,0 +1,424 @@
+/* ============================================================
+   IBRAHIM ELSHISHTAWY — TOOLS & PROJECTS PAGE STYLES
+   (tools.css)
+   ============================================================ */
+
+/* ── 1. 3D GLOWING HEADER CUBE CANVAS ─────────────────────── */
+.header-3d-cube-container {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-3d-cube-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* ── 2. FILTER PILLS & CATEGORY TABS ───────────────────────── */
+.filter-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  padding: 6px 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter-pills-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill-btn {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  background: rgba(18, 14, 32, 0.6);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-pill-btn:hover {
+  color: #ffffff;
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.35);
+  transform: translateY(-2px);
+}
+
+.filter-pill-btn.active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45);
+  font-weight: 700;
+}
+
+/* ── 3. TOOLS GRID & CARD STYLES ───────────────────────────── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .tools-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 540px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.tool-card {
+  background: #080B16;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 24px 20px 20px 20px;
+  position: relative;
+  display: flex;
+  flex-col: column;
+  justify-content: space-between;
+  min-height: 180px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--tool-neon, #8b5cf6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(139, 92, 246, 0.15);
+}
+
+.tool-card:hover::before {
+  opacity: 1;
+}
+
+.tool-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover .tool-icon-wrapper {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px var(--tool-neon, #8b5cf6);
+}
+
+.tool-name {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.tool-subtitle {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.tool-progress-wrapper {
+  width: 100%;
+  margin-top: auto;
+}
+
+.tool-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin-bottom: 6px;
+}
+
+.tool-progress-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tool-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7c3aed 0%, #06b6d4 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.7);
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── 4. PROJECTS GRID & CARD STYLES ────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.project-showcase-card {
+  background: #080B16;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.project-showcase-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 30px rgba(139, 92, 246, 0.2);
+}
+
+.project-img-box {
+  width: 100%;
+  aspect-ratio: 16/10;
+  position: relative;
+  overflow: hidden;
+  background: #05040a;
+}
+
+.project-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+  filter: brightness(0.92) contrast(1.05);
+}
+
+.project-showcase-card:hover .project-img-box img {
+  transform: scale(1.07);
+  filter: brightness(1.02) contrast(1.1);
+}
+
+.project-type-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: rgba(10, 8, 22, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c4b5fd;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+[dir="rtl"] .project-type-badge {
+  right: auto;
+  left: 14px;
+}
+
+.project-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.project-card-title {
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.project-card-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: #94a3b8;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.project-tech-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.project-action-link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #8b5cf6;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-action-link:hover {
+  color: #06b6d4;
+  transform: translateX(3px);
+}
+
+[dir="rtl"] .project-action-link:hover {
+  transform: translateX(-3px);
+}
+
+/* ── 5. VIEW ALL TOGGLE BUTTON ─────────────────────────────── */
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.view-all-btn:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #ffffff;
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ── 6. LIGHT MODE ADAPTATIONS ─────────────────────────────── */
+[data-theme-mode="light"] .tool-card,
+[data-theme-mode="light"] .project-showcase-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme-mode="light"] .tool-card:hover,
+[data-theme-mode="light"] .project-showcase-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+[data-theme-mode="light"] .tool-name,
+[data-theme-mode="light"] .project-card-title {
+  color: #0f172a;
+}
+
+[data-theme-mode="light"] .tool-subtitle,
+[data-theme-mode="light"] .project-card-desc {
+  color: #64748b;
+}
+
+[data-theme-mode="light"] .filter-pill-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme-mode="light"] .filter-pill-btn.active {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  color: #ffffff;
+}
+
+[data-theme-mode="light"] .project-tech-tag {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #475569;
+}

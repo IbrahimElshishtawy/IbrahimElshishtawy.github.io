@@ -7,17 +7,24 @@
 .hero-3d-wrapper {
   position: relative;
   width: 100%;
-  max-width: 680px;
-  min-height: 520px;
-  height: 580px;
+  max-width: 760px;
+  min-height: 560px;
+  height: 640px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+@media (max-width: 1280px) {
+  .hero-3d-wrapper {
+    height: 580px;
+    max-width: 680px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-3d-wrapper {
-    height: 500px;
+    height: 520px;
     min-height: 460px;
     max-width: 580px;
   }
@@ -25,7 +32,7 @@
 
 @media (max-width: 640px) {
   .hero-3d-wrapper {
-    height: 420px;
+    height: 440px;
     min-height: 380px;
     max-width: 100%;
   }
@@ -35,7 +42,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 28px;
+  border-radius: 32px;
   overflow: visible;
 }
 
@@ -55,31 +62,31 @@
 /* ── 3D HERO AMBIENT BACKGROUND GLOW ────────────────────────── */
 .hero-3d-glow-backdrop {
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(var(--primary-rgb, 139, 92, 246), 0.22) 0%,
-    rgba(6, 182, 212, 0.12) 45%,
+    rgba(var(--primary-rgb, 139, 92, 246), 0.28) 0%,
+    rgba(6, 182, 212, 0.16) 42%,
     rgba(0, 0, 0, 0) 75%
   );
-  filter: blur(48px);
+  filter: blur(52px);
   pointer-events: none;
   z-index: 1;
   border-radius: 50%;
-  animation: heroGlowPulse 8s ease-in-out infinite alternate;
+  animation: heroGlowPulse 7s ease-in-out infinite alternate;
 }
 
 @keyframes heroGlowPulse {
   0% {
     transform: translate(-50%, -50%) scale(0.92);
-    opacity: 0.7;
+    opacity: 0.75;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1.1);
     opacity: 1;
   }
 }
@@ -95,13 +102,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 5, 14, 0.75);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(4, 3, 10, 0.65);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-radius: 32px;
   z-index: 25;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-3d-loading-spinner {
@@ -172,6 +178,39 @@
   100% { transform: translateX(100%); }
 }
 
+/* ── HERO STATS BAR (Integrated below Hero) ───────────────── */
+.hero-stats-glass-bar {
+  background: rgba(10, 8, 22, 0.65);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.hero-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+  transition: transform 0.3s ease;
+}
+
+.hero-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.icon-box-stat {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
 /* ── FALLBACK CONTAINER ────────────────────────────────────── */
 .hero-3d-fallback {
   position: relative;
@@ -180,10 +219,10 @@
   display: none;
 }
 
-/* ── RTL SUPPORT (Arabic layout) ───────────────────────────── */
+/* ── RTL SUPPORT ───────────────────────────────────────────── */
 [dir="rtl"] .hero-3d-wrapper,
 html[dir="rtl"] .hero-3d-wrapper {
-  direction: ltr; /* keep 3D coordinate system internal clean */
+  direction: ltr;
 }
 
 /* ── LIGHT THEME ADAPTATIONS ───────────────────────────────── */
@@ -205,7 +244,13 @@ html[dir="rtl"] .hero-3d-wrapper {
   color: #4f46e5;
 }
 
-/* ── ACCESSIBILITY (prefers-reduced-motion) ─────────────────── */
+[data-theme-mode="light"] .hero-stats-glass-bar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ── ACCESSIBILITY ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .hero-3d-glow-backdrop {
     animation: none;
