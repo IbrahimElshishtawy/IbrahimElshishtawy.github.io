@@ -10,16 +10,18 @@ window.PortfolioIntroEngine = (function () {
   let canvasEl = null;
   let animId = null;
   let isExited = false;
-  let intro3DScene = null;
-
-  const STORAGE_KEY = 'ibrahim_portfolio_intro_seen';
 
   function init() {
     introEl = document.getElementById('portfolio-intro');
     if (!introEl) return;
 
+    // Reset initial state
+    introEl.style.display = 'flex';
+    introEl.style.opacity = '1';
+    introEl.classList.remove('exiting');
+    isExited = false;
+
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isSeenInSession = sessionStorage.getItem(STORAGE_KEY) === '1';
 
     // Setup 3D Mini Opening Scene
     initIntro3D();
@@ -41,29 +43,23 @@ window.PortfolioIntroEngine = (function () {
     });
 
     if (isReduced) {
-      // Reduced motion: Quick gentle 0.4s fade
-      setTimeout(finishIntro, 400);
+      setTimeout(finishIntro, 500);
       return;
     }
 
-    if (isSeenInSession) {
-      // Repeat visit in same session: fast 0.8s brand greeting
-      playIntroSequence(true);
-    } else {
-      // First visit: Full cinematic 2.2s opening experience
-      playIntroSequence(false);
-    }
+    // Always play the full cinematic opening sequence
+    playIntroSequence();
 
-    // Safety fallback: maximum 3.2s ensure intro NEVER blocks the website
+    // Safety fallback
     setTimeout(() => {
       if (!isExited) finishIntro();
-    }, 3200);
+    }, 3600);
   }
 
   /* ─────────────────────────────────────────────────────────────
      1. CINEMATIC INTRO TIMELINE SEQUENCE
      ───────────────────────────────────────────────────────────── */
-  function playIntroSequence(isQuick) {
+  function playIntroSequence() {
     const dot = document.querySelector('.intro-center-dot');
     const glow = document.querySelector('.intro-ambient-glow');
     const content = document.querySelector('.intro-content');
@@ -73,32 +69,32 @@ window.PortfolioIntroEngine = (function () {
     // Stage 1: Pulse center light (100ms)
     setTimeout(() => {
       if (dot) dot.classList.add('pulse');
-    }, 80);
+    }, 100);
 
     // Stage 2: Expand ambient lighting (250ms)
     setTimeout(() => {
       if (glow) glow.classList.add('active');
-    }, 220);
+    }, 280);
 
     // Stage 3: Show Skip button (400ms)
     setTimeout(() => {
       if (skipBtn) skipBtn.classList.add('show');
-    }, 380);
+    }, 400);
 
-    // Stage 4: Logo & 3D object reveal (500ms)
+    // Stage 4: Logo & 3D object reveal (550ms)
     setTimeout(() => {
       if (content) content.classList.add('visible');
-    }, isQuick ? 250 : 480);
+    }, 550);
 
-    // Stage 5: Developer identity subtitle reveal (900ms)
+    // Stage 5: Developer identity subtitle reveal (950ms)
     setTimeout(() => {
       if (devTag) devTag.classList.add('show');
-    }, isQuick ? 450 : 880);
+    }, 950);
 
-    // Stage 6: Seamless Transition to Website Hero (1800ms - 2200ms)
+    // Stage 6: Seamless Transition to Website Hero (2400ms)
     setTimeout(() => {
       finishIntro();
-    }, isQuick ? 900 : 2200);
+    }, 2400);
   }
 
   /* ─────────────────────────────────────────────────────────────
@@ -107,11 +103,6 @@ window.PortfolioIntroEngine = (function () {
   function finishIntro() {
     if (isExited || !introEl) return;
     isExited = true;
-
-    // Mark as seen in current session
-    try {
-      sessionStorage.setItem(STORAGE_KEY, '1');
-    } catch (e) {}
 
     // Add exiting class for morphing scale & blur transition
     introEl.classList.add('exiting');
@@ -125,7 +116,6 @@ window.PortfolioIntroEngine = (function () {
     setTimeout(() => {
       if (introEl) {
         introEl.style.display = 'none';
-        introEl.remove();
       }
       if (animId) cancelAnimationFrame(animId);
     }, 850);

@@ -11,21 +11,23 @@ window.Hero3DConfig = {
     fov: 38,
     near: 0.1,
     far: 1000,
-    defaultPos: { x: 0.05, y: 1.35, z: 4.6 },
+    defaultPos: { x: 0.05, y: 1.25, z: 4.6 },
     lookAt: { x: 0.05, y: 1.15, z: 0 },
-    mouseMoveRange: { x: 0.3, y: 0.18 },
+    mouseMoveRange: { x: 0.25, y: 0.16 },
     damping: 0.05,
     scrollParallaxFactor: 0.6
   },
 
-  // Tech Cards specifications (Flutter, Dart, Node.js)
+  // Tech Cards specifications (Flutter, Dart, Firebase, Node.js)
   techCards: [
     // Top Left: Flutter
-    { name: 'Flutter', icon: 'flutter', color: '#02569B', neon: '#00E5FF', x: -1.35, y: 1.95, z: 0.4, scale: 0.32, speed: 1.1, floatOffset: 0 },
+    { name: 'Flutter', icon: 'flutter', color: '#02569B', neon: '#00E5FF', x: -1.35, y: 1.85, z: 0.4, scale: 0.32, speed: 1.1, floatOffset: 0 },
     // Mid Left: Dart
-    { name: 'Dart', icon: 'dart', color: '#0175C2', neon: '#29B6F6', x: -1.45, y: 1.05, z: 0.65, scale: 0.30, speed: 1.0, floatOffset: 1.8 },
+    { name: 'Dart', icon: 'dart', color: '#0175C2', neon: '#29B6F6', x: -1.45, y: 1.15, z: 0.55, scale: 0.30, speed: 1.0, floatOffset: 1.8 },
+    // Bottom Left: Firebase
+    { name: 'Firebase', icon: 'firebase', color: '#FFA000', neon: '#FFCA28', x: -1.3, y: 0.45, z: 0.65, scale: 0.30, speed: 1.2, floatOffset: 3.2 },
     // Mid Right: Node.js
-    { name: 'Node.js', icon: 'nodejs', color: '#339933', neon: '#4ade80', x: 1.45, y: 1.35, z: 0.6, scale: 0.30, speed: 1.05, floatOffset: 0.9 }
+    { name: 'Node.js', icon: 'nodejs', color: '#339933', neon: '#4ade80', x: 1.45, y: 0.95, z: 0.5, scale: 0.30, speed: 1.05, floatOffset: 0.9 }
   ],
 
   // Theme palettes for 3D lights and glowing materials
