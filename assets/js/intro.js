@@ -309,6 +309,14 @@ window.PortfolioIntroEngine = (function () {
     camera.position.y = -mouseY * 0.6;
     camera.lookAt(0, 0.4, 0);
 
+    // Parallax sway on Holographic Code Terminals layer
+    if (!isWarping) {
+      const terminalsLayer = document.querySelector('.intro-terminals-layer');
+      if (terminalsLayer) {
+        terminalsLayer.style.transform = `translate3d(${mouseX * 12}px, ${-mouseY * 8}px, 0)`;
+      }
+    }
+
     // A. Quantum Core Rotation
     if (outerPoly) {
       outerPoly.rotation.x += 0.011;
@@ -379,10 +387,18 @@ window.PortfolioIntroEngine = (function () {
       if (hudTopRight) hudTopRight.classList.add('visible');
     }, 120);
 
-    // Stage 2: Brand content & 3D Core visible (350ms)
+    // Stage 2: Brand content & 3D Core visible (320ms)
     setTimeout(() => {
       if (content) content.classList.add('visible');
-    }, 350);
+
+      // Stagger reveal 4 Code Terminals
+      const terminals = document.querySelectorAll('.intro-terminal');
+      terminals.forEach((term, i) => {
+        setTimeout(() => {
+          term.classList.add('show');
+        }, 100 + i * 100);
+      });
+    }, 320);
 
     // Stage 3: Enter Dimension button reveal (500ms)
     setTimeout(() => {

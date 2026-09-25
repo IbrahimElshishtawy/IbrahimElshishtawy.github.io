@@ -92,6 +92,107 @@
       <div class="hud-sub">COORDS: 30.0444&deg; N, 31.2357&deg; E</div>
     </div>
 
+    <!-- ── 4 HOLOGRAPHIC CODE TERMINALS (All Programming Disciplines) ── -->
+    <div class="intro-terminals-layer" aria-hidden="true">
+
+      <!-- 1. MOBILE DEVELOPMENT (Flutter & Dart) -->
+      <div class="intro-terminal terminal-mobile" id="term-mobile">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">
+            <i class="fab fa-flutter text-cyan-400"></i> mobile_app.dart
+          </div>
+          <span class="terminal-badge">FLUTTER</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code><span class="line-no">1</span><span class="tk-kw">class</span> <span class="tk-cls">AppCore</span> <span class="tk-kw">extends</span> <span class="tk-cls">StatelessWidget</span> {
+<span class="line-no">2</span>  <span class="tk-comm">// Clean Architecture &amp; BLoC</span>
+<span class="line-no">3</span>  <span class="tk-ann">@override</span>
+<span class="line-no">4</span>  <span class="tk-cls">Widget</span> <span class="tk-fn">build</span>(<span class="tk-cls">BuildContext</span> ctx) {
+<span class="line-no">5</span>    <span class="tk-kw">return</span> <span class="tk-cls">BlocBuilder</span>&lt;<span class="tk-cls">AuthBloc</span>, <span class="tk-cls">State</span>&gt;(
+<span class="line-no">6</span>      builder: (c, s) =&gt; <span class="tk-cls">HomeScreen</span>(),
+<span class="line-no">7</span>    );
+<span class="line-no">8</span>  }
+<span class="line-no">9</span>}<span class="terminal-cursor"></span></code></pre>
+        </div>
+      </div>
+
+      <!-- 2. BACKEND SYSTEMS (Node.js & MongoDB) -->
+      <div class="intro-terminal terminal-backend" id="term-backend">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">
+            <i class="fab fa-node-js text-emerald-400"></i> server.api.ts
+          </div>
+          <span class="terminal-badge badge-green">BACKEND</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code><span class="line-no">1</span><span class="tk-comm">// High-Throughput REST Gateway</span>
+<span class="line-no">2</span>router.<span class="tk-fn">post</span>(<span class="tk-str">'/v1/sync'</span>, <span class="tk-kw">async</span> (req, res) =&gt; {
+<span class="line-no">3</span>  <span class="tk-kw">const</span> nodes = <span class="tk-kw">await</span> db.<span class="tk-fn">aggregate</span>([
+<span class="line-no">4</span>    { <span class="tk-var">$match</span>: { status: <span class="tk-str">'ACTIVE'</span> } }
+<span class="line-no">5</span>  ]);
+<span class="line-no">6</span>  res.<span class="tk-fn">status</span>(<span class="tk-num">200</span>).<span class="tk-fn">json</span>({ ok: <span class="tk-kw">true</span>, nodes });
+<span class="line-no">7</span>});<span class="terminal-cursor"></span></code></pre>
+        </div>
+      </div>
+
+      <!-- 3. NETWORKING & PROTOCOLS (WebSockets, TCP, Cloud) -->
+      <div class="intro-terminal terminal-network" id="term-network">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">
+            <i class="fas fa-network-wired text-purple-400"></i> network_mesh.sh
+          </div>
+          <span class="terminal-badge badge-purple">NETWORK</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code><span class="line-no">1</span><span class="tk-comm"># Live Protocol Mesh Handshake</span>
+<span class="line-no">2</span><span class="tk-kw">[WSS_CONNECT]</span> wss://gateway:443 <span class="tk-str">[TLSv1.3]</span>
+<span class="line-no">3</span><span class="tk-kw">[TCP_SOCKET]</span> 192.168.1.1:8080 <span class="tk-fn">ESTABLISHED</span>
+<span class="line-no">4</span><span class="tk-kw">[HTTP/2]</span> GET /api/v2/handshake <span class="tk-num">200 OK</span>
+<span class="line-no">5</span><span class="tk-comm">&gt; Latency: 0.8ms &bull; Packet Loss: 0.0%</span><span class="terminal-cursor"></span></code></pre>
+        </div>
+      </div>
+
+      <!-- 4. WEB PLATFORMS & 3D (WebGL, Frontend, UI) -->
+      <div class="intro-terminal terminal-web" id="term-web">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">
+            <i class="fab fa-js text-yellow-400"></i> webgl_spatial.js
+          </div>
+          <span class="terminal-badge badge-cyan">WEB_3D</span>
+        </div>
+        <div class="terminal-body">
+          <pre><code><span class="line-no">1</span><span class="tk-comm">// Interactive 3D Spatial Pipeline</span>
+<span class="line-no">2</span><span class="tk-kw">const</span> engine = <span class="tk-kw">new</span> <span class="tk-cls">ThreeSpatialCore</span>({
+<span class="line-no">3</span>  renderer: <span class="tk-str">'WEBGL_2'</span>,
+<span class="line-no">4</span>  shaders: [<span class="tk-str">'quantum'</span>, <span class="tk-str">'neon_grid'</span>],
+<span class="line-no">5</span>  fpsTarget: <span class="tk-num">60</span>
+<span class="line-no">6</span>});
+<span class="line-no">7</span>engine.<span class="tk-fn">mountViewport</span>(<span class="tk-str">'#dimension'</span>);<span class="terminal-cursor"></span></code></pre>
+        </div>
+      </div>
+
+    </div>
+
     <!-- Main Centered Content -->
     <div class="intro-content">
       
@@ -116,10 +217,18 @@
         <span>Advanced Flutter Developer &bull; Mobile &amp; Backend Engineer</span>
       </div>
 
+      <!-- Multi-Discipline Engineering Highlights Pill Row -->
+      <div class="intro-disciplines-bar" aria-hidden="true">
+        <span class="disc-pill disc-mobile"><i class="fab fa-flutter mr-1 text-cyan-400"></i> Mobile</span>
+        <span class="disc-pill disc-backend"><i class="fas fa-server mr-1 text-purple-400"></i> Backend</span>
+        <span class="disc-pill disc-network"><i class="fas fa-network-wired mr-1 text-emerald-400"></i> Networks</span>
+        <span class="disc-pill disc-web"><i class="fas fa-globe mr-1 text-pink-400"></i> Web &amp; 3D</span>
+      </div>
+
       <!-- Sci-Fi Progress Status HUD -->
       <div class="intro-progress-container" aria-hidden="true">
         <div class="intro-progress-header">
-          <span class="intro-status-text">WARPING INTO CYBERSPACE...</span>
+          <span class="intro-status-text">INITIALIZING DIGITAL UNIVERSE...</span>
           <span class="intro-status-percent" id="intro-progress-percent">0%</span>
         </div>
         <div class="intro-progress-track">
@@ -141,6 +250,7 @@
       <i class="fas fa-arrow-right text-[10px]" aria-hidden="true"></i>
     </button>
   </div>
+
 
   <!-- ══════════════════════════════════════════ -->
   <!-- 2. BACKGROUND ELEMENTS                    -->

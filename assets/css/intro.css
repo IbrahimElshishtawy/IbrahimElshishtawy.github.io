@@ -1,6 +1,6 @@
 /* ============================================================
    IBRAHIM ELSHISHTAWY — CINEMATIC COSMIC INTRO STYLING v4.0
-   Full-Screen 3D Cyber Warp Portal & Dimensional Entrance
+   Full-Screen 3D Cyber Warp Portal & Multi-Discipline Engineering
    (intro.css)
    ============================================================ */
 
@@ -196,7 +196,240 @@
   100% { transform: scaleY(1.1); }
 }
 
-/* ── 6. MAIN CENTERED CONTENT CONTAINER ───────────────────────── */
+/* ── 6. 4 HOLOGRAPHIC CODE TERMINALS (All Disciplines) ────────── */
+.intro-terminals-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.intro-terminal {
+  position: absolute;
+  width: 310px;
+  max-width: 24vw;
+  border-radius: 12px;
+  background: rgba(8, 6, 20, 0.75);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(139, 92, 246, 0.12);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.intro-terminal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual terminal positions & hover floats */
+.terminal-mobile {
+  top: 14%;
+  left: 3.5%;
+  animation: floatTerm1 5.5s ease-in-out infinite alternate;
+}
+
+.terminal-backend {
+  bottom: 11%;
+  left: 3.5%;
+  animation: floatTerm2 6.2s ease-in-out infinite alternate;
+}
+
+.terminal-network {
+  top: 14%;
+  right: 3.5%;
+  animation: floatTerm3 5.8s ease-in-out infinite alternate;
+}
+
+.terminal-web {
+  bottom: 11%;
+  right: 3.5%;
+  animation: floatTerm4 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatTerm1 {
+  0% { transform: translateY(0px) rotate(-1deg); }
+  100% { transform: translateY(-8px) rotate(0.5deg); }
+}
+
+@keyframes floatTerm2 {
+  0% { transform: translateY(0px) rotate(1deg); }
+  100% { transform: translateY(-7px) rotate(-0.5deg); }
+}
+
+@keyframes floatTerm3 {
+  0% { transform: translateY(0px) rotate(1deg); }
+  100% { transform: translateY(-9px) rotate(-0.8deg); }
+}
+
+@keyframes floatTerm4 {
+  0% { transform: translateY(0px) rotate(-1deg); }
+  100% { transform: translateY(-6px) rotate(0.8deg); }
+}
+
+/* Terminal Title Bar */
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.dot-red {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+.dot-yellow {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+.dot-green {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.terminal-title {
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-badge {
+  font-family: monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #06b6d4;
+  letter-spacing: 0.06em;
+}
+
+.badge-green {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.badge-purple {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+}
+
+.badge-cyan {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+/* Terminal Code Body */
+.terminal-body {
+  padding: 10px 12px;
+  overflow: hidden;
+}
+
+.terminal-body pre {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.68rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+}
+
+.terminal-body code {
+  font-family: inherit;
+}
+
+.line-no {
+  display: inline-block;
+  width: 14px;
+  margin-right: 8px;
+  color: #475569;
+  user-select: none;
+  text-align: right;
+  font-size: 0.62rem;
+}
+
+/* Syntax Highlighting */
+.tk-kw {
+  color: #c084fc;
+  font-weight: 700;
+}
+
+.tk-cls {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.tk-fn {
+  color: #22d3ee;
+}
+
+.tk-str {
+  color: #4ade80;
+}
+
+.tk-comm {
+  color: #64748b;
+  font-style: italic;
+}
+
+.tk-ann {
+  color: #f472b6;
+}
+
+.tk-num {
+  color: #fbbf24;
+}
+
+.tk-var {
+  color: #a78bfa;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  vertical-align: middle;
+  background: #06b6d4;
+  margin-left: 2px;
+  box-shadow: 0 0 8px #06b6d4;
+  animation: blinkCursor 0.85s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ── 7. MAIN CENTERED CONTENT CONTAINER ───────────────────────── */
 .intro-content {
   position: relative;
   z-index: 10;
@@ -218,12 +451,12 @@
   filter: blur(0px);
 }
 
-/* ── 7. CENTRAL QUANTUM PORTAL RETICLE & RINGS ────────────────── */
+/* ── 8. CENTRAL QUANTUM PORTAL RETICLE & RINGS ────────────────── */
 .intro-portal-reticle {
   position: relative;
   width: 140px;
   height: 140px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,7 +521,7 @@
   to { transform: rotate(0deg); }
 }
 
-/* ── 8. BRAND LOGO & TITLE ────────────────────────────────────── */
+/* ── 9. BRAND LOGO & TITLE ────────────────────────────────────── */
 .intro-logo-row {
   display: flex;
   align-items: center;
@@ -335,7 +568,7 @@
   margin-left: 2px;
 }
 
-/* ── 9. DEVELOPER IDENTITY SUBTITLE ───────────────────────────── */
+/* ── 10. DEVELOPER IDENTITY SUBTITLE ──────────────────────────── */
 .intro-developer-tag {
   display: inline-flex;
   align-items: center;
@@ -353,7 +586,7 @@
   letter-spacing: 0.06em;
   color: #e2e8f0;
   margin-top: 6px;
-  margin-bottom: 22px;
+  margin-bottom: 12px;
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
 }
 
@@ -365,7 +598,37 @@
   box-shadow: 0 0 12px #06b6d4, 0 0 20px rgba(6, 182, 212, 0.6);
 }
 
-/* ── 10. SCI-FI PROGRESS STATUS HUD ───────────────────────────── */
+/* ── 11. MULTI-DISCIPLINE HIGHLIGHTS PILL ROW ─────────────────── */
+.intro-disciplines-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.disc-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.disc-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── 12. SCI-FI PROGRESS STATUS HUD ───────────────────────────── */
 .intro-progress-container {
   width: 330px;
   max-width: 86vw;
@@ -409,7 +672,7 @@
   transition: width 0.08s linear;
 }
 
-/* ── 11. KEYBOARD HINT ────────────────────────────────────────── */
+/* ── 13. KEYBOARD HINT ────────────────────────────────────────── */
 .intro-keyboard-hint {
   margin-top: 14px;
   font-family: monospace;
@@ -427,7 +690,7 @@
   font-size: 0.65rem;
 }
 
-/* ── 12. ENTER DIMENSION / SKIP BUTTON ────────────────────────── */
+/* ── 14. ENTER DIMENSION / SKIP BUTTON ────────────────────────── */
 .intro-skip-btn {
   position: absolute;
   bottom: 30px;
@@ -472,7 +735,7 @@
   transform: translateY(-2px) scale(1.03);
 }
 
-/* ── 13. CINEMATIC HYPER-WARP EXIT (Transporting to website) ──── */
+/* ── 15. CINEMATIC HYPER-WARP EXIT (Transporting to website) ──── */
 #portfolio-intro.exiting {
   opacity: 0;
   transform: scale(1.14);
@@ -487,7 +750,48 @@
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
 }
 
-/* ── 14. MOBILE RESPONSIVENESS ────────────────────────────────── */
+#portfolio-intro.exiting .terminal-mobile,
+#portfolio-intro.exiting .terminal-backend {
+  transform: translateX(-140px) scale(0.85);
+  opacity: 0;
+  filter: blur(12px);
+}
+
+#portfolio-intro.exiting .terminal-network,
+#portfolio-intro.exiting .terminal-web {
+  transform: translateX(140px) scale(0.85);
+  opacity: 0;
+  filter: blur(12px);
+}
+
+/* ── 16. RESPONSIVENESS & BREAKPOINTS ─────────────────────────── */
+@media (max-width: 1280px) {
+  .intro-terminal {
+    width: 270px;
+  }
+  .terminal-mobile,
+  .terminal-backend {
+    left: 2%;
+  }
+  .terminal-network,
+  .terminal-web {
+    right: 2%;
+  }
+  .terminal-body pre {
+    font-size: 0.63rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* On tablets and smaller, hide floating terminals to preserve clean focus */
+  .intro-terminals-layer {
+    display: none;
+  }
+  .intro-disciplines-bar {
+    display: flex;
+  }
+}
+
 @media (max-width: 640px) {
   .intro-hud-top-left,
   .intro-hud-top-right {
@@ -522,9 +826,17 @@
   .intro-keyboard-hint {
     display: none;
   }
+
+  .intro-disciplines-bar {
+    gap: 6px;
+  }
+  .disc-pill {
+    font-size: 0.62rem;
+    padding: 3px 10px;
+  }
 }
 
-/* ── 15. ACCESSIBILITY (prefers-reduced-motion) ────────────────── */
+/* ── 17. ACCESSIBILITY (prefers-reduced-motion) ────────────────── */
 @media (prefers-reduced-motion: reduce) {
   #portfolio-intro {
     transition: opacity 0.35s ease !important;
@@ -535,7 +847,8 @@
   .intro-perspective-grid,
   .reticle-ring-1,
   .reticle-ring-2,
-  .intro-code-bracket {
+  .intro-code-bracket,
+  .intro-terminal {
     transition: opacity 0.3s ease !important;
     transform: none !important;
     filter: none !important;
