@@ -451,116 +451,95 @@
   filter: blur(0px);
 }
 
-/* ── 8. CENTRAL QUANTUM PORTAL RETICLE & RINGS ────────────────── */
-.intro-portal-reticle {
+/* ── 8. BESPOKE DEVELOPER LOGO EMBLEM ─────────────────────────── */
+.intro-logo-badge {
   position: relative;
-  width: 140px;
-  height: 140px;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 104px;
+  height: 104px;
+  margin-bottom: 20px;
+  animation: logoBadgeFloat 4s ease-in-out infinite alternate;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.reticle-ring {
+.intro-logo-badge:hover {
+  transform: translateY(-6px) scale(1.08);
+}
+
+@keyframes logoBadgeFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-7px) rotate(1.5deg); }
+}
+
+.logo-ambient-aura {
   position: absolute;
+  inset: -18px;
   border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(6, 182, 212, 0.22) 45%, transparent 72%);
+  filter: blur(14px);
   pointer-events: none;
+  animation: logoAuraPulse 3s ease-in-out infinite alternate;
 }
 
-.reticle-ring-1 {
-  inset: -14px;
-  border: 1px dashed rgba(139, 92, 246, 0.45);
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
-  animation: reticleSpinClockwise 16s linear infinite;
+@keyframes logoAuraPulse {
+  0% { transform: scale(0.92); opacity: 0.55; }
+  100% { transform: scale(1.22); opacity: 1; }
 }
 
-.reticle-ring-2 {
-  inset: 6px;
-  border: 1px solid rgba(6, 182, 212, 0.35);
+.logo-orbit-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(6, 182, 212, 0.35);
   box-shadow: 0 0 16px rgba(6, 182, 212, 0.2);
-  animation: reticleSpinCounter 12s linear infinite;
-}
-
-.reticle-brackets {
-  position: absolute;
-  inset: -24px;
   pointer-events: none;
+  animation: logoOrbitSpin 20s linear infinite;
 }
 
-.reticle-brackets::before,
-.reticle-brackets::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-.reticle-brackets::before {
-  top: 0;
-  left: 0;
-  border-top: 1.5px solid;
-  border-left: 1.5px solid;
-}
-
-.reticle-brackets::after {
-  bottom: 0;
-  right: 0;
-  border-bottom: 1.5px solid;
-  border-right: 1.5px solid;
-}
-
-@keyframes reticleSpinClockwise {
+@keyframes logoOrbitSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes reticleSpinCounter {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+.intro-logo-svg {
+  width: 96px;
+  height: 96px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.35));
+  transition: transform 0.3s ease;
 }
 
-/* ── 9. BRAND LOGO & TITLE ────────────────────────────────────── */
+.intro-logo-badge:hover .intro-logo-svg {
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 28px rgba(6, 182, 212, 0.65));
+}
+
+/* ── 9. BRAND TITLE (Cleanly Underneath Logo) ──────────────────── */
 .intro-logo-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.intro-code-bracket {
-  font-family: monospace;
-  font-size: clamp(2rem, 4.5vw, 2.75rem);
-  font-weight: 900;
-  background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
-  animation: bracketFloat 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes bracketFloat {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-5px) rotate(-3deg); }
+  margin-bottom: 14px;
 }
 
 .intro-brand-title {
   font-family: var(--font-heading, 'Outfit', sans-serif);
-  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+  font-size: clamp(2.35rem, 5.5vw, 3.8rem);
   font-weight: 900;
   letter-spacing: -0.025em;
   color: #ffffff;
-  line-height: 1;
+  line-height: 1.05;
+  margin: 0;
   display: flex;
   align-items: baseline;
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.15);
 }
 
 .intro-brand-dev {
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 50%, #ec4899 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -801,10 +780,14 @@
   .intro-hud-top-right { right: 18px; }
   .hud-sub { display: none; }
 
-  .intro-portal-reticle {
-    width: 110px;
-    height: 110px;
+  .intro-logo-badge {
+    width: 80px;
+    height: 80px;
     margin-bottom: 16px;
+  }
+  .intro-logo-svg {
+    width: 74px;
+    height: 74px;
   }
 
   .intro-progress-container {
@@ -845,9 +828,9 @@
   .intro-ambient-glow,
   .intro-nebula-cyan,
   .intro-perspective-grid,
-  .reticle-ring-1,
-  .reticle-ring-2,
-  .intro-code-bracket,
+  .intro-logo-badge,
+  .logo-orbit-ring,
+  .logo-ambient-aura,
   .intro-terminal {
     transition: opacity 0.3s ease !important;
     transform: none !important;
