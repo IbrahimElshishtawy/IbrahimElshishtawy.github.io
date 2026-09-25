@@ -1,15 +1,16 @@
 /* ============================================================
-   IBRAHIM ELSHISHTAWY — PORTFOLIO OPENING EXPERIENCE
+   IBRAHIM ELSHISHTAWY — CINEMATIC COSMIC INTRO STYLING v4.0
+   Full-Screen 3D Cyber Warp Portal & Dimensional Entrance
    (intro.css)
    ============================================================ */
 
-/* ── INTRO OVERLAY WRAPPER ─────────────────────────────────── */
+/* ── 1. INTRO OVERLAY WRAPPER ─────────────────────────────────── */
 #portfolio-intro {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: #030308;
+  background: #020108;
   z-index: 99999;
   display: flex;
   flex-direction: column;
@@ -18,59 +19,184 @@
   overflow: hidden;
   pointer-events: auto;
   user-select: none;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, clip-path;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s ease;
+  will-change: opacity, transform, filter;
 }
 
-/* ── AMBIENT INTRO BACKDROP GLOW ───────────────────────────── */
+/* ── 2. FULLSCREEN THREE.JS WEBGL CANVAS ───────────────────────── */
+.intro-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── 3. DEEP GALACTIC NEBULAE & AMBIENT GLOWS ─────────────────── */
 .intro-ambient-glow {
   position: absolute;
-  top: 50%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  max-width: 90vw;
-  max-height: 90vw;
+  width: 780px;
+  height: 780px;
+  max-width: 95vw;
+  max-height: 95vw;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(139, 92, 246, 0.28) 0%,
-    rgba(6, 182, 212, 0.15) 35%,
-    rgba(3, 3, 8, 0) 70%
+    rgba(139, 92, 246, 0.26) 0%,
+    rgba(6, 182, 212, 0.14) 38%,
+    rgba(236, 72, 153, 0.05) 58%,
+    rgba(2, 1, 8, 0) 75%
   );
-  filter: blur(45px);
+  filter: blur(65px);
   pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.6);
-  transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  animation: nebulaPulse 6s ease-in-out infinite alternate;
 }
 
-.intro-ambient-glow.active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* ── CENTER PULSE DOT ──────────────────────────────────────── */
-.intro-center-dot {
+.intro-nebula-cyan {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #c4b5fd;
-  box-shadow: 0 0 20px 8px rgba(139, 92, 246, 0.9), 0 0 40px 16px rgba(6, 182, 212, 0.6);
+  bottom: 8%;
+  right: 15%;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(6, 182, 212, 0.16) 0%,
+    transparent 65%
+  );
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 1;
+  animation: nebulaFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaPulse {
+  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+}
+
+@keyframes nebulaFloat {
+  0% { transform: translate(0, 0) scale(0.9); }
+  100% { transform: translate(-30px, -20px) scale(1.15); }
+}
+
+/* ── 4. 3D CYBERSPACE PERSPECTIVE HORIZON GRID ────────────────── */
+.intro-perspective-grid {
+  position: absolute;
+  bottom: -15%;
+  left: -25%;
+  right: -25%;
+  height: 52vh;
+  transform: perspective(450px) rotateX(68deg);
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.14) 1px, transparent 1px);
+  background-size: 55px 55px;
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 88%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 88%);
+  pointer-events: none;
+  z-index: 1;
+  animation: gridScroll 18s linear infinite;
+  opacity: 0.75;
+}
+
+@keyframes gridScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 55px; }
+}
+
+/* ── 5. SCI-FI HUD CORNER ELEMENTS ────────────────────────────── */
+.intro-hud-top-left,
+.intro-hud-top-right {
+  position: absolute;
+  top: 28px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   opacity: 0;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transform: translateY(-8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
 }
 
-.intro-center-dot.pulse {
+.intro-hud-top-left {
+  left: 32px;
+}
+
+.intro-hud-top-right {
+  right: 32px;
+  align-items: flex-end;
+}
+
+.intro-hud-top-left.visible,
+.intro-hud-top-right.visible {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(4);
+  transform: translateY(0);
 }
 
-/* ── MAIN CONTENT CONTAINER ────────────────────────────────── */
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+}
+
+.hud-sub {
+  font-family: monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: #64748b;
+}
+
+.hud-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: hudBlink 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes hudBlink {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 14px #10b981; }
+}
+
+.hud-soundwaves {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+}
+
+.hud-soundwaves span {
+  display: block;
+  width: 2.5px;
+  background: #06b6d4;
+  border-radius: 1px;
+  animation: audioWave 1s ease-in-out infinite alternate;
+}
+
+.hud-soundwaves span:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.hud-soundwaves span:nth-child(2) { height: 90%; animation-delay: 0.3s; }
+.hud-soundwaves span:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+.hud-soundwaves span:nth-child(4) { height: 100%; animation-delay: 0.4s; }
+
+@keyframes audioWave {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.1); }
+}
+
+/* ── 6. MAIN CENTERED CONTENT CONTAINER ───────────────────────── */
 .intro-content {
   position: relative;
   z-index: 10;
@@ -79,11 +205,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 24px;
   opacity: 0;
-  transform: scale(0.88);
-  filter: blur(12px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+  transform: scale(0.92);
+  filter: blur(8px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
 }
 
 .intro-content.visible {
@@ -92,131 +218,245 @@
   filter: blur(0px);
 }
 
-/* ── 3D INTRO GEOMETRIC OBJECT CANVAS ──────────────────────── */
-.intro-3d-box {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 20px;
+/* ── 7. CENTRAL QUANTUM PORTAL RETICLE & RINGS ────────────────── */
+.intro-portal-reticle {
   position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.intro-3d-canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
+.reticle-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-/* ── BRAND LOGO & TITLE ────────────────────────────────────── */
+.reticle-ring-1 {
+  inset: -14px;
+  border: 1px dashed rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
+  animation: reticleSpinClockwise 16s linear infinite;
+}
+
+.reticle-ring-2 {
+  inset: 6px;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.2);
+  animation: reticleSpinCounter 12s linear infinite;
+}
+
+.reticle-brackets {
+  position: absolute;
+  inset: -24px;
+  pointer-events: none;
+}
+
+.reticle-brackets::before,
+.reticle-brackets::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.reticle-brackets::before {
+  top: 0;
+  left: 0;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.reticle-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+@keyframes reticleSpinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reticleSpinCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* ── 8. BRAND LOGO & TITLE ────────────────────────────────────── */
 .intro-logo-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 12px;
 }
 
 .intro-code-bracket {
   font-family: monospace;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: 900;
   background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+  text-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
   animation: bracketFloat 2.5s ease-in-out infinite alternate;
 }
 
 @keyframes bracketFloat {
   0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-4px) rotate(-3deg); }
+  100% { transform: translateY(-5px) rotate(-3deg); }
 }
 
 .intro-brand-title {
   font-family: var(--font-heading, 'Outfit', sans-serif);
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: #ffffff;
   line-height: 1;
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.12);
 }
 
 .intro-brand-dev {
   background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 900;
   margin-left: 2px;
 }
 
-/* ── DEVELOPER IDENTITY SUBTITLE ───────────────────────────── */
+/* ── 9. DEVELOPER IDENTITY SUBTITLE ───────────────────────────── */
 .intro-developer-tag {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 18px;
+  padding: 8px 22px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(14, 11, 28, 0.6);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   font-family: var(--font-heading, 'Outfit', sans-serif);
-  font-size: clamp(0.72rem, 2vw, 0.88rem);
+  font-size: clamp(0.75rem, 2vw, 0.88rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #cbd5e1;
+  letter-spacing: 0.06em;
+  color: #e2e8f0;
   margin-top: 6px;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.intro-developer-tag.show {
-  opacity: 1;
-  transform: translateY(0);
+  margin-bottom: 22px;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
 }
 
 .intro-developer-tag .tag-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #06b6d4;
-  box-shadow: 0 0 10px #06b6d4;
+  box-shadow: 0 0 12px #06b6d4, 0 0 20px rgba(6, 182, 212, 0.6);
 }
 
-/* ── SKIP BUTTON ───────────────────────────────────────────── */
+/* ── 10. SCI-FI PROGRESS STATUS HUD ───────────────────────────── */
+.intro-progress-container {
+  width: 330px;
+  max-width: 86vw;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.intro-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #94a3b8;
+}
+
+.intro-status-percent {
+  color: #06b6d4;
+  font-weight: 800;
+}
+
+.intro-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.intro-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6 0%, #06b6d4 70%, #ec4899 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.8), 0 0 28px rgba(139, 92, 246, 0.5);
+  transition: width 0.08s linear;
+}
+
+/* ── 11. KEYBOARD HINT ────────────────────────────────────────── */
+.intro-keyboard-hint {
+  margin-top: 14px;
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.intro-keyboard-hint kbd {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #cbd5e1;
+  font-size: 0.65rem;
+}
+
+/* ── 12. ENTER DIMENSION / SKIP BUTTON ────────────────────────── */
 .intro-skip-btn {
   position: absolute;
-  bottom: 28px;
-  right: 28px;
-  z-index: 20;
+  bottom: 30px;
+  right: 32px;
+  z-index: 30;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
+  gap: 9px;
+  padding: 10px 22px;
   border-radius: 9999px;
-  background: rgba(18, 14, 32, 0.75);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  background: rgba(14, 10, 26, 0.75);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #e2e8f0;
   font-family: var(--font-heading, 'Outfit', sans-serif);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
+  transform: translateY(12px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(139, 92, 246, 0.2);
 }
 
 [dir="rtl"] .intro-skip-btn {
   right: auto;
-  left: 28px;
+  left: 32px;
 }
 
 .intro-skip-btn.show {
@@ -225,36 +465,80 @@
 }
 
 .intro-skip-btn:hover {
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.35) 0%, rgba(6, 182, 212, 0.3) 100%);
+  border-color: rgba(6, 182, 212, 0.6);
   color: #ffffff;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(6, 182, 212, 0.5), 0 8px 30px rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px) scale(1.03);
 }
 
-/* ── SEAMLESS EXIT TRANSITION (Morphing into Website) ──────── */
+/* ── 13. CINEMATIC HYPER-WARP EXIT (Transporting to website) ──── */
 #portfolio-intro.exiting {
   opacity: 0;
-  transform: scale(1.06);
+  transform: scale(1.14);
+  filter: blur(10px) brightness(1.35);
   pointer-events: none;
 }
 
 #portfolio-intro.exiting .intro-content {
-  transform: translateY(-40px) scale(0.92);
+  transform: scale(1.22);
   opacity: 0;
-  filter: blur(8px);
+  filter: blur(14px);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
 }
 
-/* ── ACCESSIBILITY (prefers-reduced-motion) ─────────────────── */
+/* ── 14. MOBILE RESPONSIVENESS ────────────────────────────────── */
+@media (max-width: 640px) {
+  .intro-hud-top-left,
+  .intro-hud-top-right {
+    top: 18px;
+  }
+  .intro-hud-top-left { left: 18px; }
+  .intro-hud-top-right { right: 18px; }
+  .hud-sub { display: none; }
+
+  .intro-portal-reticle {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 16px;
+  }
+
+  .intro-progress-container {
+    width: 280px;
+  }
+
+  .intro-skip-btn {
+    bottom: 22px;
+    right: 20px;
+    padding: 8px 18px;
+    font-size: 0.72rem;
+  }
+
+  [dir="rtl"] .intro-skip-btn {
+    right: auto;
+    left: 20px;
+  }
+
+  .intro-keyboard-hint {
+    display: none;
+  }
+}
+
+/* ── 15. ACCESSIBILITY (prefers-reduced-motion) ────────────────── */
 @media (prefers-reduced-motion: reduce) {
   #portfolio-intro {
-    transition: opacity 0.4s ease !important;
+    transition: opacity 0.35s ease !important;
   }
   .intro-content,
   .intro-ambient-glow,
-  .intro-developer-tag {
+  .intro-nebula-cyan,
+  .intro-perspective-grid,
+  .reticle-ring-1,
+  .reticle-ring-2,
+  .intro-code-bracket {
     transition: opacity 0.3s ease !important;
     transform: none !important;
     filter: none !important;
+    animation: none !important;
   }
 }

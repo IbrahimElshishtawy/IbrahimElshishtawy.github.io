@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Ibrahim Elshishtawy | Flutter Architect &amp; Mobile Engineer</title>
+  <title>Ibrahim Elshishtawy | Advanced Flutter Developer</title>
 
-  <meta name="description" content="Portfolio of Ibrahim Elshishtawy — Mid-Level Flutter Architect &amp; Mobile Systems Engineer crafting pixel-perfect, high-performance cross-platform applications. Available for hire.">
-  <meta name="keywords" content="Ibrahim Elshishtawy, Flutter Developer, Mobile Engineer, 3D Portfolio, iOS, Android, Flutter Architect, Dart, Firebase">
+  <meta name="description" content="Portfolio of Ibrahim Elshishtawy — Advanced Flutter Developer engineering high-performance cross-platform mobile applications with Clean Architecture, REST APIs, Firebase/Supabase, and backend services. Available for hire.">
+  <meta name="keywords" content="Ibrahim Elshishtawy, Advanced Flutter Developer, Flutter Developer, Mobile Engineer, Dart, Clean Architecture, REST APIs, Firebase, Supabase, Backend">
   <meta name="author" content="Ibrahim Elshishtawy">
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Ibrahim Elshishtawy | Flutter Architect">
-  <meta property="og:description" content="Discover premium, high-performance mobile experiences crafted with architectural precision.">
+  <meta property="og:title" content="Ibrahim Elshishtawy | Advanced Flutter Developer">
+  <meta property="og:description" content="Discover high-performance mobile applications crafted with Flutter, Dart, Clean Architecture, and backend engineering.">
   <meta property="og:image" content="assets/assets/me.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ibrahimelshishtawy.github.io">
@@ -62,20 +62,47 @@
   <!-- 1. CINEMATIC PORTFOLIO OPENING EXPERIENCE -->
   <!-- ══════════════════════════════════════════ -->
   <div id="portfolio-intro" role="dialog" aria-label="IBRAHIM.Dev Opening Experience">
-    <!-- Ambient Backdrop Glow -->
-    <div class="intro-ambient-glow" aria-hidden="true"></div>
+    
+    <!-- Fullscreen Three.js WebGL Cosmic Portal Canvas -->
+    <canvas id="intro-3d-canvas" class="intro-3d-canvas" aria-hidden="true"></canvas>
 
-    <!-- Center Light Dot -->
-    <div class="intro-center-dot" aria-hidden="true"></div>
+    <!-- Deep Space Galactic Aurora Nebulae -->
+    <div class="intro-ambient-glow" aria-hidden="true"></div>
+    <div class="intro-nebula-cyan" aria-hidden="true"></div>
+
+    <!-- 3D Cyberspace Perspective Grid -->
+    <div class="intro-perspective-grid" aria-hidden="true"></div>
+
+    <!-- Sci-Fi HUD Corner Elements -->
+    <div class="intro-hud-top-left" aria-hidden="true">
+      <div class="hud-item">
+        <span class="hud-dot-pulse"></span>
+        <span class="hud-text">GATEWAY_ONLINE // PORT_8080</span>
+      </div>
+      <div class="hud-sub">SYS_VER: 4.0.0 &bull; SECURE_CHANNEL</div>
+    </div>
+
+    <div class="intro-hud-top-right" aria-hidden="true">
+      <div class="hud-item">
+        <span class="hud-soundwaves">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span class="hud-text">DIMENSION // MOBILE &bull; CLOUD</span>
+      </div>
+      <div class="hud-sub">COORDS: 30.0444&deg; N, 31.2357&deg; E</div>
+    </div>
 
     <!-- Main Centered Content -->
     <div class="intro-content">
-      <!-- 3D Mini Geometric Prism -->
-      <div class="intro-3d-box">
-        <canvas id="intro-3d-canvas" class="intro-3d-canvas" aria-hidden="true"></canvas>
+      
+      <!-- Central Quantum Core Visual Target Indicator -->
+      <div class="intro-portal-reticle" aria-hidden="true">
+        <div class="reticle-ring reticle-ring-1"></div>
+        <div class="reticle-ring reticle-ring-2"></div>
+        <div class="reticle-brackets"></div>
       </div>
 
-      <!-- Brand Logo & Title -->
+      <!-- Holographic Brand Title -->
       <div class="intro-logo-row">
         <span class="intro-code-bracket">&lt;/&gt;</span>
         <h1 class="intro-brand-title">
@@ -86,14 +113,32 @@
       <!-- Developer Identity Subtitle -->
       <div class="intro-developer-tag">
         <span class="tag-dot" aria-hidden="true"></span>
-        <span>Flutter Architect &bull; Full-Stack Engineer</span>
+        <span>Advanced Flutter Developer &bull; Mobile &amp; Backend Engineer</span>
       </div>
+
+      <!-- Sci-Fi Progress Status HUD -->
+      <div class="intro-progress-container" aria-hidden="true">
+        <div class="intro-progress-header">
+          <span class="intro-status-text">WARPING INTO CYBERSPACE...</span>
+          <span class="intro-status-percent" id="intro-progress-percent">0%</span>
+        </div>
+        <div class="intro-progress-track">
+          <div class="intro-progress-bar" id="intro-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Keyboard hint -->
+      <div class="intro-keyboard-hint" aria-hidden="true">
+        <span>Press <kbd>Space</kbd> or <kbd>Enter</kbd> to enter world</span>
+      </div>
+
     </div>
 
-    <!-- Skip Button -->
-    <button type="button" id="intro-skip-btn" class="intro-skip-btn" aria-label="Skip opening animation">
-      <span>تخطي / Skip</span>
-      <i class="fas fa-forward text-[10px]" aria-hidden="true"></i>
+    <!-- Enter Dimension / Skip Button -->
+    <button type="button" id="intro-skip-btn" class="intro-skip-btn" aria-label="Enter portfolio immediately">
+      <i class="fas fa-meteor text-cyan-400" aria-hidden="true"></i>
+      <span>دخول العالم / Enter Dimension</span>
+      <i class="fas fa-arrow-right text-[10px]" aria-hidden="true"></i>
     </button>
   </div>
 
@@ -206,70 +251,100 @@
     <!-- ─────────────────────────────────── -->
     <!-- HERO SECTION                        -->
     <!-- ─────────────────────────────────── -->
-    <section id="hero" class="min-h-[90vh] flex flex-col justify-center py-16 px-4 md:px-10 max-w-7xl mx-auto relative">
-      <div class="w-full flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center justify-between">
+    <section id="hero" class="min-h-[90vh] flex flex-col justify-center py-12 md:py-16 px-4 md:px-10 max-w-7xl mx-auto relative">
+      <div class="w-full flex flex-col-reverse lg:flex-row gap-10 lg:gap-14 items-center justify-between">
 
         <!-- LEFT: Text Content -->
         <div class="w-full lg:w-1/2 flex flex-col items-start text-left">
-          <div class="hero-reveal-floating mb-5">
+          
+          <!-- Availability / Engineering Status Badge -->
+          <div class="hero-reveal-floating mb-4">
             <span class="cyber-badge cyber-badge-glow" role="status">
-              <i class="fas fa-bolt text-purple-400 mr-1.5" aria-hidden="true"></i>
-              مطور ومهندس برمجيات &bull; Available for Hire
+              <span class="relative flex h-2 w-2 mr-1">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              </span>
+              Available for Opportunities &bull; Mobile &amp; Backend
             </span>
           </div>
 
-          <h1 class="hero-reveal-text font-heading text-5xl md:text-7xl font-extrabold text-white leading-[1.08] mb-6 tracking-tight text-glow">
-            إبراهيم <br>
-            <span class="gradient-text-primary">الششتاوي</span>
-          </h1>
-
-          <p class="hero-reveal-text text-sm md:text-base text-purple-200/90 font-semibold mb-4 tracking-wide">
-            مهندس معمارية فلاتر &bull; مهندس أنظمة &bull; مطور تطبيقات متكاملة
-          </p>
-
-          <p class="hero-reveal-text text-xs md:text-sm text-slate-300/85 leading-relaxed max-w-lg mb-10">
-            أبني حلول رقمية متكاملة، من الفكرة إلي التنفيذ. أمتلك خبرة في تطوير تطبيقات الويب والموبايل باستخدام أحدث التقنيات، مع اهتمام كبير بتجربة المستخدم والأداء العالي.
-          </p>
-
-          <div class="hero-reveal-floating flex flex-wrap gap-4 mb-8">
-            <a href="#works" id="hero-explore-btn" class="magnetic-btn btn-glowing flex items-center gap-2.5 text-xs py-3 px-7" aria-label="استكشف أعمالي">
-              استكشف أعمالي <i class="fas fa-arrow-left text-[11px]" aria-hidden="true"></i>
-            </a>
-            <a href="#contact" id="hero-contact-btn" class="magnetic-btn btn-outline flex items-center gap-2.5 text-xs py-3 px-7" aria-label="تواصل معي">
-              <i class="fas fa-paper-plane text-purple-400 text-xs" aria-hidden="true"></i> تواصل معي
-            </a>
+          <!-- Identity Pre-title -->
+          <div class="hero-reveal-text flex items-center gap-2 mb-2 text-slate-300 text-sm md:text-base font-semibold">
+            <span>Hi, I'm <span class="text-white font-bold">Ibrahim Elshishtawy</span></span>
+            <span class="text-purple-400 font-mono text-xs md:text-sm bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20">Mobile &bull; Backend</span>
           </div>
 
-          <!-- Quick Social Row -->
-          <div class="hero-reveal-floating flex items-center gap-4.5 flex-wrap justify-center lg:justify-start">
-            <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="hero-github-link" class="social-pill" aria-label="GitHub Profile">
+          <!-- Main Dominant Headline -->
+          <h1 class="hero-reveal-text font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-extrabold text-white leading-[1.08] mb-5 tracking-tight text-glow">
+            Advanced <br class="hidden sm:inline">
+            <span class="gradient-text-primary">Flutter Developer</span>
+          </h1>
+
+          <!-- Natural, Technical, Confident Supporting Paragraph -->
+          <p class="hero-reveal-text text-sm sm:text-base text-slate-300/90 leading-relaxed max-w-xl mb-6 font-normal">
+            Specializing in <strong class="text-white font-medium">Flutter &amp; Dart</strong> to architect high-performance, cross-platform mobile apps. I build real-world application architectures rooted in <strong class="text-white font-medium">Clean Architecture</strong>, connect resilient <strong class="text-white font-medium">REST APIs</strong>, and integrate <strong class="text-white font-medium">Firebase / Supabase</strong> alongside scalable <strong class="text-white font-medium">backend development</strong> to deliver dependable, production-grade digital products.
+          </p>
+
+          <!-- Core Architectural Pillars / Quick Tags -->
+          <div class="hero-reveal-text flex flex-wrap gap-2 mb-8">
+            <span class="glass-tag"><i class="fab fa-flutter text-cyan-400 mr-1.5" aria-hidden="true"></i>Flutter &amp; Dart</span>
+            <span class="glass-tag"><i class="fas fa-layer-group text-purple-400 mr-1.5" aria-hidden="true"></i>Clean Architecture</span>
+            <span class="glass-tag"><i class="fas fa-network-wired text-cyan-400 mr-1.5" aria-hidden="true"></i>REST APIs</span>
+            <span class="glass-tag"><i class="fas fa-database text-emerald-400 mr-1.5" aria-hidden="true"></i>Firebase &bull; Supabase</span>
+            <span class="glass-tag"><i class="fas fa-server text-indigo-400 mr-1.5" aria-hidden="true"></i>Backend Systems</span>
+          </div>
+
+          <!-- Primary & Secondary CTA Buttons -->
+          <div class="hero-reveal-floating flex flex-wrap items-center gap-4 mb-8">
+            <a href="#works" id="hero-explore-btn" class="magnetic-btn btn-glowing group flex items-center gap-2.5 text-xs sm:text-sm py-3 px-7 font-bold" aria-label="View Projects">
+              <span>View Projects</span>
+              <i class="fas fa-arrow-right text-[11px] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+            </a>
+            <a href="#contact" id="hero-contact-btn" class="magnetic-btn btn-outline group flex items-center gap-2.5 text-xs sm:text-sm py-3 px-7 font-semibold" aria-label="Contact Me">
+              <i class="fas fa-paper-plane text-purple-400 text-xs transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true"></i>
+              <span>Contact Me</span>
+            </a>
+            <div class="flex items-center gap-2 ml-1">
+              <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="hero-cta-github" class="social-pill" aria-label="GitHub Profile" title="GitHub Profile">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="hero-cta-linkedin" class="social-pill" aria-label="LinkedIn Profile" title="LinkedIn Profile">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Social & Freelance Profiles Row -->
+          <div class="hero-reveal-floating flex items-center gap-2.5 flex-wrap">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-1">Profiles:</span>
+            <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" id="hero-github-link" class="social-pill" aria-label="GitHub Profile" title="GitHub">
               <i class="fab fa-github" aria-hidden="true"></i>
             </a>
-            <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="hero-linkedin-link" class="social-pill" aria-label="LinkedIn Profile">
+            <a href="https://www.linkedin.com/in/ibrahim-elshishtawy-0a67b334a" target="_blank" rel="noopener noreferrer" id="hero-linkedin-link" class="social-pill" aria-label="LinkedIn Profile" title="LinkedIn">
               <i class="fab fa-linkedin-in" aria-hidden="true"></i>
             </a>
-            <a href="https://www.facebook.com/p/Ibrahim-El-ShiShtawy-100025661886698/" target="_blank" rel="noopener noreferrer" id="hero-facebook-link" class="social-pill" aria-label="Facebook Profile">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.upwork.com/freelancers/ibrahimelshishtawy?mp_source=share" target="_blank" rel="noopener noreferrer" id="hero-upwork-link" class="social-pill" aria-label="Upwork Profile">
+            <a href="https://www.upwork.com/freelancers/ibrahimelshishtawy?mp_source=share" target="_blank" rel="noopener noreferrer" id="hero-upwork-link" class="social-pill" aria-label="Upwork Profile" title="Upwork">
               <i class="fab fa-upwork" aria-hidden="true"></i>
             </a>
-            <a href="https://mostaql.com/u/Elshish2003" target="_blank" rel="noopener noreferrer" id="hero-mostaql-link" class="social-pill" aria-label="Mostaql Profile">
+            <a href="https://mostaql.com/u/Elshish2003" target="_blank" rel="noopener noreferrer" id="hero-mostaql-link" class="social-pill" aria-label="Mostaql Profile" title="Mostaql">
               <i class="fas fa-briefcase" aria-hidden="true"></i>
             </a>
-            <a href="https://kafiil.com/u/himashishtawy" target="_blank" rel="noopener noreferrer" id="hero-kafiil-link" class="social-pill" aria-label="Kafiil Freelance Profile">
+            <a href="https://kafiil.com/u/himashishtawy" target="_blank" rel="noopener noreferrer" id="hero-kafiil-link" class="social-pill" aria-label="Kafiil Freelance Profile" title="Kafiil">
               <i class="fas fa-handshake" aria-hidden="true"></i>
             </a>
-            <a href="https://khamsat.com/user/ibrahimelshishtawy" target="_blank" rel="noopener noreferrer" id="hero-khamsat-link" class="social-pill" aria-label="Khamsat Profile">
+            <a href="https://khamsat.com/user/ibrahimelshishtawy" target="_blank" rel="noopener noreferrer" id="hero-khamsat-link" class="social-pill" aria-label="Khamsat Profile" title="Khamsat">
               <i class="fas fa-store" aria-hidden="true"></i>
             </a>
-            <a href="https://baaeed.com/u/Elshish2003" target="_blank" rel="noopener noreferrer" id="hero-baaeed-link" class="social-pill" aria-label="Baaeed Profile">
+            <a href="https://baaeed.com/u/Elshish2003" target="_blank" rel="noopener noreferrer" id="hero-baaeed-link" class="social-pill" aria-label="Baaeed Profile" title="Baaeed">
               <i class="fas fa-laptop-house" aria-hidden="true"></i>
             </a>
-            <span class="text-slate-600 text-xs select-none">|</span>
-            <a href="tel:+201223070571" id="hero-phone-link" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors" aria-label="Call Ibrahim: 01223070571">
+            <a href="https://www.facebook.com/p/Ibrahim-El-ShiShtawy-100025661886698/" target="_blank" rel="noopener noreferrer" id="hero-facebook-link" class="social-pill" aria-label="Facebook Profile" title="Facebook">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <span class="text-slate-700 text-xs select-none">|</span>
+            <a href="tel:+201223070571" id="hero-phone-link" class="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors py-1.5 px-3 rounded-full bg-white/[0.02] border border-white/[0.06] hover:border-purple-500/40" aria-label="Call Ibrahim: +20 122 307 0571">
               <i class="fas fa-phone-alt text-purple-400 text-[10px]" aria-hidden="true"></i>
-              +20&nbsp;122&nbsp;307&nbsp;0571
+              <span>+20 122 307 0571</span>
             </a>
           </div>
         </div>
@@ -300,7 +375,7 @@
               <!-- Fallback Profile Frame (if WebGL is unavailable or reduced motion) -->
               <div id="hero-3d-fallback" class="hero-3d-fallback tilt-container">
                 <div class="hero-avatar-tilt profile-frame-container w-full max-w-[480px] aspect-square relative mx-auto rounded-3xl overflow-hidden shadow-2xl">
-                  <img class="profile-img w-full h-full object-cover rounded-3xl" src="assets/assets/hero_seamless_3d.jpg" alt="Ibrahim Elshishtawy — Flutter Architect">
+                  <img class="profile-img w-full h-full object-cover rounded-3xl" src="assets/assets/hero_seamless_3d.jpg" alt="Ibrahim Elshishtawy — Advanced Flutter Developer">
                 </div>
               </div>
 
@@ -311,26 +386,26 @@
       </div>
 
       <!-- Integrated Hero Metrics Bar -->
-      <div class="hero-stats-glass-bar w-full mt-14 py-6 px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-between hero-reveal-floating">
+      <div class="hero-stats-glass-bar w-full mt-12 lg:mt-16 py-6 px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-between hero-reveal-floating">
         <!-- Metric 1: Completed Projects -->
         <div class="hero-stat-card justify-center">
           <div class="icon-box-stat icon-box-purple">
-            <i class="fas fa-briefcase text-purple-400" aria-hidden="true"></i>
+            <i class="fas fa-rocket text-purple-400" aria-hidden="true"></i>
           </div>
           <div>
             <div class="text-2xl md:text-3xl font-black font-heading text-white count-number" data-target="30">0+</div>
-            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">مشروع مكتمل / Projects</div>
+            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">Projects Shipped</div>
           </div>
         </div>
 
         <!-- Metric 2: Happy Clients -->
         <div class="hero-stat-card justify-center">
           <div class="icon-box-stat icon-box-cyan">
-            <i class="fas fa-user-check text-cyan-400" aria-hidden="true"></i>
+            <i class="fas fa-users text-cyan-400" aria-hidden="true"></i>
           </div>
           <div>
             <div class="text-2xl md:text-3xl font-black font-heading text-white count-number" data-target="20">0+</div>
-            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">عميل سعيد / Clients</div>
+            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">Client Partners</div>
           </div>
         </div>
 
@@ -341,18 +416,18 @@
           </div>
           <div>
             <div class="text-2xl md:text-3xl font-black font-heading text-white count-number" data-target="5">0+</div>
-            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">سنوات خبرة / Experience</div>
+            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">Years Experience</div>
           </div>
         </div>
 
         <!-- Metric 4: Mastered Technologies -->
         <div class="hero-stat-card justify-center">
           <div class="icon-box-stat icon-box-cyan">
-            <i class="fas fa-trophy text-cyan-400" aria-hidden="true"></i>
+            <i class="fas fa-layer-group text-cyan-400" aria-hidden="true"></i>
           </div>
           <div>
             <div class="text-2xl md:text-3xl font-black font-heading text-white count-number" data-target="15">0+</div>
-            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">تقنية متقنة / Tech Stack</div>
+            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">Core Tech Stack</div>
           </div>
         </div>
 

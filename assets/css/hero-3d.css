@@ -33,8 +33,8 @@
 
 @media (max-width: 640px) {
   .hero-3d-wrapper {
-    height: 380px;
-    min-height: 340px;
+    height: 330px;
+    min-height: 290px;
     max-width: 100%;
   }
 }
@@ -192,13 +192,17 @@
 .hero-stat-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 8px 12px;
-  transition: transform 0.3s ease;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
 .hero-stat-card:hover {
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .icon-box-stat {
