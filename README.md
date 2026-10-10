@@ -1,12 +1,12 @@
 # 🚀 Ibrahim Elshishtawy | Portfolio & Systems Engineering
 
-> **Full-Stack Mobile & Systems Architect**  
+> **Full-Stack Mobile & Systems Engineer**  
 > مهندس برمجيات متخصص في تطوير تطبيقات الموبايل المتقدمة (`Flutter`)، منصات الويب والمؤسسات (`Next.js` & `PHP`)، هندسة الشبكات والعتاد (`OpenWrt` & `IoT Hardware`)، وتدريب البايثون (`Python`).
 
 [![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-ibrahimelshishtawy.github.io-06b6d4?style=for-the-badge&logo=google-chrome)](https://ibrahimelshishtawy.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Ibrahim_Elshishtawy-0077b5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/ibrahim-elshishtawy)
 [![GitHub](https://img.shields.io/badge/GitHub-IbrahimElshishtawy-181717?style=for-the-badge&logo=github)](https://github.com/IbrahimElshishtawy)
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-Contact_Direct-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/201026040827)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-01223070571-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/201223070571)
 
 ---
 
@@ -134,10 +134,11 @@ mindmap
 
 ## 📬 تواصل معي (Get in Touch)
 
-أنا متاح دائمًا للفرص الوظيفية المتميزة، المشاريع الاستشارية، وبناء الأنظمة المعقدة:
+أنا متاح دائمًا للفرص الوظيفية المتميزة، المشاريع الاستشارية، وبناء الأنظمة المتكاملة:
 
-* **البريد الإلكتروني**: [elshishtawy.dev@gmail.com](mailto:elshishtawy.dev@gmail.com)
-* **الهاتف / واتساب**: [+20 102 604 0827](https://wa.me/201026040827)
+* **البريد الإلكتروني الأساسي**: [shishtawyhima@gmail.com](mailto:shishtawyhima@gmail.com)
+* **البريد الهندسي**: [elshishtawy.dev@gmail.com](mailto:elshishtawy.dev@gmail.com)
+* **الهاتف / واتساب**: [+20 122 307 0571](https://wa.me/201223070571) / [+20 102 604 0827](https://wa.me/201026040827)
 * **الموقع الشخصي**: [https://ibrahimelshishtawy.github.io](https://ibrahimelshishtawy.github.io)
 * **حساب GitHub**: [@IbrahimElshishtawy](https://github.com/IbrahimElshishtawy)
 * **حساب LinkedIn**: [Ibrahim Elshishtawy](https://linkedin.com/in/ibrahim-elshishtawy)
