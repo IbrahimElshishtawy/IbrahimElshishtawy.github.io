@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Ibrahim Elshishtawy | Advanced Flutter Developer</title>
+  <title>Ibrahim Elshishtawy | Full-Stack Mobile &amp; Systems Architect</title>
 
-  <meta name="description" content="Portfolio of Ibrahim Elshishtawy — Advanced Flutter Developer engineering high-performance cross-platform mobile applications with Clean Architecture, REST APIs, Firebase/Supabase, and backend services. Available for hire.">
-  <meta name="keywords" content="Ibrahim Elshishtawy, Advanced Flutter Developer, Flutter Developer, Mobile Engineer, Dart, Clean Architecture, REST APIs, Firebase, Supabase, Backend">
+  <meta name="description" content="Portfolio of Ibrahim Elshishtawy — Full-Stack Systems, Mobile &amp; Web Architect specializing in Flutter, Next.js, PHP, OpenWrt router networking firmware, and IoT ecosystems. Featured works: Gouna Lifestyle, OpenWrt Quota Manager, Etihad Bshababha.">
+  <meta name="keywords" content="Ibrahim Elshishtawy, Full-Stack Developer, Flutter Engineer, Next.js, PHP, OpenWrt, Network Firmware, IoT, Python, Cyber-Wise, Mostaqbal Watan, Clean Architecture">
   <meta name="author" content="Ibrahim Elshishtawy">
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Ibrahim Elshishtawy | Advanced Flutter Developer">
-  <meta property="og:description" content="Discover high-performance mobile applications crafted with Flutter, Dart, Clean Architecture, and backend engineering.">
+  <meta property="og:title" content="Ibrahim Elshishtawy | Full-Stack Mobile &amp; Systems Architect">
+  <meta property="og:description" content="Explore cinematic showcases of high-performance mobile apps, Next.js &amp; PHP enterprise platforms, OpenWrt router daemons, and IoT architectures.">
   <meta property="og:image" content="assets/assets/me.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ibrahimelshishtawy.github.io">
@@ -145,7 +145,7 @@
         </div>
       </div>
 
-      <!-- 3. NETWORKING & PROTOCOLS (WebSockets, TCP, Cloud) -->
+      <!-- 3. NETWORKING, FIRMWARE & HARDWARE (OpenWrt, Linux Daemons, IoT) -->
       <div class="intro-terminal terminal-network" id="term-network">
         <div class="terminal-bar">
           <div class="terminal-dots">
@@ -154,20 +154,20 @@
             <span class="dot-green"></span>
           </div>
           <div class="terminal-title">
-            <i class="fas fa-network-wired text-purple-400"></i> network_mesh.sh
+            <i class="fas fa-microchip text-purple-400"></i> openwrt_quota.sh
           </div>
-          <span class="terminal-badge badge-purple">NETWORK</span>
+          <span class="terminal-badge badge-purple">OPENWRT</span>
         </div>
         <div class="terminal-body">
-          <pre><code><span class="line-no">1</span><span class="tk-comm"># Live Protocol Mesh Handshake</span>
-<span class="line-no">2</span><span class="tk-kw">[WSS_CONNECT]</span> wss://gateway:443 <span class="tk-str">[TLSv1.3]</span>
-<span class="line-no">3</span><span class="tk-kw">[TCP_SOCKET]</span> 192.168.1.1:8080 <span class="tk-fn">ESTABLISHED</span>
-<span class="line-no">4</span><span class="tk-kw">[HTTP/2]</span> GET /api/v2/handshake <span class="tk-num">200 OK</span>
-<span class="line-no">5</span><span class="tk-comm">&gt; Latency: 0.8ms &bull; Packet Loss: 0.0%</span><span class="terminal-cursor"></span></code></pre>
+          <pre><code><span class="line-no">1</span><span class="tk-comm"># OpenWrt Bandwidth &amp; Quota Engine</span>
+2<span class="line-no">2</span><span class="tk-kw">iptables</span> -I FORWARD -m quota --quota <span class="tk-num">5368709120</span> -j ACCEPT
+3<span class="line-no">3</span><span class="tk-kw">uci</span> set wireless.@wifi-iface[0].isolate=<span class="tk-str">'1'</span>
+4<span class="line-no">4</span><span class="tk-fn">telemetry_daemon</span> --socket=/tmp/router.sock <span class="tk-str">--stream</span>
+5<span class="line-no">5</span><span class="tk-comm">&gt; Nodes: 48 online &bull; Mesh latency: 1.2ms</span><span class="terminal-cursor"></span></code></pre>
         </div>
       </div>
 
-      <!-- 4. WEB PLATFORMS & 3D (WebGL, Frontend, UI) -->
+      <!-- 4. FULL-STACK WEB ARCHITECTURE (Next.js & PHP Enterprise) -->
       <div class="intro-terminal terminal-web" id="term-web">
         <div class="terminal-bar">
           <div class="terminal-dots">
@@ -176,18 +176,17 @@
             <span class="dot-green"></span>
           </div>
           <div class="terminal-title">
-            <i class="fab fa-js text-yellow-400"></i> webgl_spatial.js
+            <i class="fab fa-react text-cyan-400"></i> gouna_lifestyle.tsx
           </div>
-          <span class="terminal-badge badge-cyan">WEB_3D</span>
+          <span class="terminal-badge badge-cyan">NEXT.JS+PHP</span>
         </div>
         <div class="terminal-body">
-          <pre><code><span class="line-no">1</span><span class="tk-comm">// Interactive 3D Spatial Pipeline</span>
-<span class="line-no">2</span><span class="tk-kw">const</span> engine = <span class="tk-kw">new</span> <span class="tk-cls">ThreeSpatialCore</span>({
-<span class="line-no">3</span>  renderer: <span class="tk-str">'WEBGL_2'</span>,
-<span class="line-no">4</span>  shaders: [<span class="tk-str">'quantum'</span>, <span class="tk-str">'neon_grid'</span>],
-<span class="line-no">5</span>  fpsTarget: <span class="tk-num">60</span>
-<span class="line-no">6</span>});
-<span class="line-no">7</span>engine.<span class="tk-fn">mountViewport</span>(<span class="tk-str">'#dimension'</span>);<span class="terminal-cursor"></span></code></pre>
+          <pre><code><span class="line-no">1</span><span class="tk-comm">// Cyber-Wise Enterprise Destination Core</span>
+2<span class="line-no">2</span><span class="tk-kw">export default async function</span> <span class="tk-cls">GounaPlatform</span>() {
+3<span class="line-no">3</span>  <span class="tk-kw">const</span> feeds = <span class="tk-kw">await</span> api.<span class="tk-fn">get</span>(<span class="tk-str">'/api/php/destinations'</span>);
+4<span class="line-no">4</span>  <span class="tk-kw">return</span> &lt;<span class="tk-cls">LifestyleExperience</span> cache=<span class="tk-str">"ISR"</span> items={feeds} /&gt;;
+5<span class="line-no">5</span>}
+6<span class="terminal-cursor"></span></code></pre>
         </div>
       </div>
 
@@ -765,23 +764,300 @@
     </section>
 
     <!-- ─────────────────────────────────── -->
-    <!-- SECTION 4: SELECTED WORKS          -->
+    <!-- SECTION 4: SELECTED WORKS (CINEMATIC)-->
     <!-- ─────────────────────────────────── -->
     <section id="works" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
-      <div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end">
+      <div class="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
         <div class="text-left">
-          <span class="section-label">CASE STUDIES</span>
-          <h2 class="section-title">Selected Works</h2>
+          <span class="section-label">CINEMATIC SHOWCASE &bull; CASE STUDIES</span>
+          <h2 class="section-title">Selected Flagship Works</h2>
+          <p class="text-xs text-slate-400 max-w-xl mt-3 leading-relaxed">
+            A curated portfolio of high-impact engineering systems — spanning enterprise web applications (Cyber-Wise), router network &amp; hardware IoT (OpenWrt), educational portals (Mostaqbal Watan), and advanced offline-first Flutter mobile applications.
+          </p>
         </div>
-        <p class="text-xs text-slate-400 max-w-xs mt-4 md:mt-0 leading-relaxed">
-          Mobile products engineered to solve critical bottlenecks with aesthetic excellence.
-        </p>
+        <div class="flex items-center gap-3">
+          <span class="cyber-badge cyber-badge-cyan text-[10px] font-bold py-1 px-3">
+            <i class="fas fa-layer-group mr-1.5" aria-hidden="true"></i> 8 Core Flagships
+          </span>
+        </div>
       </div>
 
+      <!-- ── CINEMATIC DIRECTOR FILTER TABS ── -->
+      <div class="cinematic-filter-bar mb-10 bento-reveal" role="tablist" aria-label="Filter projects by discipline">
+        <button type="button" class="cinematic-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+          <i class="fas fa-star text-yellow-400 text-xs" aria-hidden="true"></i> All Flagships (الكل)
+        </button>
+        <button type="button" class="cinematic-filter-btn" data-filter="enterprise" role="tab" aria-selected="false">
+          <i class="fas fa-building text-cyan-400 text-xs" aria-hidden="true"></i> Enterprise &amp; Web (منصات ويب)
+        </button>
+        <button type="button" class="cinematic-filter-btn" data-filter="systems" role="tab" aria-selected="false">
+          <i class="fas fa-microchip text-purple-400 text-xs" aria-hidden="true"></i> Hardware, IoT &amp; Networks (هاردوير وشبكات)
+        </button>
+        <button type="button" class="cinematic-filter-btn" data-filter="edtech" role="tab" aria-selected="false">
+          <i class="fas fa-graduation-cap text-emerald-400 text-xs" aria-hidden="true"></i> EdTech &amp; Python (منصات تعليمية)
+        </button>
+        <button type="button" class="cinematic-filter-btn" data-filter="mobile" role="tab" aria-selected="false">
+          <i class="fab fa-flutter text-sky-400 text-xs" aria-hidden="true"></i> Mobile Apps (تطبيقات الموبايل)
+        </button>
+      </div>
+
+      <!-- ── 8 CINEMATIC FLAGSHIP PROJECTS GRID ── -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-        <!-- Work 1: Aqar -->
-        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[500px] group bento-reveal" data-project="aqar" tabindex="0" aria-label="View Aqar project case study" id="project-aqar">
+        <!-- Flagship 1: Gouna Lifestyle (Cyber-Wise) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="gouna_lifestyle" data-category="enterprise web" tabindex="0" aria-label="View Gouna Lifestyle project case study" id="project-gouna">
+          <div class="cinematic-card-glow" style="--accent-glow:#06b6d4;" aria-hidden="true"></div>
+          
+          <div class="flex-1 flex items-center justify-center mb-6 relative">
+            <div class="tilt-container w-full">
+              <!-- Cyber Browser Mockup Frame -->
+              <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-md flex flex-col group-hover:border-cyan-500/40 transition-colors">
+                <div class="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-white/[0.03]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <div class="flex items-center gap-1.5 px-3 py-0.5 rounded bg-black/40 border border-white/10 text-[9px] text-slate-300 font-mono truncate max-w-[200px]">
+                    <i class="fas fa-lock text-[8px] text-emerald-400"></i>
+                    <span>gouna-lifestyle-platform.vercel.app</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-cyan-400 font-bold">SSR</span>
+                </div>
+                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-cyan-950/30 via-[#0a071d] to-purple-950/20">
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-gem mr-1"></i> LUXURY DESTINATION</span>
+                      <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">LIVE VERCEL</span>
+                    </div>
+                    <div class="font-heading text-xl font-black text-white mb-1">Gouna Lifestyle</div>
+                    <div class="text-[11px] text-slate-300/80 font-normal line-clamp-2">High-end Red Sea luxury properties, district exploration, and concierge booking engine.</div>
+                  </div>
+                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
+                    <span>Next.js 14 &bull; PHP REST</span>
+                    <span class="text-cyan-400 font-bold flex items-center gap-1">Preview <i class="fas fa-external-link-alt text-[7px]"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="z-10 mt-2">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge cinematic-badge-client"><i class="fas fa-building text-[8px]" aria-hidden="true"></i> CYBER-WISE</span>
+              <span class="cinematic-badge cinematic-badge-live"><span class="cinematic-live-dot"></span> LIVE IN PRODUCTION</span>
+              <span class="cinematic-badge">NEXT.JS &bull; PHP BACKEND</span>
+            </div>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Gouna Lifestyle Platform</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              منصة رقمية فاخرة متكاملة لاستكشاف العقارات ونمط الحياة السياحي الراقي في مدينة الجونة بالبحر الأحمر. تم تنفيذها لصالح شركة Cyber-Wise بواسطة Next.js مع خدمات خلفية بلغة PHP.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <a href="https://gouna-lifestyle-platform-cbmy-3qqy66fpn-covantage-sr.vercel.app/ar" target="_blank" rel="noopener noreferrer" class="cinematic-action-btn cinematic-action-live" onclick="event.stopPropagation()" aria-label="Open Gouna Lifestyle live platform">
+                  <i class="fas fa-arrow-up-right-from-square text-[9px]" aria-hidden="true"></i>
+                  <span>Live Platform</span>
+                </a>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Flagship 2: OpenWrt WiFi Quota Manager (Hardware, Networks & Mobile) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="openwrt_quota" data-category="systems hardware" tabindex="0" aria-label="View OpenWrt WiFi Quota Manager case study" id="project-openwrt">
+          <div class="cinematic-card-glow" style="--accent-glow:#8b5cf6;" aria-hidden="true"></div>
+
+          <div class="flex-1 flex items-center justify-center mb-6 relative">
+            <div class="tilt-container w-full">
+              <!-- Hardware/Terminal Mockup Frame -->
+              <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-4 overflow-hidden backdrop-blur-md flex flex-col justify-between group-hover:border-purple-400/50 transition-colors">
+                <div class="flex items-center justify-between border-b border-purple-500/20 pb-2">
+                  <div class="flex items-center gap-1.5">
+                    <i class="fas fa-microchip text-purple-400 text-xs"></i>
+                    <span class="font-mono text-[10px] font-bold text-white">OPENWRT_ROUTER // NODE_DAEMON</span>
+                  </div>
+                  <span class="cyber-badge cyber-badge-cyan text-[7px]"><i class="fas fa-circle text-[4px] mr-1 text-emerald-400"></i> IPTABLES</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 my-2">
+                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-center">
+                    <div class="text-[8px] text-slate-400 font-mono">BANDWIDTH</div>
+                    <div class="text-sm font-black text-cyan-400 font-heading">1.48 TB</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-center">
+                    <div class="text-[8px] text-slate-400 font-mono">CLIENTS</div>
+                    <div class="text-sm font-black text-purple-400 font-heading">128 Nodes</div>
+                  </div>
+                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-center">
+                    <div class="text-[8px] text-slate-400 font-mono">CONTROLLER</div>
+                    <div class="text-sm font-black text-amber-400 font-heading">FLUTTER</div>
+                  </div>
+                </div>
+                <div class="p-2 rounded bg-black/60 border border-white/5 font-mono text-[9px] text-slate-400 leading-tight">
+                  <div class="text-cyan-400 truncate">[KERNEL] iptables quota metering active</div>
+                  <div class="text-purple-300 truncate">[SOCKET] Node daemon &bull; Flutter synced (0.4ms)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="z-10 mt-2">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge cinematic-badge-systems"><i class="fas fa-network-wired text-[8px]" aria-hidden="true"></i> HARDWARE &amp; LINUX</span>
+              <span class="cinematic-badge"><i class="fab fa-flutter text-[8px] text-cyan-400 mr-1"></i> FLUTTER APP</span>
+              <span class="cinematic-badge">NODE.JS DAEMON &bull; OPENWRT</span>
+            </div>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">OpenWrt WiFi Quota &amp; Bandwidth Manager</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              مشروع متكامل يجمع بين عتاد الراوترات (OpenWrt Linux)، وخادم Node.js، وتطبيق موبايل فلاتر، لإدارة كوتة واستهلاك الإنترنت لحظياً والتحكم في سرعات وأجهزة المستخدمين.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <a href="https://github.com/IbrahimElshishtawy/openwrt-wifi-quota-manager" target="_blank" rel="noopener noreferrer" class="cinematic-action-btn cinematic-action-code" onclick="event.stopPropagation()" aria-label="View OpenWrt Quota Manager repository on GitHub">
+                  <i class="fab fa-github text-xs" aria-hidden="true"></i>
+                  <span>GitHub Repo</span>
+                </a>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Flagship 3: Etihad Bshababha & Mostaqbal Watan Python Hub -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="etihad_bshababha" data-category="edtech web" tabindex="0" aria-label="View Etihad Bshababha case study" id="project-etihad">
+          <div class="cinematic-card-glow" style="--accent-glow:#10b981;" aria-hidden="true"></div>
+
+          <div class="flex-1 flex items-center justify-center mb-6 relative">
+            <div class="tilt-container w-full">
+              <!-- Cyber Browser Mockup Frame -->
+              <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-md flex flex-col group-hover:border-emerald-500/40 transition-colors">
+                <div class="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-white/[0.03]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <div class="flex items-center gap-1.5 px-3 py-0.5 rounded bg-black/40 border border-white/10 text-[9px] text-slate-300 font-mono truncate max-w-[200px]">
+                    <i class="fas fa-lock text-[8px] text-emerald-400"></i>
+                    <span>etihad-bshababha.web.app</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-emerald-400 font-bold">NEXT.JS</span>
+                </div>
+                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-emerald-950/30 via-[#091512] to-black">
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="cyber-badge text-emerald-400 border-emerald-500/30 bg-emerald-500/10 text-[8px]"><i class="fas fa-graduation-cap mr-1"></i> EDTECH HUB</span>
+                      <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">FIREBASE</span>
+                    </div>
+                    <div class="font-heading text-xl font-black text-white mb-1">اتحاد بشبابها &bull; بايثون</div>
+                    <div class="text-[11px] text-slate-300/80 font-normal line-clamp-2">منصة تعليمية ومسار بايثون لمبادرة مستقبل وطن لتدريب الطلاب وحل التمارين البرمجية.</div>
+                  </div>
+                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
+                    <span>Python &bull; Firestore &bull; Next.js</span>
+                    <span class="text-emerald-400 font-bold flex items-center gap-1">Open Portal <i class="fas fa-external-link-alt text-[7px]"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="z-10 mt-2">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge cinematic-badge-edtech"><i class="fas fa-users text-[8px]" aria-hidden="true"></i> MOSTAQBAL WATAN</span>
+              <span class="cinematic-badge cinematic-badge-live"><span class="cinematic-live-dot"></span> LIVE DEPLOYMENT</span>
+              <span class="cinematic-badge">NEXT.JS &bull; FIREBASE &bull; PYTHON</span>
+            </div>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Etihad Bshababha — Python EdTech Hub</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              المنصة التفاعلية الرسمية لمبادرة اتحاد بشبابها ومسار كورس بايثون لحزب مستقبل وطن، لتمكين الطلاب ومتابعة المحاضرات وحل التحديات البرمجية بلغة بايثون.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2 flex-wrap">
+                <a href="https://etihad-bshababha.web.app/" target="_blank" rel="noopener noreferrer" class="cinematic-action-btn cinematic-action-live" onclick="event.stopPropagation()" aria-label="Open Etihad Bshababha live platform">
+                  <i class="fas fa-arrow-up-right-from-square text-[9px]" aria-hidden="true"></i>
+                  <span>Live Portal</span>
+                </a>
+                <a href="https://github.com/IbrahimElshishtawy/project_pyrthon" target="_blank" rel="noopener noreferrer" class="cinematic-action-btn cinematic-action-code" onclick="event.stopPropagation()" aria-label="View Python curriculum on GitHub">
+                  <i class="fab fa-github text-xs" aria-hidden="true"></i>
+                  <span>Python Repo</span>
+                </a>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Flagship 4: Pro Setup Platform (Workstations & Ergonomics) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="pro_setup_platform" data-category="enterprise web" tabindex="0" aria-label="View Pro Setup Platform case study" id="project-prosetup">
+          <div class="cinematic-card-glow" style="--accent-glow:#f59e0b;" aria-hidden="true"></div>
+
+          <div class="flex-1 flex items-center justify-center mb-6 relative">
+            <div class="tilt-container w-full">
+              <!-- Cyber Browser Mockup Frame -->
+              <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-md flex flex-col group-hover:border-amber-500/40 transition-colors">
+                <div class="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-white/[0.03]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <div class="flex items-center gap-1.5 px-3 py-0.5 rounded bg-black/40 border border-white/10 text-[9px] text-slate-300 font-mono truncate max-w-[200px]">
+                    <i class="fas fa-lock text-[8px] text-emerald-400"></i>
+                    <span>pro-setup-platform.web.app</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-amber-400 font-bold">NEXT.JS</span>
+                </div>
+                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-amber-950/30 via-[#161005] to-black">
+                  <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="cyber-badge text-amber-400 border-amber-500/30 bg-amber-500/10 text-[8px]"><i class="fas fa-desktop mr-1"></i> WORKSTATION PLATFORM</span>
+                      <span class="text-[8px] font-mono text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">LIVE APP</span>
+                    </div>
+                    <div class="font-heading text-xl font-black text-white mb-1">Pro Setup Platform</div>
+                    <div class="text-[11px] text-slate-300/80 font-normal line-clamp-2">Interactive desk ergonomics, monitor setups, creator workspaces, and productivity setups.</div>
+                  </div>
+                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
+                    <span>Next.js &bull; Tailwind &bull; Firebase</span>
+                    <span class="text-amber-400 font-bold flex items-center gap-1">Open Setup <i class="fas fa-external-link-alt text-[7px]"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="z-10 mt-2">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge"><i class="fas fa-sliders text-[8px]" aria-hidden="true"></i> WORKSPACE CONFIGURATOR</span>
+              <span class="cinematic-badge cinematic-badge-live"><span class="cinematic-live-dot"></span> LIVE WEB APP</span>
+              <span class="cinematic-badge">NEXT.JS &bull; TAILWIND CSS</span>
+            </div>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Pro Setup Platform (مكتب وتجهيز بيئات العمل)</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              منصة تفاعلية متطورة تهدف لمساعدة المطورين والمبدعين في استعراض واختيار وتجهيز مكاتبهم وبيئات العمل الاحترافية بأعلى معايير الإنتاجية والأناقة.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <a href="https://pro-setup-platform.web.app/" target="_blank" rel="noopener noreferrer" class="cinematic-action-btn cinematic-action-live" onclick="event.stopPropagation()" aria-label="Open Pro Setup Platform live web app">
+                  <i class="fas fa-arrow-up-right-from-square text-[9px]" aria-hidden="true"></i>
+                  <span>Live Platform</span>
+                </a>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Flagship 5: Aqar (Flutter Real Estate) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="aqar" data-category="mobile" tabindex="0" aria-label="View Aqar project case study" id="project-aqar">
+          <div class="cinematic-card-glow" style="--accent-glow:#8b5cf6;" aria-hidden="true"></div>
           <div class="flex-1 flex items-center justify-center mb-6 relative">
             <div class="tilt-container">
               <div class="iphone-mockup">
@@ -793,19 +1069,29 @@
             </div>
           </div>
           <div class="z-10 mt-2">
-            <div class="glass-tag-row mb-3">
-              <span class="cyber-badge text-[9px]">REAL ESTATE</span>
-              <span class="cyber-badge cyber-badge-cyan text-[9px]">OFFLINE-FIRST</span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
+              <span class="cinematic-badge text-purple-400 border-purple-500/30">OFFLINE-FIRST SQL</span>
+              <span class="cinematic-badge">CLEAN ARCHITECTURE</span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-white mb-4">Aqar (عقار)</h3>
-            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Aqar (عقار)</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              تطبيق إدارة مشاريع عقارية وعقود ومبيعات يعمل بدون إنترنت بتزامن محلي كامل عبر SqFlite وهيكلية برمجية نظيفة.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">SqFlite &bull; Fl_Chart &bull; GetX</span>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- Work 2: Bostan -->
-        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[500px] group bento-reveal" data-project="bostan" tabindex="0" aria-label="View Bostan project case study" id="project-bostan">
+        <!-- Flagship 6: Bostan (Quranic Spiritual Companion) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="bostan" data-category="mobile" tabindex="0" aria-label="View Bostan project case study" id="project-bostan">
+          <div class="cinematic-card-glow" style="--accent-glow:#06b6d4;" aria-hidden="true"></div>
           <div class="flex-1 flex items-center justify-center mb-6 relative">
             <div class="tilt-container">
               <div class="iphone-mockup">
@@ -817,19 +1103,29 @@
             </div>
           </div>
           <div class="z-10 mt-2">
-            <div class="glass-tag-row mb-3">
-              <span class="cyber-badge text-[9px]">SPIRITUAL TECH</span>
-              <span class="cyber-badge cyber-badge-cyan text-[9px]">AUDIO SYNC</span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
+              <span class="cinematic-badge text-cyan-400 border-cyan-500/30">AUDIO SYNC</span>
+              <span class="cinematic-badge">HIVE DB &bull; VECTOR GLYPHS</span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-white mb-4">Bostan (بُستان)</h3>
-            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Bostan (بُستان)</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              تطبيق إسلامي متطور لقراءة القرآن ومتابعة العادات اليومية مع مزامنة صوتية آية بآية ورسم عثماني فائق الدقة.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Audio Player &bull; Hive &bull; GetX</span>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- Work 3: Animal Connect -->
-        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[500px] group bento-reveal" data-project="animalconnect" tabindex="0" aria-label="View Animal Connect project case study" id="project-animal">
+        <!-- Flagship 7: Animal Connect (Real-Time Marketplace) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="animalconnect" data-category="mobile" tabindex="0" aria-label="View Animal Connect project case study" id="project-animal">
+          <div class="cinematic-card-glow" style="--accent-glow:#10b981;" aria-hidden="true"></div>
           <div class="flex-1 flex items-center justify-center mb-6 relative">
             <div class="tilt-container">
               <div class="iphone-mockup">
@@ -841,19 +1137,29 @@
             </div>
           </div>
           <div class="z-10 mt-2">
-            <div class="glass-tag-row mb-3">
-              <span class="cyber-badge text-[9px]">MARKETPLACE</span>
-              <span class="cyber-badge cyber-badge-cyan text-[9px]">SOCKET.IO</span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
+              <span class="cinematic-badge text-emerald-400 border-emerald-500/30">SOCKET.IO LIVE</span>
+              <span class="cinematic-badge">NODE.JS &bull; MONGODB</span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-white mb-4">Animal Connect</h3>
-            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Animal Connect</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              سوق إلكتروني متكامل للحيوانات الأليفة وخدمات الرعاية البيطرية مع محادثات حية فورية والبحث الجغرافي بالـ Geohash.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Node.js &bull; Geohash &bull; MongoDB</span>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </article>
 
-        <!-- Work 4: Tola'b -->
-        <article class="project-card flex flex-col justify-between p-8 md:p-10 min-h-[500px] group bento-reveal" data-project="tolabapp" tabindex="0" aria-label="View Tola'b project case study" id="project-tolab">
+        <!-- Flagship 8: Tola'b (Student Academic Hub) -->
+        <article class="project-card cinematic-project-card flex flex-col justify-between p-8 md:p-10 min-h-[520px] group bento-reveal relative overflow-hidden" data-project="tolabapp" data-category="mobile" tabindex="0" aria-label="View Tola'b project case study" id="project-tolab">
+          <div class="cinematic-card-glow" style="--accent-glow:#f59e0b;" aria-hidden="true"></div>
           <div class="flex-1 flex items-center justify-center mb-6 relative">
             <div class="tilt-container">
               <div class="iphone-mockup">
@@ -865,13 +1171,22 @@
             </div>
           </div>
           <div class="z-10 mt-2">
-            <div class="glass-tag-row mb-3">
-              <span class="cyber-badge text-[9px]">PRODUCTIVITY</span>
-              <span class="cyber-badge cyber-badge-cyan text-[9px]">STUDENT TECH</span>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
+              <span class="cinematic-badge text-amber-400 border-amber-500/30">STUDENT TECH</span>
+              <span class="cinematic-badge">EMBEDDED PDF &bull; HIVE</span>
             </div>
-            <h3 class="font-heading text-2xl font-extrabold text-white mb-4">Tola'b (طُلاَّب)</h3>
-            <div class="project-cta flex items-center gap-2 text-xs font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
-              Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+            <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Tola'b (طُلاَّب)</h3>
+            <p class="text-xs text-slate-400 mb-4 line-clamp-2 leading-relaxed">
+              تطبيق إنتاجية وتنظيم أكاديمي للطلاب الجامعيين مع قارئ PDF مدمج وتنبيهات ذكية وجداول محاضرات تفاعلية.
+            </p>
+            <div class="flex items-center justify-between gap-4 pt-2 border-t border-white/5">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-mono text-slate-400">Hive DB &bull; PDF Engine &bull; Local Alarms</span>
+              </div>
+              <div class="project-cta flex items-center gap-2 text-xs font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                Explore Case Study <i class="fas fa-chevron-right text-[9px] group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+              </div>
             </div>
           </div>
         </article>

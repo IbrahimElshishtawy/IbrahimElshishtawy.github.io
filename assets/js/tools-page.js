@@ -157,14 +157,15 @@
       projectsList = projectsList.filter(p => {
         if (activeProjectType === 'mobile') return p.type === 'mobile';
         if (activeProjectType === 'web') return p.type === 'web';
-        if (activeProjectType === 'backend') return p.tags.some(t => ['Node.js', 'MongoDB', 'Firebase', 'Socket.io', 'Express'].includes(t));
+        if (activeProjectType === 'systems') return p.type === 'systems';
+        if (activeProjectType === 'backend') return p.tags.some(t => ['Node.js', 'MongoDB', 'Firebase', 'Socket.io', 'Express', 'PHP'].includes(t));
         if (activeProjectType === 'fullstack') return p.tags.length >= 4;
         return true;
       });
     }
 
     if (!showAllProjects && activeProjectType === 'all') {
-      projectsList = projectsList.slice(0, 8);
+      projectsList = projectsList.slice(0, 10);
     }
 
     container.innerHTML = projectsList.map(project => `
@@ -172,11 +173,16 @@
         <div class="project-img-box">
           <img src="${project.image || 'assets/assets/profile.jpg'}" alt="${project.title}" loading="lazy">
           <span class="project-type-badge">
-            ${project.typeLabelAr || (project.type === 'mobile' ? 'تطبيق موبايل' : 'تطبيق ويب')}
+            ${project.typeLabelAr || (project.type === 'mobile' ? 'تطبيق موبايل' : project.type === 'systems' ? 'أنظمة وشبكات' : 'تطبيق ويب')}
           </span>
         </div>
         <div class="project-card-body">
           <div>
+            ${project.clientAr ? `
+              <span class="text-[9px] font-bold text-cyan-400 uppercase tracking-wider block mb-1">
+                <i class="fas fa-building text-[8px] mr-1"></i> ${project.clientAr}
+              </span>
+            ` : ''}
             <h3 class="project-card-title">${project.titleAr || project.title}</h3>
             <p class="project-card-desc">${project.description || project.subtitle}</p>
           </div>
@@ -192,11 +198,18 @@
               <span class="project-action-link">
                 عرض التفاصيل <i class="fas fa-arrow-left text-[10px]"></i>
               </span>
-              ${project.repoLink && project.repoLink !== '#' ? `
-                <a href="${project.repoLink}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-xs" onclick="event.stopPropagation();" aria-label="GitHub Code">
-                  <i class="fab fa-github"></i>
-                </a>
-              ` : ''}
+              <div class="flex items-center gap-2.5">
+                ${project.demoLink && project.demoLink !== '#' ? `
+                  <a href="${project.demoLink}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-white text-xs transition-colors" onclick="event.stopPropagation();" title="المعاينة المباشرة" aria-label="Live Demo">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                ` : ''}
+                ${project.repoLink && project.repoLink !== '#' ? `
+                  <a href="${project.repoLink}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-xs transition-colors" onclick="event.stopPropagation();" title="كود المشروع على GitHub" aria-label="GitHub Code">
+                    <i class="fab fa-github"></i>
+                  </a>
+                ` : ''}
+              </div>
             </div>
           </div>
         </div>
