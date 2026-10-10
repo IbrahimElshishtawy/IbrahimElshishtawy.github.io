@@ -109,9 +109,9 @@ function renderCaseStudy(data) {
   /* Smart asset selector: Browser Mockup, Hardware Blueprint, or Mobile Frame */
   let mockupHTML = '';
 
-  if (data.mockupType === 'browser') {
+  if (data.mockupType === 'browser' || data.mockupType === 'desktop') {
     mockupHTML = `
-      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor || '#06b6d4'}33;">
+      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-2xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor || '#06b6d4'}33;">
         <!-- Browser Top Bar -->
         <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/[0.03]">
           <div class="flex items-center gap-2">
@@ -127,64 +127,73 @@ function renderCaseStudy(data) {
             <i class="fas fa-shield-alt text-[10px] text-cyan-400"></i>
           </div>
         </div>
-        <!-- Browser Body / Preview Visual -->
-        <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-cyan-950/20 via-black to-purple-950/20">
-          <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px]" aria-hidden="true"></div>
-          <div class="relative z-10">
-            <div class="flex items-center justify-between mb-4">
-              <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> ${data.projectClass || 'WEB PLATFORM'}</span>
-              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> VERIFIED DEPLOYMENT</span>
+        <!-- Browser Body With Real Image Preview -->
+        ${data.image ? `
+          <div class="relative flex-1 overflow-hidden bg-black/60 group/modalimg min-h-[280px]">
+            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-xs font-mono">
+              <span class="text-white font-bold drop-shadow-lg">${data.title}</span>
+              ${data.demoLink && data.demoLink !== '#' ? `
+                <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 bg-black/70 px-3 py-1 rounded-lg border border-cyan-500/40 hover:bg-cyan-500/20 transition-colors flex items-center gap-1.5 font-bold">
+                  Open Live <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+                </a>
+              ` : ''}
             </div>
-            <h3 class="font-heading text-2xl font-black text-white mb-2 leading-tight">${data.title}</h3>
-            <p class="text-xs text-slate-300/85 max-w-md line-clamp-3 leading-relaxed">${data.summary || data.subtitle || data.description}</p>
           </div>
-          <div class="relative z-10 pt-4 border-t border-white/5 flex items-center justify-between">
-            <div class="flex items-center gap-2 flex-wrap">
-              ${techList.slice(0, 4).map(t => `<span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-slate-300 border border-white/10">${t}</span>`).join('')}
+        ` : `
+          <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-cyan-950/20 via-black to-purple-950/20">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> ${data.projectClass || 'WEB PLATFORM'}</span>
+                <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> VERIFIED DEPLOYMENT</span>
+              </div>
+              <h3 class="font-heading text-2xl font-black text-white mb-2 leading-tight">${data.title}</h3>
+              <p class="text-xs text-slate-300/85 max-w-md line-clamp-3 leading-relaxed">${data.summary || data.subtitle || data.description}</p>
             </div>
-            ${data.demoLink && data.demoLink !== '#' ? `
-              <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
-                Open Platform <i class="fas fa-arrow-up-right-from-square text-[8px]"></i>
-              </a>
-            ` : ''}
           </div>
-        </div>
+        `}
       </div>
     `;
   } else if (data.mockupType === 'hardware') {
     mockupHTML = `
-      <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-6 overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
+      <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-2xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
         <!-- Top status bar -->
-        <div class="flex items-center justify-between border-b border-purple-500/20 pb-3">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-purple-500/20 bg-white/[0.02]">
           <div class="flex items-center gap-2">
             <i class="fas fa-microchip text-purple-400"></i>
-            <span class="font-mono text-xs font-bold text-white">OPENWRT_SYSTEMS_ENGINEERING // ARCHITECTURE</span>
+            <span class="font-mono text-xs font-bold text-white">OPENWRT_SYSTEMS_ENGINEERING // TELEMETRY</span>
           </div>
           <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-circle text-[5px] mr-1 text-emerald-400 animate-ping"></i> ACTIVE REPO</span>
         </div>
+        <!-- Real Systems Engineering Visual -->
+        ${data.image ? `
+          <div class="relative flex-1 overflow-hidden bg-black/80 min-h-[260px]">
+            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono">
+              <span class="text-white font-bold drop-shadow-lg">Router Firmware &amp; Telemetry</span>
+              <span class="text-purple-300 bg-black/70 px-2.5 py-1 rounded border border-purple-500/30 font-bold">Linux iptables / tc</span>
+            </div>
+          </div>
+        ` : ''}
         <!-- Architectural Component Breakdown -->
-        <div class="grid grid-cols-3 gap-3 my-4">
-          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">ROUTER FIRMWARE</div>
-            <div class="text-xs font-black text-cyan-400 font-heading">OpenWrt OS</div>
-            <div class="text-[8px] text-slate-400 font-mono mt-0.5">iptables &amp; tc shaping</div>
+        <div class="p-4 grid grid-cols-3 gap-3 border-t border-white/5 bg-[#070514]/90">
+          <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[8px] text-slate-400 font-mono mb-0.5">ROUTER FIRMWARE</div>
+            <div class="text-[11px] font-black text-cyan-400 font-heading">OpenWrt OS</div>
+            <div class="text-[7.5px] text-slate-400 font-mono">iptables &amp; tc shaping</div>
           </div>
-          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">DAEMON SERVICE</div>
-            <div class="text-xs font-black text-purple-400 font-heading">Node.js Daemon</div>
-            <div class="text-[8px] text-slate-400 font-mono mt-0.5">IPC &amp; WebSockets bridge</div>
+          <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[8px] text-slate-400 font-mono mb-0.5">DAEMON SERVICE</div>
+            <div class="text-[11px] font-black text-purple-400 font-heading">Node.js Daemon</div>
+            <div class="text-[7.5px] text-slate-400 font-mono">WebSockets IPC</div>
           </div>
-          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">CONTROLLER APP</div>
-            <div class="text-xs font-black text-amber-400 font-heading">Flutter Mobile</div>
-            <div class="text-[8px] text-slate-400 font-mono mt-0.5">Clean Architecture UI</div>
+          <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[8px] text-slate-400 font-mono mb-0.5">CONTROLLER APP</div>
+            <div class="text-[11px] font-black text-amber-400 font-heading">Flutter Mobile</div>
+            <div class="text-[7.5px] text-slate-400 font-mono">Clean Architecture</div>
           </div>
-        </div>
-        <!-- Shell rules excerpt -->
-        <div class="p-3 rounded-xl bg-black/70 border border-white/5 font-mono text-[10px] text-slate-400 leading-relaxed overflow-hidden">
-          <div class="text-cyan-400 font-semibold">[KERNEL] iptables -I FORWARD -m quota --quota $BYTES_LIMIT -j ACCEPT</div>
-          <div class="text-purple-300">[DAEMON] Node.js telemetry socket @ /var/run/quota_daemon.sock</div>
-          <div class="text-emerald-400">[MOBILE] Flutter client receives live device quota metrics</div>
         </div>
       </div>
     `;

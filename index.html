@@ -18,13 +18,18 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ibrahimelshishtawy.github.io">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Google Site Verification (SEO) -->
+  <meta name="google-site-verification" content="google2df4c36ebcf8dbb1">
 
-  <!-- Google Fonts: Editorial & Modern Engineering Typography -->
+  <!-- Favicon & Website Icon Logo -->
+  <link rel="icon" type="image/svg+xml" href="assets/assets/logo.svg">
+  <link rel="icon" type="image/png" href="favicon.svg">
+  <link rel="apple-touch-icon" href="assets/assets/logo.svg">
+
+  <!-- Google Fonts: Editorial, Arabic & Modern Engineering Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -48,8 +53,8 @@
             cyberOrange: '#f97316',
           },
           fontFamily: {
-            heading: ['Outfit', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'sans-serif'],
+            heading: ['Outfit', 'Cairo', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           }
         }
@@ -78,23 +83,28 @@
     <div class="glass-nav max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
       <!-- Logo -->
       <a href="#hero" id="nav-logo" class="font-heading text-base font-black tracking-wider text-white hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2.5" aria-label="Ibrahim Elshishtawy - Back to top">
-        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]" aria-hidden="true"></span>
+        <img src="assets/assets/logo.svg" alt="Ibrahim Logo Icon" class="w-7 h-7 object-contain drop-shadow-[0_0_8px_#06b6d4]">
         <span class="tracking-widest">IBRAHIM<span class="text-cyan-400">.DEV</span></span>
       </a>
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-7" aria-label="Main navigation">
-        <a href="#hero" class="nav-link">Overview</a>
-        <a href="#works" id="nav-works" class="nav-link">Featured Works</a>
-        <a href="#systems-engineering" class="nav-link text-purple-400 hover:text-purple-300">Systems Engineering</a>
-        <a href="#expertise" id="nav-expertise" class="nav-link">Expertise</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="tools.html" class="nav-link text-slate-400 hover:text-cyan-400" title="Tools &amp; Stack Directory">Tools / التولز</a>
-        <a href="#contact" id="nav-contact" class="nav-link">Contact</a>
+        <a href="#hero" class="nav-link" data-i18n="nav_overview">Overview</a>
+        <a href="#works" id="nav-works" class="nav-link" data-i18n="nav_works">Featured Works</a>
+        <a href="#systems-engineering" class="nav-link text-purple-400 hover:text-purple-300" data-i18n="nav_systems">Systems Engineering</a>
+        <a href="#expertise" id="nav-expertise" class="nav-link" data-i18n="nav_expertise">Expertise</a>
+        <a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a>
+        <a href="tools.html" class="nav-link text-slate-400 hover:text-cyan-400" title="Tools &amp; Stack Directory" data-i18n="nav_tools">Tools / التولز</a>
+        <a href="#contact" id="nav-contact" class="nav-link" data-i18n="nav_contact">Contact</a>
       </nav>
 
-      <!-- Right Controls: Theme Switcher & Direct CTA -->
-      <div class="flex items-center gap-3">
+      <!-- Right Controls: Language Switcher, Theme Switcher & Direct CTA -->
+      <div class="flex items-center gap-2.5">
+        <!-- Bilingual Language Switcher -->
+        <button type="button" id="lang-toggle-btn" class="theme-toggle-btn text-xs font-bold font-mono px-3 py-1.5 flex items-center gap-1.5 border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-sm" aria-label="Switch Language / تبديل اللغة" title="العربية / English">
+          <i class="fas fa-globe text-cyan-400 text-xs" aria-hidden="true"></i>
+          <span id="lang-label" class="text-white font-extrabold text-[11px]">AR</span>
+        </button>
         <!-- Theme Switcher & Light Mode -->
         <div class="hidden sm:flex items-center relative gap-2" id="theme-controls">
           <button type="button" id="mode-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Light/Dark Mode" title="Toggle Light/Dark">
@@ -371,18 +381,12 @@
                   </div>
                   <span class="text-[8px] font-mono text-cyan-400 font-bold">NEXT.JS</span>
                 </div>
-                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-cyan-950/30 via-[#0a071d] to-purple-950/20">
-                  <div class="relative z-10 text-left">
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-building mr-1"></i> CYBER-WISE</span>
-                      <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">LIVE PLATFORM</span>
-                    </div>
-                    <div class="font-heading text-xl font-black text-white mb-1">Gouna Lifestyle Platform</div>
-                    <div class="text-[11px] text-slate-300 font-normal line-clamp-2">Bilingual Red Sea luxury destination &amp; service exploration platform built with Next.js and PHP APIs.</div>
-                  </div>
-                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
-                    <span>Next.js · PHP REST · RTL/LTR</span>
-                    <span class="text-cyan-400 font-bold flex items-center gap-1">Inspect Architecture <i class="fas fa-arrow-right text-[7px]"></i></span>
+                <div class="relative flex-1 overflow-hidden bg-black/60 group/previewimg min-h-[200px]">
+                  <img src="assets/assets/gouna_lifestyle.jpg" alt="Gouna Lifestyle Platform Web Interface" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono">
+                    <span class="text-white font-bold drop-shadow-md flex items-center gap-1.5"><i class="fas fa-building text-cyan-400"></i> Cyber-Wise Client Work</span>
+                    <span class="text-cyan-400 font-semibold bg-black/70 px-2 py-0.5 rounded border border-cyan-500/30">Live Platform ↗</span>
                   </div>
                 </div>
               </div>
@@ -420,19 +424,22 @@
           <div class="flex-1 flex items-center justify-center mb-6 relative">
             <div class="tilt-container w-full">
               <!-- Systems Hardware/Terminal Blueprint -->
-              <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-4 overflow-hidden backdrop-blur-md flex flex-col justify-between group-hover:border-purple-400/50 transition-colors">
-                <div class="flex items-center justify-between border-b border-purple-500/20 pb-2">
+              <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-md mx-auto rounded-xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl overflow-hidden backdrop-blur-md flex flex-col justify-between group-hover:border-purple-400/50 transition-colors">
+                <div class="flex items-center justify-between border-b border-purple-500/20 px-3 py-2 bg-white/[0.02]">
                   <div class="flex items-center gap-1.5">
                     <i class="fas fa-microchip text-purple-400 text-xs"></i>
                     <span class="font-mono text-[10px] font-bold text-white">OPENWRT_FIRMWARE // IPTABLES_TC</span>
                   </div>
                   <span class="cyber-badge cyber-badge-cyan text-[7px]"><i class="fas fa-circle text-[4px] mr-1 text-emerald-400"></i> ACTIVE REPO</span>
                 </div>
-                <div class="grid grid-cols-3 gap-2 my-2 text-left">
-                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
-                    <div class="text-[8px] text-slate-400 font-mono">KERNEL</div>
-                    <div class="text-xs font-black text-cyan-400 font-heading">iptables</div>
-                    <div class="text-[7px] text-slate-500 font-mono">Byte counters</div>
+                <div class="relative flex-1 overflow-hidden bg-black/60 group/previewimg min-h-[200px]">
+                  <img src="assets/assets/openwrt_manager.jpg" alt="OpenWrt WiFi Quota Manager Dashboard" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono">
+                    <span class="text-white font-bold drop-shadow-md flex items-center gap-1.5"><i class="fas fa-network-wired text-purple-400"></i> OpenWrt Firmware &amp; Telemetry</span>
+                    <span class="text-purple-300 font-semibold bg-black/70 px-2 py-0.5 rounded border border-purple-500/30">Systems Core ↗</span>
+                  </div>
+                </div>
                   </div>
                   <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
                     <div class="text-[8px] text-slate-400 font-mono">DAEMON</div>

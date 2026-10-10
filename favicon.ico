@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <!-- Cyan Flutter Gradient -->
+    <linearGradient id="logoGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <!-- Purple Cyber Gradient -->
+    <linearGradient id="logoGradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e879f9"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+
+    <!-- Shield Obsidian Glass Fill -->
+    <linearGradient id="logoShieldGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(18, 14, 38, 0.92)"/>
+      <stop offset="100%" stop-color="rgba(7, 5, 18, 0.97)"/>
+    </linearGradient>
+
+    <!-- Shield Border Neon Gradient -->
+    <linearGradient id="logoShieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#d946ef"/>
+    </linearGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="logoBloom" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient Outer Glow Aura -->
+  <circle cx="60" cy="60" r="50" fill="#8b5cf6" opacity="0.18" filter="url(#logoBloom)"/>
+
+  <!-- Outer Hexagonal Tech Shield -->
+  <polygon points="60,8 105,34 105,86 60,112 15,86 15,34" 
+           fill="url(#logoShieldGlass)" 
+           stroke="url(#logoShieldBorder)" 
+           stroke-width="1.8" 
+           stroke-linejoin="round"/>
+
+  <!-- Inner Circuit Track -->
+  <polygon points="60,16 97,37 97,83 60,104 23,83 23,37" 
+           fill="none" 
+           stroke="rgba(255, 255, 255, 0.08)" 
+           stroke-width="1" 
+           stroke-dasharray="3 3"/>
+
+  <!-- High-Tech Corner Markers -->
+  <line x1="60" y1="8" x2="60" y2="16" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/>
+  <line x1="15" y1="34" x2="22" y2="38" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="105" y1="34" x2="98" y2="38" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/>
+  <line x1="15" y1="86" x2="22" y2="82" stroke="#d946ef" stroke-width="2" stroke-linecap="round"/>
+  <line x1="105" y1="86" x2="98" y2="82" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/>
+  <line x1="60" y1="112" x2="60" y2="104" stroke="#d946ef" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Specular Sheen Arc on Top Rim -->
+  <path d="M25 38 L60 17 L95 38" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- ── CENTRAL ICONIC MONOGRAM EMBLEM: < I > (Flutter Wings + Developer Core) ── -->
+  <g filter="url(#logoBloom)">
+    <!-- Left Opening Code Blade & Flutter Chevron (<) in Cyan -->
+    <path d="M48 38 L28 58 L28 62 L48 82 L53 76 L37 60 L53 44 Z" fill="url(#logoGradCyan)"/>
+
+    <!-- Right Closing Code Blade & Flutter Chevron (>) in Purple -->
+    <path d="M72 38 L92 58 L92 62 L72 82 L67 76 L83 60 L67 44 Z" fill="url(#logoGradPurple)"/>
+
+    <!-- Central "I" Pillar (Ibrahim Core) with Beveled Chamfers -->
+    <rect x="56" y="38" width="8" height="44" rx="3" fill="#ffffff"/>
+
+    <!-- Glowing Diamond Crystal Crown on the "I" -->
+    <polygon points="60,22 66,28 60,34 54,28" fill="#38bdf8"/>
+
+    <!-- Precision Core Dots -->
+    <circle cx="60" cy="28" r="1.5" fill="#ffffff"/>
+    <circle cx="60" cy="60" r="1.8" fill="#06b6d4"/>
+  </g>
+</svg>

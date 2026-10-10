@@ -97,6 +97,7 @@ const PROJECTS_DATA = {
     repoLabel: "GitHub Profile",
     accentColor: "#06b6d4",
     mockupType: "browser",
+    image: "assets/assets/gouna_lifestyle.jpg",
     urlPreview: "gouna-lifestyle-platform.vercel.app/ar",
     contributionDetails: [
       "Engineered the modern, responsive user interface using Next.js and Tailwind CSS with high visual fidelity.",
@@ -168,6 +169,7 @@ const PROJECTS_DATA = {
     repoLabel: "GitHub Repository",
     accentColor: "#8b5cf6",
     mockupType: "hardware",
+    image: "assets/assets/openwrt_manager.jpg",
     urlPreview: "github.com/IbrahimElshishtawy/openwrt-wifi-quota-manager",
     contributionDetails: [
       "Configured OpenWrt Linux router firmware and established kernel-level iptables byte quota counting rules.",
@@ -239,6 +241,7 @@ const PROJECTS_DATA = {
     repoLabel: "Python Curriculum Repo ↗",
     accentColor: "#10b981",
     mockupType: "browser",
+    image: "assets/assets/etihad_platform.jpg",
     urlPreview: "etihad-bshababha.web.app",
     contributionDetails: [
       "Engineered the educational web application frontend utilizing Next.js and Tailwind CSS.",
@@ -310,6 +313,7 @@ const PROJECTS_DATA = {
     repoLabel: "GitHub Profile",
     accentColor: "#f59e0b",
     mockupType: "browser",
+    image: "assets/assets/pro_setup.jpg",
     urlPreview: "pro-setup-platform.web.app",
     contributionDetails: [
       "Engineered an interactive workspace customizer allowing visitors to preview desks, monitors, and accessories.",
