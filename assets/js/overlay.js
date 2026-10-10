@@ -1,6 +1,7 @@
 /* ============================================================
-   IBRAHIM ELSHISHTAWY — PORTFOLIO ENGINE v3.0
+   IBRAHIM ELSHISHTAWY — PORTFOLIO ENGINE
    Project Detail Overlays (overlay.js)
+   Verified, Architectural Case-Study Modals
    ============================================================ */
 
 'use strict';
@@ -10,11 +11,11 @@ function openCaseStudy(cardOrId) {
   let id;
   if (typeof cardOrId === 'string') {
     id = cardOrId;
-  } else {
+  } else if (cardOrId && typeof cardOrId.getAttribute === 'function') {
     id = cardOrId.getAttribute('data-project');
   }
 
-  const data = PROJECTS_DATA[id];
+  const data = typeof PROJECTS_DATA !== 'undefined' ? PROJECTS_DATA[id] : null;
   if (!data) return;
 
   renderCaseStudy(data);
@@ -26,15 +27,15 @@ function openCaseStudy(cardOrId) {
   overlay.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 
-  // Focus the close button for accessibility
+  // Focus close button for keyboard accessibility
   setTimeout(() => {
     document.getElementById('close-overlay-btn')?.focus();
-  }, 50);
+  }, 60);
 
   if (typeof gsap !== 'undefined') {
     gsap.fromTo('.case-study-reveal',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.75, ease: 'power3.out', stagger: 0.1, delay: 0.15 }
+      { y: 25, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out', stagger: 0.08, delay: 0.1 }
     );
   }
 }
@@ -47,48 +48,70 @@ function closeCaseStudy() {
   document.body.style.overflow = '';
 }
 
+window.closeCaseStudyGlobal = closeCaseStudy;
+
 /* ── RENDER CASE STUDY CONTENT ──────────────────────────────── */
 function renderCaseStudy(data) {
   const container = document.getElementById('case-study-content');
   if (!container) return;
 
+  const techList = data.verifiedTech || data.tags || [];
+
+  /* Build tech tags */
+  const tagsHTML = techList.map(t => `
+    <span class="cyber-badge text-[10px] px-2.5 py-1">
+      <i class="fas fa-terminal text-[9px] text-cyan-400 mr-1" aria-hidden="true"></i> ${t}
+    </span>
+  `).join('');
+
+  /* Build contribution list if provided */
+  const contributionsHTML = (data.contributionDetails && Array.isArray(data.contributionDetails)) ? `
+    <div class="glass-panel p-6 sm:p-8 border-cyan-500/20 bg-cyan-950/10 mb-8 case-study-reveal">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <h4 class="font-heading text-sm sm:text-base font-bold text-white uppercase tracking-wider">
+          Specific Implementation Responsibilities
+        </h4>
+      </div>
+      <ul class="flex flex-col gap-2.5 text-xs text-slate-300">
+        ${data.contributionDetails.map(item => `
+          <li class="flex items-start gap-2.5 leading-relaxed">
+            <i class="fas fa-check text-cyan-400 text-[11px] mt-1 flex-shrink-0" aria-hidden="true"></i>
+            <span>${item}</span>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  ` : '';
+
   /* Build feature cards */
-  const featuresHTML = data.features.map(f => `
-    <div class="glass-panel p-6 flex flex-col gap-4 case-study-reveal" style="min-height:180px;">
-      <div class="icon-box icon-box-purple flex-shrink-0">
+  const featuresHTML = (data.features || []).map(f => `
+    <div class="glass-panel p-6 flex flex-col gap-3.5 case-study-reveal" style="min-height:170px;">
+      <div class="icon-box icon-box-cyan flex-shrink-0">
         <i class="fas ${f.icon}" aria-hidden="true"></i>
       </div>
       <div>
-        <h4 class="font-heading text-base font-bold text-white mb-2">${f.title}</h4>
+        <h4 class="font-heading text-sm font-bold text-white mb-2">${f.title}</h4>
         <p class="text-xs text-slate-400 leading-relaxed">${f.desc}</p>
       </div>
     </div>
   `).join('');
 
-  /* Build journey items */
-  const journeyHTML = data.journey.map(j => `
-    <div class="border border-white/[0.06] bg-white/[0.015] rounded-2xl p-6 case-study-reveal">
-      <div class="text-[10px] font-bold text-purple-400 mb-2 tracking-wider uppercase">${j.phase}</div>
+  /* Build journey/stages */
+  const journeyHTML = (data.journey || []).map(j => `
+    <div class="border border-white/[0.08] bg-white/[0.02] rounded-2xl p-6 case-study-reveal">
+      <div class="text-[10px] font-bold text-cyan-400 mb-2 tracking-wider uppercase">${j.phase}</div>
       <h4 class="font-heading text-sm font-bold text-white mb-2">${j.title}</h4>
       <p class="text-xs text-slate-400 leading-relaxed">${j.desc}</p>
     </div>
   `).join('');
 
-  /* Build tech tags */
-  const tagsHTML = data.tags.map(t => `
-    <span class="cyber-badge text-[10px]">
-      <i class="fab fa-flutter text-xs" aria-hidden="true"></i> ${t}
-    </span>
-  `).join('');
-
-  /* Smart asset selector: If project has screenshots, render 3D iPhone mockup. 
-     If it is a text-based learning app, render a stunning glowing Holographic Code Blueprint! */
+  /* Smart asset selector: Browser Mockup, Hardware Blueprint, or Mobile Frame */
   let mockupHTML = '';
-  let additionalScreenHTML = '';
 
   if (data.mockupType === 'browser') {
     mockupHTML = `
-      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="transform:rotateX(6deg) rotateY(-6deg); box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor}33;">
+      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor || '#06b6d4'}33;">
         <!-- Browser Top Bar -->
         <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/[0.03]">
           <div class="flex items-center gap-2">
@@ -101,204 +124,101 @@ function renderCaseStudy(data) {
             <span class="truncate">${data.urlPreview || data.demoLink || 'https://production.app'}</span>
           </div>
           <div class="flex items-center gap-2 text-slate-400 text-xs">
-            <i class="fas fa-arrow-left text-[10px]"></i>
-            <i class="fas fa-arrow-right text-[10px]"></i>
-            <i class="fas fa-rotate-right text-[10px]"></i>
+            <i class="fas fa-shield-alt text-[10px] text-cyan-400"></i>
           </div>
         </div>
         <!-- Browser Body / Preview Visual -->
-        <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-purple-950/20 via-black to-cyan-950/20">
+        <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-cyan-950/20 via-black to-purple-950/20">
           <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px]" aria-hidden="true"></div>
           <div class="relative z-10">
             <div class="flex items-center justify-between mb-4">
-              <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> LIVE WEB PLATFORM</span>
-              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> 200 OK</span>
+              <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> ${data.projectClass || 'WEB PLATFORM'}</span>
+              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> VERIFIED DEPLOYMENT</span>
             </div>
             <h3 class="font-heading text-2xl font-black text-white mb-2 leading-tight">${data.title}</h3>
-            <p class="text-xs text-slate-300/80 max-w-md line-clamp-2 leading-relaxed">${data.subtitle}</p>
+            <p class="text-xs text-slate-300/85 max-w-md line-clamp-3 leading-relaxed">${data.summary || data.subtitle || data.description}</p>
           </div>
           <div class="relative z-10 pt-4 border-t border-white/5 flex items-center justify-between">
             <div class="flex items-center gap-2 flex-wrap">
-              ${data.tags.slice(0, 4).map(t => `<span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-slate-300 border border-white/10">${t}</span>`).join('')}
+              ${techList.slice(0, 4).map(t => `<span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-slate-300 border border-white/10">${t}</span>`).join('')}
             </div>
-            <span class="text-[10px] font-bold text-cyan-400 flex items-center gap-1">
-              Interactive View <i class="fas fa-arrow-right text-[8px]"></i>
-            </span>
+            ${data.demoLink && data.demoLink !== '#' ? `
+              <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                Open Platform <i class="fas fa-arrow-up-right-from-square text-[8px]"></i>
+              </a>
+            ` : ''}
           </div>
         </div>
       </div>
     `;
   } else if (data.mockupType === 'hardware') {
     mockupHTML = `
-      <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-6 overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="transform:rotateX(6deg) rotateY(-6deg); box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
+      <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-6 overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
         <!-- Top status bar -->
         <div class="flex items-center justify-between border-b border-purple-500/20 pb-3">
           <div class="flex items-center gap-2">
             <i class="fas fa-microchip text-purple-400"></i>
-            <span class="font-mono text-xs font-bold text-white">OPENWRT_ROUTER_NODE // 23.05</span>
+            <span class="font-mono text-xs font-bold text-white">OPENWRT_SYSTEMS_ENGINEERING // ARCHITECTURE</span>
           </div>
-          <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-circle text-[5px] mr-1 text-emerald-400 animate-ping"></i> LIVE DAEMON</span>
+          <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-circle text-[5px] mr-1 text-emerald-400 animate-ping"></i> ACTIVE REPO</span>
         </div>
-        <!-- Hardware Telemetry Dashboard -->
+        <!-- Architectural Component Breakdown -->
         <div class="grid grid-cols-3 gap-3 my-4">
-          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">METERED TRAFFIC</div>
-            <div class="text-base font-black text-cyan-400 font-heading">1.48 TB</div>
-            <div class="text-[8px] text-emerald-400 font-mono mt-0.5">↑ 42 MB/s | ↓ 180 MB/s</div>
+          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">ROUTER FIRMWARE</div>
+            <div class="text-xs font-black text-cyan-400 font-heading">OpenWrt OS</div>
+            <div class="text-[8px] text-slate-400 font-mono mt-0.5">iptables &amp; tc shaping</div>
           </div>
-          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">ACTIVE USERS</div>
-            <div class="text-base font-black text-purple-400 font-heading">128 Nodes</div>
-            <div class="text-[8px] text-slate-400 font-mono mt-0.5">iptables &amp; tc rules</div>
+          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">DAEMON SERVICE</div>
+            <div class="text-xs font-black text-purple-400 font-heading">Node.js Daemon</div>
+            <div class="text-[8px] text-slate-400 font-mono mt-0.5">IPC &amp; WebSockets bridge</div>
           </div>
-          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-            <div class="text-[9px] text-slate-400 font-mono mb-1">CONTROLLER</div>
-            <div class="text-base font-black text-amber-400 font-heading">FLUTTER</div>
-            <div class="text-[8px] text-slate-400 font-mono mt-0.5">Mobile Sync: 0.4ms</div>
+          <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">CONTROLLER APP</div>
+            <div class="text-xs font-black text-amber-400 font-heading">Flutter Mobile</div>
+            <div class="text-[8px] text-slate-400 font-mono mt-0.5">Clean Architecture UI</div>
           </div>
         </div>
-        <!-- Packet Log Stream -->
-        <div class="p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-[10px] text-slate-400 leading-relaxed overflow-hidden">
-          <div class="text-cyan-400 font-semibold">[KERNEL] iptables -A FORWARD -m quota --quota-bytes 53687091200 -j ACCEPT</div>
-          <div class="text-purple-300">[DAEMON] Node.js bridge connected: socket @ /var/run/quota.sock</div>
-          <div class="text-emerald-400">[MOBILE] Flutter client connected via WebSockets (Session Authorized)</div>
+        <!-- Shell rules excerpt -->
+        <div class="p-3 rounded-xl bg-black/70 border border-white/5 font-mono text-[10px] text-slate-400 leading-relaxed overflow-hidden">
+          <div class="text-cyan-400 font-semibold">[KERNEL] iptables -I FORWARD -m quota --quota $BYTES_LIMIT -j ACCEPT</div>
+          <div class="text-purple-300">[DAEMON] Node.js telemetry socket @ /var/run/quota_daemon.sock</div>
+          <div class="text-emerald-400">[MOBILE] Flutter client receives live device quota metrics</div>
         </div>
       </div>
     `;
   } else if (data.image) {
     mockupHTML = `
-      <div class="iphone-mockup" style="transform:rotateX(8deg) rotateY(-8deg);">
+      <div class="iphone-mockup mx-auto">
         <div class="iphone-notch" aria-hidden="true"></div>
         <div class="iphone-screen">
-          <img src="${data.image}" alt="${data.title} — App Screenshot" class="iphone-img">
+          <img src="${data.image}" alt="${data.title} — Application interface" class="iphone-img" loading="lazy">
         </div>
       </div>
     `;
-    
-    if (data.secondaryImages && Array.isArray(data.secondaryImages)) {
-      const galleryLabels = data.screenshotLabels || [];
-
-      const galleryCards = data.secondaryImages.map((img, idx) => {
-        const label = galleryLabels[idx] || `Screen ${idx + 1}`;
-        return `
-          <div class="gallery-screen-card case-study-reveal group">
-            <div class="gallery-screen-img-wrap">
-              <img src="${img}" alt="${data.title} — ${label}" loading="lazy" class="gallery-screen-img">
-              <div class="gallery-screen-overlay">
-                <span class="gallery-screen-label">${label}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      additionalScreenHTML = `
-        <div class="py-20 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
-          <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-14 case-study-reveal">
-              <span class="section-label">APP GALLERY</span>
-              <h3 class="section-title mb-4">More from the App</h3>
-              <p class="text-xs text-slate-400 leading-relaxed max-w-lg mx-auto">
-                A closer look at the real screens built into ${data.title} — designed with pixel precision, atmospheric depth, and full RTL Arabic support.
-              </p>
-            </div>
-            <div class="gallery-screen-grid">
-              ${galleryCards}
-            </div>
-          </div>
-        </div>
-      `;
-    } else if (data.secondaryImage) {
-      additionalScreenHTML = `
-        <div class="py-16 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
-          <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
-            <div class="w-full lg:w-1/2 case-study-reveal">
-              <span class="section-label">ADDITIONAL SCREENS</span>
-              <h3 class="section-title mb-4">More from the App</h3>
-              <p class="text-xs text-slate-400 leading-relaxed">
-                Each screen is designed with pixel precision — balancing high information density with beautiful, atmospheric visual clarity.
-              </p>
-            </div>
-            <div class="w-full lg:w-1/2 flex justify-center case-study-reveal">
-              <div class="tilt-container">
-                <div class="iphone-mockup">
-                  <div class="iphone-notch" aria-hidden="true"></div>
-                  <div class="iphone-screen">
-                    <img src="${data.secondaryImage}" alt="${data.title} — Secondary Screenshot" class="iphone-img">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
   } else {
-    // Generate high-tier holographic vector code block for learning apps
     mockupHTML = `
-      <div class="relative w-full aspect-[4/3] max-w-lg mx-auto rounded-3xl border border-cyan-500/20 bg-cyan-950/10 p-8 flex flex-col justify-between overflow-hidden backdrop-blur-xl" style="transform:rotateX(8deg) rotateY(-8deg); box-shadow: 0 30px 70px -15px rgba(0,0,0,0.8), 0 0 35px rgba(6, 182, 212, 0.15);">
-        <!-- Glowing grid background -->
-        <div style="position:absolute; inset:0; background:linear-gradient(rgba(6,182,212,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.05) 1px, transparent 1px); background-size: 20px 20px;" aria-hidden="true"></div>
-        <div style="position:absolute; top:-20%; left:-20%; width:140%; height:140%; background:radial-gradient(circle at 50% 50%, rgba(6,182,212,0.15) 0%, transparent 60%); pointer-events:none;" aria-hidden="true"></div>
-        
+      <div class="relative w-full aspect-[4/3] max-w-lg mx-auto rounded-3xl border border-cyan-500/20 bg-cyan-950/10 p-8 flex flex-col justify-between overflow-hidden backdrop-blur-xl">
         <div class="z-10 text-left">
           <div class="flex justify-between items-center mb-6">
-            <span class="cyber-badge cyber-badge-cyan text-[10px]"><i class="fas fa-microchip mr-1" aria-hidden="true"></i> CORE SYSTEM LOGIC</span>
-            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">BUILD SCHEMA v3.1</span>
+            <span class="cyber-badge cyber-badge-cyan text-[10px]"><i class="fas fa-code mr-1"></i> ARCHITECTURAL SPECIFICATION</span>
+            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">${data.projectClass || 'SYSTEM'}</span>
           </div>
-          
           <div class="font-mono text-cyan-400 text-xs leading-relaxed mb-6">
-            <p class="text-white/40">// SYSTEM ARCHITECTURE DATA FLOW</p>
-            <p class="mt-1"><span class="text-purple-400">import</span> 'package:clean_architecture/core.dart';</p>
-            <p class="mt-1"><span class="text-purple-400">void</span> <span class="text-yellow-400">initializeSubsystem</span>() <span class="text-white/60">{</span></p>
-            <p class="pl-4 mt-0.5 text-slate-300">locator.registerLazySingleton(() => ApiClient());</p>
-            <p class="pl-4 mt-0.5 text-slate-300">locator.registerFactory(() => ServiceController(locator()));</p>
-            <p class="pl-4 mt-0.5 text-slate-300">print(<span class="text-emerald-400">"🚀 ${data.title} Subsystem Active"</span>);</p>
-            <p class="text-white/60">}</p>
+            <p class="text-white/40">// ENGINEERING SPECIFICATION</p>
+            <p class="mt-1"><span class="text-purple-400">package</span> ${data.id}.architecture;</p>
+            <p class="mt-1 text-slate-300">Clean Architecture Domain separation;</p>
+            <p class="mt-0.5 text-emerald-400">// Verified Technologies: ${techList.slice(0, 3).join(', ')}</p>
           </div>
         </div>
-
         <div class="z-10 flex justify-between items-end text-left">
           <div>
-            <span class="block text-[8px] font-bold text-slate-500 tracking-wider uppercase mb-1">SYSTEM STATE</span>
-            <span class="cyber-badge text-green-400 border-green-500/30 bg-green-500/10 text-[9px]">ACTIVE</span>
+            <span class="block text-[8px] font-bold text-slate-500 tracking-wider uppercase mb-1">ENGINEERING STATUS</span>
+            <span class="cyber-badge text-green-400 border-green-500/30 bg-green-500/10 text-[9px]">VERIFIED</span>
           </div>
           <div class="text-right">
-            <span class="block text-[8px] font-bold text-slate-500 tracking-wider uppercase mb-1">ACCENT FLOW</span>
-            <span class="font-heading font-black text-white tracking-widest text-xs">${data.title.toUpperCase()}</span>
-          </div>
-        </div>
-      </div>
-    `;
-    
-    // Additional conceptual visual
-    additionalScreenHTML = `
-      <div class="py-16 border-t border-white/[0.06] bg-black/20 px-4 md:px-12">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
-          <div class="w-full lg:w-1/2 case-study-reveal text-left">
-            <span class="section-label">ARCHITECTURAL DESIGN</span>
-            <h3 class="section-title mb-4">Clean Architecture Schema</h3>
-            <p class="text-xs text-slate-400 leading-relaxed max-w-md">
-              Constructed according to strict Clean Architecture design rules. This decouples the core domain models and business logic layer from dynamic UI adapters, framework states, and external DB platforms, creating bulletproof modular systems.
-            </p>
-          </div>
-          <div class="w-full lg:w-1/2 flex justify-center case-study-reveal">
-            <div class="relative w-full aspect-[16/9] max-w-lg rounded-2xl border border-purple-500/20 bg-purple-950/10 p-6 flex flex-col justify-between overflow-hidden backdrop-blur-md">
-              <div style="position:absolute; inset:0; background:linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px); background-size: 24px 24px;" aria-hidden="true"></div>
-              
-              <div class="flex justify-between items-center mb-4 z-10 text-left">
-                <span class="cyber-badge text-[9px]"><i class="fas fa-layer-group mr-1" aria-hidden="true"></i> STACK SPECIFICATION</span>
-                <span class="text-[9px] font-bold text-slate-500 tracking-widest">LAYER FLOW</span>
-              </div>
-              
-              <div class="flex-1 flex flex-col justify-center gap-2.5 z-10">
-                <div class="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center text-xs font-bold text-purple-300">PRESENTATION LAYER (UI, BLoC / State Controllers)</div>
-                <div class="text-center text-[10px] text-slate-500 font-bold"><i class="fas fa-arrow-down" aria-hidden="true"></i> invokes</div>
-                <div class="px-4 py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-center text-xs font-bold text-cyan-300">DOMAIN LAYER (Entities, Use Cases, Interfaces)</div>
-                <div class="text-center text-[10px] text-slate-500 font-bold"><i class="fas fa-arrow-up" aria-hidden="true"></i> implements</div>
-                <div class="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center text-xs font-bold text-emerald-300">DATA LAYER (Repositiories, local DB / REST Datasources)</div>
-              </div>
-            </div>
+            <span class="font-heading font-black text-white tracking-widest text-xs">${data.title}</span>
           </div>
         </div>
       </div>
@@ -306,48 +226,58 @@ function renderCaseStudy(data) {
   }
 
   container.innerHTML = `
-    <!-- Aurora accent -->
+    <!-- Top Ambient Glow -->
     <div class="case-study-aurora" aria-hidden="true">
-      <div style="background:radial-gradient(circle,${data.accentColor}22 0%,transparent 70%);position:absolute;top:-20%;right:-20%;width:70vw;height:70vw;border-radius:50%;filter:blur(80px);"></div>
+      <div style="background:radial-gradient(circle,${data.accentColor || '#06b6d4'}20 0%,transparent 70%);position:absolute;top:-15%;right:-15%;width:65vw;height:65vw;border-radius:50%;filter:blur(80px);"></div>
     </div>
 
-    <!-- Hero Block -->
-    <div class="relative py-24 px-4 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center min-h-[88vh]">
+    <!-- Hero Showcase Block -->
+    <div class="relative py-20 px-4 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 items-center min-h-[80vh]">
       
-      <!-- Text side -->
+      <!-- Text details -->
       <div class="w-full lg:w-1/2 flex flex-col items-start justify-center z-10 text-left">
-        <div class="flex flex-wrap gap-2 mb-3 case-study-reveal">
-          ${data.category ? data.category.split('·').map(c => `<span class="cyber-badge cyber-badge-cyan text-[9px]">${c.trim()}</span>`).join('') : ''}
+        
+        <div class="flex flex-wrap items-center gap-2 mb-4 case-study-reveal">
+          <span class="cyber-badge cyber-badge-cyan text-[9px] font-bold">${data.projectClass || 'FEATURED WORK'}</span>
+          ${data.statusBadge ? `<span class="cinematic-badge cinematic-badge-live text-[9px]">${data.statusBadge}</span>` : ''}
         </div>
 
         ${data.client ? `
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-semibold text-slate-300 mb-4 case-study-reveal">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span>Client / Entity: <strong class="text-white">${data.client}</strong></span>
+            <i class="fas fa-building text-cyan-400 text-xs"></i>
+            <span>Context / Organization: <strong class="text-white">${data.client}</strong></span>
           </div>
         ` : ''}
 
-        <h2 class="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight case-study-reveal">
+        ${data.role ? `
+          <div class="text-xs text-cyan-300 font-mono mb-4 case-study-reveal">
+            <i class="fas fa-user-gear mr-1"></i> Role: ${data.role}
+          </div>
+        ` : ''}
+
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight case-study-reveal">
           ${data.title}
         </h2>
 
-        <p class="text-sm text-slate-300 leading-relaxed mb-8 max-w-lg case-study-reveal">
-          ${data.subtitle}
+        <p class="text-sm text-slate-300 leading-relaxed mb-6 max-w-lg case-study-reveal">
+          ${data.summary || data.subtitle || data.description}
         </p>
 
+        <!-- Tech tags -->
         <div class="flex flex-wrap gap-2 mb-8 case-study-reveal">
           ${tagsHTML}
         </div>
 
+        <!-- Action Links -->
         <div class="flex flex-wrap gap-4 case-study-reveal">
           ${data.demoLink && data.demoLink !== '#' ? `
-            <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-glowing flex items-center gap-2.5 text-xs py-3 px-6 font-bold" aria-label="Open live demo or production site">
+            <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-glowing flex items-center gap-2.5 text-xs py-3 px-6 font-bold" aria-label="Open live project">
               <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
               <span>${data.demoLabel || 'Live Platform'}</span>
             </a>
           ` : ''}
           ${data.repoLink ? `
-            <a href="${data.repoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-outline flex items-center gap-2.5 text-xs py-3 px-6 font-semibold" aria-label="View project repository">
+            <a href="${data.repoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-outline flex items-center gap-2.5 text-xs py-3 px-6 font-semibold" aria-label="View source repository">
               <i class="fab fa-github text-sm" aria-hidden="true"></i>
               <span>${data.repoLabel || 'Source Code'}</span>
             </a>
@@ -355,7 +285,7 @@ function renderCaseStudy(data) {
         </div>
       </div>
 
-      <!-- Mockup side -->
+      <!-- Mockup Showcase -->
       <div class="w-full lg:w-1/2 flex justify-center lg:justify-end z-10 case-study-reveal">
         <div class="tilt-container w-full">
           ${mockupHTML}
@@ -363,72 +293,63 @@ function renderCaseStudy(data) {
       </div>
     </div>
 
-    <!-- Core Features -->
-    <div class="py-24 border-t border-white/[0.06] bg-black/20 px-4 md:px-12 text-left">
-      <div class="max-w-7xl mx-auto">
-        <span class="section-label case-study-reveal">CAPABILITIES</span>
-        <h3 class="section-title mb-4 case-study-reveal">Core Infrastructure</h3>
-        <p class="text-xs text-slate-400 max-w-lg mb-16 leading-relaxed case-study-reveal">
-          Carefully structured, clean modular layers designed to achieve maximum efficiency, zero memory leak risks, and near-zero database access speeds.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          ${featuresHTML}
-        </div>
-      </div>
+    <!-- Verified Contributions Section -->
+    <div class="px-4 md:px-12 max-w-7xl mx-auto text-left">
+      ${contributionsHTML}
     </div>
 
-    <!-- The Journey -->
-    <div class="py-24 px-4 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 text-left">
-      <div class="w-full lg:w-1/3">
-        <span class="section-label case-study-reveal">CHRONICLES</span>
-        <h3 class="section-title mb-4 case-study-reveal">Development Journey</h3>
-        <p class="text-xs text-slate-400 leading-relaxed mb-6 case-study-reveal">
-          Every phase of development represents strict planning and precise software crafting — translating product goals into stable, high-performance binary deployments.
-        </p>
-        <div class="flex flex-col gap-3 case-study-reveal">
-          <span class="text-xs text-slate-400 flex items-center gap-2">
-            <i class="fas fa-check-circle text-purple-400 text-[11px]" aria-hidden="true"></i> Advanced SQL / DB Design
-          </span>
-          <span class="text-xs text-slate-400 flex items-center gap-2">
-            <i class="fas fa-check-circle text-purple-400 text-[11px]" aria-hidden="true"></i> Threaded Performance Math
-          </span>
-          <span class="text-xs text-slate-400 flex items-center gap-2">
-            <i class="fas fa-check-circle text-purple-400 text-[11px]" aria-hidden="true"></i> Decoupled Core Business Logic
-          </span>
+    <!-- Features Section -->
+    ${(data.features && data.features.length) ? `
+      <div class="py-20 border-t border-white/[0.06] bg-black/20 px-4 md:px-12 text-left">
+        <div class="max-w-7xl mx-auto">
+          <span class="section-label case-study-reveal">ARCHITECTURE &amp; FEATURES</span>
+          <h3 class="section-title mb-4 case-study-reveal">Technical Highlights</h3>
+          <p class="text-xs text-slate-400 max-w-lg mb-12 leading-relaxed case-study-reveal">
+            Detailed engineering features verified against the working application or codebase.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            ${featuresHTML}
+          </div>
         </div>
       </div>
+    ` : ''}
 
-      <div class="w-full lg:w-2/3 flex flex-col gap-5">
-        ${journeyHTML}
+    <!-- Development Journey Section -->
+    ${(data.journey && data.journey.length) ? `
+      <div class="py-20 px-4 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 text-left">
+        <div class="w-full lg:w-1/3">
+          <span class="section-label case-study-reveal">IMPLEMENTATION MILESTONES</span>
+          <h3 class="section-title mb-4 case-study-reveal">Development Stages</h3>
+          <p class="text-xs text-slate-400 leading-relaxed mb-6 case-study-reveal">
+            Structured development workflow translating architectural specifications into verified deliverables.
+          </p>
+        </div>
+        <div class="w-full lg:w-2/3 flex flex-col gap-4">
+          ${journeyHTML}
+        </div>
       </div>
-    </div>
+    ` : ''}
 
-    <!-- Additional screen section (image or conceptual) -->
-    ${additionalScreenHTML}
-
-    <!-- CTA Footer -->
-    <div class="py-24 border-t border-white/[0.06] text-center px-4 md:px-12">
-      <div class="max-w-lg mx-auto glass-panel p-12 case-study-reveal">
-        <h3 class="font-heading text-2xl font-extrabold text-white mb-4">Interested in this architecture?</h3>
-        <p class="text-xs text-slate-400 leading-relaxed mb-8">
-          Let's build something exceptional together. Whether creating advanced offline mobile databases or setting up distributed WebSockets backends, I'm ready to craft your solutions.
+    <!-- Modal Footer CTA -->
+    <div class="py-20 border-t border-white/[0.06] text-center px-4 md:px-12">
+      <div class="max-w-lg mx-auto glass-panel p-10 case-study-reveal">
+        <h3 class="font-heading text-xl font-extrabold text-white mb-3">Discuss this Architecture</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">
+          Have questions about the technical implementation, systems design, or mobile integration?
         </p>
         <div class="flex justify-center gap-4 flex-wrap">
-          <a href="#contact" class="btn-glowing magnetic-btn flex items-center gap-2 text-xs py-3 px-6" onclick="closeCaseStudyGlobal()" aria-label="Start project thread">
-            <i class="fas fa-bolt text-yellow-300 text-[10px]" aria-hidden="true"></i> Start a Project
+          <a href="#contact" class="btn-glowing magnetic-btn flex items-center gap-2 text-xs py-2.5 px-6 font-bold" onclick="closeCaseStudyGlobal()" aria-label="Contact Ibrahim">
+            <i class="fas fa-paper-plane text-yellow-300 text-[10px]" aria-hidden="true"></i> Contact Me
           </a>
-          <a href="${data.repoLink}" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center gap-2 text-xs py-3 px-6" aria-label="Visit GitHub repository profile">
-            <i class="fab fa-github" aria-hidden="true"></i> GitHub
+          <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center gap-2 text-xs py-2.5 px-6 font-semibold" aria-label="Visit GitHub Profile">
+            <i class="fab fa-github" aria-hidden="true"></i> GitHub Profile
           </a>
         </div>
       </div>
     </div>
   `;
 
-  // Re-initialize tilts and magnetic nodes on new DOM additions
-  initCardTilting();
-  initMagneticButtons();
-  initProjectCardMouse();
+  // Re-initialize interactions on dynamic elements
+  if (typeof initCardTilting === 'function') initCardTilting();
+  if (typeof initMagneticButtons === 'function') initMagneticButtons();
 }
-
-window.closeCaseStudyGlobal = closeCaseStudy;

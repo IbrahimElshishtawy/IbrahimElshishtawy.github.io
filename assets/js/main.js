@@ -99,29 +99,44 @@ function initMiniProjectList() {
 }
 
 /* ── CINEMATIC CATEGORY FILTER SYSTEM ───────────────────────── */
+/* ── CINEMATIC CATEGORY FILTER SYSTEM ───────────────────────── */
 function initCinematicFilters() {
   const filterBtns = document.querySelectorAll('.cinematic-filter-btn');
-  const projectCards = document.querySelectorAll('.cinematic-project-card');
+  const projectCards = document.querySelectorAll('.cinematic-project-card, .mini-project-card');
   if (!filterBtns.length || !projectCards.length) return;
 
   filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    const handleFilter = () => {
       const filter = btn.getAttribute('data-filter') || 'all';
 
-      filterBtns.forEach(b => b.classList.remove('active'));
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       projectCards.forEach(card => {
         const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.includes(filter)) {
+        const shouldShow = (filter === 'all') || cat.split(' ').includes(filter);
+
+        if (shouldShow) {
           card.classList.remove('is-hidden');
           if (typeof gsap !== 'undefined') {
-            gsap.fromTo(card, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+            gsap.fromTo(card, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
           }
         } else {
           card.classList.add('is-hidden');
         }
       });
+    };
+
+    btn.addEventListener('click', handleFilter);
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleFilter();
+      }
     });
   });
 }
