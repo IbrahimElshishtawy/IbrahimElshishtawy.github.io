@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectCards();
   initMiniProjectList();
   initCaseStudyOverlay();
+  initCinematicFilters();
 
   // Initialize Structural Scroll Triggers & Visibility
   initScrollTimeline();
@@ -73,8 +74,12 @@ document.addEventListener('keydown', (e) => {
 /* ── PROJECT DETAILS EVENT HANDLERS ────────────────────────── */
 function initProjectCards() {
   document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click',   () => openCaseStudy(card));
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // Allow direct links to function
+      openCaseStudy(card);
+    });
     card.addEventListener('keydown', e => {
+      if (e.target.closest('a')) return;
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCaseStudy(card); }
     });
   });
@@ -82,9 +87,41 @@ function initProjectCards() {
 
 function initMiniProjectList() {
   document.querySelectorAll('.mini-project-card').forEach(card => {
-    card.addEventListener('click',   () => openCaseStudy(card));
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      openCaseStudy(card);
+    });
     card.addEventListener('keydown', e => {
+      if (e.target.closest('a')) return;
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCaseStudy(card); }
+    });
+  });
+}
+
+/* ── CINEMATIC CATEGORY FILTER SYSTEM ───────────────────────── */
+function initCinematicFilters() {
+  const filterBtns = document.querySelectorAll('.cinematic-filter-btn');
+  const projectCards = document.querySelectorAll('.cinematic-project-card');
+  if (!filterBtns.length || !projectCards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'all';
+
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      projectCards.forEach(card => {
+        const cat = card.getAttribute('data-category') || '';
+        if (filter === 'all' || cat.includes(filter)) {
+          card.classList.remove('is-hidden');
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(card, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+          }
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
     });
   });
 }

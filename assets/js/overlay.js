@@ -86,7 +86,86 @@ function renderCaseStudy(data) {
   let mockupHTML = '';
   let additionalScreenHTML = '';
 
-  if (data.image) {
+  if (data.mockupType === 'browser') {
+    mockupHTML = `
+      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="transform:rotateX(6deg) rotateY(-6deg); box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor}33;">
+        <!-- Browser Top Bar -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/[0.03]">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+          </div>
+          <div class="flex items-center gap-2 px-4 py-1 rounded-lg bg-black/40 border border-white/10 text-[10px] text-slate-300 font-mono flex-1 max-w-xs mx-4 truncate">
+            <i class="fas fa-lock text-[9px] text-emerald-400"></i>
+            <span class="truncate">${data.urlPreview || data.demoLink || 'https://production.app'}</span>
+          </div>
+          <div class="flex items-center gap-2 text-slate-400 text-xs">
+            <i class="fas fa-arrow-left text-[10px]"></i>
+            <i class="fas fa-arrow-right text-[10px]"></i>
+            <i class="fas fa-rotate-right text-[10px]"></i>
+          </div>
+        </div>
+        <!-- Browser Body / Preview Visual -->
+        <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-purple-950/20 via-black to-cyan-950/20">
+          <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:16px_16px]" aria-hidden="true"></div>
+          <div class="relative z-10">
+            <div class="flex items-center justify-between mb-4">
+              <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> LIVE WEB PLATFORM</span>
+              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> 200 OK</span>
+            </div>
+            <h3 class="font-heading text-2xl font-black text-white mb-2 leading-tight">${data.title}</h3>
+            <p class="text-xs text-slate-300/80 max-w-md line-clamp-2 leading-relaxed">${data.subtitle}</p>
+          </div>
+          <div class="relative z-10 pt-4 border-t border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-2 flex-wrap">
+              ${data.tags.slice(0, 4).map(t => `<span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-slate-300 border border-white/10">${t}</span>`).join('')}
+            </div>
+            <span class="text-[10px] font-bold text-cyan-400 flex items-center gap-1">
+              Interactive View <i class="fas fa-arrow-right text-[8px]"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    `;
+  } else if (data.mockupType === 'hardware') {
+    mockupHTML = `
+      <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl p-6 overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="transform:rotateX(6deg) rotateY(-6deg); box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
+        <!-- Top status bar -->
+        <div class="flex items-center justify-between border-b border-purple-500/20 pb-3">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-microchip text-purple-400"></i>
+            <span class="font-mono text-xs font-bold text-white">OPENWRT_ROUTER_NODE // 23.05</span>
+          </div>
+          <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-circle text-[5px] mr-1 text-emerald-400 animate-ping"></i> LIVE DAEMON</span>
+        </div>
+        <!-- Hardware Telemetry Dashboard -->
+        <div class="grid grid-cols-3 gap-3 my-4">
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">METERED TRAFFIC</div>
+            <div class="text-base font-black text-cyan-400 font-heading">1.48 TB</div>
+            <div class="text-[8px] text-emerald-400 font-mono mt-0.5">↑ 42 MB/s | ↓ 180 MB/s</div>
+          </div>
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">ACTIVE USERS</div>
+            <div class="text-base font-black text-purple-400 font-heading">128 Nodes</div>
+            <div class="text-[8px] text-slate-400 font-mono mt-0.5">iptables &amp; tc rules</div>
+          </div>
+          <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+            <div class="text-[9px] text-slate-400 font-mono mb-1">CONTROLLER</div>
+            <div class="text-base font-black text-amber-400 font-heading">FLUTTER</div>
+            <div class="text-[8px] text-slate-400 font-mono mt-0.5">Mobile Sync: 0.4ms</div>
+          </div>
+        </div>
+        <!-- Packet Log Stream -->
+        <div class="p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-[10px] text-slate-400 leading-relaxed overflow-hidden">
+          <div class="text-cyan-400 font-semibold">[KERNEL] iptables -A FORWARD -m quota --quota-bytes 53687091200 -j ACCEPT</div>
+          <div class="text-purple-300">[DAEMON] Node.js bridge connected: socket @ /var/run/quota.sock</div>
+          <div class="text-emerald-400">[MOBILE] Flutter client connected via WebSockets (Session Authorized)</div>
+        </div>
+      </div>
+    `;
+  } else if (data.image) {
     mockupHTML = `
       <div class="iphone-mockup" style="transform:rotateX(8deg) rotateY(-8deg);">
         <div class="iphone-notch" aria-hidden="true"></div>
@@ -237,11 +316,18 @@ function renderCaseStudy(data) {
       
       <!-- Text side -->
       <div class="w-full lg:w-1/2 flex flex-col items-start justify-center z-10 text-left">
-        <div class="flex flex-wrap gap-2 mb-5 case-study-reveal">
-          ${data.category.split('·').map(c => `<span class="cyber-badge cyber-badge-cyan text-[9px]">${c.trim()}</span>`).join('')}
+        <div class="flex flex-wrap gap-2 mb-3 case-study-reveal">
+          ${data.category ? data.category.split('·').map(c => `<span class="cyber-badge cyber-badge-cyan text-[9px]">${c.trim()}</span>`).join('') : ''}
         </div>
 
-        <h2 class="font-heading text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight case-study-reveal">
+        ${data.client ? `
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-semibold text-slate-300 mb-4 case-study-reveal">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span>Client / Entity: <strong class="text-white">${data.client}</strong></span>
+          </div>
+        ` : ''}
+
+        <h2 class="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight case-study-reveal">
           ${data.title}
         </h2>
 
@@ -254,15 +340,24 @@ function renderCaseStudy(data) {
         </div>
 
         <div class="flex flex-wrap gap-4 case-study-reveal">
-          <a href="${data.repoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-outline flex items-center gap-2 text-xs py-3 px-6" aria-label="View GitHub profile repository">
-            <i class="fab fa-github" aria-hidden="true"></i> GitHub Profile
-          </a>
+          ${data.demoLink && data.demoLink !== '#' ? `
+            <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-glowing flex items-center gap-2.5 text-xs py-3 px-6 font-bold" aria-label="Open live demo or production site">
+              <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+              <span>${data.demoLabel || 'Live Platform'}</span>
+            </a>
+          ` : ''}
+          ${data.repoLink ? `
+            <a href="${data.repoLink}" target="_blank" rel="noopener noreferrer" class="magnetic-btn btn-outline flex items-center gap-2.5 text-xs py-3 px-6 font-semibold" aria-label="View project repository">
+              <i class="fab fa-github text-sm" aria-hidden="true"></i>
+              <span>${data.repoLabel || 'Source Code'}</span>
+            </a>
+          ` : ''}
         </div>
       </div>
 
       <!-- Mockup side -->
       <div class="w-full lg:w-1/2 flex justify-center lg:justify-end z-10 case-study-reveal">
-        <div class="tilt-container">
+        <div class="tilt-container w-full">
           ${mockupHTML}
         </div>
       </div>
