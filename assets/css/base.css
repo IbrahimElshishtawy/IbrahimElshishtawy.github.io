@@ -5,26 +5,28 @@
 
 /* ── VARIABLES ──────────────────────────────────────────── */
 :root {
-  /* ── THEME: CYBER PURPLE (default) ── */
-  --bg:           #030209;
-  --bg-dark:      #010103;
-  --bg-card:      rgba(13, 11, 28, 0.5);
-  --primary:      #8b5cf6;
-  --primary-rgb:  139, 92, 246;
-  --primary-glow: rgba(139, 92, 246, 0.35);
-  --secondary:    #06b6d4;
-  --secondary-rgb:6, 182, 212;
-  --secondary-glow: rgba(6, 182, 212, 0.3);
-  --accent:       #ec4899;
+  /* ── THEME: CINEMATIC ELECTRIC (default) ── */
+  --bg:           #05040a;
+  --bg-dark:      #020106;
+  --bg-card:      rgba(10, 8, 22, 0.75);
+  --primary:      #06b6d4;
+  --primary-rgb:  6, 182, 212;
+  --primary-glow: rgba(6, 182, 212, 0.35);
+  --secondary:    #8b5cf6;
+  --secondary-rgb:139, 92, 246;
+  --secondary-glow: rgba(139, 92, 246, 0.3);
+  --accent:       #f97316;
+  --accent-rgb:   249, 115, 22;
+  --accent-glow:  rgba(249, 115, 22, 0.3);
   --text-1:       #f8fafc;
   --text-2:       #94a3b8;
-  --glass-bg:     rgba(14, 12, 30, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-hover:  rgba(139, 92, 246, 0.25);
-  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.55);
-  --aurora-1:     rgba(139, 92, 246, 0.14);
-  --aurora-2:     rgba(6, 182, 212, 0.09);
-  --aurora-3:     rgba(236, 72, 153, 0.06);
+  --glass-bg:     rgba(11, 9, 24, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover:  rgba(6, 182, 212, 0.25);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.6);
+  --aurora-1:     rgba(6, 182, 212, 0.14);
+  --aurora-2:     rgba(139, 92, 246, 0.10);
+  --aurora-3:     rgba(249, 115, 22, 0.05);
   --font-heading: 'Outfit', sans-serif;
   --font-body:    'Plus Jakarta Sans', sans-serif;
   --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
