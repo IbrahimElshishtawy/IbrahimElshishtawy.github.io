@@ -1,7 +1,7 @@
 /* ============================================================
-   IBRAHIM ELSHISHTAWY — PORTFOLIO ENGINE
+   IBRAHIM ELSHISHTAWY — PORTFOLIO ENGINE v3.0
    Project Detail Overlays (overlay.js)
-   Verified, Architectural Case-Study Modals
+   Architectural Case-Study Modals with Multi-Screenshot Showcase
    ============================================================ */
 
 'use strict';
@@ -27,6 +27,11 @@ function openCaseStudy(cardOrId) {
   overlay.scrollTop = 0;
   document.body.style.overflow = 'hidden';
 
+  // Initialize mockup gallery to first image
+  if (typeof setMockupGalleryImage === 'function' && data.gallery && data.gallery.length) {
+    setMockupGalleryImage(data.id, 0);
+  }
+
   // Focus close button for keyboard accessibility
   setTimeout(() => {
     document.getElementById('close-overlay-btn')?.focus();
@@ -48,6 +53,7 @@ function closeCaseStudy() {
   document.body.style.overflow = '';
 }
 
+window.openCaseStudy = openCaseStudy;
 window.closeCaseStudyGlobal = closeCaseStudy;
 
 /* ── RENDER CASE STUDY CONTENT ──────────────────────────────── */
@@ -56,6 +62,9 @@ function renderCaseStudy(data) {
   if (!container) return;
 
   const techList = data.verifiedTech || data.tags || [];
+  const isArabic = document.documentElement.lang === 'ar';
+  const gallery = data.gallery || [];
+  const hasMultipleImages = gallery.length > 1;
 
   /* Build tech tags */
   const tagsHTML = techList.map(t => `
@@ -70,7 +79,7 @@ function renderCaseStudy(data) {
       <div class="flex items-center gap-2 mb-4">
         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
         <h4 class="font-heading text-sm sm:text-base font-bold text-white uppercase tracking-wider">
-          Specific Implementation Responsibilities
+          ${isArabic ? 'مسؤوليات التنفيذ الهندسي' : 'Specific Implementation Responsibilities'}
         </h4>
       </div>
       <ul class="flex flex-col gap-2.5 text-xs text-slate-300">
@@ -106,12 +115,80 @@ function renderCaseStudy(data) {
     </div>
   `).join('');
 
-  /* Smart asset selector: Browser Mockup, Hardware Blueprint, or Mobile Frame */
+  /* Dedicated Screenshot Gallery Grid (All images for this project) */
+  let projectScreenshotsHTML = '';
+  if (gallery.length > 0) {
+    projectScreenshotsHTML = `
+      <div class="py-20 border-t border-white/[0.06] bg-black/40 px-4 md:px-12 text-left">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+              <span class="section-label case-study-reveal">${isArabic ? 'لقطات الشاشة والمعرض المرئي' : 'VISUAL ARCHITECTURE & SCREENSHOTS'}</span>
+              <h3 class="section-title mb-2 case-study-reveal">${isArabic ? `معرض لقطات التطبيق (${gallery.length} شاشات بدقة عالية)` : `Production Screenshots (${gallery.length} High-Res Views)`}</h3>
+              <p class="text-xs text-slate-400 max-w-xl leading-relaxed case-study-reveal">
+                ${isArabic ? 'استعراض دقيق لكافة واجهات المستخدم، لوحات التحكم، والمخططات البيانية المسجلة للتطبيق.' : 'Comprehensive visual documentation of user interfaces, telemetry controllers, and database interactions.'}
+              </p>
+            </div>
+            <button type="button" class="cinematic-action-btn cinematic-action-live self-start sm:self-auto case-study-reveal" onclick="openProjectGallery('${data.id}', 0)">
+              <i class="fas fa-expand text-xs mr-1"></i>
+              <span>${isArabic ? 'تكبير كل الشاشات ملء الشاشة' : 'Launch Fullscreen Gallery'}</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${gallery.length > 2 ? '3' : '2'} gap-6">
+            ${gallery.map((img, idx) => {
+              const imgTitle = isArabic ? (img.titleAr || img.title) : img.title;
+              const imgDesc = isArabic ? (img.descAr || img.desc) : img.desc;
+              const isMobile = img.aspect === 'mobile';
+
+              return `
+                <div class="group/screen relative rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-500/50 p-4 transition-all duration-300 flex flex-col justify-between case-study-reveal cursor-pointer" onclick="openProjectGallery('${data.id}', ${idx})">
+                  <div class="relative overflow-hidden rounded-xl bg-black/60 mb-4 ${isMobile ? 'aspect-[9/13] flex items-center justify-center p-3' : 'aspect-[16/10]'}">
+                    ${isMobile ? `
+                      <div class="iphone-mini-frame w-full max-w-[210px] h-full rounded-[20px] border-[2px] border-white/10 bg-black overflow-hidden shadow-xl group-hover/screen:border-cyan-400/50 transition-colors">
+                        <img src="${img.src}" alt="${imgTitle}" class="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500" loading="lazy">
+                      </div>
+                    ` : `
+                      <img src="${img.src}" alt="${imgTitle}" class="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500" loading="lazy">
+                    `}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover/screen:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-3 right-3 left-3 flex items-center justify-between text-[10px] font-mono">
+                      <span class="text-white/80 font-bold truncate">${imgTitle}</span>
+                      <span class="text-cyan-400 bg-black/80 px-2 py-0.5 rounded border border-cyan-500/30 flex items-center gap-1">
+                        <i class="fas fa-search-plus text-[9px]"></i> HD
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                      <h4 class="font-heading text-sm font-bold text-white group-hover/screen:text-cyan-400 transition-colors">${imgTitle}</h4>
+                      <span class="text-[9px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">${idx + 1} / ${gallery.length}</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">${imgDesc}</p>
+                  </div>
+
+                  <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-semibold text-cyan-400">
+                    <span>${isArabic ? 'اضغط للتكبير' : 'Click to Expand'}</span>
+                    <i class="fas fa-arrow-up-right-from-square text-[9px] group-hover/screen:translate-x-0.5 transition-transform"></i>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ── SMART MOCKUP COMPONENT WITH INTEGRATED GALLERY CONTROLS ── */
   let mockupHTML = '';
+  const firstImage = (gallery[0] && gallery[0].src) || data.image || '';
 
   if (data.mockupType === 'browser' || data.mockupType === 'desktop') {
     mockupHTML = `
-      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-2xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor || '#06b6d4'}33;">
+      <div class="cyber-browser-mockup relative w-full aspect-[16/10] max-w-2xl mx-auto rounded-2xl border border-white/10 bg-[#070514]/90 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col group/browser" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 30px ${data.accentColor || '#06b6d4'}33;">
+        
         <!-- Browser Top Bar -->
         <div class="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-white/[0.03]">
           <div class="flex items-center gap-2">
@@ -124,40 +201,66 @@ function renderCaseStudy(data) {
             <span class="truncate">${data.urlPreview || data.demoLink || 'https://production.app'}</span>
           </div>
           <div class="flex items-center gap-2 text-slate-400 text-xs">
+            ${hasMultipleImages ? `
+              <span data-mockup-counter="${data.id}" class="text-[9px] font-mono text-cyan-400 bg-black/60 px-2 py-0.5 rounded border border-cyan-500/30">1 / ${gallery.length}</span>
+            ` : ''}
             <i class="fas fa-shield-alt text-[10px] text-cyan-400"></i>
           </div>
         </div>
-        <!-- Browser Body With Real Image Preview -->
-        ${data.image ? `
-          <div class="relative flex-1 overflow-hidden bg-black/60 group/modalimg min-h-[280px]">
-            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between text-xs font-mono">
-              <span class="text-white font-bold drop-shadow-lg">${data.title}</span>
+
+        <!-- Browser Body With Real Image Preview & Gallery Slider -->
+        <div class="relative flex-1 overflow-hidden bg-black/60 group/modalimg min-h-[280px]">
+          <img src="${firstImage}" data-mockup-img="${data.id}" alt="${data.title}" class="w-full h-full object-cover object-top transition-all duration-500 cursor-pointer" onclick="openProjectGallery('${data.id}', GalleryState?.mockupState?.['${data.id}'] || 0)" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
+
+          ${hasMultipleImages ? `
+            <!-- Prev / Next Navigation Arrows -->
+            <button type="button" class="mockup-nav-arrow mockup-nav-prev" onclick="navigateMockupGallery('${data.id}', -1)" aria-label="Previous image">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button type="button" class="mockup-nav-arrow mockup-nav-next" onclick="navigateMockupGallery('${data.id}', 1)" aria-label="Next image">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          ` : ''}
+
+          <!-- Bottom Floating Bar -->
+          <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono pointer-events-none">
+            <span class="text-white font-bold drop-shadow-lg flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span> ${data.title}
+            </span>
+            <div class="pointer-events-auto flex items-center gap-2">
+              <button type="button" class="text-cyan-400 bg-black/80 px-2.5 py-1 rounded-lg border border-cyan-500/40 hover:bg-cyan-500/20 transition-colors flex items-center gap-1.5 text-[11px] font-bold" onclick="openProjectGallery('${data.id}', GalleryState?.mockupState?.['${data.id}'] || 0)">
+                <i class="fas fa-search-plus text-[10px]"></i> ${isArabic ? 'تكبير' : 'Zoom HD'}
+              </button>
               ${data.demoLink && data.demoLink !== '#' ? `
-                <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 bg-black/70 px-3 py-1 rounded-lg border border-cyan-500/40 hover:bg-cyan-500/20 transition-colors flex items-center gap-1.5 font-bold">
-                  Open Live <i class="fas fa-arrow-up-right-from-square text-[9px]"></i>
+                <a href="${data.demoLink}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 bg-black/80 px-2.5 py-1 rounded-lg border border-cyan-500/40 hover:bg-cyan-500/20 transition-colors flex items-center gap-1.5 text-[11px] font-bold">
+                  Live ↗
                 </a>
               ` : ''}
             </div>
           </div>
-        ` : `
-          <div class="relative flex-1 p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-cyan-950/20 via-black to-purple-950/20">
-            <div class="relative z-10">
-              <div class="flex items-center justify-between mb-4">
-                <span class="cyber-badge cyber-badge-cyan text-[9px]"><i class="fas fa-globe mr-1.5"></i> ${data.projectClass || 'WEB PLATFORM'}</span>
-                <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20"><i class="fas fa-circle text-[6px] mr-1 animate-pulse"></i> VERIFIED DEPLOYMENT</span>
-              </div>
-              <h3 class="font-heading text-2xl font-black text-white mb-2 leading-tight">${data.title}</h3>
-              <p class="text-xs text-slate-300/85 max-w-md line-clamp-3 leading-relaxed">${data.summary || data.subtitle || data.description}</p>
-            </div>
-          </div>
-        `}
+        </div>
+
       </div>
+
+      <!-- Thumbnail Strip & Caption if multiple images -->
+      ${hasMultipleImages ? `
+        <div class="mt-4 flex items-center justify-center gap-2 flex-wrap">
+          ${gallery.map((g, idx) => `
+            <button type="button" class="mockup-thumb-btn ${idx === 0 ? 'active' : ''}" data-mockup-thumb="${data.id}" onclick="setMockupGalleryImage('${data.id}', ${idx})" title="${g.title}" aria-label="Screenshot ${idx + 1}">
+              <img src="${g.src}" alt="${g.title}" class="w-11 h-11 object-cover rounded-lg">
+            </button>
+          `).join('')}
+        </div>
+        <div class="mt-2 text-center text-xs text-slate-300 font-mono" data-mockup-caption="${data.id}">
+          <strong class="text-white">${isArabic ? (gallery[0].titleAr || gallery[0].title) : gallery[0].title}</strong>
+        </div>
+      ` : ''}
     `;
   } else if (data.mockupType === 'hardware') {
     mockupHTML = `
       <div class="cyber-hardware-mockup relative w-full aspect-[16/10] max-w-2xl mx-auto rounded-2xl border border-purple-500/30 bg-[#060411]/95 shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col justify-between" style="box-shadow: 0 25px 60px -15px rgba(0,0,0,0.9), 0 0 35px rgba(139, 92, 246, 0.25);">
+        
         <!-- Top status bar -->
         <div class="flex items-center justify-between px-5 py-3 border-b border-purple-500/20 bg-white/[0.02]">
           <div class="flex items-center gap-2">
@@ -166,17 +269,19 @@ function renderCaseStudy(data) {
           </div>
           <span class="cyber-badge cyber-badge-cyan text-[8px]"><i class="fas fa-circle text-[5px] mr-1 text-emerald-400 animate-ping"></i> ACTIVE REPO</span>
         </div>
+
         <!-- Real Systems Engineering Visual -->
-        ${data.image ? `
-          <div class="relative flex-1 overflow-hidden bg-black/80 min-h-[260px]">
-            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-            <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono">
-              <span class="text-white font-bold drop-shadow-lg">Router Firmware &amp; Telemetry</span>
-              <span class="text-purple-300 bg-black/70 px-2.5 py-1 rounded border border-purple-500/30 font-bold">Linux iptables / tc</span>
-            </div>
+        <div class="relative flex-1 overflow-hidden bg-black/80 min-h-[260px] group/hwimg">
+          <img src="${firstImage}" data-mockup-img="${data.id}" alt="${data.title}" class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105 cursor-pointer" onclick="openProjectGallery('${data.id}', 0)" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono">
+            <span class="text-white font-bold drop-shadow-lg">Router Firmware &amp; Telemetry</span>
+            <button type="button" class="text-purple-300 bg-black/70 px-2.5 py-1 rounded border border-purple-500/30 font-bold hover:bg-purple-500/20 transition-colors flex items-center gap-1.5" onclick="openProjectGallery('${data.id}', 0)">
+              <i class="fas fa-search-plus"></i> ${isArabic ? 'تكبير' : 'Zoom HD'}
+            </button>
           </div>
-        ` : ''}
+        </div>
+
         <!-- Architectural Component Breakdown -->
         <div class="p-4 grid grid-cols-3 gap-3 border-t border-white/5 bg-[#070514]/90">
           <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
@@ -195,41 +300,56 @@ function renderCaseStudy(data) {
             <div class="text-[7.5px] text-slate-400 font-mono">Clean Architecture</div>
           </div>
         </div>
-      </div>
-    `;
-  } else if (data.image) {
-    mockupHTML = `
-      <div class="iphone-mockup mx-auto">
-        <div class="iphone-notch" aria-hidden="true"></div>
-        <div class="iphone-screen">
-          <img src="${data.image}" alt="${data.title} — Application interface" class="iphone-img" loading="lazy">
-        </div>
+
       </div>
     `;
   } else {
+    // Mobile iPhone Frame with Slider
     mockupHTML = `
-      <div class="relative w-full aspect-[4/3] max-w-lg mx-auto rounded-3xl border border-cyan-500/20 bg-cyan-950/10 p-8 flex flex-col justify-between overflow-hidden backdrop-blur-xl">
-        <div class="z-10 text-left">
-          <div class="flex justify-between items-center mb-6">
-            <span class="cyber-badge cyber-badge-cyan text-[10px]"><i class="fas fa-code mr-1"></i> ARCHITECTURAL SPECIFICATION</span>
-            <span class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">${data.projectClass || 'SYSTEM'}</span>
-          </div>
-          <div class="font-mono text-cyan-400 text-xs leading-relaxed mb-6">
-            <p class="text-white/40">// ENGINEERING SPECIFICATION</p>
-            <p class="mt-1"><span class="text-purple-400">package</span> ${data.id}.architecture;</p>
-            <p class="mt-1 text-slate-300">Clean Architecture Domain separation;</p>
-            <p class="mt-0.5 text-emerald-400">// Verified Technologies: ${techList.slice(0, 3).join(', ')}</p>
+      <div class="relative flex flex-col items-center">
+        
+        <div class="iphone-mockup mx-auto relative group/phone">
+          <div class="iphone-notch" aria-hidden="true"></div>
+          
+          <div class="iphone-screen">
+            <img src="${firstImage}" data-mockup-img="${data.id}" alt="${data.title} — Application interface" class="iphone-img cursor-pointer" onclick="openProjectGallery('${data.id}', GalleryState?.mockupState?.['${data.id}'] || 0)" loading="lazy">
+            
+            ${hasMultipleImages ? `
+              <!-- Phone Left / Right Nav Arrows -->
+              <button type="button" class="mockup-nav-arrow mockup-nav-prev" onclick="navigateMockupGallery('${data.id}', -1)" aria-label="Previous screenshot">
+                <i class="fas fa-chevron-left text-xs"></i>
+              </button>
+              <button type="button" class="mockup-nav-arrow mockup-nav-next" onclick="navigateMockupGallery('${data.id}', 1)" aria-label="Next screenshot">
+                <i class="fas fa-chevron-right text-xs"></i>
+              </button>
+            ` : ''}
+
+            <!-- Bottom Floating Action Bar in Phone -->
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono pointer-events-none z-10">
+              ${hasMultipleImages ? `
+                <span data-mockup-counter="${data.id}" class="text-white font-bold bg-black/80 px-2 py-0.5 rounded-full border border-white/10 shadow-md">1 / ${gallery.length}</span>
+              ` : '<span></span>'}
+              <button type="button" class="pointer-events-auto text-cyan-400 bg-black/80 px-2.5 py-1 rounded-full border border-cyan-500/40 hover:bg-cyan-500/30 transition-colors flex items-center gap-1 font-bold shadow-md" onclick="openProjectGallery('${data.id}', GalleryState?.mockupState?.['${data.id}'] || 0)">
+                <i class="fas fa-search-plus text-[9px]"></i> HD
+              </button>
+            </div>
           </div>
         </div>
-        <div class="z-10 flex justify-between items-end text-left">
-          <div>
-            <span class="block text-[8px] font-bold text-slate-500 tracking-wider uppercase mb-1">ENGINEERING STATUS</span>
-            <span class="cyber-badge text-green-400 border-green-500/30 bg-green-500/10 text-[9px]">VERIFIED</span>
+
+        <!-- Thumbnail Strip & Caption if multiple images -->
+        ${hasMultipleImages ? `
+          <div class="mt-4 flex items-center justify-center gap-2 flex-wrap max-w-sm">
+            ${gallery.map((g, idx) => `
+              <button type="button" class="mockup-thumb-btn ${idx === 0 ? 'active' : ''}" data-mockup-thumb="${data.id}" onclick="setMockupGalleryImage('${data.id}', ${idx})" title="${g.title}" aria-label="Screenshot ${idx + 1}">
+                <img src="${g.src}" alt="${g.title}" class="w-10 h-10 object-cover rounded-lg">
+              </button>
+            `).join('')}
           </div>
-          <div class="text-right">
-            <span class="font-heading font-black text-white tracking-widest text-xs">${data.title}</span>
+          <div class="mt-2 text-center text-xs text-slate-300 font-mono max-w-xs" data-mockup-caption="${data.id}">
+            <strong class="text-white">${isArabic ? (gallery[0].titleAr || gallery[0].title) : gallery[0].title}</strong>
           </div>
-        </div>
+        ` : ''}
+
       </div>
     `;
   }
@@ -249,27 +369,32 @@ function renderCaseStudy(data) {
         <div class="flex flex-wrap items-center gap-2 mb-4 case-study-reveal">
           <span class="cyber-badge cyber-badge-cyan text-[9px] font-bold">${data.projectClass || 'FEATURED WORK'}</span>
           ${data.statusBadge ? `<span class="cinematic-badge cinematic-badge-live text-[9px]">${data.statusBadge}</span>` : ''}
+          ${hasMultipleImages ? `
+            <span class="cinematic-badge text-[9px] text-cyan-300 border-cyan-500/30">
+              <i class="fas fa-images mr-1"></i> ${gallery.length} ${isArabic ? 'لقطات شاشة' : 'Screenshots'}
+            </span>
+          ` : ''}
         </div>
 
         ${data.client ? `
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-semibold text-slate-300 mb-4 case-study-reveal">
             <i class="fas fa-building text-cyan-400 text-xs"></i>
-            <span>Context / Organization: <strong class="text-white">${data.client}</strong></span>
+            <span>${isArabic ? 'الجهة / السياق:' : 'Context / Organization:'} <strong class="text-white">${isArabic ? (data.clientAr || data.client) : data.client}</strong></span>
           </div>
         ` : ''}
 
         ${data.role ? `
           <div class="text-xs text-cyan-300 font-mono mb-4 case-study-reveal">
-            <i class="fas fa-user-gear mr-1"></i> Role: ${data.role}
+            <i class="fas fa-user-gear mr-1"></i> ${isArabic ? 'الدور الهندسي:' : 'Role:'} ${isArabic ? (data.roleAr || data.role) : data.role}
           </div>
         ` : ''}
 
         <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight case-study-reveal">
-          ${data.title}
+          ${isArabic ? (data.titleAr || data.title) : data.title}
         </h2>
 
         <p class="text-sm text-slate-300 leading-relaxed mb-6 max-w-lg case-study-reveal">
-          ${data.summary || data.subtitle || data.description}
+          ${isArabic ? (data.description || data.summary) : (data.summary || data.description)}
         </p>
 
         <!-- Tech tags -->
@@ -291,6 +416,12 @@ function renderCaseStudy(data) {
               <span>${data.repoLabel || 'Source Code'}</span>
             </a>
           ` : ''}
+          ${gallery.length > 0 ? `
+            <button type="button" class="cinematic-action-btn cinematic-action-live flex items-center gap-2 py-3 px-5 text-xs font-bold" onclick="openProjectGallery('${data.id}', 0)">
+              <i class="fas fa-images text-cyan-400"></i>
+              <span>${isArabic ? `معرض الصور (${gallery.length})` : `Visual Gallery (${gallery.length})`}</span>
+            </button>
+          ` : ''}
         </div>
       </div>
 
@@ -307,12 +438,15 @@ function renderCaseStudy(data) {
       ${contributionsHTML}
     </div>
 
+    <!-- Multi-Screenshot Visual Showcase Section -->
+    ${projectScreenshotsHTML}
+
     <!-- Features Section -->
     ${(data.features && data.features.length) ? `
       <div class="py-20 border-t border-white/[0.06] bg-black/20 px-4 md:px-12 text-left">
         <div class="max-w-7xl mx-auto">
           <span class="section-label case-study-reveal">ARCHITECTURE &amp; FEATURES</span>
-          <h3 class="section-title mb-4 case-study-reveal">Technical Highlights</h3>
+          <h3 class="section-title mb-4 case-study-reveal">${isArabic ? 'المعالم والمواصفات التقنية' : 'Technical Highlights'}</h3>
           <p class="text-xs text-slate-400 max-w-lg mb-12 leading-relaxed case-study-reveal">
             Detailed engineering features verified against the working application or codebase.
           </p>
@@ -328,7 +462,7 @@ function renderCaseStudy(data) {
       <div class="py-20 px-4 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-14 text-left">
         <div class="w-full lg:w-1/3">
           <span class="section-label case-study-reveal">IMPLEMENTATION MILESTONES</span>
-          <h3 class="section-title mb-4 case-study-reveal">Development Stages</h3>
+          <h3 class="section-title mb-4 case-study-reveal">${isArabic ? 'مراحل التطوير والإطلاق' : 'Development Stages'}</h3>
           <p class="text-xs text-slate-400 leading-relaxed mb-6 case-study-reveal">
             Structured development workflow translating architectural specifications into verified deliverables.
           </p>
@@ -342,13 +476,13 @@ function renderCaseStudy(data) {
     <!-- Modal Footer CTA -->
     <div class="py-20 border-t border-white/[0.06] text-center px-4 md:px-12">
       <div class="max-w-lg mx-auto glass-panel p-10 case-study-reveal">
-        <h3 class="font-heading text-xl font-extrabold text-white mb-3">Discuss this Architecture</h3>
+        <h3 class="font-heading text-xl font-extrabold text-white mb-3">${isArabic ? 'ناقش هذا المشروع معي' : 'Discuss this Architecture'}</h3>
         <p class="text-xs text-slate-400 leading-relaxed mb-6">
-          Have questions about the technical implementation, systems design, or mobile integration?
+          ${isArabic ? 'هل لديك أسئلة حول المعمارية البرمجية أو ترغب في تطوير نظام مشابه؟' : 'Have questions about the technical implementation, systems design, or mobile integration?'}
         </p>
         <div class="flex justify-center gap-4 flex-wrap">
           <a href="#contact" class="btn-glowing magnetic-btn flex items-center gap-2 text-xs py-2.5 px-6 font-bold" onclick="closeCaseStudyGlobal()" aria-label="Contact Ibrahim">
-            <i class="fas fa-paper-plane text-yellow-300 text-[10px]" aria-hidden="true"></i> Contact Me
+            <i class="fas fa-paper-plane text-yellow-300 text-[10px]" aria-hidden="true"></i> ${isArabic ? 'تواصل معي مباشرة' : 'Contact Me'}
           </a>
           <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center gap-2 text-xs py-2.5 px-6 font-semibold" aria-label="Visit GitHub Profile">
             <i class="fab fa-github" aria-hidden="true"></i> GitHub Profile

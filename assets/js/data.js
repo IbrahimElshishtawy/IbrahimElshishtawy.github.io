@@ -98,6 +98,16 @@ const PROJECTS_DATA = {
     accentColor: "#06b6d4",
     mockupType: "browser",
     image: "assets/assets/gouna_lifestyle.jpg",
+    gallery: [
+      {
+        src: "assets/assets/gouna_lifestyle.jpg",
+        title: "Luxury Destination & Real Estate Platform",
+        titleAr: "منصة الجونة الفاخرة للاستكشاف والخدمات العقارية",
+        desc: "Bilingual lifestyle portal showcasing El Gouna destinations, activities, and hotel inquiries with Next.js & PHP APIs.",
+        descAr: "واجهة رقمية متكاملة ثنائية اللغة مبنية بـ Next.js وربط كامل مع خدمات الـ PHP REST API.",
+        aspect: "desktop"
+      }
+    ],
     urlPreview: "gouna-lifestyle-platform.vercel.app/ar",
     contributionDetails: [
       "Engineered the modern, responsive user interface using Next.js and Tailwind CSS with high visual fidelity.",
@@ -170,6 +180,16 @@ const PROJECTS_DATA = {
     accentColor: "#8b5cf6",
     mockupType: "hardware",
     image: "assets/assets/openwrt_manager.jpg",
+    gallery: [
+      {
+        src: "assets/assets/openwrt_manager.jpg",
+        title: "Router Telemetry & Bandwidth Management Dashboard",
+        titleAr: "لوحة مراقبة استهلاك الراوتر والتحكم في السرعات",
+        desc: "Linux iptables byte quota monitoring, tc rate shaping, and Node.js telemetry daemon integration.",
+        descAr: "مراقبة حزم البيانات عبر iptables والتحكم في عرض النطاق عبر خادم Node.js ونظام OpenWrt.",
+        aspect: "desktop"
+      }
+    ],
     urlPreview: "github.com/IbrahimElshishtawy/openwrt-wifi-quota-manager",
     contributionDetails: [
       "Configured OpenWrt Linux router firmware and established kernel-level iptables byte quota counting rules.",
@@ -242,6 +262,16 @@ const PROJECTS_DATA = {
     accentColor: "#10b981",
     mockupType: "browser",
     image: "assets/assets/etihad_platform.jpg",
+    gallery: [
+      {
+        src: "assets/assets/etihad_platform.jpg",
+        title: "Youth Interactive Learning Portal & Python Hub",
+        titleAr: "بوابة اتحاد بشبابها ومبادرة تدريب بايثون",
+        desc: "Interactive educational portal with Next.js, Firebase Auth, and structured Python CS curriculum roadmap.",
+        descAr: "منصة ويب تفاعلية مبنية بـ Next.js وFirebase لخدمة تدريب الشباب وتدريس مناهج بايثون.",
+        aspect: "desktop"
+      }
+    ],
     urlPreview: "etihad-bshababha.web.app",
     contributionDetails: [
       "Engineered the educational web application frontend utilizing Next.js and Tailwind CSS.",
@@ -314,6 +344,16 @@ const PROJECTS_DATA = {
     accentColor: "#f59e0b",
     mockupType: "browser",
     image: "assets/assets/pro_setup.jpg",
+    gallery: [
+      {
+        src: "assets/assets/pro_setup.jpg",
+        title: "Workstation Configurator & Ergonomics Showcase",
+        titleAr: "منصة تنسيق مساحات عمل المطورين وبيئات المكاتب",
+        desc: "Modern workstation builder with interactive hardware selectors, ergonomic tips, and dark UI styling.",
+        descAr: "منصة تفاعلية لاختيار وتنسيق مكاتب المطورين وملحقات العمل المريحة بتصميم داكن متجاوب.",
+        aspect: "desktop"
+      }
+    ],
     urlPreview: "pro-setup-platform.web.app",
     contributionDetails: [
       "Engineered an interactive workspace customizer allowing visitors to preview desks, monitors, and accessories.",
@@ -380,6 +420,32 @@ const PROJECTS_DATA = {
     accentColor: "#8b5cf6",
     mockupType: "mobile",
     image: "assets/assets/aqar_dashboard.png",
+    gallery: [
+      {
+        src: "assets/assets/aqar_dashboard.png",
+        title: "Real Estate Analytics & Sales Dashboard",
+        titleAr: "لوحة تحكم العقارات وإحصائيات المبيعات",
+        desc: "Flutter mobile dashboard rendering key financial metrics, contract statuses, and Fl_Chart graphs.",
+        descAr: "شاشة رئيسية تفاعلية تعرض مؤشرات الأداء المالي والعقود ومخططات بيانية دقيقة.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/aqar_activities.png",
+        title: "Transactions & Client Activities Pipeline",
+        titleAr: "سجل المعاملات والأنشطة العقارية اليومية",
+        desc: "Detailed timeline tracking recent sales interactions, payments, and client communications offline.",
+        descAr: "جدول زمني يوثق كافة التحصيلات والتعاملات مع العملاء مع دعم الحفظ المحلي أوفلاين.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/Aqar.jpg",
+        title: "Property Units Directory & Contract Management",
+        titleAr: "إدارة الوحدات العقارية والعقود المبرمة",
+        desc: "Unit inventory management, contract lifecycle status, and offline SQLite synchronized database.",
+        descAr: "إدارة تفصيلية لبيانات الوحدات وتفاصيل العقود مع قاعدة بيانات Sqflite سريعة.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Implemented layered Clean Architecture separating Domain, Data, and Presentation layers.",
       "Engineered local SQLite database with indexed foreign keys for sub-5ms queries and offline reliability.",
@@ -429,6 +495,32 @@ const PROJECTS_DATA = {
     accentColor: "#06b6d4",
     mockupType: "mobile",
     image: "assets/assets/bostan_stats.png",
+    gallery: [
+      {
+        src: "assets/assets/bostan_stats.png",
+        title: "Reading Streaks & Habit Analytics",
+        titleAr: "إحصائيات القراءة والورد اليومي",
+        desc: "Visual habit tracking dashboard with daily Quranic streaks, pages completed, and progress curves.",
+        descAr: "لوحة تفاعلية تتبع إنجاز القراءة اليومي وعدد الصفحات المقروءة ومعدلات الاستمرار.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/bostan_settings.png",
+        title: "Reciters Audio & Typography Settings",
+        titleAr: "إعدادات القراء ومزامنة التلاوة والخطوط",
+        desc: "Audio playback preferences, reciter selection, offline audio caching, and Uthmani font scaling.",
+        descAr: "تخصيص مشغل الصوت واختيار القراء والتحكم في حجم الخط القرآني بدون تشويه الخطوط.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/bostan.jpg",
+        title: "Holy Quran Reading & Verse Highlighting",
+        titleAr: "واجهة المصحف الشريف والتصفح السلس",
+        desc: "High-precision vector typography rendering with synchronized verse highlighting and audio cues.",
+        descAr: "تصفح انسيابي للمصحف الشريف بدقة متناهية مع تمييز الآيات بالتزامن مع التلاوة الصوتية.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Built custom typography rendering engine preventing glyph clipping at high zoom levels.",
       "Integrated audio playback services synchronized with interactive text highlights.",
@@ -478,6 +570,32 @@ const PROJECTS_DATA = {
     accentColor: "#10b981",
     mockupType: "mobile",
     image: "assets/assets/animal_connect_home.png",
+    gallery: [
+      {
+        src: "assets/assets/animal_connect_home.png",
+        title: "Marketplace Feed & Animal Discovery",
+        titleAr: "الواجهة الرئيسية واستكشاف الحيوانات والتبني",
+        desc: "Curated animal feed featuring categorized cards, vaccination status tags, and direct inquiry links.",
+        descAr: "بطاقات مصنفة للحيوانات المتاحة مع بيان الحالة الصحية والتطعيمات وأزرار التواصل السريع.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/animal_connect_list.png",
+        title: "Geolocation Proximity Search & Filters",
+        titleAr: "البحث الجغرافي والفلترة حسب المسافة",
+        desc: "Location-aware search utilizing Geohash indices to discover pets and veterinary clinics closest to you.",
+        descAr: "تصفية ذكية بحسب النطاق الجغرافي باستخدام إحداثيات Geohash للعثور على أقرب الحيوانات والعيادات.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/animal.jpg",
+        title: "Adoption Profile & Live Chat Interface",
+        titleAr: "ملف التبني التعريفي وتفاصيل التواصل",
+        desc: "Comprehensive profile with pet history, image gallery, and instant Socket.io chat with owners.",
+        descAr: "تفاصيل السلالة والاحتياجات مع إمكانية بدء محادثة فورية مشفرة باستخدام Socket.io.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Engineered mobile interface in Flutter with custom search filters and category tags.",
       "Implemented Socket.io client bindings for real-time bi-directional messaging.",
@@ -527,6 +645,48 @@ const PROJECTS_DATA = {
     accentColor: "#f59e0b",
     mockupType: "mobile",
     image: "assets/assets/tolab_schedule.png",
+    gallery: [
+      {
+        src: "assets/assets/tolab_schedule.png",
+        title: "Smart Academic Schedule & Class Timetable",
+        titleAr: "الجدول الدراسي والمنبهات الذكية للمحاضرات",
+        desc: "Weekly schedule view with time-sensitive color codes and automatic pre-lecture local notifications.",
+        descAr: "جدول دراسي أسبوعي تفاعلي يرسل تنبيهات محلية تلقائية للطلاب قبل موعد كل محاضرة.",
+        aspect: "mobile"
+      },
+      {
+        src: "assets/assets/Tolab_1.png",
+        title: "Student Academic Dashboard & Home View",
+        titleAr: "لوحة تحكم الطالب والواجهة الرئيسية الشاملة",
+        desc: "Centralized overview of current semester progress, daily upcoming lectures, and urgent tasks.",
+        descAr: "نظرة عامة على المقررات والمهام المستعجلة ومحاضرات اليوم مع إمكانية الوصول السريع.",
+        aspect: "desktop"
+      },
+      {
+        src: "assets/assets/Tolab_2.png",
+        title: "Lecture Modules & Task Tracking",
+        titleAr: "تفاصيل المقررات والمحاضرات والواجبات",
+        desc: "Subject syllabus view organizing lecture files, recorded voice notes, and assignment checkpoints.",
+        descAr: "شاشة استعراض المواد الدراسية وربط كل مادة بملفاتها وملاحظاتها وتاريخ تسليم التكاليف.",
+        aspect: "desktop"
+      },
+      {
+        src: "assets/assets/Tolab_3.png",
+        title: "Academic Calendar & Examination Alarms",
+        titleAr: "التقويم الجامعي ومواعيد الاختبارات الدورية",
+        desc: "Integrated calendar synchronizing midterm, final, and quiz deadlines with offline Hive DB caching.",
+        descAr: "تقويم دراسي متزامن مع مواعيد الامتحانات وأنشطة الفصل الدراسي مع حفظ دائم في قاعدة Hive.",
+        aspect: "desktop"
+      },
+      {
+        src: "assets/assets/tolab_courses.png",
+        title: "Course Catalog & Built-in PDF Reader",
+        titleAr: "دليل المقررات وقارئ مستندات PDF المدمج",
+        desc: "Built-in PDF document viewing engine supporting inverted night reading and persistent bookmarks.",
+        descAr: "قارئ PDF مدمج يتيح قراءة المذكرات والملازم الجامعية مع دعم الوضع الليلي وحفظ العلامات.",
+        aspect: "mobile"
+      }
+    ],
     contributionDetails: [
       "Integrated lightweight PDF reading engine supporting in-app lecture viewing and page bookmarks.",
       "Implemented weekly timetable calendar with recurring local schedule notifications.",
@@ -576,6 +736,16 @@ const PROJECTS_DATA = {
     accentColor: "#8b5cf6",
     mockupType: "mobile",
     image: "assets/assets/Edu Assess.jpg",
+    gallery: [
+      {
+        src: "assets/assets/Edu Assess.jpg",
+        title: "Electronic Examination & Automated Evaluation System",
+        titleAr: "منظومة الامتحانات الإلكترونية والتقييم الآلي",
+        desc: "Distraction-free mobile exam interface with offline question caching and instant score breakdowns.",
+        descAr: "واجهة اختبارات ذكية تدعم خوض الامتحانات بدون إنترنت مع تصحيح فوري وحساب الدرجات.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Designed the assessment workflow concept including timed question timers and multi-choice validation.",
       "Architected an offline test-taking model caching responses locally before synchronizing upon reconnection.",
@@ -625,6 +795,16 @@ const PROJECTS_DATA = {
     accentColor: "#06b6d4",
     mockupType: "mobile",
     image: "assets/assets/Quick Bit.jpg",
+    gallery: [
+      {
+        src: "assets/assets/Quick Bit.jpg",
+        title: "Crypto Portfolio Tracker & Streaming Tickers",
+        titleAr: "محفظة العملات الرقمية وتتبع الأسعار اللحظية",
+        desc: "Real-time market candlestick charting with Fl_Chart and smooth BLoC state updates at 60 FPS.",
+        descAr: "رسوم بيانية حية للشموع اليابانية وتحديثات فورية لأسعار الأصول عبر WebSockets مع أداء عالي.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Built fluid financial candlestick and line chart widgets powered by Fl_Chart.",
       "Structured BLoC state management to handle high-frequency price ticker updates at 60 FPS.",
@@ -674,6 +854,16 @@ const PROJECTS_DATA = {
     accentColor: "#ec4899",
     mockupType: "mobile",
     image: "assets/assets/umum.jpg",
+    gallery: [
+      {
+        src: "assets/assets/umum.jpg",
+        title: "Community Dialogues & Real-Time Polling Cards",
+        titleAr: "منصة الحوارات المجتمعية واستطلاعات الرأي التفاعلية",
+        desc: "Interactive polling cards recalculating percentages live with Firebase and threaded replies.",
+        descAr: "بطاقات استطلاع رأي تفاعلية تعيد احتساب نسب التصويت لحظياً مع نقاشات مجتمعية هادفة.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Designed and implemented clean, responsive social feed cards in Flutter.",
       "Integrated real-time voting widgets with animated percentage updates via Firebase.",
@@ -723,6 +913,16 @@ const PROJECTS_DATA = {
     accentColor: "#f59e0b",
     mockupType: "mobile",
     image: "assets/assets/writle.jpg",
+    gallery: [
+      {
+        src: "assets/assets/writle.jpg",
+        title: "Minimalist Encrypted Markdown Journal & Soundscapes",
+        titleAr: "مفكرة الماركداون المشفرة ببيئة هادئة ومؤثرات صوتية",
+        desc: "Private local vault with AES encryption, dual preview Markdown, and ambient focus soundscapes.",
+        descAr: "محرر نصوص مشفر محلياً يوفر أجواء صوتية هادئة للتركيز والكتابة بدون أي تشتيت.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Implemented a custom real-time Markdown syntax parser and preview renderer in Flutter.",
       "Integrated local encrypted storage using Hive DB for zero-latency, private offline note persistence.",
@@ -772,6 +972,16 @@ const PROJECTS_DATA = {
     accentColor: "#10b981",
     mockupType: "desktop",
     image: "assets/assets/factorymanagement.jpg",
+    gallery: [
+      {
+        src: "assets/assets/factorymanagement.jpg",
+        title: "Industrial Production Lines & Shifts Monitoring",
+        titleAr: "نظام إدارة ومتابعة خطوط الإنتاج والورديات بالمصانع",
+        desc: "Industrial monitoring system tracking manufacturing work orders, machine shifts, and raw materials.",
+        descAr: "منظومة لمراقبة خطوط الإنتاج بالمصانع وحساب مخزون المواد الخام وتوزيع ورديات العمل.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Engineered production stage tracking dashboards with real-time operational status indicators.",
       "Designed local-first database caching with SQLite ensuring uninterrupted factory-floor operation.",
@@ -821,6 +1031,16 @@ const PROJECTS_DATA = {
     accentColor: "#8b5cf6",
     mockupType: "mobile",
     image: "assets/assets/lms.jpg",
+    gallery: [
+      {
+        src: "assets/assets/lms.jpg",
+        title: "Academic Learning Management & Course Portal",
+        titleAr: "بوابة إدارة المقررات والتعليم الجامعي LMS",
+        desc: "University academic platform managing lectures, video materials, quizzes, and grade announcements.",
+        descAr: "بوابة إلكترونية متكاملة للطلاب والأساتذة لإدارة المحاضرات ورفع التكليفات ورصد الدرجات.",
+        aspect: "mobile"
+      }
+    ],
     contributionDetails: [
       "Built dynamic course syllabus and lecture video streaming interfaces in Flutter.",
       "Integrated assignment submission modules supporting document uploads and grading status.",
@@ -870,6 +1090,16 @@ const PROJECTS_DATA = {
     accentColor: "#06b6d4",
     mockupType: "mobile",
     image: "assets/assets/newscope.jpg",
+    gallery: [
+      {
+        src: "assets/assets/newscope.jpg",
+        title: "NewsScope Categorized Feed & Offline Reader",
+        titleAr: "تطبيق الأخبار العالمية والقراءة دون اتصال",
+        desc: "Global news aggregator caching articles in Hive DB for smooth offline reading on the move.",
+        descAr: "موجز إخباري عالمي مصنف يدعم حفظ المقالات في ذاكرة Hive لقراءتها في أي وقت دون إنترنت.",
+        aspect: "desktop"
+      }
+    ],
     contributionDetails: [
       "Engineered multi-category news feed consumption using high-speed REST API endpoints.",
       "Implemented offline article storage with Hive DB caching full story contents and images.",
@@ -898,6 +1128,33 @@ const PROJECTS_DATA = {
 };
 
 /* Export for Node / CommonJS environments if applicable */
+
+/* ── 3. AGGREGATED ALL SCREENSHOTS DATASET (FOR UNIVERSAL GALLERY) ── */
+const ALL_PROJECT_SCREENSHOTS = [];
+Object.values(PROJECTS_DATA).forEach(project => {
+  if (project.gallery && Array.isArray(project.gallery)) {
+    project.gallery.forEach((item, index) => {
+      ALL_PROJECT_SCREENSHOTS.push({
+        id: project.id + '_' + index,
+        projectId: project.id,
+        projectTitle: project.title,
+        projectTitleAr: project.titleAr,
+        category: project.categoryFilter || project.type || 'mobile',
+        projectClass: project.projectClass || '',
+        accentColor: project.accentColor || '#06b6d4',
+        src: item.src,
+        title: item.title,
+        titleAr: item.titleAr,
+        desc: item.desc,
+        descAr: item.descAr,
+        aspect: item.aspect || 'desktop',
+        index: index,
+        totalInProject: project.gallery.length
+      });
+    });
+  }
+});
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { EXPERTISE_GROUPS, PROJECTS_DATA };
+  module.exports = { EXPERTISE_GROUPS, PROJECTS_DATA, ALL_PROJECT_SCREENSHOTS };
 }
