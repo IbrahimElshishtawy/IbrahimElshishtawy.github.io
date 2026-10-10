@@ -645,6 +645,251 @@ const PROJECTS_DATA = {
         desc: "Prototyped financial chart components in Flutter with optimized frame rates for fast data feeds."
       }
     ]
+  },
+
+  umum: {
+    id: "umum",
+    title: "UmUm (عُموم)",
+    titleAr: "عُموم — UmUm Community",
+    type: "mobile",
+    categoryFilter: "mobile",
+    projectClass: "Mobile Application",
+    client: "Community Platform",
+    clientAr: "تطبيق مجتمعي",
+    role: "Flutter Mobile Developer",
+    roleAr: "مطور تطبيقات فلاتر",
+    statusBadge: "MOBILE APP · SOCIAL COMMUNITY",
+    statusBadgeColor: "purple",
+    verifiedTech: ["Flutter", "Firebase", "Cloud Functions", "GetX"],
+    summary: "A community discussions and polling platform connecting youth and users around shared cultural questions and ideas.",
+    description: "شبكة تواصل مجتمعية للنقاشات الهادفة واستطلاعات الرأي التفاعلية بين المستخدمين مع تصويت لحظي.",
+    demoLink: "https://github.com/IbrahimElshishtawy",
+    demoLabel: "GitHub Profile",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    repoLabel: "GitHub Profile",
+    accentColor: "#ec4899",
+    mockupType: "mobile",
+    image: "assets/assets/umum.jpg",
+    contributionDetails: [
+      "Designed and implemented clean, responsive social feed cards in Flutter.",
+      "Integrated real-time voting widgets with animated percentage updates via Firebase.",
+      "Engineered threaded dialogue components with instant state updates using GetX."
+    ],
+    features: [
+      {
+        icon: "fa-poll",
+        title: "Real-Time Polling Cards",
+        desc: "Interactive voting components recalculating community percentages dynamically without reloading."
+      },
+      {
+        icon: "fa-comments",
+        title: "Threaded Community Dialogues",
+        desc: "Structured replies with smooth animations and reactive notifications."
+      }
+    ],
+    journey: [
+      {
+        phase: "PHASE 01 — FEED ARCHITECTURE",
+        title: "Optimized List Rendering",
+        desc: "Implemented memory-efficient list views and cached image loading for smooth 60fps scrolling."
+      }
+    ]
+  },
+
+  writle: {
+    id: "writle",
+    title: "Writle (رايتل)",
+    titleAr: "رايتل — Writle Editor",
+    type: "mobile",
+    categoryFilter: "mobile",
+    projectClass: "Mobile Application",
+    client: "Productivity App",
+    clientAr: "تطبيق إنتاجية وكتابة",
+    role: "Flutter Mobile Developer",
+    roleAr: "مطور تطبيقات فلاتر",
+    statusBadge: "MOBILE APP · MINDFUL WRITING",
+    statusBadgeColor: "amber",
+    verifiedTech: ["Flutter", "Hive DB", "Markdown Engine", "Audio Player"],
+    summary: "A minimalist distraction-free Markdown editor and digital journal featuring ambient soundscapes and encrypted offline notes.",
+    description: "محرر نصوص ومفكرة ماركداون مشفرة ومصممة للكتابة الإبداعية والتركيز الذهني مع ميزات التخزين المحلي بدون إنترنت.",
+    demoLink: "https://github.com/IbrahimElshishtawy",
+    demoLabel: "GitHub Profile",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    repoLabel: "GitHub Profile",
+    accentColor: "#f59e0b",
+    mockupType: "mobile",
+    image: "assets/assets/writle.jpg",
+    contributionDetails: [
+      "Implemented a custom real-time Markdown syntax parser and preview renderer in Flutter.",
+      "Integrated local encrypted storage using Hive DB for zero-latency, private offline note persistence.",
+      "Built background ambient audio player widgets for distraction-free focus modes."
+    ],
+    features: [
+      {
+        icon: "fa-feather",
+        title: "Live Markdown Rendering",
+        desc: "Dual edit-and-preview modes supporting headers, bullet lists, code snippets, and blockquotes."
+      },
+      {
+        icon: "fa-lock",
+        title: "Encrypted Offline Vault",
+        desc: "Fast on-device key encryption ensuring user notes remain private and stored locally without external servers."
+      }
+    ],
+    journey: [
+      {
+        phase: "PHASE 01 — CORE ENGINE",
+        title: "Fast Markdown Parsing",
+        desc: "Engineered a low-latency text editing pipeline handling large documents smoothly."
+      }
+    ]
+  },
+
+  factory_mgmt: {
+    id: "factory_mgmt",
+    title: "Factory Management System",
+    titleAr: "نظام إدارة وتشغيل المصانع",
+    type: "systems",
+    categoryFilter: "systems",
+    projectClass: "Industrial Software",
+    client: "Manufacturing Operations",
+    clientAr: "إدارة العمليات الصناعية",
+    role: "Full-Stack & Systems Developer",
+    roleAr: "تطوير الواجهة والنظام",
+    statusBadge: "SYSTEMS APP · INDUSTRIAL ERP",
+    statusBadgeColor: "emerald",
+    verifiedTech: ["Flutter", "Node.js", "REST APIs", "SQLite"],
+    summary: "An industrial operations monitoring and inventory management system for tracking production lines, machine shifts, and supply batches.",
+    description: "نظام متكامل لمتابعة خطوط الإنتاج الصناعية، المخازن، وإدارة دورات تشغيل الآلات وحساب المواد الخام بدقة.",
+    demoLink: "https://github.com/IbrahimElshishtawy",
+    demoLabel: "GitHub Profile",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    repoLabel: "GitHub Profile",
+    accentColor: "#10b981",
+    mockupType: "desktop",
+    image: "assets/assets/factorymanagement.jpg",
+    contributionDetails: [
+      "Engineered production stage tracking dashboards with real-time operational status indicators.",
+      "Designed local-first database caching with SQLite ensuring uninterrupted factory-floor operation.",
+      "Implemented raw material batch tracking and supply alerts with automated low-stock triggers."
+    ],
+    features: [
+      {
+        icon: "fa-industry",
+        title: "Production Line Monitoring",
+        desc: "Visual tracking of work orders from raw material ingestion through final packaging and inspection."
+      },
+      {
+        icon: "fa-boxes",
+        title: "Inventory & Batch Accounting",
+        desc: "Automated calculation of raw materials used per shift and warehouse stock reconciliation."
+      }
+    ],
+    journey: [
+      {
+        phase: "PHASE 01 — ARCHITECTURE",
+        title: "Offline-Resilient Data Store",
+        desc: "Configured offline syncing queues ensuring data integrity during factory network drops."
+      }
+    ]
+  },
+
+  lms_platform: {
+    id: "lms_platform",
+    title: "LMS Academic Portal",
+    titleAr: "منصة التعليم الأكاديمي LMS",
+    type: "education",
+    categoryFilter: "education",
+    projectClass: "EdTech Application",
+    client: "Educational Institutions",
+    clientAr: "منصة تعليمية متكاملة",
+    role: "Mobile Application Developer",
+    roleAr: "مطور تطبيقات الموبايل",
+    statusBadge: "EDTECH · COURSE MANAGEMENT",
+    statusBadgeColor: "purple",
+    verifiedTech: ["Flutter", "Firebase", "Dart", "Provider"],
+    summary: "An academic learning management application connecting students and instructors with course materials, assignments, and test schedules.",
+    description: "منصة تعليمية متكاملة للطلاب والمحاضرين لمتابعة المحاضرات والواجبات والاختبارات الأكاديمية مع تنبيهات ذكية.",
+    demoLink: "https://github.com/IbrahimElshishtawy",
+    demoLabel: "GitHub Profile",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    repoLabel: "GitHub Profile",
+    accentColor: "#8b5cf6",
+    mockupType: "mobile",
+    image: "assets/assets/lms.jpg",
+    contributionDetails: [
+      "Built dynamic course syllabus and lecture video streaming interfaces in Flutter.",
+      "Integrated assignment submission modules supporting document uploads and grading status.",
+      "Engineered real-time notifications for upcoming exam schedules and lecture deadlines."
+    ],
+    features: [
+      {
+        icon: "fa-graduation-cap",
+        title: "Interactive Course Streams",
+        desc: "Structured syllabi with lesson modules, attached resources, and completion progress bars."
+      },
+      {
+        icon: "fa-tasks",
+        title: "Assignments & Submission Portal",
+        desc: "Secure upload workflows with automated deadline warnings and instructor grade feedback."
+      }
+    ],
+    journey: [
+      {
+        phase: "PHASE 01 — STUDENT UX",
+        title: "Intuitive Schedule Management",
+        desc: "Designed unified weekly calendar views combining lectures, quizzes, and project deadlines."
+      }
+    ]
+  },
+
+  newsscope: {
+    id: "newsscope",
+    title: "NewsScope Global Feed",
+    titleAr: "تطبيق الأخبار NewsScope",
+    type: "mobile",
+    categoryFilter: "mobile",
+    projectClass: "Mobile Application",
+    client: "Media & News Reader",
+    clientAr: "تطبيق قراءة ومتابعة الأخبار",
+    role: "Flutter Mobile Developer",
+    roleAr: "مطور تطبيقات فلاتر",
+    statusBadge: "MOBILE APP · NEWS AGGREGATOR",
+    statusBadgeColor: "cyan",
+    verifiedTech: ["Flutter", "REST APIs", "Hive DB", "BLoC"],
+    summary: "A streamlined news aggregator application delivering categorized global news feeds with offline article caching and bookmarked vaults.",
+    description: "تطبيق إخباري متطور لتصفح الأخبار العالمية المصنفة مع ميزات حفظ المقالات للقراءة بدون اتصال بالإنترنت.",
+    demoLink: "https://github.com/IbrahimElshishtawy",
+    demoLabel: "GitHub Profile",
+    repoLink: "https://github.com/IbrahimElshishtawy",
+    repoLabel: "GitHub Profile",
+    accentColor: "#06b6d4",
+    mockupType: "mobile",
+    image: "assets/assets/newscope.jpg",
+    contributionDetails: [
+      "Engineered multi-category news feed consumption using high-speed REST API endpoints.",
+      "Implemented offline article storage with Hive DB caching full story contents and images.",
+      "Built clean bookmarking and tag filtering interfaces with smooth BLoC state transitions."
+    ],
+    features: [
+      {
+        icon: "fa-newspaper",
+        title: "Categorized News Feeds",
+        desc: "Instant filtering across technology, science, business, and global headlines."
+      },
+      {
+        icon: "fa-bookmark",
+        title: "Offline Reading Vault",
+        desc: "Save articles to device storage with formatted typography for reading on the go."
+      }
+    ],
+    journey: [
+      {
+        phase: "PHASE 01 — NETWORK CACHE",
+        title: "Resilient Offline Sync",
+        desc: "Structured caching layers that seamlessly fall back to local disk when disconnected."
+      }
+    ]
   }
 };
 
