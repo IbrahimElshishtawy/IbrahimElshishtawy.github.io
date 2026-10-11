@@ -150,16 +150,23 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
       <nav class="flex flex-col gap-4 p-6 text-left" aria-label="Mobile navigation">
-        <a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()">Overview</a>
-        <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()">Featured Works</a>
-        <a href="#gallery" class="mobile-nav-link text-cyan-400 font-bold" onclick="closeMobileMenu()">Screenshots Gallery / المعرض</a>
-        <a href="#systems-engineering" class="mobile-nav-link text-purple-400" onclick="closeMobileMenu()">Systems Engineering</a>
-        <a href="#expertise" class="mobile-nav-link" onclick="closeMobileMenu()">Expertise</a>
-        <a href="#experience" class="mobile-nav-link" onclick="closeMobileMenu()">Experience</a>
-        <a href="tools.html" class="mobile-nav-link text-slate-400" onclick="closeMobileMenu()">Tools / التولز</a>
-        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()">Contact</a>
+        <div class="flex items-center justify-between pb-3 border-b border-white/10">
+          <span class="text-xs font-mono text-slate-400">LANGUAGE // اللغة</span>
+          <button type="button" class="lang-toggle-btn theme-toggle-btn text-xs font-bold font-mono px-3 py-1 flex items-center gap-1.5 border border-cyan-500/30" aria-label="Switch Language / تبديل اللغة">
+            <i class="fas fa-globe text-cyan-400 text-xs"></i>
+            <span class="lang-label text-white font-bold text-xs">AR</span>
+          </button>
+        </div>
+        <a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()" data-i18n="nav_overview">Overview</a>
+        <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()" data-i18n="nav_works">Featured Works</a>
+        <a href="#gallery" class="mobile-nav-link text-cyan-400 font-bold" onclick="closeMobileMenu()" data-i18n="nav_gallery">Screenshots Gallery</a>
+        <a href="#systems-engineering" class="mobile-nav-link text-purple-400" onclick="closeMobileMenu()" data-i18n="nav_systems">Systems Engineering</a>
+        <a href="#expertise" class="mobile-nav-link" onclick="closeMobileMenu()" data-i18n="nav_expertise">Expertise</a>
+        <a href="#experience" class="mobile-nav-link" onclick="closeMobileMenu()" data-i18n="nav_experience">Experience</a>
+        <a href="tools.html" class="mobile-nav-link text-slate-400" onclick="closeMobileMenu()" data-i18n="nav_tools">Tools / التولز</a>
+        <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()" data-i18n="nav_contact">Contact</a>
         <a href="https://wa.me/201223070571" target="_blank" rel="noopener noreferrer" class="btn-glowing text-center text-xs py-3 px-6 font-semibold mt-2" onclick="closeMobileMenu()">
-          <i class="fab fa-whatsapp mr-1.5"></i> Chat on WhatsApp
+          <i class="fab fa-whatsapp mr-1.5"></i> <span data-i18n="contact_wa_btn">Chat on WhatsApp</span>
         </a>
       </nav>
     </div>
@@ -183,18 +190,18 @@
           <div class="hero-reveal-floating mb-4">
             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-cyan-500/30 text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
               <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-              SOFTWARE ENGINEERING · MOBILE · SYSTEMS
+              <span data-i18n="hero_eyebrow">SOFTWARE ENGINEERING · MOBILE · SYSTEMS</span>
             </span>
           </div>
 
           <!-- Dominant Cinematic Headline -->
           <h1 class="hero-reveal-text font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.08] mb-5 tracking-tight text-glow">
-            Building Digital Products.<br>
-            <span class="gradient-text-primary">Engineering Connected Systems.</span>
+            <span data-i18n="hero_headline_1">Building Digital Products.</span><br>
+            <span class="gradient-text-primary" data-i18n="hero_headline_2">Engineering Connected Systems.</span>
           </h1>
 
           <!-- Verified Supporting Text -->
-          <p class="hero-reveal-text text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mb-6 font-normal">
+          <p class="hero-reveal-text text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl mb-6 font-normal" data-i18n="hero_desc">
             <strong class="text-white font-semibold">Ibrahim Elshishtawy</strong> — a software engineer working across mobile applications, modern web platforms, backend systems, and network-integrated solutions.
           </p>
 
@@ -211,11 +218,11 @@
           <div class="hero-reveal-floating flex flex-wrap items-center gap-4 mb-8">
             <a href="#works" id="hero-explore-btn" class="magnetic-btn btn-glowing group flex items-center gap-2.5 text-xs sm:text-sm py-3 px-7 font-bold" aria-label="Explore My Work">
               <i class="fas fa-arrow-down text-cyan-400 text-xs transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true"></i>
-              <span>Explore My Work</span>
+              <span data-i18n="hero_cta_work">Explore My Work</span>
             </a>
             <a href="#contact" id="hero-contact-btn" class="magnetic-btn btn-outline group flex items-center gap-2.5 text-xs sm:text-sm py-3 px-7 font-semibold" aria-label="Contact Me">
               <i class="fas fa-paper-plane text-purple-400 text-xs transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true"></i>
-              <span>Contact Me</span>
+              <span data-i18n="hero_cta_contact">Contact Me</span>
             </a>
             <!-- Quick Verified Links -->
             <div class="flex items-center gap-2 ml-1">
@@ -286,8 +293,8 @@
             <i class="fab fa-flutter text-lg" aria-hidden="true"></i>
           </div>
           <div>
-            <div class="text-xs font-bold text-white uppercase tracking-wider">Mobile Engineering</div>
-            <div class="text-[11px] text-slate-400 mt-1 leading-snug">Flutter &amp; Dart · Clean Architecture · Local Persistence</div>
+            <div class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="pillar_1_title">Mobile Engineering</div>
+            <div class="text-[11px] text-slate-400 mt-1 leading-snug" data-i18n="pillar_1_desc">Flutter &amp; Dart · Clean Architecture · Local Persistence</div>
           </div>
         </div>
 
@@ -297,8 +304,8 @@
             <i class="fab fa-react text-lg" aria-hidden="true"></i>
           </div>
           <div>
-            <div class="text-xs font-bold text-white uppercase tracking-wider">Enterprise Web</div>
-            <div class="text-[11px] text-slate-400 mt-1 leading-snug">Next.js · PHP REST APIs · Bilingual User Experience</div>
+            <div class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="pillar_4_title">Enterprise Web</div>
+            <div class="text-[11px] text-slate-400 mt-1 leading-snug" data-i18n="pillar_4_desc">Next.js · PHP REST APIs · Bilingual User Experience</div>
           </div>
         </div>
 
@@ -308,8 +315,8 @@
             <i class="fas fa-network-wired text-lg" aria-hidden="true"></i>
           </div>
           <div>
-            <div class="text-xs font-bold text-white uppercase tracking-wider">Systems &amp; Networks</div>
-            <div class="text-[11px] text-slate-400 mt-1 leading-snug">OpenWrt Linux · iptables / tc · Node.js Daemon</div>
+            <div class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="pillar_2_title">Systems &amp; Networks</div>
+            <div class="text-[11px] text-slate-400 mt-1 leading-snug" data-i18n="pillar_2_desc">OpenWrt Linux · iptables / tc · Node.js Daemon</div>
           </div>
         </div>
 
@@ -319,8 +326,8 @@
             <i class="fab fa-python text-lg" aria-hidden="true"></i>
           </div>
           <div>
-            <div class="text-xs font-bold text-white uppercase tracking-wider">Technical Education</div>
-            <div class="text-[11px] text-slate-400 mt-1 leading-snug">Python Instructor · Mostaqbal Watan · EdTech Platforms</div>
+            <div class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="pillar_3_title">Technical Education</div>
+            <div class="text-[11px] text-slate-400 mt-1 leading-snug" data-i18n="pillar_3_desc">Python Instructor · Mostaqbal Watan · EdTech Platforms</div>
           </div>
         </div>
 
@@ -333,9 +340,9 @@
     <section id="works" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5">
       <div class="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6 text-left">
         <div>
-          <span class="section-label">CINEMATIC SHOWCASE · CASE STUDIES</span>
-          <h2 class="section-title">Selected Flagship Works</h2>
-          <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed">
+          <span class="section-label" data-i18n="works_label">CINEMATIC SHOWCASE · CASE STUDIES</span>
+          <h2 class="section-title" data-i18n="works_title">Selected Flagship Works</h2>
+          <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed" data-i18n="works_desc">
             Verified engineering projects spanning bilingual tourism platforms (Cyber-Wise), router networking firmware &amp; daemon integration (OpenWrt), educational platforms (Etihad Bshababha &amp; Mostaqbal Watan), and production mobile applications.
           </p>
         </div>
@@ -344,19 +351,19 @@
       <!-- ── CINEMATIC FILTER TABS ── -->
       <div class="cinematic-filter-bar mb-10 bento-reveal" role="tablist" aria-label="Filter projects by discipline">
         <button type="button" class="cinematic-filter-btn active" data-filter="all" role="tab" aria-selected="true">
-          <i class="fas fa-layer-group text-cyan-400 text-xs" aria-hidden="true"></i> All Work
+          <i class="fas fa-layer-group text-cyan-400 text-xs" aria-hidden="true"></i> <span data-i18n="filter_all">All Work</span>
         </button>
         <button type="button" class="cinematic-filter-btn" data-filter="mobile" role="tab" aria-selected="false">
-          <i class="fab fa-flutter text-sky-400 text-xs" aria-hidden="true"></i> Mobile
+          <i class="fab fa-flutter text-sky-400 text-xs" aria-hidden="true"></i> <span data-i18n="filter_mobile">Mobile</span>
         </button>
         <button type="button" class="cinematic-filter-btn" data-filter="web" role="tab" aria-selected="false">
-          <i class="fas fa-globe text-cyan-400 text-xs" aria-hidden="true"></i> Web Platforms
+          <i class="fas fa-globe text-cyan-400 text-xs" aria-hidden="true"></i> <span data-i18n="filter_web">Web Platforms</span>
         </button>
         <button type="button" class="cinematic-filter-btn" data-filter="systems" role="tab" aria-selected="false">
-          <i class="fas fa-network-wired text-purple-400 text-xs" aria-hidden="true"></i> Systems &amp; Networking
+          <i class="fas fa-network-wired text-purple-400 text-xs" aria-hidden="true"></i> <span data-i18n="filter_systems">Systems &amp; Networking</span>
         </button>
         <button type="button" class="cinematic-filter-btn" data-filter="education" role="tab" aria-selected="false">
-          <i class="fas fa-graduation-cap text-emerald-400 text-xs" aria-hidden="true"></i> Education
+          <i class="fas fa-graduation-cap text-emerald-400 text-xs" aria-hidden="true"></i> <span data-i18n="filter_education">Education</span>
         </button>
       </div>
 
@@ -751,9 +758,9 @@
       <div class="mt-24 text-left">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <span class="section-label">APPLICATIONS &amp; SUBSYSTEMS SHOWCASE</span>
-            <h3 class="font-heading text-2xl font-bold text-white">Curated Engineering Systems &amp; Prototypes</h3>
-            <p class="text-xs text-slate-400 mt-1 max-w-xl">
+            <span class="section-label" data-i18n="subsystems_label">APPLICATIONS &amp; SUBSYSTEMS SHOWCASE</span>
+            <h3 class="font-heading text-2xl font-bold text-white" data-i18n="subsystems_title">Curated Engineering Systems &amp; Prototypes</h3>
+            <p class="text-xs text-slate-400 mt-1 max-w-xl" data-i18n="subsystems_desc">
               Specialized production-grade apps, EdTech systems, industrial monitoring, and creative tools built across Flutter, Node.js, and offline architecture.
             </p>
           </div>
@@ -959,9 +966,9 @@
     <!-- ─────────────────────────────────────────────────────────── -->
     <section id="systems-engineering" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5 text-left">
       <div class="mb-14">
-        <span class="section-label">SYSTEMS &amp; NETWORK ENGINEERING · ARCHITECTURE SHOWCASE</span>
-        <h2 class="section-title">OpenWrt WiFi Quota &amp; Bandwidth Manager</h2>
-        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed">
+        <span class="section-label" data-i18n="systems_label">SYSTEMS &amp; NETWORK ENGINEERING · ARCHITECTURE SHOWCASE</span>
+        <h2 class="section-title" data-i18n="systems_title">OpenWrt WiFi Quota &amp; Bandwidth Manager</h2>
+        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed" data-i18n="systems_desc">
           Beyond conventional application development, this systems project bridges low-level router firmware, Linux kernel packet filtering, background daemon communications, and a mobile management controller.
         </p>
       </div>
@@ -1158,9 +1165,9 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
     <!-- ─────────────────────────────────── -->
     <section id="expertise" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5 text-left">
       <div class="mb-14">
-        <span class="section-label">TECHNICAL EXPERTISE &amp; DISCIPLINES</span>
-        <h2 class="section-title">Core Engineering Domains</h2>
-        <p class="text-sm text-slate-300 max-w-2xl mt-4 leading-relaxed font-normal">
+        <span class="section-label" data-i18n="expertise_label">TECHNICAL EXPERTISE &amp; DISCIPLINES</span>
+        <h2 class="section-title" data-i18n="expertise_title">Core Engineering Domains</h2>
+        <p class="text-sm text-slate-300 max-w-2xl mt-4 leading-relaxed font-normal" data-i18n="expertise_desc">
           I'm Ibrahim Elshishtawy, a software engineer focused on building mobile applications, web platforms, and integrated technical systems. My work spans Flutter development, backend integration, networking projects, and Python education.
         </p>
       </div>
@@ -1301,9 +1308,9 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
     <!-- ─────────────────────────────────── -->
     <section id="experience" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5 text-left">
       <div class="mb-14">
-        <span class="section-label">TRACK RECORD &amp; ATTRIBUTION</span>
-        <h2 class="section-title">Professional Experience &amp; Engagements</h2>
-        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed">
+        <span class="section-label" data-i18n="exp_label">TRACK RECORD &amp; ATTRIBUTION</span>
+        <h2 class="section-title" data-i18n="exp_title">Professional Experience &amp; Engagements</h2>
+        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed" data-i18n="exp_desc">
           Accurate attribution distinguishing client deliverables, educational instruction, and self-directed engineering projects.
         </p>
       </div>
@@ -1411,9 +1418,9 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
     <!-- ─────────────────────────────────── -->
     <section id="contact" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5 text-left">
       <div class="mb-14">
-        <span class="section-label">CONNECT &amp; COLLABORATE</span>
-        <h2 class="section-title">Let's Engineer Something Exceptional</h2>
-        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed">
+        <span class="section-label" data-i18n="contact_label">CONNECT &amp; COLLABORATE</span>
+        <h2 class="section-title" data-i18n="contact_title">Let's Engineer Something Exceptional</h2>
+        <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed" data-i18n="contact_desc">
           Open for full-stack mobile development, modern web platform engineering, systems integration, and technical consulting. Reach out directly through any verified channel below.
         </p>
       </div>

@@ -18,6 +18,7 @@ function openCaseStudy(cardOrId) {
   const data = typeof PROJECTS_DATA !== 'undefined' ? PROJECTS_DATA[id] : null;
   if (!data) return;
 
+  window.currentActiveCaseStudyId = id;
   renderCaseStudy(data);
 
   const overlay = document.getElementById('case-study-overlay');
@@ -94,26 +95,33 @@ function renderCaseStudy(data) {
   ` : '';
 
   /* Build feature cards */
-  const featuresHTML = (data.features || []).map(f => `
+  const featuresHTML = (data.features || []).map(f => {
+    const fTitle = isArabic ? (f.titleAr || f.title) : f.title;
+    const fDesc = isArabic ? (f.descAr || f.desc) : f.desc;
+    return `
     <div class="glass-panel p-6 flex flex-col gap-3.5 case-study-reveal" style="min-height:170px;">
       <div class="icon-box icon-box-cyan flex-shrink-0">
         <i class="fas ${f.icon}" aria-hidden="true"></i>
       </div>
       <div>
-        <h4 class="font-heading text-sm font-bold text-white mb-2">${f.title}</h4>
-        <p class="text-xs text-slate-400 leading-relaxed">${f.desc}</p>
+        <h4 class="font-heading text-sm font-bold text-white mb-2">${fTitle}</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">${fDesc}</p>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 
   /* Build journey/stages */
-  const journeyHTML = (data.journey || []).map(j => `
+  const journeyHTML = (data.journey || []).map(j => {
+    const jPhase = isArabic ? (j.phaseAr || j.phase) : j.phase;
+    const jTitle = isArabic ? (j.titleAr || j.title) : j.title;
+    const jDesc = isArabic ? (j.descAr || j.desc) : j.desc;
+    return `
     <div class="border border-white/[0.08] bg-white/[0.02] rounded-2xl p-6 case-study-reveal">
-      <div class="text-[10px] font-bold text-cyan-400 mb-2 tracking-wider uppercase">${j.phase}</div>
-      <h4 class="font-heading text-sm font-bold text-white mb-2">${j.title}</h4>
-      <p class="text-xs text-slate-400 leading-relaxed">${j.desc}</p>
+      <div class="text-[10px] font-bold text-cyan-400 mb-2 tracking-wider uppercase">${jPhase}</div>
+      <h4 class="font-heading text-sm font-bold text-white mb-2">${jTitle}</h4>
+      <p class="text-xs text-slate-400 leading-relaxed">${jDesc}</p>
     </div>
-  `).join('');
+  `}).join('');
 
   /* Dedicated Screenshot Gallery Grid (All images for this project) */
   let projectScreenshotsHTML = '';
