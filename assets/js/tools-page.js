@@ -320,32 +320,35 @@
      7. ICON HELPER
      ───────────────────────────────────────────────────────────── */
   function getToolIconSvg(iconType, color) {
+    if (!iconType) return `<i class="fas fa-code text-xl"></i>`;
     if (iconType === 'flutter') {
       return `<svg class="w-6 h-6" viewBox="0 0 256 317" fill="currentColor"><path d="M158 0 0 158l49 48L255 0zM157 145l-85 85 49 50 49-49 85-86z"/><path d="m121 280 37 37h97l-85-86z" fill-opacity="0.8"/><path d="m72 230 48-48 50 49-49 49z" fill-opacity="0.9"/></svg>`;
     } else if (iconType === 'dart') {
-      return `<i class="fas fa-terminal"></i>`;
+      return `<i class="fas fa-terminal text-xl"></i>`;
     } else if (iconType === 'react') {
-      return `<i class="fab fa-react"></i>`;
+      return `<i class="fab fa-react text-2xl"></i>`;
     } else if (iconType === 'nextjs') {
-      return `<i class="fas fa-circle-notch"></i>`;
+      return `<i class="fas fa-circle-notch text-2xl"></i>`;
     } else if (iconType === 'typescript') {
-      return `<i class="fas fa-file-code"></i>`;
+      return `<i class="fas fa-file-code text-xl"></i>`;
     } else if (iconType === 'nodejs') {
-      return `<i class="fab fa-node-js"></i>`;
+      return `<i class="fab fa-node-js text-2xl"></i>`;
     } else if (iconType === 'nestjs') {
-      return `<i class="fas fa-feather-alt"></i>`;
+      return `<i class="fas fa-feather-alt text-xl"></i>`;
     } else if (iconType === 'postgresql') {
-      return `<i class="fas fa-database"></i>`;
+      return `<i class="fas fa-database text-xl"></i>`;
     } else if (iconType === 'firebase') {
-      return `<i class="fas fa-fire"></i>`;
+      return `<i class="fas fa-fire text-xl"></i>`;
     } else if (iconType === 'github') {
-      return `<i class="fab fa-github"></i>`;
+      return `<i class="fab fa-github text-2xl"></i>`;
     } else if (iconType === 'docker') {
-      return `<i class="fab fa-docker"></i>`;
+      return `<i class="fab fa-docker text-2xl"></i>`;
     } else if (iconType === 'figma') {
-      return `<i class="fab fa-figma"></i>`;
+      return `<i class="fab fa-figma text-xl"></i>`;
+    } else if (iconType.includes('fa-') || iconType.startsWith('fa')) {
+      return `<i class="${iconType} text-xl"></i>`;
     } else {
-      return `<i class="fas fa-code"></i>`;
+      return `<i class="fas fa-code text-xl"></i>`;
     }
   }
 

@@ -1435,20 +1435,26 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
             <div class="icon-box icon-box-cyan flex-shrink-0">
               <i class="fas fa-envelope text-cyan-400" aria-hidden="true"></i>
             </div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Primary Email</div>
-              <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors">shishtawyhima@gmail.com</div>
+            <div class="overflow-hidden">
+              <div class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider flex items-center gap-2">
+                <span data-i18n="contact_primary_email_label">Primary Email</span>
+                <span class="text-[9px] bg-cyan-500/20 text-cyan-300 px-1.5 py-0.5 rounded font-bold" data-i18n="contact_primary_tag">الأساسي</span>
+              </div>
+              <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-cyan-300 transition-colors break-all">shishtawyhima@gmail.com</div>
             </div>
           </a>
 
-          <!-- Secondary Email -->
-          <a href="mailto:elshishtawy.dev@gmail.com" class="glass-panel p-5 flex items-center gap-4 hover:border-cyan-500/30 transition-all group bento-reveal">
+          <!-- Engineering Email (Second Email) -->
+          <a href="mailto:elshishtawy.dev@gmail.com" class="glass-panel p-5 flex items-center gap-4 hover:border-purple-500/30 transition-all group bento-reveal">
             <div class="icon-box icon-box-purple flex-shrink-0">
               <i class="fas fa-at text-purple-400" aria-hidden="true"></i>
             </div>
-            <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Engineering Email</div>
-              <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-purple-300 transition-colors">elshishtawy.dev@gmail.com</div>
+            <div class="overflow-hidden">
+              <div class="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider flex items-center gap-2">
+                <span data-i18n="contact_eng_email_label">Engineering Email</span>
+                <span class="text-[9px] bg-purple-500/20 text-purple-300 px-1.5 py-0.5 rounded font-bold" data-i18n="contact_eng_tag">المهندس والعمل</span>
+              </div>
+              <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-purple-300 transition-colors break-all">elshishtawy.dev@gmail.com</div>
             </div>
           </a>
 
@@ -1458,25 +1464,25 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
               <i class="fas fa-phone text-emerald-400" aria-hidden="true"></i>
             </div>
             <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Primary Mobile / Call</div>
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider" data-i18n="contact_call">Primary Mobile / Call</div>
               <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">+20 122 307 0571</div>
             </div>
           </a>
 
-          <!-- Location -->
+          <!-- Location: El Mahalla El Kubra (Birthplace) -->
           <div class="glass-panel p-5 flex items-center gap-4 bento-reveal">
             <div class="icon-box icon-box-purple flex-shrink-0">
               <i class="fas fa-location-dot text-purple-400" aria-hidden="true"></i>
             </div>
             <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Location</div>
-              <div class="text-xs sm:text-sm font-semibold text-white">Cairo / Mansoura, Egypt</div>
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider" data-i18n="contact_location_title">Location &amp; Birthplace</div>
+              <div class="text-xs sm:text-sm font-semibold text-white" data-i18n="contact_location">المحلة الكبرى (بلد الولادة ومسقط الرأس) · القاهرة والمنصورة، مصر</div>
             </div>
           </div>
 
           <!-- Verified Social Profiles -->
           <div class="glass-panel p-5 bento-reveal">
-            <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-3">Verified Profiles</div>
+            <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-3" data-i18n="contact_verified_profiles">Verified Profiles</div>
             <div class="flex items-center gap-3 flex-wrap">
               <a href="https://github.com/IbrahimElshishtawy" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="GitHub Profile" title="GitHub">
                 <i class="fab fa-github" aria-hidden="true"></i>
@@ -1504,34 +1510,46 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
             <div>
               <span class="cyber-badge text-emerald-400 border-emerald-500/30 bg-emerald-500/10 text-xs mb-6 inline-flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                Direct Communication Channel
+                <span data-i18n="contact_badge">قناة تواصل هندسية مباشرة</span>
               </span>
 
-              <h3 class="font-heading text-3xl font-black text-white mb-4 tracking-tight">
-                Start a Conversation
+              <h3 class="font-heading text-3xl font-black text-white mb-4 tracking-tight" data-i18n="contact_card_title">
+                بدء محادثة هندسية مباشرة
               </h3>
 
-              <p class="text-sm text-slate-300 leading-relaxed max-w-md mx-auto mb-8">
-                Whether you need a high-performance Flutter mobile application, an enterprise Next.js platform, or specialized systems integration, let's discuss your project requirements directly.
+              <p class="text-sm text-slate-300 leading-relaxed max-w-md mx-auto mb-8" data-i18n="contact_card_desc">
+                سواء كنت بحاجة إلى تطوير تطبيق موبايل فلاتر عالي الأداء، أو منصة ويب متطورة بـ Next.js، أو حلول شبكات وأنظمة مخصصة، يمكنك مراسلتي مباشرة عبر الإيميل أو الواتساب.
               </p>
             </div>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full flex-wrap">
               <!-- WhatsApp CTA -->
               <a href="https://wa.me/201223070571" target="_blank" rel="noopener noreferrer" class="btn-whatsapp magnetic-btn group w-full sm:w-auto" aria-label="Start WhatsApp conversation">
                 <i class="fab fa-whatsapp text-xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-                <span>Direct WhatsApp Chat</span>
+                <span data-i18n="contact_wa_btn">محادثة واتساب فورية</span>
               </a>
 
-              <!-- Email CTA -->
-              <a href="mailto:shishtawyhima@gmail.com" class="magnetic-btn btn-outline py-3 px-6 text-xs font-bold w-full sm:w-auto flex items-center justify-center gap-2" aria-label="Send email to Ibrahim">
+              <!-- Email 1 CTA -->
+              <a href="mailto:shishtawyhima@gmail.com" class="magnetic-btn btn-outline py-3 px-5 text-xs font-bold w-full sm:w-auto flex items-center justify-center gap-2 hover:border-cyan-400" aria-label="Send email to shishtawyhima@gmail.com" title="shishtawyhima@gmail.com">
                 <i class="fas fa-envelope text-cyan-400 text-xs" aria-hidden="true"></i>
-                <span>Send Email</span>
+                <span>shishtawyhima@gmail.com</span>
+              </a>
+
+              <!-- Email 2 CTA (Engineering) -->
+              <a href="mailto:elshishtawy.dev@gmail.com" class="magnetic-btn btn-outline py-3 px-5 text-xs font-bold w-full sm:w-auto flex items-center justify-center gap-2 hover:border-purple-400" aria-label="Send email to elshishtawy.dev@gmail.com" title="elshishtawy.dev@gmail.com">
+                <i class="fas fa-at text-purple-400 text-xs" aria-hidden="true"></i>
+                <span>elshishtawy.dev@gmail.com</span>
               </a>
             </div>
 
-            <div class="text-[10px] font-mono text-slate-500 mt-8">
-              Phone: 01223070571 · Email: shishtawyhima@gmail.com · Egypt
+            <div class="text-[11px] font-mono text-slate-400 mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+              <span><i class="fas fa-phone text-emerald-400 ml-1 mr-1"></i> 01223070571</span>
+              <span>·</span>
+              <span><i class="fas fa-envelope text-cyan-400 ml-1 mr-1"></i> shishtawyhima@gmail.com</span>
+              <span>·</span>
+              <span><i class="fas fa-at text-purple-400 ml-1 mr-1"></i> elshishtawy.dev@gmail.com</span>
+              <span>·</span>
+              <span><i class="fas fa-map-marker-alt text-rose-400 ml-1 mr-1"></i> المحلة الكبرى (بلد الولادة) · مصر</span>
             </div>
           </div>
         </div>
