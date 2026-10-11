@@ -91,6 +91,7 @@
       <nav class="hidden md:flex items-center gap-7" aria-label="Main navigation">
         <a href="#hero" class="nav-link" data-i18n="nav_overview">Overview</a>
         <a href="#works" id="nav-works" class="nav-link" data-i18n="nav_works">Featured Works</a>
+        <a href="#gallery" id="nav-gallery" class="nav-link text-cyan-400 hover:text-cyan-300" data-i18n="nav_gallery">Screenshots Gallery</a>
         <a href="#systems-engineering" class="nav-link text-purple-400 hover:text-purple-300" data-i18n="nav_systems">Systems Engineering</a>
         <a href="#expertise" id="nav-expertise" class="nav-link" data-i18n="nav_expertise">Expertise</a>
         <a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a>
@@ -151,6 +152,7 @@
       <nav class="flex flex-col gap-4 p-6 text-left" aria-label="Mobile navigation">
         <a href="#hero" class="mobile-nav-link" onclick="closeMobileMenu()">Overview</a>
         <a href="#works" class="mobile-nav-link" onclick="closeMobileMenu()">Featured Works</a>
+        <a href="#gallery" class="mobile-nav-link text-cyan-400 font-bold" onclick="closeMobileMenu()">Screenshots Gallery / المعرض</a>
         <a href="#systems-engineering" class="mobile-nav-link text-purple-400" onclick="closeMobileMenu()">Systems Engineering</a>
         <a href="#expertise" class="mobile-nav-link" onclick="closeMobileMenu()">Expertise</a>
         <a href="#experience" class="mobile-nav-link" onclick="closeMobileMenu()">Experience</a>
@@ -440,21 +442,28 @@
                     <span class="text-purple-300 font-semibold bg-black/70 px-2 py-0.5 rounded border border-purple-500/30">Systems Core ↗</span>
                   </div>
                 </div>
+                <div class="p-3 bg-black/40 border-t border-purple-500/20 space-y-2">
+                  <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+                      <div class="text-[8px] text-slate-400 font-mono">ROUTER CORE</div>
+                      <div class="text-xs font-black text-cyan-400 font-heading">OpenWrt 23.05</div>
+                      <div class="text-[7px] text-slate-500 font-mono">Linux 5.15 / MIPS</div>
+                    </div>
+                    <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+                      <div class="text-[8px] text-slate-400 font-mono">DAEMON</div>
+                      <div class="text-xs font-black text-purple-400 font-heading">Node.js</div>
+                      <div class="text-[7px] text-slate-500 font-mono">Socket bridge</div>
+                    </div>
+                    <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
+                      <div class="text-[8px] text-slate-400 font-mono">CONTROLLER</div>
+                      <div class="text-xs font-black text-amber-400 font-heading">Flutter</div>
+                      <div class="text-[7px] text-slate-500 font-mono">Clean Arch UI</div>
+                    </div>
                   </div>
-                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
-                    <div class="text-[8px] text-slate-400 font-mono">DAEMON</div>
-                    <div class="text-xs font-black text-purple-400 font-heading">Node.js</div>
-                    <div class="text-[7px] text-slate-500 font-mono">Socket bridge</div>
+                  <div class="p-2 rounded bg-black/60 border border-white/5 font-mono text-[9px] text-slate-400 leading-tight text-left">
+                    <div class="text-cyan-400 truncate">[KERNEL] iptables quota accounting rules active</div>
+                    <div class="text-purple-300 truncate">[BRIDGE] Node.js daemon communicates with mobile app</div>
                   </div>
-                  <div class="p-2 rounded-lg bg-white/[0.03] border border-white/5">
-                    <div class="text-[8px] text-slate-400 font-mono">CONTROLLER</div>
-                    <div class="text-xs font-black text-amber-400 font-heading">Flutter</div>
-                    <div class="text-[7px] text-slate-500 font-mono">Clean Arch UI</div>
-                  </div>
-                </div>
-                <div class="p-2 rounded bg-black/60 border border-white/5 font-mono text-[9px] text-slate-400 leading-tight text-left">
-                  <div class="text-cyan-400 truncate">[KERNEL] iptables quota accounting rules active</div>
-                  <div class="text-purple-300 truncate">[BRIDGE] Node.js daemon communicates with mobile app</div>
                 </div>
               </div>
             </div>
@@ -504,18 +513,12 @@
                   </div>
                   <span class="text-[8px] font-mono text-emerald-400 font-bold">EDTECH</span>
                 </div>
-                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-emerald-950/30 via-[#091512] to-black">
-                  <div class="relative z-10 text-left">
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="cyber-badge text-emerald-400 border-emerald-500/30 bg-emerald-500/10 text-[8px]"><i class="fas fa-graduation-cap mr-1"></i> MOSTAQBAL WATAN</span>
-                      <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">LIVE PLATFORM</span>
-                    </div>
-                    <div class="font-heading text-xl font-black text-white mb-1">Etihad Bshababha &amp; Python Hub</div>
-                    <div class="text-[11px] text-slate-300 font-normal line-clamp-2">Interactive youth educational platform and Python programming course curriculum.</div>
-                  </div>
-                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
-                    <span>Next.js · Firebase · Python 3</span>
-                    <span class="text-emerald-400 font-bold flex items-center gap-1">Open Case Study <i class="fas fa-arrow-right text-[7px]"></i></span>
+                <div class="relative flex-1 overflow-hidden bg-black/60 group/previewimg min-h-[200px]">
+                  <img src="assets/assets/etihad_platform.jpg" alt="Etihad Bshababha &amp; Python Hub Platform" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono">
+                    <span class="text-white font-bold drop-shadow-md flex items-center gap-1.5"><i class="fas fa-graduation-cap text-emerald-400"></i> Youth &amp; EdTech Platform</span>
+                    <span class="text-emerald-400 font-semibold bg-black/70 px-2 py-0.5 rounded border border-emerald-500/30">Live Platform ↗</span>
                   </div>
                 </div>
               </div>
@@ -570,18 +573,12 @@
                   </div>
                   <span class="text-[8px] font-mono text-amber-400 font-bold">NEXT.JS</span>
                 </div>
-                <div class="relative flex-1 p-5 flex flex-col justify-between bg-gradient-to-br from-amber-950/30 via-[#161005] to-black">
-                  <div class="relative z-10 text-left">
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="cyber-badge text-amber-400 border-amber-500/30 bg-amber-500/10 text-[8px]"><i class="fas fa-desktop mr-1"></i> WORKSTATION PLATFORM</span>
-                      <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">LIVE APP</span>
-                    </div>
-                    <div class="font-heading text-xl font-black text-white mb-1">Pro Setup Platform</div>
-                    <div class="text-[11px] text-slate-300 font-normal line-clamp-2">Interactive workstation customizer, ergonomics showcase, and developer desk presentation.</div>
-                  </div>
-                  <div class="pt-3 border-t border-white/5 flex items-center justify-between z-10 text-[9px] font-mono text-slate-400">
-                    <span>Next.js · Tailwind CSS · Firebase</span>
-                    <span class="text-amber-400 font-bold flex items-center gap-1">Open Setup <i class="fas fa-arrow-right text-[7px]"></i></span>
+                <div class="relative flex-1 overflow-hidden bg-black/60 group/previewimg min-h-[200px]">
+                  <img src="assets/assets/pro_setup.jpg" alt="Pro Setup Platform Interface" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono">
+                    <span class="text-white font-bold drop-shadow-md flex items-center gap-1.5"><i class="fas fa-desktop text-amber-400"></i> Workstation Builder</span>
+                    <span class="text-amber-400 font-semibold bg-black/70 px-2 py-0.5 rounded border border-amber-500/30">Live App ↗</span>
                   </div>
                 </div>
               </div>
@@ -628,7 +625,7 @@
           <div class="z-10 mt-2 text-left">
             <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
-              <span class="cinematic-badge text-purple-400 border-purple-500/30">OFFLINE-FIRST</span>
+              <span class="cinematic-badge text-purple-300 border-purple-500/30 cursor-pointer" onclick="event.stopPropagation(); openProjectGallery('aqar', 0);" title="View all 3 screenshots"><i class="fas fa-images mr-1"></i> 3 Screenshots</span>
               <span class="cinematic-badge">SQFLITE &bull; CLEAN ARCH</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Aqar (عقار)</h3>
@@ -662,7 +659,7 @@
           <div class="z-10 mt-2 text-left">
             <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
-              <span class="cinematic-badge text-cyan-400 border-cyan-500/30">AUDIO SYNC</span>
+              <span class="cinematic-badge text-cyan-300 border-cyan-500/30 cursor-pointer" onclick="event.stopPropagation(); openProjectGallery('bostan', 0);" title="View all 3 screenshots"><i class="fas fa-images mr-1"></i> 3 Screenshots</span>
               <span class="cinematic-badge">HIVE DB &bull; VECTOR GLYPHS</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Bostan (بُستان)</h3>
@@ -696,7 +693,7 @@
           <div class="z-10 mt-2 text-left">
             <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
-              <span class="cinematic-badge text-emerald-400 border-emerald-500/30">SOCKET.IO LIVE</span>
+              <span class="cinematic-badge text-emerald-300 border-emerald-500/30 cursor-pointer" onclick="event.stopPropagation(); openProjectGallery('animalconnect', 0);" title="View all 3 screenshots"><i class="fas fa-images mr-1"></i> 3 Screenshots</span>
               <span class="cinematic-badge">NODE.JS &bull; MONGODB</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Animal Connect</h3>
@@ -730,7 +727,7 @@
           <div class="z-10 mt-2 text-left">
             <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="cinematic-badge"><i class="fab fa-flutter text-cyan-400 text-[8px] mr-1"></i> FLUTTER MOBILE</span>
-              <span class="cinematic-badge text-amber-400 border-amber-500/30">STUDENT TECH</span>
+              <span class="cinematic-badge text-amber-300 border-amber-500/30 cursor-pointer" onclick="event.stopPropagation(); openProjectGallery('tolabapp', 0);" title="View all 5 screenshots"><i class="fas fa-images mr-1"></i> 5 Screenshots</span>
               <span class="cinematic-badge">EMBEDDED PDF &bull; HIVE</span>
             </div>
             <h3 class="font-heading text-2xl font-extrabold text-white mb-2">Tola'b (طُلاَّب)</h3>
@@ -908,6 +905,52 @@
           </article>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- SECTION 2.5: COMPREHENSIVE VISUAL GALLERY -->
+    <!-- ─────────────────────────────────── -->
+    <section id="gallery" class="py-24 px-4 md:px-10 max-w-7xl mx-auto border-t border-white/5 text-left">
+      <div class="mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+        <div>
+          <span class="section-label" data-i18n="gallery_label">PRODUCTION VISUALS &amp; ALL SCREENSHOTS</span>
+          <h2 class="section-title" data-i18n="gallery_title">All Projects Visual Showcase</h2>
+          <p class="text-xs text-slate-400 max-w-2xl mt-3 leading-relaxed" data-i18n="gallery_desc">
+            Direct high-resolution showcase displaying all 25+ application screens across mobile apps, web platforms, and systems firmware.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="cinematic-action-btn cinematic-action-live text-xs" onclick="openAllScreenshotsLightbox(0)">
+            <i class="fas fa-expand text-xs mr-1"></i>
+            <span>Fullscreen Mode / ملء الشاشة</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gallery Filter Bar -->
+      <div class="flex flex-wrap items-center gap-2.5 mb-10 bento-reveal" role="tablist" aria-label="Filter screenshots by discipline">
+        <button type="button" class="gallery-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+          <i class="fas fa-layer-group text-cyan-400 text-xs"></i>
+          <span data-i18n="gallery_filter_all">All Screens (25)</span>
+        </button>
+        <button type="button" class="gallery-filter-btn" data-filter="mobile" role="tab" aria-selected="false">
+          <i class="fab fa-flutter text-sky-400 text-xs"></i>
+          <span data-i18n="gallery_filter_mobile">Flutter Mobile (16)</span>
+        </button>
+        <button type="button" class="gallery-filter-btn" data-filter="web" role="tab" aria-selected="false">
+          <i class="fas fa-globe text-cyan-400 text-xs"></i>
+          <span data-i18n="gallery_filter_web">Web Platforms (5)</span>
+        </button>
+        <button type="button" class="gallery-filter-btn" data-filter="systems" role="tab" aria-selected="false">
+          <i class="fas fa-network-wired text-purple-400 text-xs"></i>
+          <span data-i18n="gallery_filter_systems">Systems &amp; Networks (4)</span>
+        </button>
+      </div>
+
+      <!-- Dynamic High-Res Screenshot Grid -->
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Rendered dynamically by gallery.js -->
       </div>
     </section>
 
@@ -1539,6 +1582,49 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
   </div>
 
   <!-- ══════════════════════════════════════════ -->
+  <!-- 8.5. UNIVERSAL HIGH-RES LIGHTBOX MODAL    -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="global-lightbox" class="global-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Screenshot gallery preview">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-container">
+      <div class="lightbox-header">
+        <div class="lightbox-info">
+          <div class="flex items-center gap-2">
+            <span id="lightbox-project-badge" class="cyber-badge text-[8px] font-mono">PROJECT</span>
+            <span id="lightbox-counter" class="text-xs font-mono text-cyan-400 font-bold">1 / 25</span>
+          </div>
+          <h3 id="lightbox-title" class="text-base md:text-lg font-extrabold text-white font-heading truncate"></h3>
+          <p id="lightbox-caption" class="text-xs text-slate-400 line-clamp-1"></p>
+        </div>
+        <div class="lightbox-actions">
+          <button type="button" id="lightbox-zoom-btn" class="lightbox-action-btn" onclick="toggleLightboxZoom()" aria-label="Toggle zoom" title="Zoom in / out">
+            <i class="fas fa-search-plus"></i>
+          </button>
+          <button type="button" id="lightbox-close-btn" class="lightbox-action-btn" onclick="closeLightbox()" aria-label="Close fullscreen preview" title="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="lightbox-body">
+        <button type="button" class="lightbox-nav-btn prev" onclick="navigateLightbox(-1)" aria-label="Previous screenshot">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-image-wrapper">
+          <img id="lightbox-img" src="" alt="Screenshot" class="lightbox-img">
+        </div>
+        <button type="button" class="lightbox-nav-btn next" onclick="navigateLightbox(1)" aria-label="Next screenshot">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div id="lightbox-thumbnails" class="lightbox-thumbnails">
+        <!-- Thumbnails populated dynamically by gallery.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
   <!-- 9. SCRIPTS                                -->
   <!-- ══════════════════════════════════════════ -->
   <!-- Three.js 3D Engine -->
@@ -1549,7 +1635,9 @@ echo <span class="text-emerald-300">"QUOTA_SET:$CLIENT_IP:$QUOTA_BYTES"</span> |
 
   <!-- Modular Application Scripts -->
   <script src="assets/js/theme.js"></script>
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/data.js"></script>
+  <script src="assets/js/gallery.js"></script>
   <script src="assets/js/three-engine.js"></script>
   <script src="assets/js/hero-3d/hero-config.js"></script>
   <script src="assets/js/hero-3d/hero-scene.js"></script>

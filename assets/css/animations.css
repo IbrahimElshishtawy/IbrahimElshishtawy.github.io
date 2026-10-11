@@ -120,5 +120,8 @@
   100% { transform: scale(1.1); box-shadow: 0 0 14px #10b981, 0 0 24px rgba(16, 185, 129, 0.5); }
 }
 
-/* Reveal entries bounding box helper */
-.bento-reveal { opacity: 0; }
+/* Reveal entries bounding box helper - GSAP controls reveal; safe fallback */
+.bento-reveal {
+  opacity: 1;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}

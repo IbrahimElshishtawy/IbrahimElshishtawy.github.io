@@ -8,7 +8,10 @@
 /* ── PRELOADER OUTRO ─────────────────────────────────────────── */
 function fadeOutPreloader() {
   const preloader = document.getElementById('cyber-preloader');
-  if (!preloader) return;
+  if (!preloader) {
+    triggerEntranceReveal();
+    return;
+  }
 
   preloader.style.opacity = '0';
   preloader.style.pointerEvents = 'none';
@@ -112,4 +115,10 @@ function setupScrollTriggers() {
       }
     );
   });
+
+  ScrollTrigger.refresh();
 }
+
+window.setupScrollTriggers = setupScrollTriggers;
+window.triggerEntranceReveal = triggerEntranceReveal;
+window.fadeOutPreloader = fadeOutPreloader;

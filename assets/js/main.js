@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseStudyOverlay();
   initCinematicFilters();
 
+  // Initialize Visual All-Screenshots Gallery
+  if (typeof initVisualGallery === 'function') {
+    initVisualGallery();
+  }
+
   // Initialize Structural Scroll Triggers & Visibility
   initScrollTimeline();
   initScrollHeader();
