@@ -157,10 +157,10 @@ const I18N_TRANSLATIONS = {
 };
 
 /* ── CURRENT LANGUAGE STATE ── */
-let currentLang = localStorage.getItem('portfolio_lang') || 'en';
+let currentLang = localStorage.getItem('portfolio_lang') || 'ar';
 
 function applyLanguage(lang) {
-  currentLang = lang === 'ar' ? 'ar' : 'en';
+  currentLang = lang === 'en' ? 'en' : 'ar';
   localStorage.setItem('portfolio_lang', currentLang);
 
   document.documentElement.lang = currentLang;
@@ -169,7 +169,7 @@ function applyLanguage(lang) {
   const t = I18N_TRANSLATIONS[currentLang];
   if (!t) return;
 
-  // Update elements with data-i18n
+  // 1. Update elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key]) {
@@ -177,28 +177,71 @@ function applyLanguage(lang) {
     }
   });
 
-  // Update Language toggle button label
-  const langLabel = document.getElementById('lang-label');
-  if (langLabel) {
-    langLabel.textContent = t.lang_toggle;
-  }
+  // 2. Update Language toggle button label
+  const langLabels = document.querySelectorAll('#lang-label, .lang-label');
+  langLabels.forEach(label => {
+    label.textContent = t.lang_toggle;
+  });
 
-  // Toggle CSS class on body for specific RTL tweaks
+  // 3. Toggle CSS class on body for specific RTL tweaks
   if (currentLang === 'ar') {
     document.body.classList.add('rtl-mode');
   } else {
     document.body.classList.remove('rtl-mode');
   }
+
+  // 4. Translate all Flagship & Mini Project cards dynamically
+  if (typeof PROJECTS_DATA !== 'undefined') {
+    document.querySelectorAll('[data-project]').forEach(card => {
+      const pId = card.getAttribute('data-project');
+      const pData = PROJECTS_DATA[pId];
+      if (!pData) return;
+
+      const titleEl = card.querySelector('h3');
+      const descEl = card.querySelector('p');
+      const ctaEl = card.querySelector('.project-cta');
+
+      if (currentLang === 'ar') {
+        if (titleEl && pData.titleAr) titleEl.textContent = pData.titleAr;
+        if (descEl && (pData.description || pData.summary)) descEl.textContent = pData.description || pData.summary;
+        if (ctaEl) {
+          ctaEl.innerHTML = 'عرض تفاصيل المشروع <i class="fas fa-chevron-left text-[9px] mr-1 group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>';
+        }
+      } else {
+        if (titleEl && pData.title) titleEl.textContent = pData.title;
+        if (descEl && (pData.summary || pData.description)) descEl.textContent = pData.summary || pData.description;
+        if (ctaEl) {
+          ctaEl.innerHTML = 'Explore Case Study <i class="fas fa-chevron-right text-[9px] ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>';
+        }
+      }
+    });
+  }
+
+  // 5. Re-render Visual Screenshots Gallery if present
+  if (typeof initVisualGallery === 'function') {
+    initVisualGallery();
+  }
+
+  // 6. Re-render active Case Study Overlay if open
+  const overlay = document.getElementById('case-study-overlay');
+  if (overlay && overlay.classList.contains('active') && typeof renderCaseStudy === 'function') {
+    const currentActiveCard = document.querySelector('.project-card.active-open, [data-project].active-open');
+    const activeId = currentActiveCard?.getAttribute('data-project');
+    if (activeId && PROJECTS_DATA?.[activeId]) {
+      renderCaseStudy(PROJECTS_DATA[activeId]);
+    }
+  }
 }
 
 function initLanguageSwitcher() {
-  const toggleBtn = document.getElementById('lang-toggle-btn');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      const newLang = currentLang === 'en' ? 'ar' : 'en';
+  const toggleBtns = document.querySelectorAll('#lang-toggle-btn, .lang-toggle-btn');
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newLang = currentLang === 'ar' ? 'en' : 'ar';
       applyLanguage(newLang);
     });
-  }
+  });
 
   // Initialize on load
   applyLanguage(currentLang);
@@ -210,6 +253,9 @@ if (document.readyState === 'loading') {
 } else {
   initLanguageSwitcher();
 }
+
+window.applyLanguage = applyLanguage;
+window.I18N_TRANSLATIONS = I18N_TRANSLATIONS;
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { I18N_TRANSLATIONS, applyLanguage };

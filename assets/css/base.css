@@ -250,3 +250,78 @@ img {
 
 /* ── FONTS ──────────────────────────────────────────────── */
 .font-heading { font-family: var(--font-heading); }
+
+/* ── RTL & ARABIC TYPOGRAPHY SYSTEM ─────────────────────── */
+html[dir="rtl"],
+body.rtl-mode {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+}
+
+html[dir="rtl"] .font-heading,
+body.rtl-mode .font-heading,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+  font-family: 'Cairo', 'Outfit', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: normal !important;
+}
+
+/* Force natural RTL text alignment over conflicting utility classes */
+html[dir="rtl"] .text-left,
+body.rtl-mode .text-left {
+  text-align: right !important;
+}
+
+html[dir="rtl"] .text-right,
+body.rtl-mode .text-right {
+  text-align: left !important;
+}
+
+/* RTL Icon & Directional Flip */
+html[dir="rtl"] .fa-chevron-right,
+html[dir="rtl"] .fa-arrow-right {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .mr-1, 
+html[dir="rtl"] .mr-1\.5, 
+html[dir="rtl"] .mr-2 {
+  margin-right: 0 !important;
+  margin-left: 0.35rem !important;
+}
+
+html[dir="rtl"] .ml-1, 
+html[dir="rtl"] .ml-1\.5, 
+html[dir="rtl"] .ml-2 {
+  margin-left: 0 !important;
+  margin-right: 0.35rem !important;
+}
+
+html[dir="rtl"] .group-hover\:translate-x-1:hover,
+html[dir="rtl"] .group:hover .group-hover\:translate-x-1 {
+  transform: translateX(-0.25rem) !important;
+}
+
+/* Section Labels & Badges in RTL */
+html[dir="rtl"] .section-label {
+  letter-spacing: 0.05em;
+  font-family: 'Cairo', monospace;
+}
+
+html[dir="rtl"] p,
+body.rtl-mode p {
+  line-height: 1.85;
+}
+
+html[dir="rtl"] .nav-link,
+html[dir="rtl"] .mobile-nav-link {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0;
+}
+
