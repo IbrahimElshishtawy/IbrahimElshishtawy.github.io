@@ -17,12 +17,13 @@
 .nav-link {
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-2);
   transition: color 0.25s ease;
   position: relative;
-  padding-bottom: 2px;
+  padding: 4px 0;
+  white-space: nowrap;
 }
 
 .nav-link::after {

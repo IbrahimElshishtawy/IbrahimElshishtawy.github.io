@@ -339,7 +339,7 @@ function initVisualGallery() {
 
   const isArabic = document.documentElement.lang === 'ar';
 
-  // Render cards for all 25+ screenshots
+  // Render cards for all 25+ screenshots with uniform height and clean layout
   container.innerHTML = ALL_PROJECT_SCREENSHOTS.map((s, idx) => {
     const title = isArabic ? (s.titleAr || s.title) : s.title;
     const desc = isArabic ? (s.descAr || s.desc) : s.desc;
@@ -347,49 +347,51 @@ function initVisualGallery() {
     const isMobile = s.aspect === 'mobile';
 
     return `
-      <article class="gallery-card group bento-reveal relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/40 transition-all duration-500 cursor-pointer flex flex-col justify-between" data-category="${s.category}" data-gallery-index="${idx}" onclick="openAllScreenshotsLightbox(${idx})" tabindex="0" role="button" aria-label="${title}">
+      <article class="gallery-card group bento-reveal relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/5 hover:border-cyan-500/40 transition-all duration-400 cursor-pointer flex flex-col justify-between shadow-lg hover:shadow-cyan-500/10" data-category="${s.category}" data-gallery-index="${idx}" onclick="openAllScreenshotsLightbox(${idx})" tabindex="0" role="button" aria-label="${title}">
         
-        <!-- Image Preview Frame -->
-        <div class="gallery-card-img-wrap relative w-full overflow-hidden bg-black/60 ${isMobile ? 'aspect-[9/14] p-3 flex items-center justify-center' : 'aspect-[16/10]'}">
+        <!-- Image Preview Frame (Uniform 16:10 Aspect Ratio) -->
+        <div class="gallery-card-img-wrap relative w-full aspect-[16/10] overflow-hidden bg-[#060411] flex items-center justify-center">
           ${isMobile ? `
-            <div class="iphone-mini-frame w-full max-w-[210px] h-full rounded-[24px] border-[3px] border-white/10 bg-black overflow-hidden shadow-xl group-hover:border-cyan-400/50 transition-colors">
-              <img src="${s.src}" alt="${title}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <!-- Ambient blurred backdrop for mobile screens -->
+            <img src="${s.src}" alt="" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-30 scale-125" aria-hidden="true">
+            <!-- Centered mobile phone frame -->
+            <div class="relative h-[92%] w-auto aspect-[9/16] rounded-xl overflow-hidden border border-white/20 shadow-2xl group-hover:scale-105 transition-transform duration-500 z-10 bg-black flex-shrink-0">
+              <img src="${s.src}" alt="${title}" class="w-full h-full object-cover object-top" loading="lazy">
             </div>
           ` : `
-            <img src="${s.src}" alt="${title}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+            <img src="${s.src}" alt="${title}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy">
           `}
           
-          <!-- Hover Overlay Glow -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity"></div>
+          <!-- Hover Overlay Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-40 group-hover:opacity-70 transition-opacity z-10 pointer-events-none"></div>
           
           <!-- Top Badges -->
-          <div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-            <span class="cyber-badge text-[8px] px-2 py-0.5 bg-black/80 backdrop-blur-md" style="color:${s.accentColor}; border-color:${s.accentColor}44;">
+          <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-20">
+            <span class="cyber-badge text-[9px] px-2 py-0.5 bg-black/85 backdrop-blur-md" style="color:${s.accentColor}; border-color:${s.accentColor}55;">
               <i class="${isMobile ? 'fas fa-mobile-screen' : 'fas fa-desktop'} mr-1"></i> ${projectTitle}
             </span>
-            <span class="gallery-zoom-icon w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 shadow-lg">
-              <i class="fas fa-expand-arrows-alt"></i>
+            <span class="text-[9px] font-mono font-bold text-cyan-300 bg-black/85 backdrop-blur-md px-2 py-0.5 rounded border border-cyan-500/30">
+              HD
             </span>
           </div>
 
-          <!-- Bottom Micro Title in Frame -->
-          <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-[10px] font-mono pointer-events-none z-10">
-            <span class="text-white/80 font-semibold truncate drop-shadow">${title}</span>
-            <span class="text-cyan-400 font-bold text-[9px] bg-black/70 px-1.5 py-0.5 rounded border border-white/10">🔍 HD</span>
+          <!-- Hover Center Expand Icon -->
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+            <span class="w-10 h-10 rounded-full bg-cyan-500/30 text-cyan-300 border border-cyan-400/50 flex items-center justify-center text-sm shadow-xl backdrop-blur-sm transform group-hover:scale-110 transition-transform">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </span>
           </div>
         </div>
 
         <!-- Details Footer -->
-        <div class="p-4 flex flex-col justify-between flex-1 text-left bg-[#070514]/60 border-t border-white/5">
+        <div class="p-4 flex flex-col justify-between flex-1 text-left bg-[#080616]/80 border-t border-white/5">
           <div>
-            <div class="flex items-center justify-between gap-2 mb-1">
-              <h4 class="font-heading text-sm font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">${title}</h4>
-            </div>
-            <p class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">${desc}</p>
+            <h4 class="font-heading text-sm font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1 mb-1">${title}</h4>
+            <p class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed min-h-[32px]">${desc}</p>
           </div>
-          <div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px]">
-            <span class="text-slate-400 font-mono"><i class="fas fa-layer-group text-cyan-400 mr-1"></i> ${projectTitle}</span>
-            <span class="text-cyan-400 font-bold group-hover:underline flex items-center gap-1">${isArabic ? 'تكبير الشاشة' : 'View Full HD'} <i class="fas fa-arrow-right text-[8px]"></i></span>
+          <div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px] font-mono">
+            <span class="text-slate-400 flex items-center gap-1.5 truncate max-w-[60%]"><i class="fas fa-layer-group text-cyan-400 flex-shrink-0"></i> <span class="truncate">${projectTitle}</span></span>
+            <span class="text-cyan-400 font-bold group-hover:underline flex items-center gap-1 flex-shrink-0">${isArabic ? 'تكبير الشاشة ↗' : 'View Full HD ↗'}</span>
           </div>
         </div>
 

@@ -80,27 +80,27 @@
   <!-- 2. FLOATING NAVIGATION HEADER             -->
   <!-- ══════════════════════════════════════════ -->
   <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-4 py-4 md:px-10">
-    <div class="glass-nav max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
+    <div class="glass-nav max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
       <!-- Logo -->
-      <a href="#hero" id="nav-logo" class="font-heading text-base font-black tracking-wider text-white hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2.5" aria-label="Ibrahim Elshishtawy - Back to top">
+      <a href="#hero" id="nav-logo" class="font-heading text-base font-black tracking-wider text-white hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2.5 flex-shrink-0" aria-label="Ibrahim Elshishtawy - Back to top">
         <img src="assets/assets/logo.svg" alt="Ibrahim Logo Icon" class="w-7 h-7 object-contain drop-shadow-[0_0_8px_#06b6d4]">
-        <span class="tracking-widest">IBRAHIM<span class="text-cyan-400">.DEV</span></span>
+        <span class="tracking-widest whitespace-nowrap">IBRAHIM<span class="text-cyan-400">.DEV</span></span>
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-7" aria-label="Main navigation">
-        <a href="#hero" class="nav-link" data-i18n="nav_overview">Overview</a>
-        <a href="#works" id="nav-works" class="nav-link" data-i18n="nav_works">Featured Works</a>
-        <a href="#gallery" id="nav-gallery" class="nav-link text-cyan-400 hover:text-cyan-300" data-i18n="nav_gallery">Screenshots Gallery</a>
-        <a href="#systems-engineering" class="nav-link text-purple-400 hover:text-purple-300" data-i18n="nav_systems">Systems Engineering</a>
-        <a href="#expertise" id="nav-expertise" class="nav-link" data-i18n="nav_expertise">Expertise</a>
-        <a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a>
-        <a href="tools.html" class="nav-link text-slate-400 hover:text-cyan-400" title="Tools &amp; Stack Directory" data-i18n="nav_tools">Tools / التولز</a>
-        <a href="#contact" id="nav-contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+      <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 flex-shrink-1" aria-label="Main navigation">
+        <a href="#hero" class="nav-link whitespace-nowrap" data-i18n="nav_overview">Overview</a>
+        <a href="#works" id="nav-works" class="nav-link whitespace-nowrap" data-i18n="nav_works">Works</a>
+        <a href="#gallery" id="nav-gallery" class="nav-link whitespace-nowrap text-cyan-400 hover:text-cyan-300" data-i18n="nav_gallery">Gallery</a>
+        <a href="#systems-engineering" class="nav-link whitespace-nowrap text-purple-400 hover:text-purple-300" data-i18n="nav_systems">Systems</a>
+        <a href="#expertise" id="nav-expertise" class="nav-link whitespace-nowrap" data-i18n="nav_expertise">Expertise</a>
+        <a href="#experience" class="nav-link whitespace-nowrap" data-i18n="nav_experience">Experience</a>
+        <a href="tools.html" class="nav-link whitespace-nowrap text-slate-400 hover:text-cyan-400" title="Tools &amp; Stack Directory" data-i18n="nav_tools">Tools</a>
+        <a href="#contact" id="nav-contact" class="nav-link whitespace-nowrap" data-i18n="nav_contact">Contact</a>
       </nav>
 
       <!-- Right Controls: Language Switcher, Theme Switcher & Direct CTA -->
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
         <!-- Bilingual Language Switcher -->
         <button type="button" id="lang-toggle-btn" class="theme-toggle-btn text-xs font-bold font-mono px-3 py-1.5 flex items-center gap-1.5 border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-sm" aria-label="Switch Language / تبديل اللغة" title="العربية / English">
           <i class="fas fa-globe text-cyan-400 text-xs" aria-hidden="true"></i>
@@ -133,13 +133,13 @@
         </div>
 
         <!-- Direct CTA Button -->
-        <a href="https://wa.me/201223070571" target="_blank" rel="noopener noreferrer" id="nav-hire-btn" class="hidden md:inline-flex magnetic-btn btn-glowing text-xs py-2 px-5 font-bold items-center gap-2" aria-label="Contact Ibrahim on WhatsApp">
+        <a href="https://wa.me/201223070571" target="_blank" rel="noopener noreferrer" id="nav-hire-btn" class="hidden xl:inline-flex magnetic-btn btn-glowing text-xs py-2 px-5 font-bold items-center gap-2" aria-label="Contact Ibrahim on WhatsApp">
           <i class="fab fa-whatsapp text-emerald-400 text-xs" aria-hidden="true"></i>
           <span>Let's Talk</span>
         </a>
 
         <!-- Mobile Hamburger -->
-        <button type="button" id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle mobile menu" aria-expanded="false">
+        <button type="button" id="mobile-menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle mobile menu" aria-expanded="false">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line short"></span>
@@ -148,7 +148,7 @@
     </div>
 
     <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="mobile-menu md:hidden">
+    <div id="mobile-menu" class="mobile-menu lg:hidden">
       <nav class="flex flex-col gap-4 p-6 text-left" aria-label="Mobile navigation">
         <div class="flex items-center justify-between pb-3 border-b border-white/10">
           <span class="text-xs font-mono text-slate-400">LANGUAGE // اللغة</span>
