@@ -225,8 +225,7 @@ function applyLanguage(lang) {
   // 6. Re-render active Case Study Overlay if open
   const overlay = document.getElementById('case-study-overlay');
   if (overlay && overlay.classList.contains('active') && typeof renderCaseStudy === 'function') {
-    const currentActiveCard = document.querySelector('.project-card.active-open, [data-project].active-open');
-    const activeId = currentActiveCard?.getAttribute('data-project');
+    const activeId = window.currentActiveCaseStudyId || document.querySelector('.project-card.active-open, [data-project].active-open')?.getAttribute('data-project');
     if (activeId && PROJECTS_DATA?.[activeId]) {
       renderCaseStudy(PROJECTS_DATA[activeId]);
     }
