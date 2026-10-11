@@ -91,6 +91,8 @@
     const container = document.getElementById('tools-grid-container');
     if (!container || typeof TOOLS_DATA === 'undefined') return;
 
+    const isAr = document.documentElement.lang === 'ar' || document.documentElement.dir === 'rtl';
+
     // Filter tools based on category
     let list = TOOLS_DATA.filter(tool => {
       if (activeToolCategory === 'all') return true;
@@ -100,29 +102,33 @@
     // Limit initial display unless "show all" is active
     const totalCount = list.length;
     if (!showAllTools && activeToolCategory === 'all') {
-      list = list.slice(0, 10);
+      list = list.slice(0, 15);
     }
 
-    container.innerHTML = list.map(tool => `
-      <div class="tool-card bento-reveal" style="--tool-neon: ${tool.neon};" data-level="${tool.level}">
-        <div>
-          <div class="tool-icon-wrapper" style="color: ${tool.neon};">
-            ${getToolIconSvg(tool.icon, tool.neon)}
+    container.innerHTML = list.map(tool => {
+      const subtitle = (isAr && tool.subtitleAr) ? tool.subtitleAr : tool.subtitle;
+      const skillText = isAr ? 'مستوى الإتقان' : 'Skill Level';
+      return `
+        <div class="tool-card bento-reveal" style="--tool-neon: ${tool.neon};" data-level="${tool.level}">
+          <div>
+            <div class="tool-icon-wrapper" style="color: ${tool.neon};">
+              ${getToolIconSvg(tool.icon, tool.neon)}
+            </div>
+            <h3 class="tool-name">${tool.name}</h3>
+            <p class="tool-subtitle">${subtitle}</p>
           </div>
-          <h3 class="tool-name">${tool.name}</h3>
-          <p class="tool-subtitle">${tool.subtitle}</p>
+          <div class="tool-progress-wrapper">
+            <div class="tool-progress-header">
+              <span>${skillText}</span>
+              <span>${tool.level}%</span>
+            </div>
+            <div class="tool-progress-track">
+              <div class="tool-progress-fill" style="width: 0%;" data-target-width="${tool.level}%"></div>
+            </div>
+          </div>
         </div>
-        <div class="tool-progress-wrapper">
-          <div class="tool-progress-header">
-            <span>Skill Level</span>
-            <span>${tool.level}%</span>
-          </div>
-          <div class="tool-progress-track">
-            <div class="tool-progress-fill" style="width: 0%;" data-target-width="${tool.level}%"></div>
-          </div>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     // Update View All button text/state
     const viewAllBtn = document.getElementById('view-all-tools-btn');
@@ -132,8 +138,8 @@
       } else {
         viewAllBtn.style.display = 'inline-flex';
         viewAllBtn.innerHTML = showAllTools
-          ? `<i class="fas fa-chevron-up"></i> <span>عرض أقل / Show Less</span>`
-          : `<i class="fas fa-th-large"></i> <span>عرض جميع التولز / View All Tools (${TOOLS_DATA.length})</span>`;
+          ? `<i class="fas fa-chevron-up"></i> <span>${isAr ? 'عرض أقل' : 'Show Less'}</span>`
+          : `<i class="fas fa-th-large"></i> <span>${isAr ? `عرض جميع التولز (${TOOLS_DATA.length})` : `View All Tools (${TOOLS_DATA.length})`}</span>`;
       }
     }
 

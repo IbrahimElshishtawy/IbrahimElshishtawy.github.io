@@ -1155,6 +1155,319 @@ Object.values(PROJECTS_DATA).forEach(project => {
   }
 });
 
+/* ── 4. VERIFIED ENGINEERING TOOLS & TECHNOLOGIES DATASET ──── */
+const TOOLS_DATA = [
+  // Mobile Category
+  {
+    name: "Flutter",
+    subtitle: "Cross-Platform Mobile UI Engine",
+    subtitleAr: "إطار عمل تطبيقات الموبايل الهجين فائق الأداء",
+    category: "mobile",
+    icon: "flutter",
+    level: 96,
+    neon: "#02569b"
+  },
+  {
+    name: "Dart",
+    subtitle: "Clean OOP Client Language",
+    subtitleAr: "لغة برمجة متقدمة لكتابة كود نظيف وعالي الكفاءة",
+    category: "mobile",
+    icon: "dart",
+    level: 95,
+    neon: "#0175c2"
+  },
+  {
+    name: "Flutter BLoC",
+    subtitle: "Predictable State Separation",
+    subtitleAr: "إدارة الحالة المتقدمة ونمط BLoC المعماري",
+    category: "mobile",
+    icon: "fas fa-cubes",
+    level: 94,
+    neon: "#8b5cf6"
+  },
+  {
+    name: "Riverpod",
+    subtitle: "Compile-safe Reactive State",
+    subtitleAr: "إدارة حالة تزامنية وآمنة برمجياً",
+    category: "mobile",
+    icon: "fas fa-project-diagram",
+    level: 88,
+    neon: "#06b6d4"
+  },
+  {
+    name: "GetX",
+    subtitle: "Micro-framework & Navigation",
+    subtitleAr: "إدارة الحالة والتوجيه السريع",
+    category: "mobile",
+    icon: "fas fa-bolt",
+    level: 90,
+    neon: "#ec4899"
+  },
+  {
+    name: "Clean Architecture",
+    subtitle: "Domain, Data & Presentation Layers",
+    subtitleAr: "فصل الطبقات وهيكلية معمارية نظيفة وقابلة للاختبار",
+    category: "mobile",
+    icon: "fas fa-layer-group",
+    level: 95,
+    neon: "#10b981"
+  },
+
+  // Frontend Category
+  {
+    name: "React.js",
+    subtitle: "Component UI Architecture",
+    subtitleAr: "مكتبة بناء واجهات الويب التفاعلية",
+    category: "frontend",
+    icon: "react",
+    level: 92,
+    neon: "#06b6d4"
+  },
+  {
+    name: "Next.js",
+    subtitle: "Production SSR & Static Web",
+    subtitleAr: "إطار عمل الويب والـ SSR والتصيير السريع",
+    category: "frontend",
+    icon: "nextjs",
+    level: 90,
+    neon: "#ffffff"
+  },
+  {
+    name: "TypeScript",
+    subtitle: "Strict Typed Engineering",
+    subtitleAr: "برمجة الويب بنظام الأنواع الصارم",
+    category: "frontend",
+    icon: "typescript",
+    level: 88,
+    neon: "#3178c6"
+  },
+  {
+    name: "JavaScript (ES6+)",
+    subtitle: "Modern Core Web Standard",
+    subtitleAr: "اللغة الأساسية لتطوير الويب الحديث التفاعلي",
+    category: "frontend",
+    icon: "fab fa-js",
+    level: 95,
+    neon: "#f7df1e"
+  },
+  {
+    name: "Tailwind CSS",
+    subtitle: "Utility-first Responsive UI",
+    subtitleAr: "تصميم الواجهات السريع والمتجاوب بأحدث المعايير",
+    category: "frontend",
+    icon: "fas fa-wind",
+    level: 95,
+    neon: "#38bdf8"
+  },
+  {
+    name: "HTML5 & CSS3",
+    subtitle: "Semantic Web & Grid/Flex",
+    subtitleAr: "معايير الويب الدلالية والتصميم الحديث",
+    category: "frontend",
+    icon: "fab fa-html5",
+    level: 96,
+    neon: "#e34f26"
+  },
+
+  // Backend Category
+  {
+    name: "Node.js",
+    subtitle: "Asynchronous Event Runtime",
+    subtitleAr: "بيئة تشغيل جافاسكريبت للخوادم الخلفية",
+    category: "backend",
+    icon: "nodejs",
+    level: 90,
+    neon: "#68a063"
+  },
+  {
+    name: "Express.js",
+    subtitle: "Microservices & REST APIs",
+    subtitleAr: "بناء واجهات الـ REST والخوادم الخلفية المصغرة",
+    category: "backend",
+    icon: "fas fa-server",
+    level: 88,
+    neon: "#94a3b8"
+  },
+  {
+    name: "PHP Backend",
+    subtitle: "API Integration & Cyber-Wise",
+    subtitleAr: "تطوير وربط الخدمات الخلفية والـ APIs",
+    category: "backend",
+    icon: "fab fa-php",
+    level: 82,
+    neon: "#8892bf"
+  },
+  {
+    name: "REST APIs & Dio",
+    subtitle: "Interceptors & Token Auth",
+    subtitleAr: "تصميم وربط واجهات برمجة التطبيقات والـ Interceptors",
+    category: "backend",
+    icon: "fas fa-network-wired",
+    level: 95,
+    neon: "#06b6d4"
+  },
+  {
+    name: "WebSockets",
+    subtitle: "Bi-directional Real-time Gateways",
+    subtitleAr: "الاتصال اللحظي وثنائي الاتجاه عبر السوكيت",
+    category: "backend",
+    icon: "fas fa-satellite-dish",
+    level: 86,
+    neon: "#f97316"
+  },
+  {
+    name: "Python 3",
+    subtitle: "OOP, Scripting & EdTech Instruction",
+    subtitleAr: "البرمجة كائنية التوجه، الأتمتة وتدريب بايثون",
+    category: "backend",
+    icon: "fab fa-python",
+    level: 90,
+    neon: "#3776ab"
+  },
+
+  // Database Category
+  {
+    name: "Firebase Firestore",
+    subtitle: "Real-time Cloud NoSQL DB",
+    subtitleAr: "قواعد بيانات سحابية متزامنة لحظياً وبناء التطبيقات السريعة",
+    category: "database",
+    icon: "firebase",
+    level: 90,
+    neon: "#ffa611"
+  },
+  {
+    name: "Hive DB",
+    subtitle: "Fast Local Key-Value Storage",
+    subtitleAr: "تخزين محلي فائق السرعة لتطبيقات فلاتر دون انتظار",
+    category: "database",
+    icon: "fas fa-box-open",
+    level: 92,
+    neon: "#00e5ff"
+  },
+  {
+    name: "SQLite / Sqflite",
+    subtitle: "Embedded Relational DB for Mobile",
+    subtitleAr: "قواعد البيانات العلائقية المدمجة في الموبايل",
+    category: "database",
+    icon: "fas fa-database",
+    level: 90,
+    neon: "#003b57"
+  },
+  {
+    name: "PostgreSQL",
+    subtitle: "Enterprise Relational SQL Engine",
+    subtitleAr: "قواعد بيانات علائقية متقدمة وقوية للمنصات الكبيرة",
+    category: "database",
+    icon: "postgresql",
+    level: 85,
+    neon: "#336791"
+  },
+  {
+    name: "MongoDB",
+    subtitle: "Scalable Document-based NoSQL",
+    subtitleAr: "قواعد بيانات المستندات المرنة والقابلة للتوسع",
+    category: "database",
+    icon: "fas fa-leaf",
+    level: 84,
+    neon: "#47a248"
+  },
+
+  // DevTools Category
+  {
+    name: "Git & GitHub",
+    subtitle: "Version Control, PRs & CI/CD",
+    subtitleAr: "إدارة الإصدارات والعمل الجماعي وخطوط الإنتاج",
+    category: "devtools",
+    icon: "github",
+    level: 94,
+    neon: "#f05032"
+  },
+  {
+    name: "VS Code",
+    subtitle: "Primary Development Environment",
+    subtitleAr: "محرر الأكواد وبيئة التطوير الأساسية مع حزم الإنتاجية",
+    category: "devtools",
+    icon: "fas fa-laptop-code",
+    level: 95,
+    neon: "#007acc"
+  },
+  {
+    name: "Android Studio",
+    subtitle: "SDK, Gradle & Profiling",
+    subtitleAr: "حزم تطوير أندرويد والمحاكيات وتحليل الأداء واستخراج الحزم",
+    category: "devtools",
+    icon: "fab fa-android",
+    level: 90,
+    neon: "#3ddc84"
+  },
+  {
+    name: "Postman",
+    subtitle: "API Testing & Mocking",
+    subtitleAr: "اختبار وتوثيق ومحاكاة الواجهات البرمجية",
+    category: "devtools",
+    icon: "fas fa-paper-plane",
+    level: 90,
+    neon: "#ff6c37"
+  },
+  {
+    name: "Figma",
+    subtitle: "UI/UX Prototyping & Inspection",
+    subtitleAr: "تصميم الواجهات وتحويلها إلى كود متناسق",
+    category: "devtools",
+    icon: "figma",
+    level: 82,
+    neon: "#a259ff"
+  },
+
+  // DevOps & Systems Category
+  {
+    name: "Linux / Ubuntu",
+    subtitle: "POSIX Shell & System Daemons",
+    subtitleAr: "سطر أوامر لينكس وإدارة الخدمات والبرمجيات الخلفية",
+    category: "devops",
+    icon: "fab fa-linux",
+    level: 90,
+    neon: "#e95420"
+  },
+  {
+    name: "OpenWrt Linux",
+    subtitle: "Embedded Router Firmware OS",
+    subtitleAr: "نظام تشغيل الراوترات وتطوير الأنظمة المدمجة وبرمجيات UCI",
+    category: "devops",
+    icon: "fas fa-microchip",
+    level: 92,
+    neon: "#00bcd4"
+  },
+  {
+    name: "iptables & tc",
+    subtitle: "Packet Filtering & Bandwidth Shaping",
+    subtitleAr: "تصفية حزم الشبكة وإدارة السرعات والكوتة وتحديد الاستهلاك",
+    category: "devops",
+    icon: "fas fa-shield-alt",
+    level: 88,
+    neon: "#a855f7"
+  },
+  {
+    name: "Docker",
+    subtitle: "Containerization & Isolation",
+    subtitleAr: "بيئات التشغيل والحاويات البرمجية وعزل الخدمات",
+    category: "devops",
+    icon: "docker",
+    level: 80,
+    neon: "#2496ed"
+  },
+  {
+    name: "Vercel & Edge Deploy",
+    subtitle: "Continuous Deployment & Cloud Edge",
+    subtitleAr: "النشر السحابي التلقائي والـ CI/CD واستضافة التطبيقات",
+    category: "devops",
+    icon: "fas fa-cloud-upload-alt",
+    level: 92,
+    neon: "#ffffff"
+  }
+];
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { EXPERTISE_GROUPS, PROJECTS_DATA, ALL_PROJECT_SCREENSHOTS };
+  module.exports = { EXPERTISE_GROUPS, PROJECTS_DATA, ALL_PROJECT_SCREENSHOTS, TOOLS_DATA };
 }
+
